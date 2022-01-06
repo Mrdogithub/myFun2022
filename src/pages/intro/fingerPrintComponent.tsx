@@ -11,6 +11,9 @@ export class FingerPrint extends React.Component {
 				}}
 			>
 			<div>
+				<div>
+					
+				</div>
 				<img src={introBgMask}  />
 				</div>
 				<div
