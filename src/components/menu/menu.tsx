@@ -2,43 +2,51 @@ import { setUncaughtExceptionCaptureCallback } from 'process';
 import React from 'react';
 import { SubMenu } from '../subMenu/subMenuComponent';
 import { Info } from '../info/infoComponent';
-// import firstActiveIndex from './1Active.svg';
-// import secondActiveIndex from './2Active.svg';
-// import thirdActiveIndex from './3Active.svg';
-// import firstNormalIndex from './1Normal.svg';
-// import secondNormalIndex from './2Normal.svg';
-// import thirdNormalIndex from './3Normal.svg';
-// import groupOne1ActiveSubText from './1_1ActiveSubText.svg';
-// import groupOne2ActiveSubText from './1_2ActiveSubText.svg';
-// import groupOne3ActiveSubText from './1_3ActiveSubText.svg';
-// import groupTwo1ActiveSubText from './2_1ActiveSubText.svg';
-// import groupTwo2ActiveSubText from './2_2ActiveSubText.svg';
-// import groupTwo3ActiveSubText from './2_3ActiveSubText.svg';
-// import groupThird1ActiveSubText from './3_1ActiveSubText.svg';
-// import groupThird2ActiveSubText from './3_2ActiveSubText.svg';
-// import groupThird3ActiveSubText from './3_3ActiveSubText.svg';
 import { subMenuList } from '../../config/subMenuList';
 export class Menu extends React.Component<any, any> {
 	constructor(props: any) {
 		super(props);
 		this.state = {
 			isMenuExpanded: false,
-			isInfoExpanded: false
+			isInfoExpanded: false,
+			infoInAnimate: '',
+			infoOutAnimate:'',
+			menuInAnimate:'',
+			menuOutAnimate:''
 		};
-		console.log(subMenuList)
 	}
 	closeMenu() {
-		this.setState({ isMenuExpanded: false });
+		setTimeout(()=>{this.setState({ isMenuExpanded: false });},500)
+		this.setState({	menuInAnimate: '',menuOutAnimate: ''})
+		setTimeout(()=>{
+			this.setState({menuOutAnimate: 'animate__animated animate__fadeOut'})
+		})
 	}
 	openMenu() {
-		this.setState({ isMenuExpanded: true });
+		setTimeout(()=>{this.setState({ isMenuExpanded: true });},100)
+		this.setState({	menuInAnimate: '',menuOutAnimate: ''})
+		setTimeout(()=>{
+			this.setState({menuInAnimate: 'animate__animated animate__fadeIn'})
+		})
 	}
 	onShowInfoPanel() {
-		this.setState({ isInfoExpanded: true });
+
+		setTimeout(()=>{this.setState({ isInfoExpanded: true });},100)
+		this.setState({	infoInAnimate: '',infoOutAnimate: ''})
+		setTimeout(()=>{
+			this.setState({infoInAnimate: 'animate__animated animate__slideInRight'})
+		})
+
 	}
 	onCloseInfoPanel() {
 		if (this.state.isInfoExpanded) {
-			this.setState({ isInfoExpanded: false });
+
+			this.setState({	infoInAnimate: '',infoOutAnimate: ''})
+			setTimeout(()=>{
+				this.setState({infoOutAnimate: 'animate__animated animate__slideOutRight'})
+			})
+
+			// setTimeout(()=>{this.setState({ isInfoExpanded: false });},100)
 		}
 	}
 	swiperTo(index: number) {
@@ -47,7 +55,7 @@ export class Menu extends React.Component<any, any> {
 	}
 	render() {
 		//定义导航卡片
-		
+
 		return (
 			<div>
 				{/*展开菜单*/}
@@ -61,6 +69,7 @@ export class Menu extends React.Component<any, any> {
 						left: '0px',
 						zIndex: this.state.isMenuExpanded ? '3' : '1'
 					}}
+					className = { this.state.menuInAnimate + ' ' + this.state.menuOutAnimate}
 				>
 					{subMenuList.map((item, index) => {
 						return (
@@ -175,23 +184,21 @@ export class Menu extends React.Component<any, any> {
 				</div>
 
 				{/*个人数据面板*/}
-				<Info isInfoExpanded={this.state.isInfoExpanded} onCloseInfoPanel={() => this.onCloseInfoPanel()} />
+				<Info inAnimate = {this.state.infoInAnimate} outAnimate = {this.state.infoOutAnimate} isInfoExpanded={this.state.isInfoExpanded} onCloseInfoPanel={() => this.onCloseInfoPanel()} />
 				{/*用户名称*/}
 				<div
 					style={{
-						/* Hi, Christ! */
 						position: 'absolute',
-						left: '1083px',
+						right: '160px',
 						top: '54px',
-						zIndex: '3'
+						zIndex: '3',
+						fontSize:'18px',
+						display: this.props.userName === '' ? 'none' : 'block',
+						fontFamily:'Lincoln-ProximaNova-LightIt'
 					}}
+					className="dFordSmallTitle"
 				>
-					<svg width="94" height="16" viewBox="0 0 94 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path
-							d="M10.764 13L13.41 0.993999H11.304L10.224 5.908H3.978L5.058 0.993999H2.952L0.306 13H2.412L3.564 7.762H9.81L8.658 13H10.764ZM15.4198 13L18.0658 0.993999H15.9598L13.3138 13H15.4198ZM20.438 11.974C20.438 11.128 19.88 10.678 19.232 10.678C18.53 10.678 17.864 11.29 17.864 12.028C17.864 12.676 18.314 13.036 18.818 13.036H18.998C18.746 13.648 17.99 14.242 17.342 14.548L18.044 15.286C19.376 14.62 20.438 13.234 20.438 11.974ZM33.3612 13.216C34.8912 13.216 36.7452 12.676 38.0772 11.092L36.4752 9.976C35.6832 10.84 34.5492 11.344 33.4872 11.344C31.2372 11.344 29.8152 9.85 29.8152 7.762C29.8152 4.774 31.9932 2.668 34.3872 2.668C35.8272 2.668 37.0512 3.334 37.6272 4.666L39.6432 3.946C38.8872 2.182 37.1952 0.795999 34.4952 0.795999C30.8772 0.795999 27.6192 3.604 27.6192 7.888C27.6192 11.128 30.1032 13.216 33.3612 13.216ZM49.7347 13L52.3807 0.993999H50.2747L49.1947 5.908H42.9487L44.0287 0.993999H41.9227L39.2767 13H41.3827L42.5347 7.762H48.7807L47.6287 13H49.7347ZM61.5725 13L59.7005 8.392C61.8065 8.104 63.3365 6.466 63.3365 4.27C63.3365 2.236 61.6085 0.993999 59.7545 0.993999H54.9305L52.2845 13H54.3905L55.3625 8.518H57.5765L59.2505 13H61.5725ZM58.6385 6.664H55.7765L56.6225 2.848H59.3765C60.2765 2.848 61.1225 3.514 61.1225 4.468C61.1225 5.71 60.2225 6.664 58.6745 6.664H58.6385ZM65.6933 13L68.3393 0.993999H66.2333L63.5873 13H65.6933ZM73.2315 13.216C76.1475 13.216 77.8215 11.308 77.8215 9.238C77.8215 5.764 71.9175 6.016 71.9175 4.198C71.9175 3.388 72.7635 2.668 73.8975 2.668C75.1575 2.668 76.5795 3.172 77.4255 4.234L78.7755 2.74C77.8035 1.534 76.0755 0.813999 74.1855 0.813999C71.4315 0.813999 69.6855 2.614 69.6855 4.54C69.6855 8.014 75.5715 7.654 75.5715 9.616C75.5715 10.408 74.9415 11.344 73.4115 11.344C71.7375 11.344 70.2255 10.606 69.3975 9.472L68.0475 11.02C68.9835 12.298 70.9635 13.216 73.2315 13.216ZM83.5494 13L85.7814 2.848H89.4174L89.8314 0.993999H80.4534L80.0394 2.848H83.6754L81.4434 13H83.5494ZM91.5081 9.328L93.6861 0.993999H91.3821L89.8701 9.328H91.5081ZM90.0141 13.198C90.7521 13.198 91.3821 12.586 91.3821 11.848C91.3821 11.2 90.8781 10.678 90.2481 10.678C89.4921 10.678 88.8621 11.29 88.8621 12.046C88.8621 12.676 89.3661 13.198 90.0141 13.198Z"
-							fill="#DEDEDE"
-						/>
-					</svg>
+					Hi,{this.props.userName}!
 				</div>
 			</div>
 		);

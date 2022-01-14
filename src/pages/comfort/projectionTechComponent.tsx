@@ -3,7 +3,7 @@ import comfortBg_8 from './comfortBg_8.png';
 export class ProjectionTech extends React.Component {
 	render() {
 		return (
-			<div>
+			<div id = 'ProjectionTech'>
 				{/* 背景图片 */}
 				<div
 					style={{

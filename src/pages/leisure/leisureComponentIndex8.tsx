@@ -1,0 +1,537 @@
+import React from 'react';
+import leisureBg_8 from './leisureBg_8.png';
+
+import leisureBg_8_1 from './leisureBg_8_1.png';
+import leisureBg_8_2 from './leisureBg_8_2.png';
+import leisureBg_8_3 from './leisureBg_8_3.png';
+import leisureBg_8_4 from './leisureBg_8_4.png';
+
+import leisureBg_8_1_max from './leisureBg_8_1_max.png';
+import leisureBg_8_2_max from './leisureBg_8_2_max.png';
+import leisureBg_8_3_max from './leisureBg_8_3_max.png';
+import leisureBg_8_4_max from './leisureBg_8_4_max.png';
+
+interface MapImage {
+	[key: string]: string;
+}
+const MAX_IMAGE: MapImage = {
+	'leisureBg_8_2_max': leisureBg_8_2_max,
+	'leisureBg_8_1_max': leisureBg_8_1_max,
+	'leisureBg_8_3_max': leisureBg_8_3_max,
+	'leisureBg_8_4_max': leisureBg_8_4_max
+};
+export class LeisureComponentIndex8 extends React.Component<any, any> {
+	constructor(props: any) {
+		super(props);
+		this.state = {
+			bgImage: leisureBg_8
+		};
+	}
+	onChangeBg(index: string) {
+		this.setState({ bgImage: MAX_IMAGE[index] });
+	}
+	render() {
+		return (
+			<div id="CamSub">
+				{/*背景图片*/}
+				<div
+					style={{
+						position: 'absolute',
+						top: '0px',
+						left: '0px',
+						width: '100%',
+						height: '100%'
+					}}
+				>
+					<img src={this.state.bgImage} />
+				</div>
+				{/*背景图片遮罩*/}
+				<div
+					style={{
+						position: 'absolute',
+						width: '1368px',
+						height: '824px',
+						left: ' -2px',
+						top: '0px',
+						background:
+							'linear-gradient(180deg, #242238 -9.89%, rgba(41, 42, 56, 0.57) 66.29%, rgba(43, 46, 55, 0) 100%)',
+						mixBlendMode: 'overlay'
+					}}
+				/>
+				<div
+					style={{
+						position: 'absolute',
+						width: '1368px',
+						height: '662px',
+						left: '-2px',
+						top: '0px',
+						mixBlendMode: 'soft-light',
+						background: 'linear-gradient(180deg, #331C36 41.84%, rgba(43, 46, 55, 0) 100%)'
+					}}
+				/>
+				<div
+					style={{
+						/* Rectangle 59 */
+
+						position: 'absolute',
+						width: '1366px',
+						height: '1024px',
+						left: '0px',
+						top: '1024px',
+						mixBlendMode: 'multiply',
+						background: 'linear-gradient(209.66deg, #BBACB6 20.63%, rgba(199, 226, 251, 0.26) 74.25%)',
+						transform: 'matrix(1, 0, 0, -1, 0, 0)'
+					}}
+				/>
+				{/* 背景栅格 */}
+				<div
+					style={{
+						position: 'absolute',
+						width: '832px',
+						height: '892px',
+						left: '256px',
+						top: '145px',
+					}}
+				>
+					<svg width="833" height="892" viewBox="0 0 833 892" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<line opacity="0.3" x1="0.5" y1="-2.18557e-08" x2="0.500039" y2="892" stroke="#E8E8E8" />
+						<line opacity="0.3" x1="277.5" y1="-2.18557e-08" x2="277.5" y2="892" stroke="#E8E8E8" />
+						<line opacity="0.3" x1="555.5" y1="-2.18557e-08" x2="555.5" y2="892" stroke="#E8E8E8" />
+						<line opacity="0.3" x1="832.5" y1="-2.18557e-08" x2="832.5" y2="892" stroke="#E8E8E8" />
+					</svg>
+				</div>
+				{/*标题*/}
+				<div
+					style={{
+						position: 'absolute',
+						width: '499px',
+						height: '142px',
+						left: '436px',
+						top: '320px'
+					}}
+				>
+					<svg width="503" height="146" viewBox="0 0 503 146" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path
+							opacity="0.9"
+							d="M302.358 107.17C314.214 107.17 320.454 99.76 323.652 92.506L322.794 92.038C319.752 98.824 314.136 104.284 304.62 104.284C292.92 104.284 285.9 93.52 285.9 79.402C285.9 61.696 292.452 52.804 302.046 52.804C312.108 52.804 318.114 62.164 320.922 71.212H321.624L321.312 51.946H320.61L317.646 56.158C315.306 53.974 310.626 51.712 303.996 51.712C288.318 51.712 276.54 63.958 276.54 80.026C276.54 96.562 286.992 107.17 302.358 107.17ZM321.199 106H341.089V105.454C338.359 105.298 331.573 104.83 331.573 102.022C331.573 100.93 332.119 99.058 332.665 97.342C333.367 95.002 335.083 89.932 336.565 86.344H355.909L361.447 100.618C361.681 101.242 361.915 102.1 361.759 102.802C361.369 104.674 356.221 105.298 353.491 105.454V106H378.061V105.454C376.579 105.376 374.707 105.142 373.303 104.362C371.431 103.27 370.729 101.788 370.105 100.228C367.219 92.974 358.405 71.992 350.449 51.868H349.045C343.117 66.766 336.097 84.472 330.559 97.888C329.389 100.618 327.985 103.036 326.113 104.128C324.709 104.908 322.681 105.376 321.199 105.454V106ZM336.955 85.252L346.159 61.774L355.441 85.252H336.955ZM376.71 106H398.316V105.454C396.912 105.376 391.608 104.83 390.282 103.738C388.566 102.334 387.63 99.604 387.63 93.676V57.484L404.868 94.3C406.35 97.654 408.066 102.1 409.002 105.142H409.86L430.374 56.626V100.462C430.374 102.256 429.828 103.738 427.878 104.596C426.786 105.064 423.276 105.376 421.872 105.454V106H446.442V105.454C445.038 105.376 441.918 104.986 440.982 104.518C439.188 103.66 438.564 102.178 438.564 100.462V58.108C438.564 56.392 439.032 54.91 440.982 54.286C442.386 53.818 445.038 53.35 446.442 53.272V52.726H429.75C429.672 53.584 429.204 56.47 427.956 59.356L413.526 93.598L394.182 52.726H377.1V53.272C379.206 53.35 382.248 53.74 384.12 55.222C385.68 56.47 386.538 58.654 386.538 61.852V93.676C386.538 99.682 385.836 102.49 383.964 103.816C382.092 105.142 378.036 105.298 376.71 105.454V106Z"
+							fill="white"
+						/>
+						<path
+							opacity="0.9"
+							d="M74.152 76.032C74.6533 75.7813 75.1547 75.5307 75.656 75.28C76.1573 75.0293 76.7213 74.7787 77.348 74.528C78.0373 74.2773 78.8207 74.0267 79.698 73.776C80.638 73.4627 81.7347 73.1493 82.988 72.836C85.7453 72.084 88.0327 71.144 89.85 70.016C91.6673 68.888 93.0773 67.572 94.08 66.068C95.1453 64.564 95.866 62.9033 96.242 61.086C96.6807 59.2687 96.9 57.2947 96.9 55.164C96.9 53.66 96.7433 52.25 96.43 50.934C96.1167 49.5553 95.584 48.3647 94.832 47.362C94.08 46.2967 93.0773 45.482 91.824 44.918C90.6333 44.2913 89.098 43.978 87.218 43.978C85.15 43.978 83.458 44.26 82.142 44.824C80.826 45.3253 79.792 45.952 79.04 46.704C78.3507 47.3933 77.8807 48.114 77.63 48.866C77.3793 49.5553 77.254 50.1193 77.254 50.558C77.254 52.25 77.5047 53.5347 78.006 54.412C78.57 55.2893 78.852 56.0727 78.852 56.762C78.852 57.89 78.4447 58.6733 77.63 59.112C76.878 59.5507 75.9693 59.77 74.904 59.77C72.1467 59.77 70.768 58.4227 70.768 55.728C70.768 54.9133 71.0187 53.7853 71.52 52.344C72.084 50.84 73.024 49.3673 74.34 47.926C75.656 46.4847 77.4107 45.2627 79.604 44.26C81.86 43.1947 84.6487 42.662 87.97 42.662C90.978 42.662 93.5787 43.132 95.772 44.072C98.028 45.012 99.8767 46.2027 101.318 47.644C102.759 49.0227 103.825 50.558 104.514 52.25C105.203 53.8793 105.548 55.446 105.548 56.95C105.548 59.582 104.765 61.838 103.198 63.718C101.694 65.598 99.908 67.1647 97.84 68.418C95.8347 69.6713 93.798 70.6427 91.73 71.332C89.662 72.0213 88.0953 72.46 87.03 72.648V72.836C89.7247 72.9613 92.3253 73.494 94.832 74.434C97.3387 75.374 99.5633 76.69 101.506 78.382C103.449 80.0113 104.984 81.954 106.112 84.21C107.24 86.466 107.804 89.004 107.804 91.824C107.804 94.3307 107.24 96.806 106.112 99.25C105.047 101.694 103.511 103.887 101.506 105.83C99.5633 107.773 97.182 109.339 94.362 110.53C91.6047 111.721 88.534 112.316 85.15 112.316C82.0167 112.316 79.3533 111.877 77.16 111C74.9667 110.185 73.1493 109.089 71.708 107.71C70.2667 106.269 69.1387 104.702 68.324 103.01C67.5093 101.255 66.9453 99.4693 66.632 97.652L67.948 97.37C68.0733 98.2473 68.3867 99.438 68.888 100.942C69.3893 102.446 70.2353 103.95 71.426 105.454C72.6793 106.958 74.3713 108.274 76.502 109.402C78.6953 110.467 81.5153 111 84.962 111C86.9047 111 88.722 110.718 90.414 110.154C92.106 109.59 93.5473 108.556 94.738 107.052C95.9913 105.548 96.9627 103.511 97.652 100.942C98.3413 98.31 98.686 94.9573 98.686 90.884C98.686 88.816 98.5293 86.7793 98.216 84.774C97.9027 82.706 97.276 80.8887 96.336 79.322C95.396 77.6927 94.1113 76.3767 92.482 75.374C90.8527 74.3713 88.722 73.87 86.09 73.87C83.8967 73.87 81.8913 74.2147 80.074 74.904C78.2567 75.5307 76.5647 76.408 74.998 77.536L74.152 76.032ZM154.008 90.132C154.008 86.184 153.695 82.9567 153.068 80.45C152.504 77.9433 151.815 76.0633 151 74.81C150.185 73.5567 149.057 72.554 147.616 71.802C146.237 70.9873 144.545 70.58 142.54 70.58C139.407 70.58 136.869 71.2693 134.926 72.648C133.046 73.964 131.667 75.4053 130.79 76.972C130.226 78.0373 129.85 79.1967 129.662 80.45C129.474 81.7033 129.38 83.1133 129.38 84.68C129.38 89.5053 129.537 93.5473 129.85 96.806C130.226 100.002 131.041 102.947 132.294 105.642C132.983 107.209 134.08 108.493 135.584 109.496C137.151 110.499 139.375 111 142.258 111C144.702 111 146.676 110.53 148.18 109.59C149.684 108.587 150.843 107.24 151.658 105.548C152.535 103.731 153.131 101.663 153.444 99.344C153.82 96.9627 154.008 93.892 154.008 90.132ZM163.408 90.414C163.408 93.234 162.844 95.96 161.716 98.592C160.588 101.224 159.053 103.574 157.11 105.642C155.23 107.647 153.005 109.277 150.436 110.53C147.867 111.721 145.141 112.316 142.258 112.316C139.438 112.316 136.712 111.783 134.08 110.718C131.511 109.653 129.223 107.961 127.218 105.642C125.213 103.261 123.583 100.19 122.33 96.43C121.139 92.67 120.544 88.0953 120.544 82.706C120.544 77.1287 121.233 71.9273 122.612 67.102C124.053 62.214 126.027 57.9527 128.534 54.318C131.041 50.6833 133.955 47.832 137.276 45.764C140.66 43.696 144.326 42.662 148.274 42.662C150.655 42.662 152.629 43.038 154.196 43.79C155.825 44.4793 157.11 45.388 158.05 46.516C159.053 47.5813 159.742 48.772 160.118 50.088C160.557 51.3413 160.776 52.532 160.776 53.66C160.776 55.0387 160.306 56.198 159.366 57.138C158.489 58.078 157.267 58.548 155.7 58.548C152.817 58.548 151.376 57.4827 151.376 55.352C151.376 54.788 151.47 54.2867 151.658 53.848C151.909 53.4093 152.159 52.9393 152.41 52.438C152.723 51.9367 153.005 51.3727 153.256 50.746C153.507 50.1193 153.632 49.336 153.632 48.396C153.632 46.7667 153.099 45.6387 152.034 45.012C150.969 44.3227 149.527 43.978 147.71 43.978C145.329 43.978 143.229 44.542 141.412 45.67C139.595 46.798 138.028 48.302 136.712 50.182C135.396 51.9993 134.299 54.0987 133.422 56.48C132.545 58.7987 131.824 61.18 131.26 63.624C130.696 66.0053 130.226 68.324 129.85 70.58C129.537 72.836 129.255 74.81 129.004 76.502L129.192 76.69C130.445 74.434 132.263 72.648 134.644 71.332C137.088 69.9533 139.783 69.264 142.728 69.264C146.112 69.264 149.089 69.922 151.658 71.238C154.227 72.4913 156.358 74.152 158.05 76.22C159.805 78.2253 161.121 80.4813 161.998 82.988C162.938 85.4947 163.408 87.97 163.408 90.414ZM182.916 77.442C182.916 83.27 183.073 88.3147 183.386 92.576C183.762 96.7747 184.389 100.253 185.266 103.01C186.206 105.705 187.491 107.71 189.12 109.026C190.749 110.342 192.88 111 195.512 111C198.144 111 200.275 110.342 201.904 109.026C203.533 107.71 204.787 105.705 205.664 103.01C206.604 100.253 207.231 96.7747 207.544 92.576C207.92 88.3147 208.108 83.27 208.108 77.442C208.108 71.614 207.92 66.6007 207.544 62.402C207.231 58.2033 206.604 54.7567 205.664 52.062C204.787 49.3047 203.533 47.268 201.904 45.952C200.275 44.636 198.144 43.978 195.512 43.978C192.88 43.978 190.749 44.636 189.12 45.952C187.491 47.268 186.206 49.3047 185.266 52.062C184.389 54.7567 183.762 58.2033 183.386 62.402C183.073 66.6007 182.916 71.614 182.916 77.442ZM173.516 77.442C173.516 73.682 173.798 69.7653 174.362 65.692C174.989 61.556 176.117 57.796 177.746 54.412C179.375 50.9653 181.6 48.1453 184.42 45.952C187.303 43.7587 191 42.662 195.512 42.662C200.024 42.662 203.69 43.7587 206.51 45.952C209.393 48.1453 211.649 50.9653 213.278 54.412C214.907 57.796 216.004 61.556 216.568 65.692C217.195 69.7653 217.508 73.682 217.508 77.442C217.508 81.2647 217.195 85.244 216.568 89.38C216.004 93.4533 214.907 97.2133 213.278 100.66C211.649 104.044 209.393 106.833 206.51 109.026C203.69 111.219 200.024 112.316 195.512 112.316C191 112.316 187.303 111.219 184.42 109.026C181.6 106.833 179.375 104.044 177.746 100.66C176.117 97.2133 174.989 93.4533 174.362 89.38C173.798 85.244 173.516 81.2647 173.516 77.442Z"
+							fill="white"
+						/>
+						<path opacity="0.2" d="M501 18V2H2V79.5M501 64V144H2V126" stroke="white" strokeWidth="4" />
+						<circle cx="234.5" cy="48.5" r="8" stroke="white" strokeWidth="3" />
+					</svg>
+				</div>
+				{/*左1图*/}
+				<div
+					style={{
+						/* Mask Group */
+
+						position: 'absolute',
+						width: '227px',
+						height: '316px',
+						left: '75px',
+						top: '535px'
+					}}
+					onClick={() => {
+						this.onChangeBg('leisureBg_8_2_max');
+					}}
+				>
+					<img src={leisureBg_8_2} />
+				</div>
+				<div
+					onClick={() => {
+						this.onChangeBg('leisureBg_8_2_max');
+					}}
+					style={{
+						/* shadow */
+
+						position: 'absolute',
+						width: '290.63px',
+						height: '37px',
+						left: '41.74px',
+						top: '825.5px'
+					}}
+				>
+					<svg width="227" height="40" viewBox="0 0 227 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<g filter="url(#filter0_f_967_1203)">
+							<path
+								d="M-57.2617 51.5L-39.5 33.5L5.49818 22.5L220.999 14.5L233.369 33.5L-57.2617 51.5Z"
+								fill="url(#paint0_linear_967_1203)"
+							/>
+						</g>
+						<g filter="url(#filter1_f_967_1203)">
+							<path
+								d="M-0.5 42.5L-6.5 40.5L-5 34.5L224.5 22.5L228 29.5L-0.5 42.5Z"
+								fill="#050505"
+								fillOpacity="0.41"
+							/>
+						</g>
+						<defs>
+							<filter
+								id="filter0_f_967_1203"
+								x="-71.2617"
+								y="0.5"
+								width="318.629"
+								height="65"
+								filterUnits="userSpaceOnUse"
+								colorInterpolationFilters="sRGB"
+							>
+								<feFlood floodOpacity="0" result="BackgroundImageFix" />
+								<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+								<feGaussianBlur stdDeviation="7" result="effect1_foregroundBlur_967_1203" />
+							</filter>
+							<filter
+								id="filter1_f_967_1203"
+								x="-9.5"
+								y="19.5"
+								width="240.5"
+								height="26"
+								filterUnits="userSpaceOnUse"
+								colorInterpolationFilters="sRGB"
+							>
+								<feFlood floodOpacity="0" result="BackgroundImageFix" />
+								<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+								<feGaussianBlur stdDeviation="1.5" result="effect1_foregroundBlur_967_1203" />
+							</filter>
+							<linearGradient
+								id="paint0_linear_967_1203"
+								x1="184.5"
+								y1="32"
+								x2="-44"
+								y2="36.5"
+								gradientUnits="userSpaceOnUse"
+							>
+								<stop stopColor="#68646D" />
+								<stop offset="0.820481" stopColor="#68646D" stopOpacity="0.58" />
+								<stop offset="1" stopColor="#68646D" stopOpacity="0" />
+							</linearGradient>
+						</defs>
+					</svg>
+				</div>
+				<div
+					onClick={() => {
+						this.onChangeBg('leisureBg_8_2_max');
+					}}
+					style={{
+						/* Rectangle 120 */
+
+						position: 'absolute',
+						width: '225px',
+						height: '341px',
+						left: '78px',
+						top: '513px',
+
+						background:
+							' linear-gradient(333.53deg, rgba(69, 69, 69, 0.3) 0.49%, rgba(255, 255, 255, 0) 44.68%)',
+						mixBlendMode: 'multiply'
+					}}
+				/>
+				{/*左2图*/}
+				<div
+					style={{
+						position: 'absolute',
+						width: '255px',
+						height: '316px',
+						left: '327px',
+						top: '537px',
+						transform: 'matrix(1, -0.09, -0.01, 1, 0, 0)'
+					}}
+					onClick={() => {
+						this.onChangeBg('leisureBg_8_1_max');
+					}}
+				>
+					<img src={leisureBg_8_1} />
+				</div>
+				<div
+					style={{
+						position: 'absolute',
+						width: '290.63px',
+						height: '37px',
+						left: '308px',
+						top: '824.5px'
+					}}
+					onClick={() => {
+						this.onChangeBg('leisureBg_8_1_max');
+					}}
+				>
+					<svg width="300" height="41" viewBox="0 0 227 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<g filter="url(#filter0_f_967_1204)">
+							<path
+								d="M-59 51.5L-41.2383 33.5L3.7599 22.5L219.261 14.5L231.63 33.5L-59 51.5Z"
+								fill="url(#paint0_linear_967_1204)"
+							/>
+						</g>
+						<g filter="url(#filter1_f_967_1204)">
+							<path
+								d="M-2.23828 43.5L-6.23828 41.5L-4.73828 35.5L222.762 22.5L226.262 29.5L-2.23828 43.5Z"
+								fill="#050505"
+								fillOpacity="0.41"
+							/>
+						</g>
+						<defs>
+							<filter
+								id="filter0_f_967_1204"
+								x="-73"
+								y="0.5"
+								width="318.629"
+								height="65"
+								filterUnits="userSpaceOnUse"
+								colorInterpolationFilters="sRGB"
+							>
+								<feFlood floodOpacity="0" result="BackgroundImageFix" />
+								<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+								<feGaussianBlur stdDeviation="7" result="effect1_foregroundBlur_967_1204" />
+							</filter>
+							<filter
+								id="filter1_f_967_1204"
+								x="-9.23828"
+								y="19.5"
+								width="238.5"
+								height="27"
+								filterUnits="userSpaceOnUse"
+								colorInterpolationFilters="sRGB"
+							>
+								<feFlood floodOpacity="0" result="BackgroundImageFix" />
+								<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+								<feGaussianBlur stdDeviation="1.5" result="effect1_foregroundBlur_967_1204" />
+							</filter>
+							<linearGradient
+								id="paint0_linear_967_1204"
+								x1="182.762"
+								y1="32"
+								x2="-45.7383"
+								y2="36.5"
+								gradientUnits="userSpaceOnUse"
+							>
+								<stop stopColor="#68646D" />
+								<stop offset="0.820481" stopColor="#68646D" stopOpacity="0.58" />
+								<stop offset="1" stopColor="#68646D" stopOpacity="0" />
+							</linearGradient>
+						</defs>
+					</svg>
+				</div>
+				<div
+					onClick={() => {
+						this.onChangeBg('leisureBg_8_1_max');
+					}}
+					style={{
+						/* Rectangle 120 */
+
+						position: 'absolute',
+						width: '255px',
+						height: '316px',
+						left: '321px',
+						top: '535px'
+					}}
+				>
+					<svg width="227" height="308" viewBox="0 0 227 308" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect
+							x="-6"
+							y="-8"
+							width="255"
+							height="316"
+							fill="url(#paint0_linear_967_1207)"
+							fillOpacity="0.3"
+						/>
+						<defs>
+							<linearGradient
+								id="paint0_linear_967_1207"
+								x1="241.5"
+								y1="19"
+								x2="57.5"
+								y2="225.5"
+								gradientUnits="userSpaceOnUse"
+							>
+								<stop stopColor="white" />
+								<stop offset="1" stopColor="#9B95A4" stopOpacity="0" />
+							</linearGradient>
+						</defs>
+					</svg>
+				</div>
+				{/*左图3*/}
+				<div
+					style={{
+						/* Rectangle 121 */
+
+						position: 'absolute',
+						width: '238px',
+						height: '320px',
+						left: '816px',
+						top: '543px',
+
+						background:
+							'linear-gradient(95.32deg, rgba(255, 255, 255, 0.23) 9.76%, rgba(196, 196, 196, 0) 68.27%)'
+					}}
+					onClick={() => {
+						this.onChangeBg('leisureBg_8_4_max');
+					}}
+				>
+					<img src={leisureBg_8_4} style={{ transform: ' matrix(1, -0.09, 0, 1, 0, 0)' }} />
+				</div>
+				<div
+					style={{
+						position: 'absolute',
+						width: '290.63px',
+						height: '37px',
+						left: ' 787px',
+						top: '834.5px',
+						transform: 'matrix(-1, 0, 0, 1, 0, 0)'
+					}}
+					onClick={() => {
+						this.onChangeBg('leisureBg_8_4_max');
+					}}
+				>
+					<svg width="227" height="41" viewBox="0 0 227 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<g filter="url(#filter0_f_967_1213)">
+							<path
+								d="M285.629 51.5L267.867 33.5L222.869 22.5L7.36786 14.5L-5.00159 33.5L285.629 51.5Z"
+								fill="url(#paint0_linear_967_1213)"
+							/>
+						</g>
+						<g filter="url(#filter1_f_967_1213)">
+							<path
+								d="M228.867 43.5L232.867 41.5L231.367 35.5L3.86719 22.5L0.367188 29.5L228.867 43.5Z"
+								fill="#050505"
+								fillOpacity="0.41"
+							/>
+						</g>
+						<defs>
+							<filter
+								id="filter0_f_967_1213"
+								x="-19"
+								y="0.5"
+								width="318.629"
+								height="65"
+								filterUnits="userSpaceOnUse"
+								colorInterpolationFilters="sRGB"
+							>
+								<feFlood floodOpacity="0" result="BackgroundImageFix" />
+								<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+								<feGaussianBlur stdDeviation="7" result="effect1_foregroundBlur_967_1213" />
+							</filter>
+							<filter
+								id="filter1_f_967_1213"
+								x="-2.63281"
+								y="19.5"
+								width="238.5"
+								height="27"
+								filterUnits="userSpaceOnUse"
+								colorInterpolationFilters="sRGB"
+							>
+								<feFlood floodOpacity="0" result="BackgroundImageFix" />
+								<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+								<feGaussianBlur stdDeviation="1.5" result="effect1_foregroundBlur_967_1213" />
+							</filter>
+							<linearGradient
+								id="paint0_linear_967_1213"
+								x1="43.8672"
+								y1="32"
+								x2="272.367"
+								y2="36.5"
+								gradientUnits="userSpaceOnUse"
+							>
+								<stop stopColor="#68646D" />
+								<stop offset="0.820481" stopColor="#68646D" stopOpacity="0.58" />
+								<stop offset="1" stopColor="#68646D" stopOpacity="0" />
+							</linearGradient>
+						</defs>
+					</svg>
+				</div>
+				{/*左图4*/}
+				<div
+					style={{
+						position: 'absolute',
+						width: '255px',
+						height: '341px',
+						right: '25px',
+						top: '513px',
+
+						background:
+							'linear-gradient(37.59deg, rgba(69, 69, 69, 0.3) 11.68%, rgba(255, 255, 255, 0) 65.35%)',
+					}}
+					onClick={() => {
+						this.onChangeBg('leisureBg_8_3_max');
+					}}
+				>
+					<img src={leisureBg_8_3} style={{ transform: 'matrix(1, -0.09, 0, 1, 0, 0)' }} />
+				</div>
+
+				<div
+					style={{
+						/* shadow */
+
+						position: 'absolute',
+						width: '290.63px',
+						height: '37px',
+						right: '-10px',
+						top: '825.5px',
+						transform: 'matrix(-1, 0, 0, 1, 0, 0)'
+					}}
+					onClick={() => {
+						this.onChangeBg('leisureBg_8_3_max');
+					}}
+				>
+					<svg width="300" height="40" viewBox="0 0 227 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<g filter="url(#filter0_f_967_1210)">
+							<path
+								d="M283.891 51.5L266.129 33.5L221.131 22.5L5.62958 14.5L-6.73987 33.5L283.891 51.5Z"
+								fill="url(#paint0_linear_967_1210)"
+							/>
+						</g>
+						<g filter="url(#filter1_f_967_1210)">
+							<path
+								d="M227.129 42.5L233.129 40.5L231.629 34.5L2.12891 22.5L-1.37109 29.5L227.129 42.5Z"
+								fill="#050505"
+								fillOpacity="0.41"
+							/>
+						</g>
+						<defs>
+							<filter
+								id="filter0_f_967_1210"
+								x="-20.7383"
+								y="0.5"
+								width="318.629"
+								height="65"
+								filterUnits="userSpaceOnUse"
+								colorInterpolationFilters="sRGB"
+							>
+								<feFlood floodOpacity="0" result="BackgroundImageFix" />
+								<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+								<feGaussianBlur stdDeviation="7" result="effect1_foregroundBlur_967_1210" />
+							</filter>
+							<filter
+								id="filter1_f_967_1210"
+								x="-4.37109"
+								y="19.5"
+								width="240.5"
+								height="26"
+								filterUnits="userSpaceOnUse"
+								colorInterpolationFilters="sRGB"
+							>
+								<feFlood floodOpacity="0" result="BackgroundImageFix" />
+								<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+								<feGaussianBlur stdDeviation="1.5" result="effect1_foregroundBlur_967_1210" />
+							</filter>
+							<linearGradient
+								id="paint0_linear_967_1210"
+								x1="42.1289"
+								y1="32"
+								x2="270.629"
+								y2="36.5"
+								gradientUnits="userSpaceOnUse"
+							>
+								<stop stopColor="#68646D" />
+								<stop offset="0.820481" stopColor="#68646D" stopOpacity="0.58" />
+								<stop offset="1" stopColor="#68646D" stopOpacity="0" />
+							</linearGradient>
+						</defs>
+					</svg>
+				</div>
+			</div>
+		);
+	}
+}

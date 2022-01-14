@@ -1,0 +1,185 @@
+@font-face {
+    font-family: 'LincolnMillerB-Roman';
+    src: url('./fonts/LincolnMillerB-Roman.otf')
+}
+
+@font-face {
+    font-family: 'Lincoln-Proxima-Nova-Light';
+    src: url('./fonts/Lincoln-ProximaNova-Light.otf')
+}
+
+@font-face {
+    font-family: 'LincolnMillerB-Bold';
+    src: url('./fonts/LincolnMillerB-Bold.otf')
+}
+
+@font-face {
+    font-family: 'Lincoln-ProximaNova-LightIt';
+    src: url('./fonts/Lincoln-ProximaNova-LightIt.otf')
+}
+
+@font-face {
+    font-family: 'Lincoln-ProximaNova-Thin';
+    src: url('./fonts/Lincoln-ProximaNova-Thin.otf')
+}
+
+.dFordTextThin {
+
+    font-family: 'Lincoln-ProximaNova-Thin';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 34px;
+    line-height: 110%;
+    letter-spacing: -0.01em;
+    color: #FFFFFF;
+}
+
+
+.slideWrappr {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.dFordTitle {
+    font-family: 'LincolnMillerB-Roman';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 78px;
+    line-height: 94px;
+    text-align: center;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    opacity: 0.9;
+}
+
+.dFordSmallTitle {
+    font-family: 'LincolnMillerB-Roman';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 32px;
+    line-height: 109.94%;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    opacity: 0.9;
+}
+
+.dFordSubTitle {
+    font-family: 'LincolnMillerB-Roman';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 38px;
+    line-height: 46px;
+    /* identical to box height */
+    text-transform: uppercase;
+    
+    color: #FFFFFF;
+    
+    opacity: 0.9;
+    
+}
+
+
+.dFordNormalTitle {
+    font-family: 'LincolnMillerB-Roman';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 60px;
+    line-height: 72px;
+    text-transform: uppercase;
+    opacity: 0.8;
+    color: #FFFFFF;
+}
+
+
+
+.dFordMainTitle {
+    font-family: 'LincolnMillerB-Bold';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 129px;
+    line-height: 155px;
+    text-align: center;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: #FBFBFB;
+    opacity: 0.9;
+}
+
+
+.dFordText {
+    font-family: 'Lincoln-Proxima-Nova-Light';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 140%;
+    text-align: left;
+    /* or 31px */
+    letter-spacing: -0.01em;
+    color: #FFFFFF;
+}
+
+
+
+.dFordText::before {
+    position: absolute;
+    content: '';
+    width: 68px;
+    height: 0px;
+    left: 0px;
+    top: -30px;
+    border: 5px solid #DBC17D;
+    transform: rotate(180deg);
+
+}
+
+.dFordNormalText {
+    font-family: 'Lincoln-Proxima-Nova-Light';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 140%;
+    text-align: left;
+    letter-spacing: -0.01em;
+    color: #FFFFFF;
+}
+
+
+
+.container {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    height: 100vh;
+}
+
+.box {
+    flex: 1;
+    overflow: hidden;
+    transition: .5s;
+    box-shadow: 0 20px 30px rgba(0, 0, 0, .1);
+    line-height: 0;
+}
+
+.box>img {
+    object-fit: cover;
+    transition: .5s;
+}
+
+.box>span {
+    font-size: 3.8vh;
+    display: block;
+    text-align: center;
+    height: 10vh;
+    line-height: 2.6;
+}
+
+.box:hover {
+    flex: 1 1 80%;
+}
+
+.box:hover>img {
+    width: 100%;
+    height: 100%;
+}
