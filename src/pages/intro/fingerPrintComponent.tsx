@@ -1,5 +1,5 @@
 import React from 'react';
-import introBgMask from './introBgMask.png'
+import introBgMask from './introBgMask.png';
 export class FingerPrint extends React.Component {
 	render() {
 		return (
@@ -10,11 +10,9 @@ export class FingerPrint extends React.Component {
 					background: 'linear-gradient(349.98deg, #131A20 9.93%, rgba(190, 151, 129, 0.28) 102.69%)'
 				}}
 			>
-			<div>
 				<div>
-					
-				</div>
-				<img src={introBgMask}  />
+					<div />
+					<img src={introBgMask} />
 				</div>
 				<div
 					style={{
@@ -185,13 +183,15 @@ export class FingerPrint extends React.Component {
 					</svg>
 				</div>
 
-				<div style={{
-                    position: 'absolute',
-                    width: '388px',
-                    height: '150px',
-                    left: '484px',
-                    top: '500px',
-                }}>
+				<div
+					style={{
+						position: 'absolute',
+						width: '388px',
+						height: '150px',
+						left: '484px',
+						top: '500px'
+					}}
+				>
 					<svg width="388" height="150" viewBox="0 0 388 150" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<rect width="388" height="150" fill="url(#paint0_radial_1275_1112)" />
 						<defs>
@@ -209,6 +209,19 @@ export class FingerPrint extends React.Component {
 							</radialGradient>
 						</defs>
 					</svg>
+				</div>
+
+				<div
+					className="dFordTextThin"
+					style={{
+						position: 'absolute',
+						width: '355px',
+						height: '37px',
+						left: '509px',
+						top: '683px'
+					}}
+				>
+					Finger Print Sensor Login
 				</div>
 			</div>
 		);

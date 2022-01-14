@@ -1,0 +1,31 @@
+.floating-balloon-1{
+    animation: floatAnim 6s ease-in-out infinite;
+}
+
+.floating-balloon-2 {
+    animation: floatAnim2 5s ease-in-out infinite;
+}
+
+@keyframes floatAnim {
+    0% {
+        transform: translate(0, 0px);
+    }
+    50% {
+        transform: translate(0, 15px);
+    }
+    100% {
+        transform: translate(0, 0px);
+    }
+}
+
+@keyframes floatAnim2 {
+    0% {
+        transform: translate(0px, 0px);
+    }
+    50% {
+        transform: translate(0px, 15px);
+    }
+    100% {
+        transform: translate(0px, 0px);
+    }
+}

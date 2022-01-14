@@ -9,9 +9,9 @@ export class ActiveIndex extends React.Component<any, any> {
 	}
 	render() {
 		const { indexText, subText, indexTextStyle, subTextStyle, slideIndex } = this.props.indexItem;
-	
+
 		return (
-			<div >
+			<div>
 				<div
 					style={{
 						position: 'relative',
@@ -21,31 +21,27 @@ export class ActiveIndex extends React.Component<any, any> {
 						width: '47px',
 						height: '47px',
 						boxSizing: 'border-box',
-						padding: '7px'
+						padding: '7px',
 					}}
 					onClick={() => this.swiperTo(slideIndex)}
 				>
-					<img src={indexText} />
+					<img src={indexText} style={{ objectFit: 'contain' }} />
 				</div>
 				<div
 					style={{
 						/* Advanced dimmabel window */
-
+						borderBottom: '2px solid rgba(255, 255, 255,0.5)',
 						position: 'absolute',
 						left: subTextStyle.left,
-						top: subTextStyle.top
+						top: subTextStyle.top,
+						minHeight:'30px'
 					}}
 				>
 					<img src={subText} />
-					<div
-						style={{
-							position: 'absolute',
-							borderBottom: '2px solid #fff',
-							opacity: '0.5',
-							width: ' 100%'
-						}}
-					/>
+
+				
 				</div>
+				
 			</div>
 		);
 	}

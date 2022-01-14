@@ -3,7 +3,7 @@ import comfortBg_5 from './comfortBg_5.png';
 export class FlexibleDisplaySystemSub extends React.Component {
 	render() {
 		return (
-			<div>
+			<div id = 'FlexibleDisplaySystemSub'>
 				{/* 背景图片 */}
 				<div
 					style={{
