@@ -20,7 +20,8 @@ export class Advanced extends React.Component<any, any> {
 			<div
 				style={{
 					background: '#404447',
-					width: '100%',
+					width: '100%',]
+					
 					height: '100%'
 				}}
 			>
