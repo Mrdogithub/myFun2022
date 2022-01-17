@@ -183,3 +183,16 @@
     width: 100%;
     height: 100%;
 }
+
+.video-react .video-react-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover !important;
+}
+
+.video-react-has-started .video-react-control-bar,.video-react .video-react-big-play-button{
+    display:none !important;
+}

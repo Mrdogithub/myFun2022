@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
 import 'swiper/css';
 import './styles.css';
-
+import 'swiper/css/free-mode'
 import { Intro } from './pages/intro/introComponent';
 import { FingerPrint } from './pages/intro/fingerPrintComponent';
 import {HomeComponentIndex1} from './pages/home/homeComponentIndex1'
@@ -61,8 +61,7 @@ import { UniqueComponentIndex4 } from './pages/unique/uniqueComponentIndex4';
 
 import { Menu } from './components/menu/menu';
 import { textConfig,slideAnimateMap } from './config/textConfig';
-import SwiperCore, { Mousewheel } from 'swiper';
-
+import SwiperCore, { Mousewheel,FreeMode} from 'swiper';
 
 
 let _swiper: any = null;
@@ -77,6 +76,7 @@ export default class SwiperIndex extends React.Component<any, any> {
             inAnimate: '',
             outAnimate: '',
             userName:'',
+            activeIndex: 0,
             videoConfig:{
                 autoPlay:false,
                 pause:false,
@@ -89,6 +89,7 @@ export default class SwiperIndex extends React.Component<any, any> {
     
   
 	swiperTo(index: number) {
+        console.log('swiperTo')
 		_swiper.slideTo(index, 1000, false);
 	}
 	
@@ -96,13 +97,20 @@ export default class SwiperIndex extends React.Component<any, any> {
 		_swiper = swiper;
 	}
 	setAnimate(swiper:any) {
-        if(swiper.activeIndex === 3) {
-            this.setState({videoConfig: {    autoPlay:true,
-                pause:false,}})
-        } else {
-            this.setState({videoConfig:{    autoPlay:false,
-                pause:true}})
-        }
+        const currentActiveIndex = swiper.activeIndex;
+      
+        // 更新全局当前索引
+        console.log(swiper)
+        this.setState({activeIndex: swiper.activeIndex})
+
+        // 模拟视屏播放
+        // if(swiper.activeIndex === 3) {
+        //     this.setState({videoConfig: {    autoPlay:true,
+        //         pause:false,}})
+        // } else {
+        //     this.setState({videoConfig:{    autoPlay:false,
+        //         pause:true}})
+        // }
         if(!slideAnimateMap[swiper.activeIndex]) {
             this.setState({
                 inAnimate: slideAnimateMap[999].in,
@@ -121,33 +129,87 @@ export default class SwiperIndex extends React.Component<any, any> {
                 inAnimate: slideAnimateMap[swiper.activeIndex].in,
                 outAnimate:slideAnimateMap[swiper.activeIndex].out,
             })
-            console.log(this.state)
-        },100)
-	}
+        })
+    }
+    
+
+
 	updateUserInfo (userInfo: string) {
 		if(userInfo) {
 			this.setState({userName: userInfo})
-			_swiper.allowSlideNext = true
 			_swiper.slideTo(1,1000,false)
 		} 
     }
 
+    isShowMenu() {
+        const hideMenuByIndex = [0,1];
+        return hideMenuByIndex.includes(this.state.activeIndex)?'none':'block'
+    }
 
+    onNext() {
+        if(_swiper) {
+            _swiper.slideTo(2, 1000, false);
+        }
+    }
 
+    onTouchMove(swiper) {
+        const currentActiveIndex = swiper.activeIndex;
+        if(currentActiveIndex === 5) {
+            this.setState({videoConfig: {autoPlay:true, pause:false,}});
+            // this.setState({
+            //     inAnimate: '',
+            //     outAnimate:''
+            // })
+            // setTimeout(()=>{
+            //     this.setState({
+            //         inAnimate: '',
+            //         outAnimate:slideAnimateMap[_swiper.activeIndex].out,
+            //     })
+            // },2000)
+
+            // setTimeout(()=>{
+            //     this.setState({
+            //         inAnimate: slideAnimateMap[_swiper.activeIndex].in,
+            //         outAnimate:'',
+            //     })
+            // },2500)
+        }
+    }
+    onTransition(swiper) {
+        // console.log('onTransition')
+        // console.log(1,swiper)
+    }
+
+    onChangeAnimateByTime() {
+        this.setState({
+            inAnimate: '',
+            outAnimate:''
+        })
+		setTimeout(()=>{
+			this.setState({
+                // inAnimate: slideAnimateMap[_swiper.activeIndex].out,
+                outAnimate:slideAnimateMap[_swiper.activeIndex].out,
+            })
+        })
+        this.setState({
+            inAnimate: slideAnimateMap[_swiper.activeIndex].in,
+            outAnimate:'',
+        })
+    }
 	render() {
         
         return(<>
-            <Menu  onSwiperTo={(index: number) => this.swiperTo(index)} userName = {this.state.userName}/>
+            <Menu displayStatus = {this.isShowMenu()}  onSwiperTo={(index: number) => this.swiperTo(index)} userName = {this.state.userName}/>
             <Swiper
+                modules={[FreeMode]}
                 onSwiper={(swiper: any) => this.getSwiperDom(swiper)}
                 onSlideChange = {(swiper:any)=>{this.setAnimate(swiper)}}
+                onTouchMove = {(swiper:any)=>{this.onTouchMove(swiper)}}
+                onTransitionStart = {(swiper:any)=>{ this.onTransition(swiper)}}
                 direction={'vertical'}
-                slidesPerView={1}
-                spaceBetween={30}
-                mousewheel={true}
-                pagination={{
-                    clickable: true
-                }}
+                // freeMode={true}
+
+                preloadImages = {true}
                 className="mySwiper"
             >
             {/* section one */}
@@ -157,7 +219,7 @@ export default class SwiperIndex extends React.Component<any, any> {
                 </SwiperSlide>
                 <SwiperSlide>
                      {/* globalIndex:1*/}
-                    <FingerPrint />
+                    <FingerPrint onNext = {()=>{this.onNext()}}/>
                 </SwiperSlide>
                 
                 <SwiperSlide>
@@ -175,7 +237,9 @@ export default class SwiperIndex extends React.Component<any, any> {
 
                 <SwiperSlide>
                      {/* globalIndex:5*/}
-                    <PrivacyComponentIndex1 />
+                    <PrivacyComponentIndex1 
+                    inAnimate = {this.state.inAnimate} outAnimate = {this.state.outAnimate}
+                    videoConfig = {this.state.videoConfig} changeAnimateByTime = {()=>this.onChangeAnimateByTime()}/>
                 </SwiperSlide>
                 <SwiperSlide>
                      {/* globalIndex:6*/}

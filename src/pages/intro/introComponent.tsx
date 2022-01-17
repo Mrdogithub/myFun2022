@@ -22,6 +22,7 @@ export class Intro extends React.Component<any, any> {
 					height: '100%',
 					width: '100%',
 				}}
+				className = 'swiper-no-swiping'
 			>
 				<div>
 					<img src={this.props.images[13]} style={{ position: 'absolute' }} />

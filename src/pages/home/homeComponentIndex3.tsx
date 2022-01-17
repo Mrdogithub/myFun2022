@@ -27,6 +27,8 @@ const MAX_IMAGES = [
 	homeUnique_4
 ];
 
+/* Note: backdrop-backdropFilter: has minimal browser support */
+
 export class HomeComponentIndex3 extends React.Component<any, any> {
 	constructor(props: any) {
 		super(props);
@@ -39,8 +41,12 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					smallIndex: privacySmallIndex,
 					smallTitle: privacySmallTitle,
 					isActive: false,
+					isFilter: false,
 					maxTitle: 'privacy',
+					bgFilter:
+						'linear-gradient(90deg, rgba(177, 143, 132, 0.3) -8.64%, rgba(14, 15, 31, 0.234) 112.68%)',
 					onChange: (currentSlide: any) => {
+					
 						currentSlide.defaultImage = homePrivacy_1;
 						this.state.slides.map((item: any) => {
 							if (item.index === currentSlide.index) {
@@ -59,6 +65,9 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					smallIndex: comfortSmallIndex,
 					smallTitle: comfortSmallTitle,
 					isActive: false,
+					isFilter: false,
+					bgFilter:
+						'linear-gradient(90deg, rgba(177, 143, 132, 0.3) -8.64%, rgba(14, 15, 31, 0.234) 112.68%)',
 					maxTitle: 'comfort',
 					onChange: () => {
 						console.log('s');
@@ -75,6 +84,9 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					smallTitle: leisureSmallTitle,
 					maxTitle: 'Leisure',
 					isActive: false,
+					isFilter: false,
+					bgFilter:
+						'linear-gradient(90deg, rgba(177, 143, 132, 0.3) -8.64%, rgba(14, 15, 31, 0.234) 112.68%)',
 					onChange: () => {
 						console.log('s');
 					},
@@ -82,6 +94,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						console.log('s');
 					}
 				},
+
 				{
 					index: 3,
 					defaultImage: homeUnique_4_small,
@@ -89,7 +102,10 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					smallIndex: uniqueSmallIndex,
 					smallTitle: uniqueSmallTitle,
 					maxTitle: 'unique',
+					bgFilter:
+						'linear-gradient(90deg, rgba(177, 143, 132, 0.3) -8.64%, rgba(14, 15, 31, 0.234) 112.68%)',
 					isActive: false,
+					isFilter: false,
 					onChange: () => {
 						console.log('s');
 					},
@@ -102,53 +118,77 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	}
 
 	onChange(currentSlide: any, index: any) {
+		
 		this.state.slides.map((item: any) => {
 			if (item.index === currentSlide.index) {
 				currentSlide.defaultImage = MAX_IMAGES[index];
 				currentSlide.isActive = true;
+				currentSlide.isFilter = false;
 				this.setState({ item: currentSlide });
 			} else {
 				item.isActive = false;
+				item.isFilter = true;
 				this.setState({ item: item });
 			}
 		});
-		console.log(1, this.state.slides)
+		console.log(1, this.state.slides);
 	}
+
 	render() {
 		return (
-			<div>
+			<div >
+
+			{/*className="swiper-no-swiping" */}
 				<div className="container">
 					{this.state.slides.map((item: any, index: any) => {
 						return (
-							<div className="box" key={index} style={{ position: 'relative' }}>
-								<img
-									src={this.state.slides[index].defaultImage}
-									onClick={(item: any) => this.onChange(this.state.slides[index], index)}
+							<div
+								className="box"
+								key={index}
+								style={{ position: 'relative' }}
+								onClick={(item: any) => this.onChange(this.state.slides[index], index)}
+							>
+								{/* 手风琴 收起状态虚化效果*/}
+								<div
+									style={{
+										position: 'absolute',
+										width: '100%',
+										height: '100%',
+										backdropFilter: item.isFilter ? 'blur(20px)' : 'blur(0px)',
+										backgroundColor: item.isFilter ? item.bgFilter : ''
+									}}
 								/>
+								{/* 手风琴 激活状态下滑动提示*/}
+								<img src={this.state.slides[index].defaultImage} />
+
+								{/* 手风琴 激活状态下滑动提示*/}
 								<div
 									className="dFordMainTitle"
 									style={{
-										/* Comfort */
-
 										position: 'absolute',
 										width: '659px',
 										height: '155px',
-										left: '312px',
-										top: '741px'
+										left: '0px',
+										top: '70%',
+										bottom: ' 0px',
+										right: '0px',
+										margin: '0 auto',
+										display: item.isActive ? 'block' : 'none'
 									}}
 								>
 									{this.state.slides[index].maxTitle}
 								</div>
-
+								{/* 手风琴 激活状态下滑动提示*/}
 								<div
 									style={{
 										position: 'absolute',
 										width: '211px',
 										height: '57px',
 										left: '0px',
-										top: '916px',
+										top: '90%',
+										bottom: ' 0px',
 										right: '0px',
-										margin: ' 0 auto',
+										margin: '0 auto',
 										display: this.state.slides[index].isActive ? 'block' : 'none'
 									}}
 								>
@@ -179,11 +219,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 										height: '105px',
 										top: '891px',
 										left: '0px',
-										right: '0px',
-										bottom: '0px',
-										margin: '0 auto',
-										transform: ' scale(0.4)',
-										display: !this.state.slides[index].isActive && index != this.state.slides[index].index ? 'block' : 'none'
+										transform: 'scale(0.4)',
+										display: !this.state.slides[index].isActive && item.isFilter ? 'block' : 'none'
 									}}
 								>
 									<img src={this.state.slides[index].smallIndex} style={{ objectFit: 'contain' }} />
@@ -198,7 +235,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 										right: '0px',
 										bottom: '0px',
 										margin: '0 auto',
-										display: this.state.slides[index].isActive ? 'none' : 'block'
+										display: item.isActive || item.isFilter ? 'none' : 'block'
 									}}
 								>
 									<img src={this.state.slides[index].smallTitle} style={{ objectFit: 'contain' }} />
@@ -210,11 +247,11 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 										width: '81px',
 										height: '105px',
 										top: '891px',
-										left: '0px',
-										right: '0px',
-										bottom: '0px',
-										margin: '0 auto',
-										display: this.state.slides[index].isActive ? 'none' : 'block'
+										right: !item.isActive ? '0px' : 'none',
+										bottom: !item.isActive ? '0px' : 'none',
+										margin: !item.isActive ? '0 auto' : '0',
+										left: item.isActive ? '40px' : '0px',
+										display: item.isFilter ? 'none' : 'block'
 									}}
 								>
 									<img src={this.state.slides[index].smallIndex} style={{ objectFit: 'contain' }} />

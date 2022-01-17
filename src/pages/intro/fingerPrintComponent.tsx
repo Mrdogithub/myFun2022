@@ -1,6 +1,13 @@
 import React from 'react';
 import introBgMask from './introBgMask.png';
-export class FingerPrint extends React.Component {
+export class FingerPrint extends React.Component<any, any> {
+	constructor(props:any) {
+		super(props)
+	}
+	onSwiper() {
+		console.log('test')
+		this.props.onNext()
+	}
 	render() {
 		return (
 			<div
@@ -9,6 +16,7 @@ export class FingerPrint extends React.Component {
 					height: '100%',
 					background: 'linear-gradient(349.98deg, #131A20 9.93%, rgba(190, 151, 129, 0.28) 102.69%)'
 				}}
+				className = 'swiper-no-swiping'
 			>
 				<div>
 					<div />
@@ -62,8 +70,10 @@ export class FingerPrint extends React.Component {
 						width: '363px',
 						height: '224px',
 						left: '501px',
-						top: '386px'
+						top: '386px',
+						zIndex:'4'
 					}}
+					onClick = {()=>{this.onSwiper()}}
 				>
 					<svg
 						width="363"

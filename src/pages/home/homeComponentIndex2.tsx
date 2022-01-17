@@ -21,28 +21,6 @@ export class HomeComponentIndex2 extends React.Component<any, any> {
 			playerSource: video,
 		};
 	}
-	componentDidUpdate(prevProps: any, prevState: any) {
-		if(this.props.videoConfig.autoPlay){
-			this.player.play();
-		}
-		if(this.props.videoConfig.pause){
-			this.player.pause();
-		}
-		
-
-		if(this.props.videoConfig.autoPlay)
-		if (this.state.playerSource !== prevState.playerSource) {
-			this.player.load();
-		}
-	}
-
-	handleValueChange(e:any) {
-		const { value } = e.target;
-		this.setState({
-			inputVideoUrl: value
-		});
-	}
-
 
 	render() {
 		return (
@@ -67,25 +45,6 @@ export class HomeComponentIndex2 extends React.Component<any, any> {
 						<line opacity="0.3" x1="555.5" y1="-2.18557e-08" x2="555.5" y2="894" stroke="#E8E8E8" />
 						<line opacity="0.3" x1="832.5" y1="-2.18557e-08" x2="832.5" y2="894" stroke="#E8E8E8" />
 					</svg>
-				</div>
-
-				<div style={{ position: 'absolute', left: '0px', right: '0px', top: '0px' }}>
-					<div
-						style={{
-							margin: '0px',
-							paddingTop: '140px'
-						}}
-					>
-						<Player
-							ref={(player: any) => {
-								// this.setState({player:player})
-								this.player = player;
-							}}
-							autoPlay={false}
-						>
-							<source src={video} />
-						</Player>
-					</div>
 				</div>
 			</div>
 		);

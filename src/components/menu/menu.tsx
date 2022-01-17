@@ -10,43 +10,47 @@ export class Menu extends React.Component<any, any> {
 			isMenuExpanded: false,
 			isInfoExpanded: false,
 			infoInAnimate: '',
-			infoOutAnimate:'',
-			menuInAnimate:'',
-			menuOutAnimate:''
+			infoOutAnimate: '',
+			menuInAnimate: '',
+			menuOutAnimate: ''
 		};
 	}
-	closeMenu() {
-		setTimeout(()=>{this.setState({ isMenuExpanded: false });},500)
-		this.setState({	menuInAnimate: '',menuOutAnimate: ''})
-		setTimeout(()=>{
-			this.setState({menuOutAnimate: 'animate__animated animate__fadeOut'})
-		})
+	closeMenu(e) {
+		setTimeout(() => {
+			this.setState({ isMenuExpanded: false });
+		}, 500);
+		this.setState({ menuInAnimate: '', menuOutAnimate: '' });
+		setTimeout(() => {
+			this.setState({ menuOutAnimate: 'animate__animated animate__fadeOut' });
+		});
 	}
-	openMenu() {
-		setTimeout(()=>{this.setState({ isMenuExpanded: true });},100)
-		this.setState({	menuInAnimate: '',menuOutAnimate: ''})
-		setTimeout(()=>{
-			this.setState({menuInAnimate: 'animate__animated animate__fadeIn'})
-		})
+	openMenu(e) {
+		console.log('test')
+		e.stopPropagation();
+		setTimeout(() => {
+			this.setState({ isMenuExpanded: true });
+		}, 100);
+		this.setState({ menuInAnimate: '', menuOutAnimate: '' });
+		setTimeout(() => {
+			this.setState({ menuInAnimate: 'animate__animated animate__fadeIn' });
+		});
 	}
-	onShowInfoPanel() {
-
-		setTimeout(()=>{this.setState({ isInfoExpanded: true });},100)
-		this.setState({	infoInAnimate: '',infoOutAnimate: ''})
-		setTimeout(()=>{
-			this.setState({infoInAnimate: 'animate__animated animate__slideInRight'})
-		})
-
+	onShowInfoPanel(e) {
+		e.stopPropagation();
+		setTimeout(() => {
+			this.setState({ isInfoExpanded: true });
+		}, 100);
+		this.setState({ infoInAnimate: '', infoOutAnimate: '' });
+		setTimeout(() => {
+			this.setState({ infoInAnimate: 'animate__animated animate__slideInRight' });
+		});
 	}
 	onCloseInfoPanel() {
 		if (this.state.isInfoExpanded) {
-
-			this.setState({	infoInAnimate: '',infoOutAnimate: ''})
-			setTimeout(()=>{
-				this.setState({infoOutAnimate: 'animate__animated animate__slideOutRight'})
-			})
-
-			// setTimeout(()=>{this.setState({ isInfoExpanded: false });},100)
+			this.setState({ infoInAnimate: '', infoOutAnimate: '' });
+			setTimeout(() => {
+				this.setState({ infoOutAnimate: 'animate__animated animate__slideOutRight' });
+			});
 		}
 	}
 	swiperTo(index: number) {
@@ -57,7 +61,8 @@ export class Menu extends React.Component<any, any> {
 		//定义导航卡片
 
 		return (
-			<div>
+			<div style={{ display: this.props.displayStatus,
+				zIndex: '999', }}>
 				{/*展开菜单*/}
 				<div
 					style={{
@@ -67,9 +72,10 @@ export class Menu extends React.Component<any, any> {
 						position: 'absolute',
 						top: '0px',
 						left: '0px',
-						zIndex: this.state.isMenuExpanded ? '3' : '1'
+						display: this.state.isMenuExpanded ? 'block' : 'none',
+						zIndex:'2'
 					}}
-					className = { this.state.menuInAnimate + ' ' + this.state.menuOutAnimate}
+					className={this.state.menuInAnimate + ' ' + this.state.menuOutAnimate}
 				>
 					{subMenuList.map((item, index) => {
 						return (
@@ -90,9 +96,9 @@ export class Menu extends React.Component<any, any> {
 							width: '59px',
 							height: '59px',
 							left: '60px',
-							top: '911px'
+							top: '911px',
 						}}
-						onClick={() => this.closeMenu()}
+						onClick={(e: any) => this.closeMenu(e)}
 					>
 						<svg width="59" height="59" viewBox="0 0 59 59" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="29.5" cy="29.5" r="28.5" stroke="white" strokeWidth="2" />
@@ -117,7 +123,8 @@ export class Menu extends React.Component<any, any> {
 						background:
 							'linear-gradient(90deg, rgba(177, 143, 132, 0.3) -8.64%, rgba(14, 15, 31, 0.234) 112.68%)',
 						backdropFilter: 'blur(60px)',
-						zIndex: '2'
+						pointerEvents: 'none',
+						zIndex: '2',
 					}}
 				/>
 
@@ -139,9 +146,9 @@ export class Menu extends React.Component<any, any> {
 						position: 'absolute',
 						left: '60px',
 						top: '36px',
-						zIndex: '3'
+						zIndex: '3',
 					}}
-					onClick={() => this.openMenu()}
+					onClick={(e) => this.openMenu(e)}
 				>
 					<svg width="132" height="59" viewBox="0 0 132 59" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<circle cx="29.5" cy="29.5" r="28.5" stroke="white" strokeWidth="2" />
@@ -160,9 +167,9 @@ export class Menu extends React.Component<any, any> {
 						position: 'absolute',
 						left: '1227px',
 						top: '35px',
-						zIndex: '3'
+						zIndex: '3',
 					}}
-					onClick={() => this.onShowInfoPanel()}
+					onClick={(e) => this.onShowInfoPanel(e)}
 				>
 					<svg width="55" height="68" viewBox="0 0 55 68" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<g clipPath="url(#clip0_2251_1088)">
@@ -184,7 +191,12 @@ export class Menu extends React.Component<any, any> {
 				</div>
 
 				{/*个人数据面板*/}
-				<Info inAnimate = {this.state.infoInAnimate} outAnimate = {this.state.infoOutAnimate} isInfoExpanded={this.state.isInfoExpanded} onCloseInfoPanel={() => this.onCloseInfoPanel()} />
+				<Info
+					inAnimate={this.state.infoInAnimate}
+					outAnimate={this.state.infoOutAnimate}
+					isInfoExpanded={this.state.isInfoExpanded}
+					onCloseInfoPanel={() => this.onCloseInfoPanel()}
+				/>
 				{/*用户名称*/}
 				<div
 					style={{
@@ -192,9 +204,9 @@ export class Menu extends React.Component<any, any> {
 						right: '160px',
 						top: '54px',
 						zIndex: '3',
-						fontSize:'18px',
+						fontSize: '18px',
 						display: this.props.userName === '' ? 'none' : 'block',
-						fontFamily:'Lincoln-ProximaNova-LightIt'
+						fontFamily: 'Lincoln-ProximaNova-LightIt'
 					}}
 					className="dFordSmallTitle"
 				>

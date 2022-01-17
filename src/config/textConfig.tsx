@@ -44,6 +44,21 @@ export const slideAnimateMap: SlideAnimate = {
 			boxAnimate: ''
 		}
 	},
+	[5]: {
+		slideName: '',
+		title: '',
+		text: '',
+		in: {
+			titleAnimate: 'animate__animated animate__slideInDown',
+			textAnimate: 'animate__animated animate__slideInLeft',
+			boxAnimate: 'animate__animated animate__slideInLeft',
+		},
+		out: {
+			titleAnimate: 'animate__animated animate__fadeOut',
+			textAnimate: 'animate__animated animate__slideOutLeft',
+			boxAnimate: ''
+		}
+	},
 	[6]: {
 		slideName: '',
 		title: '',
@@ -67,13 +82,13 @@ export const slideAnimateMap: SlideAnimate = {
 			titleAnimate: 'animate__animated animate__slideInDown',
 			textAnimate: 'animate__animated animate__slideInDown',
 			boxAnimate: 'animate__animated animate__slideInLeft',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		},
 		out: {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: '',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		}
 	},
 	[8]: {
@@ -84,13 +99,13 @@ export const slideAnimateMap: SlideAnimate = {
 			titleAnimate: 'animate__animated animate__slideInDown',
 			textAnimate: 'animate__animated animate__slideInDown',
 			boxAnimate: 'animate__animated animate__slideInLeft',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		},
 		out: {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: '',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		}
 	},
 	[9]: {
@@ -101,13 +116,13 @@ export const slideAnimateMap: SlideAnimate = {
 			titleAnimate: '',
 			textAnimate: '',
 			boxAnimate: '',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		},
 		out: {
 			titleAnimate: '',
 			textAnimate: '',
 			boxAnimate: '',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		}
 	},
 	[10]: {
@@ -118,13 +133,13 @@ export const slideAnimateMap: SlideAnimate = {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: 'animate__animated animate__slideInLeft',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		},
 		out: {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: '',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		}
 	},
 	[11]: {
@@ -135,13 +150,13 @@ export const slideAnimateMap: SlideAnimate = {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: 'animate__animated animate__slideInDown',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		},
 		out: {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: '',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		}
 	},
 	[12]: {
@@ -152,13 +167,13 @@ export const slideAnimateMap: SlideAnimate = {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: 'animate__animated animate__slideInDown',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		},
 		out: {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: '',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		}
 	},
 	[13]: {
@@ -169,13 +184,13 @@ export const slideAnimateMap: SlideAnimate = {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: 'animate__animated animate__slideInDown',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		},
 		out: {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: '',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		}
 	},
 	[14]: {
@@ -186,13 +201,13 @@ export const slideAnimateMap: SlideAnimate = {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: 'animate__animated animate__slideInDown',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		},
 		out: {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: '',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		}
 	},
 	[15]: {
@@ -203,13 +218,13 @@ export const slideAnimateMap: SlideAnimate = {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: 'animate__animated animate__slideInDown',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		},
 		out: {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: '',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		}
 	},
 	[16]: {
@@ -220,13 +235,13 @@ export const slideAnimateMap: SlideAnimate = {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: 'animate__animated animate__slideInDown',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		},
 		out: {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: '',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		}
 	},
 	[20]: {
@@ -237,13 +252,13 @@ export const slideAnimateMap: SlideAnimate = {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: 'animate__animated animate__slideInDown',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		},
 		out: {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: '',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		}
 	},
 	[21]: {
@@ -254,13 +269,13 @@ export const slideAnimateMap: SlideAnimate = {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: 'animate__animated animate__slideInDown',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		},
 		out: {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: '',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		}
 	},
 	[22]: {
@@ -271,13 +286,13 @@ export const slideAnimateMap: SlideAnimate = {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: 'animate__animated animate__slideInDown',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		},
 		out: {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: '',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		}
 	},
 	[23]: {
@@ -288,13 +303,13 @@ export const slideAnimateMap: SlideAnimate = {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: 'animate__animated animate__slideInDown',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		},
 		out: {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: '',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		}
 	},
 	[24]: {
@@ -305,13 +320,13 @@ export const slideAnimateMap: SlideAnimate = {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: 'animate__animated animate__slideInDown',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		},
 		out: {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: '',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		}
 	},
 	[25]: {
@@ -322,13 +337,13 @@ export const slideAnimateMap: SlideAnimate = {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: 'animate__animated animate__slideInDown',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		},
 		out: {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: '',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		}
 	},
 	[26]: {
@@ -339,13 +354,13 @@ export const slideAnimateMap: SlideAnimate = {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: 'animate__animated animate__slideInDown',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		},
 		out: {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: '',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		}
 	},
 	[27]: {
@@ -356,13 +371,13 @@ export const slideAnimateMap: SlideAnimate = {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: 'animate__animated animate__slideInDown',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		},
 		out: {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: '',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		}
 	},
 	[28]: {
@@ -373,13 +388,13 @@ export const slideAnimateMap: SlideAnimate = {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: 'animate__animated animate__slideInDown',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		},
 		out: {
 			titleAnimate: 'animate__animated animate__slideInLeft',
 			textAnimate: 'animate__animated animate__slideInLeft',
 			boxAnimate: '',
-			footer: 'animate__animated animate__slideInDown'
+			footer: ''
 		}
 	}
 };
