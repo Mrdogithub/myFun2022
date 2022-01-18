@@ -1,5 +1,5 @@
 import React from 'react';
-import homePrivacy_1 from './homePrivacy_1.png';
+// import homePrivacy_1 from './homePrivacy_1.png';
 import homeConfort_2 from './homeConfort_2.png';
 import homeLeisure_3 from './homeLeisure_3.png';
 import homeUnique_4 from './homeUnique_4.png';
@@ -21,6 +21,7 @@ import leisureSmallIndex from './leisureSmallIndex.svg';
 import uniqueSmallTitle from './uniqueSmallTitle.svg';
 import uniqueSmallIndex from './uniqueSmallIndex.svg';
 import privacyVideo_1 from '../../assets/Video00_TransitionPrivacy.mp4';
+import homePrivacy_1 from '../../assets/Video00(ImageSequence)/Video00_TransitionPrivacy00.jpg';
 import {
 	Player,
 	ControlBar,
@@ -243,20 +244,28 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		if (direction === 'toLeft') {
 			this.box.current.childNodes[item.index].style.flex = `1 1 80%`;
 		}
-		if (direction === 'toTop') {
+
+
+		if (direction === 'toTop' || direction === 'toLeft') {
 			this.box.current.childNodes[item.index].style.flex = `1 1 100%`;
 			// setTimeout(() => {
 
 			// }, 1000);
 
 			const move = this.state.endY - this.state.firstY;
-			console.log(move + ':' + Math.abs(move / 100).toFixed(2).split('.')[1] + ':');
+			// console.log(move + ':' + Math.abs(move / 100).toFixed(2).split('.')[1] + ':');
 			const seconds = Math.abs(move / 100).toFixed(2).split('.')[1];
 			// if (this.state.completedLoadImage) return;
 			console.log(seconds);
 			let image = '';
 			// if (seconds < 10) {
 			// 	console.log('seconds < 10')
+			this.leftContent.current.className = 'animate__animated animate__slideInLeft';
+			this.bgLine.current.className = 'animate__animated animate__fadeIn';
+			this.leftContent.current.style.zIndex = '1';
+			this.bgLine.current.style.zIndex = '1';
+			this.belowContent.current.style.zIndex = '1';
+			this.video.current.style.zIndex = '1';
 			image = require(`../../assets/Video00(ImageSequence)/Video00_TransitionPrivacy${seconds}.jpg`);
 			this.setState({ imgSrc: image });
 			// if (Number(seconds) === 98 && !this.state.completedLoadImage) {
@@ -275,12 +284,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			// 	this.setState({ imgSrc: image });
 			// }
 
-			this.leftContent.current.className = 'animate__animated animate__slideInLeft';
-			this.bgLine.current.className = 'animate__animated animate__fadeIn';
-			this.leftContent.current.style.zIndex = '1';
-			this.bgLine.current.style.zIndex = '1';
-			this.belowContent.current.style.zIndex = '1';
-			this.video.current.style.zIndex = '1';
+
 
 			// if (seconds < 40) {
 			// 	this.leftContent.current.style.left = `-${3 * seconds*10}px`;
@@ -495,7 +499,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							style={{
 								position: 'absolute',
 								width: '100%',
-								height: ' 100%'
+								height: ' 100%',
+								objectFit: 'cover',
 							}}
 						/>
 						{/* <Player
