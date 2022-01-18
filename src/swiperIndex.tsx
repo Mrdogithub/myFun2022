@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
+// import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
 import 'swiper/css';
 import './styles.css';
@@ -83,10 +83,15 @@ export default class SwiperIndex extends React.Component<any, any> {
             }
         };
     }
-
+    currentTransitionSpeed = 0
     videoConfig = []
 
-    
+    setTransition(transitionSpeed) {
+        console.log('transitionSpeed')
+        console.log(transitionSpeed)
+        this.currentTransitionSpeed = transitionSpeed;
+        // console.log("transition", transitionSpeed);
+      }
   
 	swiperTo(index: number) {
         console.log('swiperTo')
@@ -196,209 +201,22 @@ export default class SwiperIndex extends React.Component<any, any> {
             outAnimate:'',
         })
     }
+
 	render() {
         
         return(<>
             <Menu displayStatus = {this.isShowMenu()}  onSwiperTo={(index: number) => this.swiperTo(index)} userName = {this.state.userName}/>
-            <Swiper
-                modules={[FreeMode]}
-                onSwiper={(swiper: any) => this.getSwiperDom(swiper)}
-                onSlideChange = {(swiper:any)=>{this.setAnimate(swiper)}}
-                onTouchMove = {(swiper:any)=>{this.onTouchMove(swiper)}}
-                onTransitionStart = {(swiper:any)=>{ this.onTransition(swiper)}}
-                direction={'vertical'}
-                // freeMode={true}
+        
+            {/* globalIndex:4*/}
+            <HomeComponentIndex3></HomeComponentIndex3>
+            {/* globalIndex:5*/}
+            {/* <PrivacyComponentIndex1 
+            inAnimate = {this.state.inAnimate} outAnimate = {this.state.outAnimate}
+            videoConfig = {this.state.videoConfig} changeAnimateByTime = {()=>this.onChangeAnimateByTime()}/> */}
+        
+            {/* globalIndex:6*/}
+            {/* <PrivacyComponentIndex2  inAnimate = {this.state.inAnimate} outAnimate = {this.state.outAnimate}/> */}
 
-                preloadImages = {true}
-                className="mySwiper"
-            >
-            {/* section one */}
-                <SwiperSlide>
-                    {/* globalIndex:0*/}
-                    <Intro images = {this.props.images} onUserNameChange = {(userInfo:string)=>{this.updateUserInfo(userInfo)}}/>
-                </SwiperSlide>
-                <SwiperSlide>
-                     {/* globalIndex:1*/}
-                    <FingerPrint onNext = {()=>{this.onNext()}}/>
-                </SwiperSlide>
-                
-                <SwiperSlide>
-                     {/* globalIndex:2*/}
-                    <HomeComponentIndex1></HomeComponentIndex1>
-                </SwiperSlide>
-                <SwiperSlide>
-                     {/* globalIndex:3*/}
-                    <HomeComponentIndex2 videoConfig = {this.state.videoConfig}></HomeComponentIndex2>
-                </SwiperSlide>
-                <SwiperSlide>
-                     {/* globalIndex:4*/}
-                    <HomeComponentIndex3></HomeComponentIndex3>
-                </SwiperSlide>
-
-                <SwiperSlide>
-                     {/* globalIndex:5*/}
-                    <PrivacyComponentIndex1 
-                    inAnimate = {this.state.inAnimate} outAnimate = {this.state.outAnimate}
-                    videoConfig = {this.state.videoConfig} changeAnimateByTime = {()=>this.onChangeAnimateByTime()}/>
-                </SwiperSlide>
-                <SwiperSlide>
-                     {/* globalIndex:6*/}
-                    <PrivacyComponentIndex2  inAnimate = {this.state.inAnimate} outAnimate = {this.state.outAnimate}/>
-                </SwiperSlide>
-                <SwiperSlide>
-                    {/* globalIndex:7*/}
-                    <PrivacyComponentIndex3  inAnimate = {this.state.inAnimate} outAnimate = {this.state.outAnimate}></PrivacyComponentIndex3>
-                </SwiperSlide>
-
-                <SwiperSlide>
-                    {/* globalIndex:8*/}
-                    <PrivacyComponentIndex4  inAnimate = {this.state.inAnimate} outAnimate = {this.state.outAnimate}/>
-                </SwiperSlide>
-
-                <SwiperSlide>
-                    {/* globalIndex:9*/}
-                    <PrivacyComponentIndex5 inAnimate = {this.state.inAnimate} outAnimate = {this.state.outAnimate}/>
-                </SwiperSlide>
-                <SwiperSlide>
-                    {/* globalIndex:10*/}
-                    <PrivacyComponentIndex6 inAnimate = {this.state.inAnimate} outAnimate = {this.state.outAnimate}/>
-                </SwiperSlide>
-                <SwiperSlide>
-                    {/* globalIndex:11*/}
-                    <PrivacyComponentIndex7 inAnimate = {this.state.inAnimate} outAnimate = {this.state.outAnimate}/>
-                </SwiperSlide>
-                <SwiperSlide>
-                    {/* globalIndex:12*/}
-                    <PrivacyComponentIndex8 inAnimate = {this.state.inAnimate} outAnimate = {this.state.outAnimate}/>
-                </SwiperSlide>
-
-                <SwiperSlide>
-                    {/* globalIndex:13*/}
-                    <PrivacyComponentIndex9 inAnimate = {this.state.inAnimate} outAnimate = {this.state.outAnimate} />
-                </SwiperSlide>
-                <SwiperSlide>
-                    {/* globalIndex:14*/}
-                    <PrivacyComponentIndex10 inAnimate = {this.state.inAnimate} outAnimate = {this.state.outAnimate} />
-                </SwiperSlide>
-
-                <SwiperSlide>
-                    {/* globalIndex:15*/}
-                    <PrivacyComponentIndex11 inAnimate = {this.state.inAnimate} outAnimate = {this.state.outAnimate} />
-                </SwiperSlide>
-                <SwiperSlide>
-                    {/* globalIndex:16*/}
-                    <PrivacyComponentIndex12 inAnimate = {this.state.inAnimate} outAnimate = {this.state.outAnimate} />
-                </SwiperSlide>
-
-                <SwiperSlide>
-                    {/* globalIndex:17*/}
-                    <PrivacyComponentIndex13  inAnimate = {this.state.inAnimate} outAnimate = {this.state.outAnimate}/>
-                </SwiperSlide>
-            
-
-                {/*section: Comfort */}
-                <SwiperSlide>
-                    {/* globalIndex:18*/}
-                    <ComfortComponentIndex1 />
-                </SwiperSlide>
-                <SwiperSlide>
-                    {/* globalIndex:19*/}
-                    <ComfortComponentIndex2 />
-                </SwiperSlide>
-                <SwiperSlide>
-                    {/* globalIndex:20*/}
-                    <ComfortComponentIndex3 inAnimate = {this.state.inAnimate} outAnimate = {this.state.outAnimate}/>
-                </SwiperSlide>
-                <SwiperSlide>
-                    {/* globalIndex:21*/}
-                    <ComfortComponentIndex4 inAnimate = {this.state.inAnimate} outAnimate = {this.state.outAnimate}/>
-                </SwiperSlide>
-                <SwiperSlide>
-                    {/* globalIndex:22*/}
-                    <ComfortComponentIndex5 inAnimate = {this.state.inAnimate} outAnimate = {this.state.outAnimate}/>
-                </SwiperSlide>
-
-                <SwiperSlide>
-                    {/* globalIndex:23*/}
-                    <ComfortComponentIndex6 inAnimate = {this.state.inAnimate} outAnimate = {this.state.outAnimate}/>
-                </SwiperSlide>
-                <SwiperSlide>
-                    {/* globalIndex:24*/}
-                    <ComfortComponentIndex7 inAnimate = {this.state.inAnimate} outAnimate = {this.state.outAnimate}/>
-                </SwiperSlide>
-                <SwiperSlide>
-                    {/* globalIndex:25*/}
-                    <ComfortComponentIndex8 inAnimate = {this.state.inAnimate} outAnimate = {this.state.outAnimate}/>
-                </SwiperSlide>
-                <SwiperSlide>
-                    {/* globalIndex:26*/}
-                    <ComfortComponentIndex9 inAnimate = {this.state.inAnimate} outAnimate = {this.state.outAnimate} />
-                </SwiperSlide>
-                <SwiperSlide>
-                    {/* globalIndex:27*/}
-                    <ComfortComponentIndex10 inAnimate = {this.state.inAnimate} outAnimate = {this.state.outAnimate}/>
-                </SwiperSlide>
-                <SwiperSlide>
-                    {/* globalIndex:28*/}
-                    <ComfortComponentIndex11 inAnimate = {this.state.inAnimate} outAnimate = {this.state.outAnimate}/>
-                </SwiperSlide>
-                <SwiperSlide>
-                    {/* globalIndex:29*/}
-                    <ComfortComponentIndex12 />
-                </SwiperSlide>
-                
-                {/* section: leisure*/}
-                <SwiperSlide>
-                    {/* globalIndex:30*/}
-                    <LeisureComponentIndex1 />
-                </SwiperSlide>
-                <SwiperSlide>
-                    {/* globalIndex:31*/}
-                    <LeisureComponentIndex2 />
-                </SwiperSlide>
-                <SwiperSlide>
-                    {/* globalIndex:32*/}
-                    <LeisureComponentIndex3 />
-                </SwiperSlide>
-                <SwiperSlide>
-                    {/* globalIndex:33*/}
-                    <LeisureComponentIndex4 />
-                </SwiperSlide>
-                <SwiperSlide>
-                    {/* globalIndex:34*/}
-                    <LeisureComponentIndex5 />
-                </SwiperSlide>
-                <SwiperSlide>
-                    {/* globalIndex:35*/}
-                    <LeisureComponentIndex6 />
-                </SwiperSlide>
-                <SwiperSlide>
-                    {/* globalIndex:36*/}
-                    <LeisureComponentIndex7 />
-                </SwiperSlide>
-                <SwiperSlide>
-                    {/* globalIndex:37*/}
-                    <LeisureComponentIndex8 />
-                </SwiperSlide>
-                
-                {/* section Unique*/}
-                <SwiperSlide>
-                    {/* globalIndex:38*/}
-                    <UniqueComponentIndex1 />
-                </SwiperSlide>
-                <SwiperSlide>
-                    {/* globalIndex:39*/}
-                    <UniqueComponentIndex2 />
-                </SwiperSlide>
-                <SwiperSlide>
-                    {/* globalIndex:40*/}
-                    <UniqueComponentIndex3 />
-                </SwiperSlide>
-                <SwiperSlide>
-                    {/* globalIndex:41*/}
-                    <UniqueComponentIndex4 />
-                </SwiperSlide>
-            </Swiper>
             
         </>)
      

@@ -20,6 +20,21 @@ import leisureSmallIndex from './leisureSmallIndex.svg';
 
 import uniqueSmallTitle from './uniqueSmallTitle.svg';
 import uniqueSmallIndex from './uniqueSmallIndex.svg';
+import privacyVideo_1 from '../../assets/Video00_TransitionPrivacy.mp4';
+import {
+	Player,
+	ControlBar,
+	PlayToggle, // PlayToggle 播放/暂停按钮 若需禁止加 disabled
+	ReplayControl, // 后退按钮
+	ForwardControl, // 前进按钮
+	CurrentTimeDisplay,
+	TimeDivider,
+	PlaybackRateMenuButton, // 倍速播放选项
+	VolumeMenuButton
+} from 'video-react';
+import 'video-react/dist/video-react.css';
+import { ifStatement } from '@babel/types';
+
 const MAX_IMAGES = [
 	homePrivacy_1,
 	homeConfort_2,
@@ -27,12 +42,41 @@ const MAX_IMAGES = [
 	homeUnique_4
 ];
 
-/* Note: backdrop-backdropFilter: has minimal browser support */
-
+const maths = {
+	fixedView1: '',
+	fixedView2: '',
+	fixedView3: ''
+};
+const ticks = new Array(100).map((item, index) => {
+	console.log(index);
+	if (index < 10) {
+		require(`../../assets/Video00(ImageSequence)/Video00_TransitionPrivacy00${index}.jpg`);
+	}
+	if (index > 9 && index < 100) {
+		require('../../assets/Video00(ImageSequence)/Video00_TransitionPrivacy0' + index + '.jpg');
+	}
+	if (index == 100) {
+		require('../../assets/Video00(ImageSequence)/Video00_TransitionPrivacy' + index + '.jpg');
+	}
+});
 export class HomeComponentIndex3 extends React.Component<any, any> {
 	constructor(props: any) {
 		super(props);
+
+		this.box = React.createRef();
+		this.video = React.createRef();
+		this.leftContent = React.createRef();
+		this.bgLine = React.createRef();
+		this.belowContent = React.createRef();
 		this.state = {
+			x: 0,
+			y: 0,
+			firstX: 0,
+			firstY: 0,
+			completedLoadImage: false,
+			seconds: 0,
+			imgSrc: `/static/media/Video00_TransitionPrivacy000.png`,
+			boxDefaultSize: 80,
 			slides: [
 				{
 					index: 0,
@@ -42,11 +86,11 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					smallTitle: privacySmallTitle,
 					isActive: false,
 					isFilter: false,
+
 					maxTitle: 'privacy',
 					bgFilter:
 						'linear-gradient(90deg, rgba(177, 143, 132, 0.3) -8.64%, rgba(14, 15, 31, 0.234) 112.68%)',
 					onChange: (currentSlide: any) => {
-					
 						currentSlide.defaultImage = homePrivacy_1;
 						this.state.slides.map((item: any) => {
 							if (item.index === currentSlide.index) {
@@ -116,37 +160,194 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			]
 		};
 	}
-
+	startX: any = '0';
+	endX: any = '0';
+	box: any;
+	player: any;
+	video: any;
+	leftContent: any;
+	bgLine: any;
+	belowContent: any;
 	onChange(currentSlide: any, index: any) {
-		
 		this.state.slides.map((item: any) => {
 			if (item.index === currentSlide.index) {
 				currentSlide.defaultImage = MAX_IMAGES[index];
 				currentSlide.isActive = true;
 				currentSlide.isFilter = false;
 				this.setState({ item: currentSlide });
+				this.box.current.childNodes[item.index].style.flex = '1 1 80%';
+				return;
 			} else {
 				item.isActive = false;
 				item.isFilter = true;
 				this.setState({ item: item });
+				this.box.current.childNodes.forEach((node, index) => {
+					if (index !== currentSlide.index) {
+						node.style.flex = `1 1`;
+					}
+				});
 			}
 		});
-		console.log(1, this.state.slides);
+	}
+	handleMouseMove(event, item, index) {
+		this.setState({
+			x: event.clientX,
+			y: event.clientY
+		});
+		console.log(this.state.x);
 	}
 
+	videoTouchStart(event) {
+		this.setState({
+			firstX: event.targetTouches[0].clientX,
+			firstY: event.targetTouches[0].clientY
+		});
+	}
+	videoTouchMove(event) {
+		this.setState({
+			endX: event.touches[0].clientX,
+			endY: event.touches[0].clientY
+		});
+		const move = this.state.endY - this.state.firstY;
+		console.log(move);
+		const seconds = Math.ceil(Math.abs(move) / 10);
+		if (seconds > 100) return;
+		if (seconds === 40) {
+			setTimeout(() => {
+				this.belowContent.current.style.zIndex = '1';
+				this.leftContent.current.style.zIndex = '1';
+				this.bgLine.current.style.zIndex = '1';
+			}, 500);
+			setTimeout(() => {
+				this.leftContent.current.className = 'animate__animated animate__slideInLeft';
+				this.bgLine.current.className = 'animate__animated animate__fadeIn';
+			}, 1000);
+		}
+	}
+	handleTouchStart(event, item, index) {
+		this.onChange(item, index);
+		this.setState({
+			firstX: event.targetTouches[0].clientX,
+			firstY: event.targetTouches[0].clientY
+		});
+	}
+	handleTouchMove(event, item, index) {
+		this.endX = event.touches[0].clientX;
+
+		this.setState({
+			endX: event.touches[0].clientX,
+			endY: event.touches[0].clientY
+		});
+		const direction = this.letMeKonwDirection();
+
+		if (direction === 'toLeft') {
+			this.box.current.childNodes[item.index].style.flex = `1 1 80%`;
+		}
+		if (direction === 'toTop') {
+			this.box.current.childNodes[item.index].style.flex = `1 1 100%`;
+			// setTimeout(() => {
+
+			// }, 1000);
+
+			const move = this.state.endY - this.state.firstY;
+			console.log(move + ':' + Math.abs(move / 100).toFixed(2).split('.')[1] + ':');
+			const seconds = Math.abs(move / 100).toFixed(2).split('.')[1];
+			// if (this.state.completedLoadImage) return;
+			console.log(seconds);
+			let image = '';
+			// if (seconds < 10) {
+			// 	console.log('seconds < 10')
+			image = require(`../../assets/Video00(ImageSequence)/Video00_TransitionPrivacy${seconds}.jpg`);
+			this.setState({ imgSrc: image });
+			// if (Number(seconds) === 98 && !this.state.completedLoadImage) {
+			// 	image = require(`../../assets/Video00(ImageSequence)/Video00_TransitionPrivacy${100}.jpg`);
+			// 	this.setState({ completedLoadImage: true });
+			// }
+			// }
+			// if (seconds > 9 && seconds < 100) {
+			// 	console.log('seconds < 110')
+			// 	image = require('../../assets/Video00(ImageSequence)/Video00_TransitionPrivacy0' + seconds + '.jpg');
+			// 	this.setState({ imgSrc: image });
+			// }
+			// if (seconds == 100) {
+			// 	console.log('seconds < 130')
+			// 	image = require('../../assets/Video00(ImageSequence)/Video00_TransitionPrivacy' + seconds + '.jpg');
+			// 	this.setState({ imgSrc: image });
+			// }
+
+			this.leftContent.current.className = 'animate__animated animate__slideInLeft';
+			this.bgLine.current.className = 'animate__animated animate__fadeIn';
+			this.leftContent.current.style.zIndex = '1';
+			this.bgLine.current.style.zIndex = '1';
+			this.belowContent.current.style.zIndex = '1';
+			this.video.current.style.zIndex = '1';
+
+			// if (seconds < 40) {
+			// 	this.leftContent.current.style.left = `-${3 * seconds*10}px`;
+			// }
+		}
+	}
+
+	letMeKonwDirection() {
+		const moveX = this.state.endX - this.state.firstX;
+		const moveY = this.state.endY - this.state.firstY;
+		if (Math.abs(moveX) > 100 || Math.abs(moveY) > 100) {
+			if (Math.abs(moveX) > Math.abs(moveY)) {
+				return moveX > 0 ? 'toRight' : 'toLeft';
+			} else {
+				return moveY > 0 ? 'toBottom' : 'toTop';
+			}
+		}
+	}
+
+	handleTouchEnd(event, item, index) {
+		console.log('any');
+	}
+
+	handleStateChange(state, prevState) {
+		if (state.currentTime > 2 && !this.state.isUpdateAnimate) {
+			this.setState({ isUpdateAnimate: true });
+			// this.props.changeAnimateByTime();
+		}
+	}
+	// componentDidMount() {
+	// 	this.player.subscribeToStateChange(this.handleStateChange.bind(this));
+	// }
+	componentDidUpdate() {
+		// if (this.props.videoConfig.autoPlay) {
+		// 	this.player.play();
+		// 	// setTimeout(()=>{
+		// 	// 	this.props.changeAnimateByTime();
+		// 	// },2300)
+		// }
+	}
+	changeCurrentTime(seconds) {
+		// return () => {
+		// 	const { player } = this.player.getState();
+		// 	this.player.seek(player.currentTime + seconds);
+		// };
+	}
 	render() {
 		return (
-			<div >
-
-			{/*className="swiper-no-swiping" */}
-				<div className="container">
+			<div
+				style={{
+					position: 'relative',
+					top: '0px',
+					left: '0px',
+					zIndex: '1'
+				}}
+			>
+				{/*className="swiper-no-swiping" */}
+				<div className="container" ref={this.box}>
 					{this.state.slides.map((item: any, index: any) => {
 						return (
 							<div
 								className="box"
 								key={index}
 								style={{ position: 'relative' }}
-								onClick={(item: any) => this.onChange(this.state.slides[index], index)}
+								onTouchStart={(event) => this.handleTouchStart(event, item, index)}
+								onTouchMove={(event) => this.handleTouchMove(event, item, index)}
+								onTouchEnd={(event) => this.handleTouchEnd(event, item, index)}
 							>
 								{/* 手风琴 收起状态虚化效果*/}
 								<div
@@ -259,6 +460,155 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							</div>
 						);
 					})}
+				</div>
+
+				<div
+					ref={this.belowContent}
+					style={{
+						position: 'absolute',
+						width: '100%',
+						height: '100%',
+						top: '0px',
+						left: '0px',
+						zIndex: '-1'
+					}}
+				>
+					<div
+						ref={this.video}
+						style={{
+							position: 'absolute',
+							left: '0px',
+							right: '0px',
+							top: '0px',
+							width: '100%',
+							height: '100%'
+						}}
+						onTouchStart={(e) => {
+							this.videoTouchStart(e);
+						}}
+						onTouchMove={(e) => {
+							this.videoTouchMove(e);
+						}}
+					>
+						<img
+							src={this.state.imgSrc}
+							style={{
+								position: 'absolute',
+								width: '100%',
+								height: ' 100%'
+							}}
+						/>
+						{/* <Player
+							style={{ objectFit: 'cover' }}
+							fluid={false}
+							width={1366}
+							height={1024}
+							ref={(player: any) => {
+								// this.setState({player:player})
+								this.player = player;
+							}}
+							autoPlay={false}
+						>
+							<source src={privacyVideo_1} />
+							<ControlBar autoHide={true} />
+						</Player> */}
+					</div>
+
+					{/* 视屏播放2.5s 后，需要显示的内容*/}
+
+					{/* 侧边栏背景 */}
+					<div
+						ref={this.leftContent}
+						style={{
+							position: 'absolute',
+							width: '533px',
+							height: '1024px',
+							left: '1px',
+							top: '0px',
+							background: 'rgba(26, 32, 50, 0.16)',
+							backdropFilter: 'blur(15px)',
+							zIndex: '-1'
+						}}
+					>
+						{/* 左侧文本 */}
+						<div
+							style={{
+								position: 'absolute',
+								width: '298px',
+								height: '490px',
+								left: '109px',
+								top: '476px'
+							}}
+							className={'dFordText '}
+						>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium odio ipsum, eget
+							interdum libero tincidunt efficitur. Maecenas dapibus condimentum commodo. Proin dignissim
+							sem velit, eu blandit purus porta non. Fusce tristique, risus eget finibus euismod, diam
+							arcu pellentesque lectus, ac consequat nulla purus at tellus.
+						</div>
+						{/* 左侧标题 */}
+						<div
+							style={{
+								position: 'absolute',
+								width: '335px',
+								height: '94px',
+								left: '105px',
+								top: '342px'
+							}}
+							className={'dFordTitle '}
+						>
+							Privacy
+						</div>
+						{/* 左侧标题加号icon */}
+						<div
+							style={{
+								position: 'absolute',
+								width: '45px',
+								height: '110px',
+								left: '448px',
+								top: '335px'
+							}}
+						>
+							<svg
+								width="41"
+								height="44"
+								viewBox="0 0 41 44"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									opacity="0.8"
+									d="M40.2058 23.56V19.78H22.5658V0.789999H18.5158V19.78H0.785781V23.56H18.5158V43.09H22.5658V23.56H40.2058Z"
+									fill="white"
+								/>
+							</svg>
+						</div>
+					</div>
+					{/* 背景竖纹 */}
+					<div
+						ref={this.bgLine}
+						style={{
+							position: 'absolute',
+							width: '832px',
+							height: '892px',
+							left: '257px',
+							top: '132px',
+							pointerEvents: 'none'
+						}}
+					>
+						<svg
+							width="833"
+							height="892"
+							viewBox="0 0 833 892"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<line opacity="0.3" x1="0.5" y1="-2.18557e-08" x2="0.500039" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="277.5" y1="-2.18557e-08" x2="277.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="555.5" y1="-2.18557e-08" x2="555.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="832.5" y1="-2.18557e-08" x2="832.5" y2="892" stroke="#E8E8E8" />
+						</svg>
+					</div>
 				</div>
 			</div>
 		);
