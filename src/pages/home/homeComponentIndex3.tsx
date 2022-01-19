@@ -293,6 +293,9 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				this.section_3_bgline.current.style.zIndex = '1';
 				this.section_3_colorBg.current.style.zIndex = '1';
 				this.section_3_image.current.style.zIndex = '1';
+				this.section_3_image.current.style.width = '80%';
+				this.section_3_image.current.style.transform = 'scale(2.5)'
+				this.section_3_image.current.style.left = '-300px'
 				this.section_3_colorBg.current.className = 'animate__animated animate__slideInLeft';
 			}, 1500);
 		}
@@ -334,7 +337,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			}, 1500);
 			setTimeout(() => {
 				this.sectoin_4_phoneVideo.current.style.zIndex = '1';
-				this.sectoin_4_phoneVideo.current.className = 'animate__animated animate__slideInDown';
+				this.sectoin_4_phoneVideo.current.className = 'animate__animated animate__slideInUp';
 			}, 2000);
 		}
 	}
