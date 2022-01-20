@@ -111,8 +111,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			section_2_ImageSrc: section2IndeImage,
 			sectoin_4_phoneVideo: sectoin_4_phoneVideo,
 			section_5_ImageSrc: section_5_ImageSrc,
-			canvasWidth:0,
-			canvasHeight:0,
+			canvasWidth: 0,
+			canvasHeight: 0,
 			section_6_ImageSrc: [
 				section_6_ImageSrc
 			],
@@ -237,6 +237,9 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 
 	section_7_container: any;
 	section_8_container: any;
+
+	moveDistance = 0;
+	move = 0;
 	componentDidMount() {
 		const imges: any[] = [];
 		for (let i = 0; i <= 100; i++) {
@@ -244,8 +247,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			this.setState({ section_6_ImageSrc: imges });
 		}
 
-		this.setState({canvasWidth:screen.availWidth})
-		this.setState({canvasHeight:screen.availHeight})
+		this.setState({ canvasWidth: screen.availWidth });
+		this.setState({ canvasHeight: screen.availHeight });
 	}
 	onChange(currentSlide: any, index: any) {
 		this.state.slides.map((item: any) => {
@@ -369,48 +372,59 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		});
 	}
 	section6TouchStart(event) {
+		this.moveDistance = 0;
+		this.move = 0;
 		this.updateStartMosePosition(event);
 		this.setState({ seconds: 0 });
 	}
 
 	section6TouchMove(event) {
 		this.updateMoveMousePositon(event);
-		const direction = this.letMeKonwDirection();
-		console.log(direction);
-		const move = this.state.endY - this.state.firstY;
+		this.move = this.state.endY - this.state.firstY;
+		if (this.move > 0) {
+			// 向下拉动
+			this.moveDistance = Math.ceil(Math.pow(this.move, 0.8));
+			console.log(this.moveDistance);
+			setTimeout(() => {
+				this.section_6_canvasRef.current.setCurrent(this.moveDistance);
+			}, 300);
+		}
 
-		const seconds = Number(Math.abs(move / 100).toFixed(2).split('.')[1]);
+		if (this.move < 0) {
+			// 向上拉动
+
+			this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
+
+			if (this.moveDistance > 100) {
+				this.moveDistance = 100;
+			}
+			console.log('moveDistance:' + this.moveDistance);
+			setTimeout(() => {
+				this.section_6_canvasRef.current.setCurrent(this.moveDistance);
+			}, 40);
+		}
+
 		// console.log('section6TouchMove:'+seconds)
 
 		// this.setState({seconds:this.state.seconds + 1})
 
-		if (direction === 'toTop') {
-			if (this.state.seconds > 100) {
-				this.setState({ seconds: 100 });
-				return;
-			}
-			setTimeout(() => {
-				this.setState({ seconds: this.state.seconds + 1 });
-			}, 500);
-			setTimeout(() => {
-				console.log(this.state.seconds);
-				this.section_6_canvasRef.current.setCurrent(this.state.seconds);
-			}, 600);
-		}
-		console.log(seconds);
-		if (direction === 'toBottom') {
-			// this.setState({seconds:this.state.seconds + 1})
-			if (this.state.seconds < 0) {
-				this.setState({ seconds: 100 });
-			}
-			setTimeout(() => {
-				this.setState({ seconds: this.state.seconds - 1 });
-			}, 500);
-			setTimeout(() => {
-				console.log(this.state.seconds);
-				this.section_6_canvasRef.current.setCurrent(this.state.seconds);
-			}, 600);
-		}
+		// if (direction === 'toTop') {
+
+		// }
+
+		// if (direction === 'toBottom') {
+		// 	// this.setState({seconds:this.state.seconds + 1})
+		// 	if (this.state.seconds < 0) {
+		// 		this.setState({ seconds: 100 });
+		// 	}
+		// 	setTimeout(() => {
+		// 		this.setState({ seconds: this.state.seconds - 1 });
+		// 	}, 500);
+		// 	setTimeout(() => {
+		// 		console.log(this.state.seconds);
+		// 		this.section_6_canvasRef.current.setCurrent(this.state.seconds);
+		// 	}, 600);
+		// }
 	}
 	change(index, paused?) {
 		if (this.section_6_canvasRef) {
@@ -620,7 +634,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	letMeKonwDirection() {
 		const moveX = this.state.endX - this.state.firstX;
 		const moveY = this.state.endY - this.state.firstY;
-		if (Math.abs(moveX) > 150 || Math.abs(moveY) > 150) {
+		if (Math.abs(moveX) > 10 || Math.abs(moveY) > 10) {
 			if (Math.abs(moveX) > Math.abs(moveY)) {
 				return moveX > 0 ? 'toRight' : 'toLeft';
 			} else {
@@ -1452,8 +1466,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						loop={true}
 						forward={true}
 						fps={10}
-						canvasWidth = {this.state.canvasWidth}
-						canvasHeight = {this.state.canvasHeight}
+						canvasWidth={this.state.canvasWidth}
+						canvasHeight={this.state.canvasHeight}
 						onChange={() => this.change}
 					/>
 					{/* <Player
