@@ -98,8 +98,18 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.section_6_canvasRef = React.createRef();
 
 		this.section_7_container = React.createRef();
+		this.section_7_bg = React.createRef();
+		this.section_7_text = React.createRef();
+		this.section_7_bgline = React.createRef();
 		this.section_8_container = React.createRef();
-
+		this.section_8_text = React.createRef();
+		this.section_8_title = React.createRef();
+		this.section_8_bg = React.createRef();
+		this.section_8_image = React.createRef();
+		this.section_6_text_1 = React.createRef();
+		this.section_6_text_2 = React.createRef();
+		this.section_6_text_3 = React.createRef();
+		this.section_6_text_4 = React.createRef();
 		this.state = {
 			x: 0,
 			y: 0,
@@ -234,10 +244,20 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	section_6_container: any;
 	section_6_bgline: any;
 	section_6_canvasRef: any;
+	section_6_text_1: any;
+	section_6_text_2: any;
+	section_6_text_3: any;
+	section_6_text_4: any;
 
 	section_7_container: any;
+	section_7_bg: any;
+	section_7_text: any;
+	section_7_bgline: any;
 	section_8_container: any;
-
+	section_8_text: any;
+	section_8_title: any;
+	section_8_bg: any;
+	section_8_image: any;
 	moveDistance = 0;
 	move = 0;
 	componentDidMount() {
@@ -290,40 +310,106 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			}
 		}, 30);
 	}
+	section1TouchStart(event) {
+		this.updateStartMosePosition(event);
+	}
+	section1TouchMove(event) {
+		this.updateMoveMousePositon(event);
+		const move = this.state.endY - this.state.firstY;
+		const seconds = Number(Math.abs(move / 100).toFixed(2).split('.')[1]);
+		const direction = this.letMeKonwDirection();
 
+		this.leftContent.current.className = 'animate__animated animate__slideOutLeft animate__delay-1s';
+		this.move = this.state.endY - this.state.firstY;
+
+		if (this.move > 0) {
+			// 向下拉动，返回上一页
+			this.belowContent.current.style.zIndex = '-1';
+			this.belowContent.current.style.display = 'none';
+			this.box.current.style.display = 'flex';
+		}
+		if (this.move < 0) {
+			// 向上拉动，进入下一页
+			this.box.current.style.display = 'none';
+			this.belowContent.current.style.zIndex = '-1';
+			this.belowContent.current.style.display = 'none';
+			this.section_2.current.style.zIndex = '1';
+			this.section_2.current.style.display = 'block';
+			this.section_2.current.className = 'animate__animated animate__fadeIn animate__delay-1.5s';
+			let count = 0;
+
+			setTimeout(() => {
+				setTimeout(() => {
+					this.section_2_colorBg.current.style.zIndex = '1';
+					this.section_2_image.current.style.zIndex = '1';
+				}, 100);
+
+				setTimeout(() => {
+					this.section_2_colorBg.current.className = 'animate__animated animate__slideInLeft';
+					this.section_2_image.current.style.width = '81%';
+					this.moveAnimate(this.section_2_image.current, 257);
+				}, 500);
+
+				setTimeout(() => {
+					this.section_2_leftContent.current.style.zIndex = '1';
+
+					this.section_2_bgLine.current.style.zIndex = '1';
+				}, 550);
+				setTimeout(() => {
+					this.section_2_leftContent.current.className = 'animate__animated animate__slideInLeft';
+
+					this.section_2_bgLine.current.className = 'animate__animated animate__fadeIn';
+				}, 20);
+			}, 1500);
+
+			const renderImage = setInterval(() => {
+				if (count > 269) {
+					count = 0;
+				}
+
+				const image = require(`../../assets/Video01_AdvancedDimmableWindow/Video01_AdvancedDimmableWindow${count}.jpg`);
+				this.setState({ section_2_ImageSrc: image });
+				count++;
+			}, 150);
+		}
+	}
 	section2TouchStart(event) {
 		this.updateStartMosePosition(event);
 	}
 
 	section2TouchMove(event) {
-		this.setState({
-			firstX: event.targetTouches[0].clientX,
-			firstY: event.targetTouches[0].clientY
-		});
+		this.updateMoveMousePositon(event);
 
-		const move = this.state.endY - this.state.firstY;
-		const seconds = Number(Math.abs(move / 100).toFixed(2).split('.')[1]);
-		const direction = this.letMeKonwDirection();
-		console.log(direction);
-		this.section_2.current.style.display = 'none';
-		setTimeout(() => {
-			this.section_2_leftContent.current.className = 'animate__animated animate__slideOutLeft';
-			this.section_2_colorBg.current.className = 'animate__animated animate__slideOutLeft';
+		this.move = this.state.endY - this.state.firstY;
+		if (this.move > 0) {
+			// 向下拉动，返回上一页
+			this.section_2.current.className = 'animate__animated animate__fadeOut';
+			this.leftContent.current.className = 'animate__animated animate__slideInLeft animate__delay-1s';
+			this.section_2.current.style.display = 'none';
+			this.belowContent.current.style.display = 'block';
+			this.belowContent.current.style.zIndex = '-1';
+			return;
+		}
+
+		if (this.move < 0) {
+			// 向s上拉动，进入下一页
+
+			this.section_2_leftContent.current.className = 'animate__animated animate__slideOutLeft animate__delay-1s';
+			this.section_2_colorBg.current.className = 'animate__animated animate__slideOutLeft animate__delay-1s';
 			this.section_2.current.style.zIndex = '-1';
-		}, 1000);
-		this.section_3_container.current.style.display = 'block';
-		if (direction === 'toTop' || direction === 'toLeft') {
-			setTimeout(() => {
-				this.section_3_container.current.style.zIndex = '1';
-				this.section_3_leftContent.current.style.zIndex = '1';
-				this.section_3_bgline.current.style.zIndex = '1';
-				this.section_3_colorBg.current.style.zIndex = '1';
-				this.section_3_image.current.style.zIndex = '1';
-				this.section_3_image.current.style.width = '80%';
-				this.section_3_image.current.style.transform = 'scale(2.5)';
-				this.section_3_image.current.style.left = '-300px';
-				this.section_3_colorBg.current.className = 'animate__animated animate__slideInLeft';
-			}, 1500);
+			this.section_2.current.style.display = 'none';
+
+			this.section_3_container.current.style.zIndex = '1';
+			this.section_3_leftContent.current.style.zIndex = '1';
+			this.section_3_bgline.current.style.zIndex = '1';
+			this.section_3_colorBg.current.style.zIndex = '1';
+			this.section_3_image.current.style.zIndex = '1';
+			this.section_3_image.current.style.width = '80%';
+			this.section_3_image.current.style.transform = 'scale(2.5)';
+			this.section_3_image.current.style.left = '-300px';
+			this.section_3_container.current.style.display = 'block';
+			this.section_3_leftContent.current.className = 'animate__animated animate__slideInLeft animate__delay-1.5s';
+			this.section_3_colorBg.current.className = 'animate__animated animate__slideInLeft animate__delay-1.5s';
 		}
 	}
 
@@ -332,32 +418,267 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	}
 
 	section3TouchMove(event) {
-		this.setState({
-			firstX: event.targetTouches[0].clientX,
-			firstY: event.targetTouches[0].clientY
-		});
+		this.updateMoveMousePositon(event);
 
-		const move = this.state.endY - this.state.firstY;
-		const direction = this.letMeKonwDirection();
+		this.move = this.state.endY - this.state.firstY;
+		if (this.move > 0) {
+			// 向下拉动，返回上一页
+			this.section_3_container.current.style.display = 'none';
+			this.section_3_container.current.style.zIndex = '-1';
 
-		if (direction === 'toTop' || direction === 'toLeft') {
-			setTimeout(() => {
-				this.section_4_container.current.style.zIndex = '1';
-				this.section_4_container.current.style.display = 'block';
-				this.section_4_leftContent.current.style.zIndex = '1';
-				this.section_4_bgline.current.style.zIndex = '1';
-				this.section_4_colorBg.current.style.zIndex = '1';
-				this.section_4_image.current.style.zIndex = '1';
-				this.section_4_leftContent.current.style.width = '100%';
-				this.section_4_colorBg.current.style.backgroundColor = '#2B393A';
-				// this.section_4_colorBg.current.className = 'animate__animated animate__slideInLeft';
-			}, 1500);
-			setTimeout(() => {
-				this.sectoin_4_phoneVideo.current.style.zIndex = '1';
-				this.sectoin_4_phoneVideo.current.className = 'animate__animated animate__slideInUp';
-			}, 2000);
+			this.section_2_leftContent.current.className = 'animate__animated animate__slideInLeft animate__delay-2.5s';
+			this.section_2_colorBg.current.className = 'animate__animated animate__slideInLeft animate__delay-2.5s';
+			this.section_2_image.current.style.width = '81%';
+			this.moveAnimate(this.section_2_image.current, 257);
+			this.section_2.current.style.display = 'block';
+
+			return;
+		}
+
+		if (this.move < 0) {
+			// 向s上拉动，进入下一页
+			this.section_3_container.current.style.display = 'none';
+			this.section_3_container.current.style.zIndex = '-1';
+
+			this.section_4_container.current.style.display = 'block';
+			this.section_4_container.current.style.zIndex = '1';
+			this.section_4_leftContent.current.style.zIndex = '1';
+			this.section_4_bgline.current.style.zIndex = '1';
+			this.section_4_colorBg.current.style.zIndex = '1';
+			this.section_4_image.current.style.zIndex = '1';
+			this.section_4_leftContent.current.style.width = '100%';
+			this.section_4_colorBg.current.style.backgroundColor = '#2B393A';
+			this.sectoin_4_phoneVideo.current.style.zIndex = '1';
+			this.section_4_colorBg.current.className = 'animate__animated animate__slideInLeft animate__delay-1s';
+			this.section_4_leftContent.current.className = 'animate__animated animate__slideInLeft animate__delay-1.5s';
+			this.sectoin_4_phoneVideo.current.className = 'animate__animated animate__slideInRight animate__delay-1.7s';
 		}
 	}
+	section4TouchStart(event) {
+		this.updateStartMosePosition(event);
+	}
+
+	section4TouchMove(event) {
+		this.updateMoveMousePositon(event);
+
+		this.move = this.state.endY - this.state.firstY;
+
+		if (this.move > 0) {
+			// 向下拉动，返回上一页
+			this.section_4_container.current.style.zIndex = '-5';
+			this.section_4_container.current.style.display = 'none';
+			this.section_4_leftContent.current.style.zIndex = '-5';
+			this.section_4_bgline.current.style.zIndex = '-5';
+			this.section_4_colorBg.current.style.zIndex = '-5';
+			this.section_4_image.current.style.zIndex = '-5';
+
+			this.section_3_container.current.style.zIndex = '1';
+			this.section_3_leftContent.current.style.zIndex = '1';
+			this.section_3_bgline.current.style.zIndex = '1';
+			this.section_3_colorBg.current.style.zIndex = '1';
+			this.section_3_image.current.style.zIndex = '1';
+			this.section_3_image.current.style.width = '80%';
+			this.section_3_image.current.style.transform = 'scale(2.5)';
+			this.section_3_image.current.style.left = '-300px';
+			this.section_3_container.current.style.display = 'block';
+			this.section_3_leftContent.current.className = 'animate__animated animate__slideInLeft animate__delay-2.5s';
+			this.section_3_colorBg.current.className = 'animate__animated animate__slideInLeft animate__delay-2.5s';
+
+			return;
+		}
+
+		if (this.move < 0) {
+			// 向s上拉动，进入下一页
+
+			this.section_4_container.current.style.zIndex = '-5';
+			this.section_4_container.current.style.display = 'none';
+			this.section_4_leftContent.current.style.zIndex = '-5';
+			this.section_4_bgline.current.style.zIndex = '-5';
+			this.section_4_colorBg.current.style.zIndex = '-5';
+			this.section_4_image.current.style.zIndex = '-5';
+
+			this.section_5_container.current.style.display = 'block';
+
+			let count = 0;
+			this.section_5_container.current.style.zIndex = '5';
+			this.section_5_bgline.current.style.zIndex = '5';
+			this.section_5_title.current.style.zIndex = '5';
+			this.section_5_titleBg.current.style.zIndex = '5';
+			this.section_5_title.current.className =
+				'dFordTitle animate__animated animate__slideInDown animate__delay-.5s';
+			this.section_5_titleBg.current.className = 'animate__animated animate__slideInDown animate__delay-.5s';
+			const renderImage = setInterval(() => {
+				if (count > 40) {
+					return;
+				}
+				const image = require(`../../assets/Video02_DigitalSealInsert/Video02_DigitalSealInsert${count}.jpg`);
+
+				this.setState({ section_5_ImageSrc: image });
+
+				count++;
+			}, 100);
+		}
+	}
+
+	section5TouchStart(event) {
+		this.updateStartMosePosition(event);
+	}
+
+	section5TouchMove(event) {
+		this.updateMoveMousePositon(event);
+		this.move = this.state.endY - this.state.firstY;
+
+		if (this.move > 0) {
+			// 向下拉动，返回上一页
+			this.section_4_container.current.style.display = 'block';
+			this.section_4_container.current.style.zIndex = '1';
+			this.section_4_leftContent.current.style.zIndex = '1';
+			this.section_4_bgline.current.style.zIndex = '1';
+			this.section_4_colorBg.current.style.zIndex = '1';
+			this.section_4_image.current.style.zIndex = '1';
+			this.section_4_leftContent.current.style.width = '100%';
+			this.section_4_colorBg.current.style.backgroundColor = '#2B393A';
+			this.sectoin_4_phoneVideo.current.style.zIndex = '1';
+			this.section_4_colorBg.current.className = 'animate__animated animate__slideInLeft animate__delay-1s';
+			this.section_4_leftContent.current.className = 'animate__animated animate__slideInLeft animate__delay-1.5s';
+			this.sectoin_4_phoneVideo.current.className = 'animate__animated animate__slideInRight animate__delay-1.7s';
+
+			this.section_5_container.current.style.zIndex = '-5';
+			this.section_5_container.current.style.display = 'none';
+			this.section_5_bgline.current.style.zIndex = '-5';
+		}
+		if (this.move < 0) {
+			// 向s上拉动，进入下一页
+
+			this.section_5_container.current.style.zIndex = '-5';
+			this.section_5_container.current.style.display = 'none';
+			this.section_5_bgline.current.style.zIndex = '-5';
+
+			this.section_6_container.current.style.display = 'block';
+			this.section_6_container.current.style.zIndex = '6';
+			this.section_6_text_1.current.style.display = 'block';
+		}
+	}
+	section6TouchStart(event) {
+		if (this.moveDistance === 100) {
+			this.section_6_container.current.style.display = 'none';
+			this.section_7_container.current.style.display = 'block';
+			this.section_7_bg.current.style.display = 'block';
+			this.section_7_bgline.current.style.display = 'block';
+			this.section_7_text.current.style.display = 'block'
+			this.section_7_container.current.className = 'animate__animated animate__fadeIn  animate__delay-1.5s';
+			this.section_7_text.current.className =
+				'dFordText animate__animated animate__slideInRight animate__delay-1.5s';
+			this.section_7_bg.current.className = ' animate__animated animate__fadeIn animate__delay-1.5s';
+			this.section_7_bgline.current.className = ' animate__animated animate__fadeIn animate__delay-1.5s';
+			return;
+		}
+		this.moveDistance = 0;
+		this.move = 0;
+		this.updateStartMosePosition(event);
+	}
+
+	section6TouchMove(event) {
+		this.updateMoveMousePositon(event);
+		this.move = this.state.endY - this.state.firstY;
+		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
+
+		if (this.move > 0) {
+			// 向下拉动
+
+			setTimeout(() => {
+				this.section_6_canvasRef.current.setCurrent(this.moveDistance);
+			}, 300);
+		}
+
+		if (this.move < 0) {
+			// 向上拉动
+
+			if (this.moveDistance > 100) {
+				this.moveDistance = 100;
+			}
+			setTimeout(() => {
+				this.section_6_canvasRef.current.setCurrent(this.moveDistance);
+			}, 40);
+			setTimeout(() => {
+				if (0 < Number(this.moveDistance) && Number(this.moveDistance) < 25) {
+					this.section_6_text_1.current.style.display = 'block';
+					this.section_6_text_1.current.className = 'animate__animated animate__slideInLeft ';
+					this.section_6_text_2.current.style.display = 'none';
+					this.section_6_text_3.current.style.display = 'none';
+					this.section_6_text_4.current.style.display = 'none';
+				}
+
+				if (30 < Number(this.moveDistance) && Number(this.moveDistance) < 50) {
+					this.section_6_text_2.current.style.display = 'block';
+					this.section_6_text_2.current.className = 'animate__animated animate__slideInRight';
+					this.section_6_text_1.current.className = 'animate__animated animate__slideOutLeft ';
+					this.section_6_text_1.current.style.display = 'none';
+					this.section_6_text_3.current.style.display = 'none';
+					this.section_6_text_4.current.style.display = 'none';
+				}
+
+				if (55 < Number(this.moveDistance) && Number(this.moveDistance) < 80) {
+					this.section_6_text_3.current.style.display = 'block';
+					this.section_6_text_3.current.className = 'animate__animated animate__slideInLeft ';
+					this.section_6_text_2.current.className = 'animate__animated animate__slideOutRight';
+					this.section_6_text_2.current.style.display = 'none';
+					this.section_6_text_1.current.style.display = 'none';
+					this.section_6_text_4.current.style.display = 'none';
+				}
+
+				if (80 < Number(this.moveDistance) && Number(this.moveDistance) <= 100) {
+					this.section_6_text_4.current.style.display = 'block';
+					this.section_6_text_4.current.className = 'animate__animated animate__slideInRight ';
+					this.section_6_text_3.current.className = 'animate__animated animate__slideOutLeft ';
+					this.section_6_text_1.current.style.display = 'none';
+					this.section_6_text_2.current.style.display = 'none';
+					this.section_6_text_3.current.style.display = 'none';
+				}
+			}, 100);
+		}
+	}
+
+	section7TouchStart(event) {
+		this.updateStartMosePosition(event);
+	}
+
+	section7TouchMove(event) {
+		this.updateMoveMousePositon(event);
+
+		this.move = this.state.endY - this.state.firstY;
+		if (this.move < 0) {
+			// 向s上拉动，进入下一页
+			this.section_7_bg.current.style.display = 'none';
+			this.section_7_text.current.style.display = 'none';
+
+			this.section_8_text.current.style.display = 'block';
+			this.section_8_title.current.style.display = 'block';
+			this.section_8_bg.current.style.display = 'block';
+			this.section_8_image.current.style.display = 'block';
+			this.section_8_container.current.style.display = 'block';
+			this.section_8_bg.current.className = 'animate__animated animate__fadeInUp  animate__delay-1.5s';
+			this.section_8_text.current.className = 'animate__animated animate__fadeInUp  animate__delay-1.5s';
+			this.section_8_title.current.className = 'animate__animated animate__fadeInUp  animate__delay-1.5s';
+		}
+		if (this.move > 0) {
+			// 向下拉动，返回上一页
+			this.section_6_container.current.style.display = 'block';
+			this.section_6_container.current.style.zIndex = '6';
+			this.section_6_text_1.current.style.display = 'block';
+			this.section_6_text_1.current.className = 'animate__animated animate__slideInLeft  animate__delay-1.5s';
+
+			this.section_7_container.current.style.display = 'block';
+			this.section_7_bg.current.style.display = 'block';
+			this.section_7_bgline.current.style.display = 'block';
+			this.section_7_container.current.className = 'animate__animated animate__fadeIn  animate__delay-1.5s';
+			this.section_7_text.current.className =
+				'dFordText animate__animated animate__slideInRight animate__delay-1.5s';
+			this.section_7_bg.current.className = ' animate__animated animate__fadeIn animate__delay-1.5s';
+			this.section_7_bgline.current.className = ' animate__animated animate__fadeIn animate__delay-1.5s';
+		}
+	}
+
 	updateStartMosePosition(event) {
 		this.setState({
 			firstX: event.targetTouches[0].clientX,
@@ -371,85 +692,14 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			endY: event.targetTouches[0].clientY
 		});
 	}
-	section6TouchStart(event) {
-		this.moveDistance = 0;
-		this.move = 0;
-		this.updateStartMosePosition(event);
-		this.setState({ seconds: 0 });
-	}
 
-	section6TouchMove(event) {
-		this.updateMoveMousePositon(event);
-		this.move = this.state.endY - this.state.firstY;
-		if (this.move > 0) {
-			// 向下拉动
-			this.moveDistance = Math.ceil(Math.pow(this.move, 0.8));
-			console.log(this.moveDistance);
-			setTimeout(() => {
-				this.section_6_canvasRef.current.setCurrent(this.moveDistance);
-			}, 300);
-		}
-
-		if (this.move < 0) {
-			// 向上拉动
-
-			this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
-
-			if (this.moveDistance > 100) {
-				this.moveDistance = 100;
-			}
-			console.log('moveDistance:' + this.moveDistance);
-			setTimeout(() => {
-				this.section_6_canvasRef.current.setCurrent(this.moveDistance);
-			}, 40);
-		}
-
-		// console.log('section6TouchMove:'+seconds)
-
-		// this.setState({seconds:this.state.seconds + 1})
-
-		// if (direction === 'toTop') {
-
-		// }
-
-		// if (direction === 'toBottom') {
-		// 	// this.setState({seconds:this.state.seconds + 1})
-		// 	if (this.state.seconds < 0) {
-		// 		this.setState({ seconds: 100 });
-		// 	}
-		// 	setTimeout(() => {
-		// 		this.setState({ seconds: this.state.seconds - 1 });
-		// 	}, 500);
-		// 	setTimeout(() => {
-		// 		console.log(this.state.seconds);
-		// 		this.section_6_canvasRef.current.setCurrent(this.state.seconds);
-		// 	}, 600);
-		// }
+	section6TouchEnd(event) {
+		console.log(event);
 	}
 	change(index, paused?) {
 		if (this.section_6_canvasRef) {
 			this.section_6_canvasRef.current.setCurrent(index);
 			console.log('onChange index:', index, 'paused: ', paused);
-		}
-	}
-	section7TouchStart(event) {
-		this.updateStartMosePosition(event);
-	}
-
-	section7TouchMove(event) {
-		this.setState({
-			endX: event.targetTouches[0].clientX,
-			endY: event.targetTouches[0].clientY
-		});
-
-		const direction = this.letMeKonwDirection();
-		if (direction === 'toTop' || direction === 'toLeft' || direction === 'toRight') {
-			this.section_7_container.current.style.zIndex = '-6';
-			this.section_7_container.current.style.display = 'none';
-
-			setTimeout(() => {
-				this.section_8_container.current.style.display = 'block';
-			});
 		}
 	}
 	section8TouchStart(event) {
@@ -458,143 +708,36 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 
 	section8TouchMove(event) {
 		this.updateMoveMousePositon(event);
-	}
-	section5TouchStart(event) {
-		this.updateStartMosePosition(event);
-	}
 
-	section5TouchMove(event) {
-		this.updateMoveMousePositon(event);
-
-		this.section_5_container.current.style.zIndex = '-5';
-		this.section_5_container.current.style.display = 'none';
-		this.section_5_bgline.current.style.zIndex = '-5';
-		const direction = this.letMeKonwDirection();
-		if (direction === 'toTop' || direction === 'toLeft' || direction === 'toRight') {
-			this.section_6_container.current.style.display = 'block';
-			this.section_6_container.current.style.zIndex = '6';
+		this.move = this.state.endY - this.state.firstY;
+		if (this.move < 0) {
+			// 向s上拉动，进入下一页
+			// this.section_7_bg.current.style.display = 'none';
+			// this.section_7_text.current.style.display = 'none';
+			// this.section_8_text.current.style.display = 'block';
+			// this.section_8_title.current.style.display = 'block';
+			// this.section_8_bg.current.style.display = 'block';
+			// this.section_8_image.current.style.display = 'block';
+			// this.section_8_container.current.style.display = 'block'
+			// this.section_8_bg.current.className ='animate__animated animate__fadeInUp  animate__delay-1.5s'
+			// this.section_8_text.current.className= 'animate__animated animate__fadeInUp  animate__delay-1.5s'
+			// this.section_8_title.current.className = 'animate__animated animate__fadeInUp  animate__delay-1.5s'
 		}
-	}
-	section4TouchStart(event) {
-		this.updateStartMosePosition(event);
-	}
+		if (this.move > 0) {
+			// 向下拉动，返回上一页
+			this.section_8_text.current.style.display = 'none';
+			this.section_8_title.current.style.display = 'none';
+			this.section_8_bg.current.style.display = 'none';
+			this.section_8_image.current.style.display = 'none';
+			this.section_8_container.current.style.display = 'none';
+			this.section_8_bg.current.className = 'animate__animated animate__fadeOutUp  animate__delay-1.5s';
+			this.section_8_text.current.className = 'animate__animated animate__fadeOutUp  animate__delay-1.5s';
+			this.section_8_title.current.className = 'animate__animated animate__fadeOutUp  animate__delay-1.5s';
 
-	section4TouchMove(event) {
-		this.updateMoveMousePositon(event);
-
-		const move = this.state.endY - this.state.firstY;
-		const seconds = Number(Math.abs(move / 100).toFixed(2).split('.')[1]);
-		const direction = this.letMeKonwDirection();
-		this.section_4_container.current.style.zIndex = '-5';
-		this.section_4_container.current.style.display = 'none';
-		this.section_4_leftContent.current.style.zIndex = '-5';
-		this.section_4_bgline.current.style.zIndex = '-5';
-		this.section_4_colorBg.current.style.zIndex = '-5';
-		this.section_4_image.current.style.zIndex = '-5';
-
-		this.section_3_container.current.style.zIndex = '-5';
-		this.section_3_container.current.style.display = 'none';
-		this.section_3_leftContent.current.style.zIndex = '-5';
-		this.section_3_bgline.current.style.zIndex = '-5';
-		this.section_3_colorBg.current.style.zIndex = '-5';
-		this.section_3_image.current.style.zIndex = '-5';
-		this.section_4_leftContent.current.style.width = '100%';
-		this.section_4_colorBg.current.style.backgroundColor = '#2B393A';
-
-		if (direction === 'toTop' || direction === 'toLeft' || direction === 'toRight') {
-			let count = 0;
-			setTimeout(() => {
-				this.section_5_container.current.style.zIndex = '5';
-				this.section_5_container.current.style.display = 'block';
-				this.section_5_bgline.current.style.zIndex = '5';
-				const renderImage = setInterval(() => {
-					if (count > 40) {
-						clearInterval(renderImage);
-
-						setTimeout(() => {
-							this.section_5_title.current.style.zIndex = '5';
-							this.section_5_titleBg.current.style.zIndex = '5';
-						}, 1100);
-						setTimeout(() => {
-							this.section_5_title.current.className =
-								'dFordTitle animate__animated animate__slideInDown';
-							this.section_5_titleBg.current.className = 'animate__animated animate__slideInDown';
-						}, 1000);
-						return;
-					}
-					const image = require(`../../assets/Video02_DigitalSealInsert/Video02_DigitalSealInsert${count}.jpg`);
-
-					this.setState({ section_5_ImageSrc: image });
-
-					count++;
-				}, 100);
-			}, 1500);
-		}
-	}
-	section1TouchStart(event) {
-		this.updateStartMosePosition(event);
-	}
-	section1TouchMove(event) {
-		this.updateMoveMousePositon(event);
-		const move = this.state.endY - this.state.firstY;
-		const seconds = Number(Math.abs(move / 100).toFixed(2).split('.')[1]);
-		const direction = this.letMeKonwDirection();
-
-		setTimeout(() => {
-			this.leftContent.current.className = 'animate__animated animate__slideOutLeft';
-		}, 1000);
-
-		if (direction === 'toTop' || direction === 'toLeft') {
-			setTimeout(() => {
-				this.box.current.style.display = 'none';
-				this.belowContent.current.style.zIndex = '-1';
-				this.belowContent.current.style.display = 'none';
-			}, 1500);
-			setTimeout(() => {
-				this.section_2.current.style.zIndex = '1';
-				this.section_2.current.style.display = 'block';
-				this.section_2.current.className = 'animate__animated animate__fadeIn';
-				let count = 0;
-
-				setTimeout(() => {
-					setTimeout(() => {
-						this.section_2_colorBg.current.style.zIndex = '1';
-						this.section_2_image.current.style.zIndex = '1';
-					}, 100);
-
-					setTimeout(() => {
-						this.section_2_colorBg.current.className = 'animate__animated animate__slideInLeft';
-						this.section_2_image.current.style.width = '81%';
-						this.moveAnimate(this.section_2_image.current, 257);
-					}, 500);
-
-					setTimeout(() => {
-						this.section_2_leftContent.current.style.zIndex = '1';
-
-						this.section_2_bgLine.current.style.zIndex = '1';
-					}, 550);
-					setTimeout(() => {
-						this.section_2_leftContent.current.className = 'animate__animated animate__slideInLeft';
-
-						this.section_2_bgLine.current.className = 'animate__animated animate__fadeIn';
-					}, 20);
-				}, 1500);
-
-				const renderImage = setInterval(() => {
-					if (count > 269) {
-						count = 0;
-					}
-
-					// console.log('section1TouchMove:' + count);
-					const image = require(`../../assets/Video01_AdvancedDimmableWindow/Video01_AdvancedDimmableWindow${count}.jpg`);
-					this.setState({ section_2_ImageSrc: image });
-					count++;
-				}, 150);
-			}, 1500);
-		}
-
-		if (direction === 'toTop' || direction === 'toLeft') {
-			// 显示下一个slide
+			this.section_7_container.current.style.zIndex = '6';
+			this.section_7_container.current.style.display = 'block';
+			this.section_7_text.current.style.display = 'block';
+			this.section_7_bg.current.style.display = 'block';
 		}
 	}
 
@@ -1440,6 +1583,9 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					onTouchMove={(e) => {
 						this.section6TouchMove(e);
 					}}
+					onTouchEnd={(e) => {
+						this.section6TouchEnd(e);
+					}}
 					ref={this.section_6_container}
 					style={{
 						position: 'absolute',
@@ -1451,15 +1597,6 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						display: 'none'
 					}}
 				>
-					{/* <img
-						src={this.state.section_6_ImageSrc}
-						style={{
-							position: 'absolute',
-							width: '100%',
-							height: '100%',
-							objectFit: 'cover'
-						}}
-					/> */}
 					<CanvasImageSequence
 						ref={this.section_6_canvasRef}
 						data={this.state.section_6_ImageSrc}
@@ -1470,15 +1607,18 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						canvasHeight={this.state.canvasHeight}
 						onChange={() => this.change}
 					/>
-					{/* <Player
-						ref={(player) => {
-							this.player = player;
+
+					<div
+						id="section_6_text_1"
+						ref={this.section_6_text_1}
+						style={{
+							display: 'none',
+							position: 'absolute',
+							top: '0px',
+							width: '100%',
+							height: '100%'
 						}}
-						autoPlay={true}
 					>
-						<source src={videoPRemoteVhauffeur} />
-					</Player> */}
-					<div id="section_6_text_1">
 						{/* 右侧指纹 */}
 
 						<div
@@ -1590,7 +1730,17 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						</div>
 					</div>
 
-					<div id="section_6_text_2">
+					<div
+						id="section_6_text_2"
+						ref={this.section_6_text_2}
+						style={{
+							display: 'none',
+							position: 'absolute',
+							top: '0px',
+							width: '100%',
+							height: '100%'
+						}}
+					>
 						{/* 右侧指纹 */}
 
 						<div
@@ -1686,7 +1836,17 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						</div>
 					</div>
 
-					<div id="section_6_text_3">
+					<div
+						id="section_6_text_3"
+						ref={this.section_6_text_3}
+						style={{
+							display: 'none',
+							position: 'absolute',
+							top: '0px',
+							width: '100%',
+							height: '100%'
+						}}
+					>
 						{/* 右侧指纹 */}
 
 						<div
@@ -1798,7 +1958,17 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						</div>
 					</div>
 
-					<div id="section_6_text_4">
+					<div
+						id="section_6_text_4"
+						style={{
+							display: 'none',
+							position: 'absolute',
+							top: '0px',
+							width: '100%',
+							height: '100%'
+						}}
+						ref={this.section_6_text_4}
+					>
 						<Info
 							// inAnimate={this.state.infoInAnimate}
 							// outAnimate={this.state.infoOutAnimate}
@@ -1851,6 +2021,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				>
 					{/*section_7_container*/}
 					<img
+						ref={this.section_7_bg}
 						src={privacy_section_7_bg}
 						style={{
 							position: 'absolute',
@@ -1858,7 +2029,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							top: '0px',
 							width: '100%',
 							height: '100%',
-							objectFit: 'cover'
+							objectFit: 'cover',
+							display: 'none'
 						}}
 					/>
 
@@ -1871,6 +2043,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							left: '257px',
 							top: '145px'
 						}}
+						ref={this.section_7_bgline}
 					>
 						<svg
 							width="833"
@@ -1895,6 +2068,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							left: '956px',
 							top: '404px'
 						}}
+						ref={this.section_7_text}
 						className="dFordText"
 					>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium odio ipsum, eget
@@ -1922,224 +2096,268 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					{/*section_8_container*/}
 					<img src={privacy_section_8_bg} />
 					{/* 背景上部遮罩 */}
+
 					<div
+						id="section_8_bg"
 						style={{
 							position: 'absolute',
-							width: '1366px',
-							height: '1024px',
+							top: '0px',
 							left: '0px',
-							top: '0px'
+							width: '100%',
+							height: '100%',
+							display: 'none'
 						}}
+						ref={this.section_8_bg}
 					>
-						<svg
-							width="1366"
-							height="1024"
-							viewBox="0 0 1366 1024"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
+						<div
+							style={{
+								position: 'absolute',
+								width: '1366px',
+								height: '1024px',
+								left: '0px',
+								top: '0px'
+							}}
 						>
-							<rect
+							<svg
 								width="1366"
 								height="1024"
-								fill="url(#paint0_linear_1254_1463)"
-								fillOpacity="0.47"
-								style={{ mixBlendMode: 'multiply' }}
-							/>
-							<defs>
-								<linearGradient
-									id="paint0_linear_1254_1463"
-									x1="683"
-									y1="0"
-									x2="683"
-									y2="1024"
-									gradientUnits="userSpaceOnUse"
-								>
-									<stop stopColor="#B18C8C" stopOpacity="0.62" />
-									<stop offset="1" stopColor="#FFF2E6" />
-								</linearGradient>
-							</defs>
-						</svg>
-					</div>
-					{/* 背景下部底色 */}
-					<div
-						style={{
-							position: 'absolute',
-							width: '1366px',
-							height: '612.5px',
-							left: '0px',
-							top: '412px'
-						}}
-					>
-						<svg
-							width="1366"
-							height="612"
-							viewBox="0 0 1366 612"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 1366 1024"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<rect
+									width="1366"
+									height="1024"
+									fill="url(#paint0_linear_1254_1463)"
+									fillOpacity="0.47"
+									style={{ mixBlendMode: 'multiply' }}
+								/>
+								<defs>
+									<linearGradient
+										id="paint0_linear_1254_1463"
+										x1="683"
+										y1="0"
+										x2="683"
+										y2="1024"
+										gradientUnits="userSpaceOnUse"
+									>
+										<stop stopColor="#B18C8C" stopOpacity="0.62" />
+										<stop offset="1" stopColor="#FFF2E6" />
+									</linearGradient>
+								</defs>
+							</svg>
+						</div>
+						{/* 背景下部底色 */}
+						<div
+							style={{
+								position: 'absolute',
+								width: '1366px',
+								height: '612.5px',
+								left: '0px',
+								top: '412px'
+							}}
 						>
-							<path opacity="0.25" d="M0 0L683 90.5L1366 0V612.5H0V0Z" fill="#1D1B1D" />
-						</svg>
-					</div>
-					{/* 背景下部遮罩 */}
-					<div
-						style={{
-							position: 'absolute',
-							width: '1366px',
-							height: '612.5px',
-							left: '0px',
-							top: '411.5px'
-						}}
-					>
-						<svg
-							width="1366"
-							height="613"
-							viewBox="0 0 1366 613"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
+							<svg
+								width="1366"
+								height="612"
+								viewBox="0 0 1366 612"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path opacity="0.25" d="M0 0L683 90.5L1366 0V612.5H0V0Z" fill="#1D1B1D" />
+							</svg>
+						</div>
+						<img
+							src={privacy_section_8_bg}
+							ref={this.section_8_image}
+							style={{
+								position: 'absolute',
+								left: '0px',
+								top: '0px',
+								width: '100%',
+								height: '100%',
+								objectFit: 'cover',
+								display: 'none'
+							}}
+						/>
+						{/* 背景下部遮罩 */}
+						<div
+							style={{
+								position: 'absolute',
+								width: '1366px',
+								height: '612.5px',
+								left: '0px',
+								top: '411.5px'
+							}}
 						>
-							<path opacity="0.75" d="M0 0.5L683 91L1366 0.5V613H0V0.5Z" fill="#1D1B1D" />
-						</svg>
-					</div>
-					{/* 中部腰线 */}
-					<div
-						style={{
-							position: 'absolute',
-							width: '1366px',
-							height: '612.5px',
-							left: '0px',
-							top: '412px'
-						}}
-					>
-						<svg
-							width="1366"
-							height="612"
-							viewBox="0 0 1366 612"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
+							<svg
+								width="1366"
+								height="613"
+								viewBox="0 0 1366 613"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path opacity="0.75" d="M0 0.5L683 91L1366 0.5V613H0V0.5Z" fill="#1D1B1D" />
+							</svg>
+						</div>
+						{/* 中部腰线 */}
+						<div
+							style={{
+								position: 'absolute',
+								width: '1366px',
+								height: '612.5px',
+								left: '0px',
+								top: '412px'
+							}}
 						>
-							<path opacity="0.75" d="M0 0L683 90.5L1366 0V612.5H0V0Z" fill="#1D1B1D" />
-						</svg>
-					</div>
-					{/* 底部中线背景 */}
-					<div
-						style={{
-							position: 'absolute',
-							width: '118px',
-							height: '0px',
-							left: '630px',
-							top: '906px'
-						}}
-					>
-						<svg width="2" height="118" viewBox="0 0 2 118" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<line x1="1" y1="-4.37114e-08" x2="1.00001" y2="118" stroke="white" strokeWidth="2" />
-						</svg>
-					</div>
-					{/* 底部原型背景 */}
-					<div
-						style={{
-							position: 'absolute',
-							width: '139px',
-							height: '139px',
-							left: '615px',
-							top: '835px'
-						}}
-					>
-						<svg
-							width="139"
-							height="139"
-							viewBox="0 0 139 139"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
+							<svg
+								width="1366"
+								height="612"
+								viewBox="0 0 1366 612"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path opacity="0.75" d="M0 0L683 90.5L1366 0V612.5H0V0Z" fill="#1D1B1D" />
+							</svg>
+						</div>
+						{/* 底部中线背景 */}
+						<div
+							style={{
+								position: 'absolute',
+								width: '118px',
+								height: '0px',
+								left: '630px',
+								top: '906px'
+							}}
 						>
-							<circle opacity="0.28" cx="69.5" cy="69.5" r="68.5" stroke="white" strokeWidth="2" />
-						</svg>
-					</div>
-					{/* 背景栅格 */}
-					<div
-						style={{
-							position: 'absolute',
-							width: '832px',
-							height: '892px',
-							left: '257px',
-							top: '145px'
-						}}
-					>
-						<svg
-							width="833"
-							height="892"
-							viewBox="0 0 833 892"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
+							<svg
+								width="2"
+								height="118"
+								viewBox="0 0 2 118"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<line x1="1" y1="-4.37114e-08" x2="1.00001" y2="118" stroke="white" strokeWidth="2" />
+							</svg>
+						</div>
+						{/* 底部原型背景 */}
+						<div
+							style={{
+								position: 'absolute',
+								width: '139px',
+								height: '139px',
+								left: '615px',
+								top: '835px'
+							}}
 						>
-							<line opacity="0.3" x1="0.5" y1="-2.18557e-08" x2="0.500039" y2="892" stroke="#E8E8E8" />
-							<line opacity="0.3" x1="277.5" y1="-2.18557e-08" x2="277.5" y2="892" stroke="#E8E8E8" />
-							<line opacity="0.3" x1="555.5" y1="-2.18557e-08" x2="555.5" y2="892" stroke="#E8E8E8" />
-							<line opacity="0.3" x1="832.5" y1="-2.18557e-08" x2="832.5" y2="892" stroke="#E8E8E8" />
-						</svg>
+							<svg
+								width="139"
+								height="139"
+								viewBox="0 0 139 139"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<circle opacity="0.28" cx="69.5" cy="69.5" r="68.5" stroke="white" strokeWidth="2" />
+							</svg>
+						</div>
 					</div>
+
 					{/* 中部文本 continue to */}
 					<div
+						id="section_8_title"
+						ref={this.section_8_title}
 						style={{
 							position: 'absolute',
-							width: '429px',
-							height: '72px',
-							left: '302px',
-							top: '641px'
+							width: '100%',
+							height: '100%',
+							left: '0px',
+							top: '0px',
+							display: 'none'
 						}}
-						className="dFordNormalTitle"
 					>
-						continue to
-					</div>
-					{/* 中部文本 Comfort */}
-					<div
-						style={{
-							position: 'absolute',
-							width: '309px',
-							height: '72px',
-							left: '745px',
-							top: '641px',
-							color: '#AFCDFA'
-						}}
-						className="dFordNormalTitle"
-					>
-						Comfort
+						<div
+							style={{
+								position: 'absolute',
+								width: '429px',
+								height: '72px',
+								left: '302px',
+								top: '641px'
+							}}
+							className="dFordNormalTitle"
+						>
+							continue to
+						</div>
+						{/* 中部文本 Comfort */}
+						<div
+							style={{
+								position: 'absolute',
+								width: '309px',
+								height: '72px',
+								left: '745px',
+								top: '641px',
+								color: '#AFCDFA'
+							}}
+							className="dFordNormalTitle"
+						>
+							Comfort
+						</div>
 					</div>
 					{/* 中部文本 + */}
+
 					<div
+						id="section_8_text"
+						ref={this.section_8_text}
 						style={{
 							position: 'absolute',
-							width: '43px',
-							height: '102px',
-							left: '1062px',
-							top: '632px',
-							color: '#AFCDFA'
+							width: '100%',
+							height: '100%',
+							left: '0px',
+							top: '0px',
+							display: 'none'
 						}}
 					>
-						<svg width="39" height="40" viewBox="0 0 39 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path
-								opacity="0.8"
-								d="M38.15 22.548V16.836H22.61V0.0359967H16.394V16.836H0.853969V22.548H16.394V39.936H22.61V22.548H38.15Z"
-								fill="#AFCDFA"
-							/>
-						</svg>
-					</div>
-					<div
-						className="dFordNormalText"
-						style={{
-							/* Return to Home */
+						<div
+							style={{
+								position: 'absolute',
+								width: '43px',
+								height: '102px',
+								left: '1062px',
+								top: '632px',
+								color: '#AFCDFA'
+							}}
+						>
+							<svg
+								width="39"
+								height="40"
+								viewBox="0 0 39 40"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									opacity="0.8"
+									d="M38.15 22.548V16.836H22.61V0.0359967H16.394V16.836H0.853969V22.548H16.394V39.936H22.61V22.548H38.15Z"
+									fill="#AFCDFA"
+								/>
+							</svg>
+						</div>
+						<div
+							className="dFordNormalText"
+							style={{
+								/* Return to Home */
 
-							position: 'absolute',
-							width: '151px',
-							height: '31px',
-							right: '20px',
-							top: '965px',
+								position: 'absolute',
+								width: '151px',
+								height: '31px',
+								right: '20px',
+								top: '965px',
 
-							fontSize: '22px',
+								fontSize: '22px',
 
-							color: '#D8D8D8'
-						}}
-					>
-						Return to Home
+								color: '#D8D8D8'
+							}}
+						>
+							Return to Home
+						</div>
 					</div>
 				</div>
 			</div>
