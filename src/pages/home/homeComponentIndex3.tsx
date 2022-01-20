@@ -99,7 +99,10 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 
 		this.section_7_container = React.createRef();
 		this.section_8_container = React.createRef();
-
+		this.section_6_text_1 = React.createRef();
+		this.section_6_text_2 = React.createRef();
+		this.section_6_text_3 = React.createRef();
+		this.section_6_text_4 = React.createRef();
 		this.state = {
 			x: 0,
 			y: 0,
@@ -234,6 +237,10 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	section_6_container: any;
 	section_6_bgline: any;
 	section_6_canvasRef: any;
+	section_6_text_1:any;
+	section_6_text_2:any;
+	section_6_text_3:any;
+	section_6_text_4:any;
 
 	section_7_container: any;
 	section_8_container: any;
@@ -393,10 +400,40 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				this.setState({ seconds: this.state.seconds + 1 });
 			}, 500);
 			setTimeout(() => {
-				console.log(this.state.seconds);
+				if(0<Number(this.state.seconds)&& Number(this.state.seconds)<25) {
+				
+					this.section_6_text_1.current.style.display = 'block'
+					this.section_6_text_2.current.style.display = 'none'
+					this.section_6_text_3.current.style.display = 'none'
+					this.section_6_text_4.current.style.display = 'none'
+				}
+
+				if(30<Number(this.state.seconds)&& Number(this.state.seconds)<50) {
+					this.section_6_text_2.current.style.display = 'block'
+					this.section_6_text_1.current.style.display = 'none'
+					this.section_6_text_3.current.style.display = 'none'
+					this.section_6_text_4.current.style.display = 'none'
+				}
+
+				if(55<Number(this.state.seconds)&& Number(this.state.seconds)<80) {
+					this.section_6_text_3.current.style.display = 'block'
+					this.section_6_text_2.current.style.display = 'none'
+					this.section_6_text_1.current.style.display = 'none'
+					this.section_6_text_4.current.style.display = 'none'
+				}
+
+				if(80<Number(this.state.seconds)&& Number(this.state.seconds)<100) {
+					this.section_6_text_4.current.style.display = 'block'
+					this.section_6_text_1.current.style.display = 'none'
+					this.section_6_text_2.current.style.display = 'none'
+					this.section_6_text_3.current.style.display = 'none'
+				}
+
 				this.section_6_canvasRef.current.setCurrent(this.state.seconds);
 			}, 600);
 		}
+
+
 		console.log(seconds);
 		if (direction === 'toBottom') {
 			// this.setState({seconds:this.state.seconds + 1})
@@ -531,8 +568,9 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		}, 1000);
 
 		if (direction === 'toTop' || direction === 'toLeft') {
+			this.box.current.style.display = 'none';
 			setTimeout(() => {
-				this.box.current.style.display = 'none';
+				
 				this.belowContent.current.style.zIndex = '-1';
 				this.belowContent.current.style.display = 'none';
 			}, 1500);
@@ -1437,15 +1475,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						display: 'none'
 					}}
 				>
-					{/* <img
-						src={this.state.section_6_ImageSrc}
-						style={{
-							position: 'absolute',
-							width: '100%',
-							height: '100%',
-							objectFit: 'cover'
-						}}
-					/> */}
+				
 					<CanvasImageSequence
 						ref={this.section_6_canvasRef}
 						data={this.state.section_6_ImageSrc}
@@ -1456,15 +1486,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						canvasHeight = {this.state.canvasHeight}
 						onChange={() => this.change}
 					/>
-					{/* <Player
-						ref={(player) => {
-							this.player = player;
-						}}
-						autoPlay={true}
-					>
-						<source src={videoPRemoteVhauffeur} />
-					</Player> */}
-					<div id="section_6_text_1">
+		
+					<div id="section_6_text_1"  ref= {this.section_6_text_1} style={{display:'none'}}>
 						{/* 右侧指纹 */}
 
 						<div
@@ -1473,7 +1496,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 								width: '469.5px',
 								height: '550px',
 								left: '0px',
-								top: '150px'
+								top: '150px',
 							}}
 						>
 							<svg
@@ -1553,7 +1576,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 								height: '70px',
 								left: '134px',
 								top: '255px',
-								textAlign: 'left'
+								textAlign: 'left',
 							}}
 							className="dFordSmallTitle"
 						>
@@ -1576,7 +1599,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						</div>
 					</div>
 
-					<div id="section_6_text_2">
+					<div id="section_6_text_2"  ref= {this.section_6_text_2} style={{display:'none'}}>
 						{/* 右侧指纹 */}
 
 						<div
@@ -1585,7 +1608,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 								width: '469.5px',
 								height: '550px',
 								right: '0px',
-								top: '150px'
+								top: '150px',
 							}}
 						>
 							<svg
@@ -1672,7 +1695,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						</div>
 					</div>
 
-					<div id="section_6_text_3">
+					<div id="section_6_text_3"  ref= {this.section_6_text_3}  style={{display:'none'}}>
 						{/* 右侧指纹 */}
 
 						<div
@@ -1681,7 +1704,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 								width: '469.5px',
 								height: '550px',
 								left: '0px',
-								top: '150px'
+								top: '150px',
 							}}
 						>
 							<svg
@@ -1784,7 +1807,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						</div>
 					</div>
 
-					<div id="section_6_text_4">
+					<div id="section_6_text_4" style={{display:'none'}} ref= {this.section_6_text_4}>
 						<Info
 							// inAnimate={this.state.infoInAnimate}
 							// outAnimate={this.state.infoOutAnimate}
