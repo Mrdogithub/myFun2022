@@ -20,7 +20,7 @@ import leisureSmallIndex from './leisureSmallIndex.svg';
 
 import uniqueSmallTitle from './uniqueSmallTitle.svg';
 import uniqueSmallIndex from './uniqueSmallIndex.svg';
-import videoPRemoteVhauffeur from '../../assets/VideoP_RemoteVhauffeur.mp4';
+import videoPRemoteVhauffeur from '../../assets/remoteVhauffeur.webm';
 import homePrivacy_1 from '../../assets/Video00(ImageSequence)/Video00_TransitionPrivacy00.jpg';
 import section2IndeImage from '../../assets/Video01_AdvancedDimmableWindow/Video01_AdvancedDimmableWindow0.jpg';
 import sectoin_4_phoneVideo from '../../assets/VideoP_RemoteVhauffeur/VideoP_RemoteVhauffeur0.jpg';
@@ -29,7 +29,7 @@ import section_5_ImageSrc from '../../assets/Video02_DigitalSealInsert/Video02_D
 import privacy_section_3_bg from './privacy_section_3_bg.png';
 import privacy_section_7_bg from './privacy_section_7_bg.png';
 import privacy_section_8_bg from './privacy_section_8_bg.png';
-import section_6_ImageSrc from '../../assets/Video02b_DigitalSealRotate/Video02b_DigitalSealRotate0.jpg';
+import section_6_ImageSrc from '../../assets/Video02b_DigitalSealRotate_1/Video02b_DigitalSealRotate0.jpg';
 import CanvasImageSequence from 'react-canvas-image-sequence';
 
 import Video01_AdvancedDimmableWindow from '../../assets/Video01_AdvancedDimmableWindow.mp4';
@@ -263,7 +263,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	componentDidMount() {
 		const imges: any[] = [];
 		for (let i = 0; i <= 100; i++) {
-			imges.push(require(`../../assets/Video02b_DigitalSealRotate/Video02b_DigitalSealRotate${i}.jpg`));
+			imges.push(require(`../../assets/Video02b_DigitalSealRotate_1/Video02b_DigitalSealRotate${i}.jpg`));
 			this.setState({ section_6_ImageSrc: imges });
 		}
 
@@ -1468,7 +1468,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							left: '573px',
 							top: '120px',
 							backgroundSize: 'contain',
-							zIndex: '-4'
+							zIndex: '-4',
+							mixBlendMode: 'screen'
 						}}
 					>
 						<Player
