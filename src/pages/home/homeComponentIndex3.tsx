@@ -2227,7 +2227,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 								position: 'absolute',
 								width: '118px',
 								height: '0px',
-								left: '630px',
+								left: '685px',
 								top: '906px'
 							}}
 						>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
+import {  BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import { routers } from './router/routerIndex';
 export default class App extends React.Component<any, any> {
 	render(): React.ReactNode {
