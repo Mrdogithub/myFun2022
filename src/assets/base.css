@@ -184,6 +184,9 @@
     height: 100%;
 }
 
+.video-react {
+    background-color: transparent !important;
+}
 .video-react .video-react-video {
     position: absolute;
     top: 0;
@@ -195,4 +198,12 @@
 
 .video-react-has-started .video-react-control-bar,.video-react .video-react-big-play-button{
     display:none !important;
+}
+
+
+.imageCover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }

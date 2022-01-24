@@ -168,7 +168,6 @@ export class ComfortComponentIndex4 extends React.Component<any, any> {
 						console.log(index);
 					}}
 					noScale="true"
-					className={this.props.inAnimate.footer}
 				/>
 			</div>
 		);

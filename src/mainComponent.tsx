@@ -9,7 +9,7 @@ import comfortBg_5 from './assets/images/comfortBg_5.png';
 import comfortBg_6 from './assets/images/comfortBg_6_1.png';
 import comfortBg_7 from './assets/images/comfortBg_7.png';
 import comfortBg_8 from './assets/images/comfortBg_8.png';
-import comfortBg_9 from './assets/images/comfortBg_9.png';
+// import comfortBg_9 from './assets/images/comfortBg_9.png';
 import comfortBg_10 from './assets/images/comfortBg_10.png';
 import comfortBg_11 from './assets/images/comfortBg_11_1.png';
 import comfortBg_12 from './assets/images/comfortBg_12.png';
@@ -40,7 +40,7 @@ export class MainComponent extends React.Component<any, any> {
 			comfortBg_6,
 			comfortBg_7,
 			comfortBg_8,
-			comfortBg_9,
+			// comfortBg_9,
 			comfortBg_10,
 			comfortBg_11,
 			comfortBg_12,

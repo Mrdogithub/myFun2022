@@ -209,14 +209,11 @@ export default class SwiperIndex extends React.Component<any, any> {
         
             {/* globalIndex:4*/}
             <HomeComponentIndex3></HomeComponentIndex3>
-            {/* globalIndex:5*/}
-            {/* <PrivacyComponentIndex1 
-            inAnimate = {this.state.inAnimate} outAnimate = {this.state.outAnimate}
-            videoConfig = {this.state.videoConfig} changeAnimateByTime = {()=>this.onChangeAnimateByTime()}/> */}
-        
-            {/* globalIndex:6*/}
-            {/* <PrivacyComponentIndex2  inAnimate = {this.state.inAnimate} outAnimate = {this.state.outAnimate}/> */}
-
+            {/* <ComfortComponentIndex5 /> */}
+            {/* <ComfortComponentIndex2 /> */}
+                  {/* <ComfortComponentIndex9 /> */}
+           
+              
             
         </>)
      

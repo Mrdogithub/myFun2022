@@ -29,8 +29,24 @@ import section_5_ImageSrc from '../../assets/Video02_DigitalSealInsert/Video02_D
 import privacy_section_3_bg from './privacy_section_3_bg.png';
 import privacy_section_7_bg from './privacy_section_7_bg.png';
 import privacy_section_8_bg from './privacy_section_8_bg.png';
-import section_6_ImageSrc from '../../assets/Video02b_DigitalSealRotate_1/Video02b_DigitalSealRotate0.jpg';
+import firstPrivactSection6ImageSequence from '../../assets/Video02b_DigitalSealRotate_1/Video02b_DigitalSealRotate0.jpg';
+import firstComfortSection1ImageSequence from '../../assets/Video04_TransitionComfort/Video04_TransitionComfort0.jpg';
+import lastComfortSection1ImageSequence from '../../assets/Video04_TransitionComfort/Video04_TransitionComfort100.jpg';
+import comfortBg_4_new from '../../assets/images/comfortBg_4_new.png';
+import comfortSection4Bg2 from '../../assets/images/comfortSection4Bg2.png';
+import comfortSection4Bg3 from '../../assets/images/comfortSection4Bg3.png';
+import comfortSection4Bg from '../../assets/images/comfortSection4Bg.png';
+import comfortSection6BG from '../../assets/images/comfortSection6BG.png';
+import comfortSection7BG from '../../assets/images/comfortSection7BG.png';
+import comfortSection8Bg from '../../assets/images/comfortSection8Bg.png';
+import comfortSection8BG1 from '../../assets/images/comfortSection8BG1.png';
+import comfortSection8Bg2 from '../../assets/images/comfortSection8Bg2.png';
+import comfortSection9Bg1 from '../../assets/images/comfortSection9Bg1.png';
+import comfortSection9Bg2 from '../../assets/images/comfortSection9Bg2.png';
+import comfortSection9Bg3 from '../../assets/images/comfortSection9Bg3.png';
+import comfortSection9Bg4 from '../../assets/images/comfortSection9Bg4.png';
 import CanvasImageSequence from 'react-canvas-image-sequence';
+import comfortSection5BG1 from '../../assets/images/comfortSection5BG1.png';
 
 import Video01_AdvancedDimmableWindow from '../../assets/Video01_AdvancedDimmableWindow.mp4';
 import { Info } from '../../components/info/infoComponent';
@@ -45,7 +61,7 @@ import {
 	PlaybackRateMenuButton, // 倍速播放选项
 	VolumeMenuButton
 } from 'video-react';
-import 'video-react/dist/video-react.css';
+
 import { ifStatement } from '@babel/types';
 
 const MAX_IMAGES = [
@@ -101,7 +117,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.section_7_bg = React.createRef();
 		this.section_7_text = React.createRef();
 		this.section_7_bgline = React.createRef();
-		this.section_8_container = React.createRef();
+		this.privacySection8Wrapper = React.createRef();
 		this.section_8_text = React.createRef();
 		this.section_8_title = React.createRef();
 		this.section_8_bg = React.createRef();
@@ -110,6 +126,50 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.section_6_text_2 = React.createRef();
 		this.section_6_text_3 = React.createRef();
 		this.section_6_text_4 = React.createRef();
+
+		this.comfortSection1Wrapper = React.createRef();
+		this.comfortSection1CanvasRef = React.createRef();
+		this.comfortSection1Text = React.createRef();
+		this.comfortSection1Text2 = React.createRef();
+		this.comfortSection1BgLine = React.createRef();
+		this.comfortSection1Title = React.createRef();
+
+		this.comfortSection2Wrapper = React.createRef();
+		this.comfortSection2TextBox05 = React.createRef();
+		this.comfortSection2TextBox05b = React.createRef();
+		this.comfortSection2Box05 = React.createRef();
+		this.comfortSection2BgLine = React.createRef();
+
+		this.comfortSection3Wrapper = React.createRef();
+		this.comfortSection3Title = React.createRef();
+		this.comfortSection3Text = React.createRef();
+		this.comfortSection3BgLine = React.createRef();
+		this.comfortSection3Tab06 = React.createRef();
+
+		this.comfortSection4Wrapper = React.createRef();
+		this.comfortSection4Box07 = React.createRef();
+
+		this.comfortSection4Text2 = React.createRef();
+		this.comfortSection4Text1 = React.createRef();
+		this.comfortSection4Image2 = React.createRef();
+		this.comfortSection4Image1 = React.createRef();
+		this.comfortSection4Hand = React.createRef();
+
+		this.comfortSection5Wrapper = React.createRef();
+		this.comfortSection5Title = React.createRef();
+
+		this.comfortSection6Wrapper = React.createRef();
+		this.comfortSectoin6Title = React.createRef();
+		this.comfortSection6Text = React.createRef();
+
+		this.comfortSection7Wrapper = React.createRef();
+
+		this.comfortSection8Wrapper = React.createRef();
+		this.comfortSection8Bg = React.createRef();
+		this.comfortSection8Video = React.createRef();
+		this.comfortSection8Bg2 = React.createRef();
+
+		this.comfortSection9Wrapper = React.createRef();
 		this.state = {
 			x: 0,
 			y: 0,
@@ -123,8 +183,11 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			section_5_ImageSrc: section_5_ImageSrc,
 			canvasWidth: 0,
 			canvasHeight: 0,
-			section_6_ImageSrc: [
-				section_6_ImageSrc
+			privactSection6ImageSequence: [
+				firstPrivactSection6ImageSequence
+			],
+			comfortSection1ImageSequence: [
+				firstComfortSection1ImageSequence
 			],
 			boxDefaultSize: 80,
 			slides: [
@@ -253,18 +316,67 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	section_7_bg: any;
 	section_7_text: any;
 	section_7_bgline: any;
-	section_8_container: any;
+	privacySection8Wrapper: any;
 	section_8_text: any;
 	section_8_title: any;
 	section_8_bg: any;
 	section_8_image: any;
+
+	comfortSection1Wrapper: any;
+	comfortSection1CanvasRef: any;
+	comfortSection1Text: any;
+	comfortSection1Text2: any;
+	comfortSection1Title: any;
+	comfortSection1BgLine: any;
+
+	comfortSection2Wrapper: any;
+	comfortSection2TextBox05: any;
+	comfortSection2TextBox05b: any;
+	comfortSection2Box05: any;
+	comfortSection2BgLine: any;
+
+	comfortSection3Wrapper: any;
+	comfortSection3Title: any;
+	comfortSection3Text: any;
+	comfortSection3BgLine: any;
+	comfortSection3Tab06: any;
+
+	comfortSection4Wrapper: any;
+	comfortSection4Box07: any;
+	comfortSection4Text2: any;
+	comfortSection4Text1: any;
+	comfortSection4Image1: any;
+	comfortSection4Image2: any;
+	comfortSection4Hand: any;
+
+	comfortSection5Wrapper: any;
+	comfortSection5Title: any;
+
+	comfortSection6Wrapper: any;
+	comfortSectoin6Title: any;
+	comfortSection6Text: any;
+
+	comfortSection7Wrapper: any;
+
+	comfortSection8Wrapper: any;
+	comfortSection8Bg: any;
+	comfortSection8Video: any;
+	comfortSection8Bg2: any;
+
+	comfortSection9Wrapper: any;
 	moveDistance = 0;
 	move = 0;
 	componentDidMount() {
 		const imges: any[] = [];
 		for (let i = 0; i <= 100; i++) {
 			imges.push(require(`../../assets/Video02b_DigitalSealRotate_1/Video02b_DigitalSealRotate${i}.jpg`));
-			this.setState({ section_6_ImageSrc: imges });
+			this.setState({ privactSection6ImageSequence: imges });
+		}
+
+		const comfortImges: any[] = [];
+		for (let i = 0; i <= 100; i++) {
+			comfortImges.push(require(`../../assets/Video04_TransitionComfort/Video04_TransitionComfort${i}.jpg`));
+			this.setState({ comfortSection1ImageSequence: comfortImges });
 		}
 
 		this.setState({ canvasWidth: screen.availWidth });
@@ -563,9 +675,6 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		if (this.moveDistance === 100) {
 			this.section_6_container.current.style.display = 'none';
 			this.section_7_container.current.style.display = 'block';
-			this.section_7_bg.current.style.display = 'block';
-			this.section_7_bgline.current.style.display = 'block';
-			this.section_7_text.current.style.display = 'block'
 			this.section_7_container.current.className = 'animate__animated animate__fadeIn  animate__delay-1.5s';
 			this.section_7_text.current.className =
 				'dFordText animate__animated animate__slideInRight animate__delay-1.5s';
@@ -649,14 +758,12 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.move = this.state.endY - this.state.firstY;
 		if (this.move < 0) {
 			// 向s上拉动，进入下一页
-			this.section_7_bg.current.style.display = 'none';
-			this.section_7_text.current.style.display = 'none';
+			this.section_7_container.current.style.display = 'none';
 
 			this.section_8_text.current.style.display = 'block';
 			this.section_8_title.current.style.display = 'block';
 			this.section_8_bg.current.style.display = 'block';
-			this.section_8_image.current.style.display = 'block';
-			this.section_8_container.current.style.display = 'block';
+			this.privacySection8Wrapper.current.style.display = 'block';
 			this.section_8_bg.current.className = 'animate__animated animate__fadeInUp  animate__delay-1.5s';
 			this.section_8_text.current.className = 'animate__animated animate__fadeInUp  animate__delay-1.5s';
 			this.section_8_title.current.className = 'animate__animated animate__fadeInUp  animate__delay-1.5s';
@@ -669,13 +776,6 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			this.section_6_text_1.current.className = 'animate__animated animate__slideInLeft  animate__delay-1.5s';
 
 			this.section_7_container.current.style.display = 'block';
-			this.section_7_bg.current.style.display = 'block';
-			this.section_7_bgline.current.style.display = 'block';
-			this.section_7_container.current.className = 'animate__animated animate__fadeIn  animate__delay-1.5s';
-			this.section_7_text.current.className =
-				'dFordText animate__animated animate__slideInRight animate__delay-1.5s';
-			this.section_7_bg.current.className = ' animate__animated animate__fadeIn animate__delay-1.5s';
-			this.section_7_bgline.current.className = ' animate__animated animate__fadeIn animate__delay-1.5s';
 		}
 	}
 
@@ -699,7 +799,6 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	change(index, paused?) {
 		if (this.section_6_canvasRef) {
 			this.section_6_canvasRef.current.setCurrent(index);
-			console.log('onChange index:', index, 'paused: ', paused);
 		}
 	}
 	section8TouchStart(event) {
@@ -712,32 +811,32 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.move = this.state.endY - this.state.firstY;
 		if (this.move < 0) {
 			// 向s上拉动，进入下一页
-			// this.section_7_bg.current.style.display = 'none';
-			// this.section_7_text.current.style.display = 'none';
-			// this.section_8_text.current.style.display = 'block';
-			// this.section_8_title.current.style.display = 'block';
-			// this.section_8_bg.current.style.display = 'block';
-			// this.section_8_image.current.style.display = 'block';
-			// this.section_8_container.current.style.display = 'block'
-			// this.section_8_bg.current.className ='animate__animated animate__fadeInUp  animate__delay-1.5s'
-			// this.section_8_text.current.className= 'animate__animated animate__fadeInUp  animate__delay-1.5s'
-			// this.section_8_title.current.className = 'animate__animated animate__fadeInUp  animate__delay-1.5s'
+			// this.section_8_text.current.style.display = 'none';
+			// this.section_8_title.current.style.display = 'none';
+			// this.section_8_bg.current.style.display = 'none';
+			// this.section_8_image.current.style.display = 'none';
+			this.privacySection8Wrapper.current.style.display = 'none';
+			this.section_8_bg.current.className = 'animate__animated animate__fadeOutUp  animate__delay-1.5s';
+			this.section_8_text.current.className = 'animate__animated animate__fadeOutUp  animate__delay-1.5s';
+			this.section_8_title.current.className = 'animate__animated animate__fadeOutUp  animate__delay-1.5s';
+
+			this.comfortSection1Wrapper.current.style.display = 'block';
 		}
 		if (this.move > 0) {
 			// 向下拉动，返回上一页
-			this.section_8_text.current.style.display = 'none';
-			this.section_8_title.current.style.display = 'none';
-			this.section_8_bg.current.style.display = 'none';
-			this.section_8_image.current.style.display = 'none';
-			this.section_8_container.current.style.display = 'none';
+			// this.section_8_text.current.style.display = 'none';
+			// this.section_8_title.current.style.display = 'none';
+			// this.section_8_bg.current.style.display = 'none';
+			// this.section_8_image.current.style.display = 'none';
+			this.privacySection8Wrapper.current.style.display = 'none';
 			this.section_8_bg.current.className = 'animate__animated animate__fadeOutUp  animate__delay-1.5s';
 			this.section_8_text.current.className = 'animate__animated animate__fadeOutUp  animate__delay-1.5s';
 			this.section_8_title.current.className = 'animate__animated animate__fadeOutUp  animate__delay-1.5s';
 
 			this.section_7_container.current.style.zIndex = '6';
-			this.section_7_container.current.style.display = 'block';
-			this.section_7_text.current.style.display = 'block';
-			this.section_7_bg.current.style.display = 'block';
+			// this.section_7_container.current.style.display = 'block';
+			// this.section_7_text.current.style.display = 'block';
+			// this.section_7_bg.current.style.display = 'block';
 		}
 	}
 
@@ -772,6 +871,353 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			image = require(`../../assets/Video00(ImageSequence)/Video00_TransitionPrivacy${seconds}.jpg`);
 			this.setState({ imgSrc: image });
 		}
+	}
+
+	// COMFORT SECTION
+	comfortSection1Start(e) {
+		this.updateStartMosePosition(event);
+		if (this.moveDistance == 100) {
+			this.comfortSection1Wrapper.current.style.display = 'none';
+			this.comfortSection1BgLine.current.className = 'animate__animated animate__fadeOutIn animate__delay-.8s';
+			this.comfortSection1Text2.current.className = 'animate__animated animate__fadeOutLeft animate__delay-1s';
+			this.comfortSection1Title.current.className = 'animate__animated animate__fadeOutLeft animate__delay-1.2s';
+
+			this.comfortSection2Wrapper.current.style.display = 'block';
+		}
+	}
+	comfortSection1Move(e) {
+		this.updateMoveMousePositon(event);
+		this.move = this.state.endY - this.state.firstY;
+		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
+
+		if (this.move > 0) {
+			// 向下拉动 返回上一页
+			setTimeout(() => {
+				console.log(this.moveDistance);
+				this.comfortSection1CanvasRef.current.setCurrent(this.moveDistance);
+			}, 40);
+
+			if (this.moveDistance < 50) {
+				this.comfortSection1Text.current.className = 'animate__animated animate__fadeInDown animate__delay-.5s';
+			}
+
+			if (this.moveDistance < 70) {
+				this.comfortSection1BgLine.current.className =
+					'animate__animated animate__fadeOutIn animate__delay-.8s';
+				this.comfortSection1Text2.current.className =
+					'animate__animated animate__fadeOutLeft animate__delay-1s';
+				this.comfortSection1Title.current.className =
+					'animate__animated animate__fadeOutLeft animate__delay-1.2s';
+			}
+		}
+
+		if (this.move < 0) {
+			// 向上拉动 进入下一页
+
+			if (this.moveDistance > 100) {
+				this.moveDistance = 100;
+			}
+
+			if (this.moveDistance > 50) {
+				this.comfortSection1Text.current.className =
+					'animate__animated animate__fadeOutDown animate__delay-.5s';
+			}
+
+			if (this.moveDistance > 70) {
+				this.comfortSection1BgLine.current.className = 'animate__animated animate__fadeIn animate__delay-.8s';
+				this.comfortSection1Text2.current.className = 'animate__animated animate__fadeInLeft animate__delay-1s';
+				this.comfortSection1Title.current.className =
+					'animate__animated animate__fadeInLeft animate__delay-1.2s';
+			}
+
+			setTimeout(() => {
+				console.log(this.moveDistance);
+				this.comfortSection1CanvasRef.current.setCurrent(this.moveDistance);
+			}, 40);
+		}
+	}
+	comfortSection1End(e) {
+		console.log(e);
+	}
+
+	// COMFORT SECTION
+	comfortSection2Start(e) {
+		this.updateStartMosePosition(event);
+		if (this.moveDistance == 0) {
+			this.comfortSection1Wrapper.current.style.display = 'block';
+			this.comfortSection1BgLine.current.className = 'animate__animated animate__fadeOutIn animate__delay-.8s';
+			this.comfortSection1Text2.current.className = 'animate__animated animate__fadeOutLeft animate__delay-1s';
+			this.comfortSection1Title.current.className = 'animate__animated animate__fadeOutLeft animate__delay-1.2s';
+		}
+
+		if (this.moveDistance == 100) {
+			this.comfortSection2Wrapper.current.style.display = 'none';
+
+			this.comfortSection3Wrapper.current.style.display = 'block';
+			this.comfortSection3BgLine.current.className = 'animate__animated animate__fadeIn animate__delay-.8s';
+			this.comfortSection3Title.current.className = 'animate__animated animate__fadeIn animate__delay-1.2s';
+			this.comfortSection3Text.current.className = 'animate__animated animate__fadeInUp animate__delay-1.2s';
+		}
+	}
+	comfortSection2Move(e) {
+		this.updateMoveMousePositon(event);
+		this.move = this.state.endY - this.state.firstY;
+		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
+
+		if (this.move > 0) {
+			// 向下拉动 返回上一页
+			setTimeout(() => {
+				console.log(this.moveDistance);
+				this.comfortSection1CanvasRef.current.setCurrent(this.moveDistance);
+			}, 40);
+
+			if (this.moveDistance < 50) {
+				this.comfortSection1Text.current.className = 'animate__animated animate__fadeInDown animate__delay-.5s';
+			}
+
+			if (this.moveDistance < 70) {
+				this.comfortSection1BgLine.current.className =
+					'animate__animated animate__fadeOutIn animate__delay-.8s';
+				this.comfortSection1Text2.current.className =
+					'animate__animated animate__fadeOutLeft animate__delay-1s';
+				this.comfortSection1Title.current.className =
+					'animate__animated animate__fadeOutLeft animate__delay-1.2s';
+			}
+		}
+
+		if (this.move < 0) {
+			// 向上拉动 进入下一页
+
+			if (this.moveDistance > 100) {
+				this.moveDistance = 100;
+			}
+
+			if (this.moveDistance > 50) {
+				this.comfortSection1Text.current.className =
+					'animate__animated animate__fadeOutDown animate__delay-.5s';
+			}
+
+			if (this.moveDistance > 70) {
+				this.comfortSection1BgLine.current.className = 'animate__animated animate__fadeIn animate__delay-.8s';
+				this.comfortSection1Text2.current.className = 'animate__animated animate__fadeInLeft animate__delay-1s';
+				this.comfortSection1Title.current.className =
+					'animate__animated animate__fadeInLeft animate__delay-1.2s';
+			}
+
+			setTimeout(() => {
+				console.log(this.moveDistance);
+				this.comfortSection1CanvasRef.current.setCurrent(this.moveDistance);
+			}, 40);
+		}
+	}
+	comfortSection2End(e) {
+		console.log(e);
+	}
+
+	// COMFORT SECTION
+	comfortSection3Start(e) {
+		this.updateStartMosePosition(event);
+	}
+	comfortSection3Move(e) {
+		this.updateMoveMousePositon(event);
+		this.move = this.state.endY - this.state.firstY;
+		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
+
+		if (this.move > 0) {
+			// 向下拉动 返回上一页
+			this.comfortSection3Wrapper.current.style.display = 'none';
+			this.comfortSection2Wrapper.current.style.display = 'block';
+		}
+
+		if (this.move < 0) {
+			// 向上拉动 进入下一页
+			this.comfortSection3Wrapper.current.style.display = 'none';
+			this.comfortSection4Wrapper.current.style.display = 'block';
+		}
+	}
+	comfortSection3End(e) {
+		console.log(e);
+	}
+
+	// COMFORT SECTION
+	comfortSection4Start(e) {
+		this.updateStartMosePosition(event);
+	}
+	comfortSection4Move(e) {
+		this.updateMoveMousePositon(event);
+		this.move = this.state.endY - this.state.firstY;
+		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
+
+		if (this.move < 0) {
+			// 向上拉动 进入下一页
+			this.comfortSection4Text1.current.style.display = 'none';
+			this.comfortSection4Image1.current.style.display = 'none';
+
+			this.comfortSection4Text2.current.style.display = 'block';
+			this.comfortSection4Image2.current.style.display = 'block';
+			this.comfortSection4Hand.current.style.left = '33px';
+		}
+	}
+	comfortSection4End(e) {
+		if (
+			this.move > 0 &&
+			this.comfortSection4Text1.current.style.display == 'none' &&
+			this.comfortSection4Image1.current.style.display == 'none' &&
+			this.comfortSection4Text2.current.style.display == 'block' &&
+			this.comfortSection4Image2.current.style.display == 'block'
+		) {
+			// 向下拉动 返回上一页
+			this.comfortSection4Text1.current.style.display = 'block';
+			this.comfortSection4Image1.current.style.display = 'block';
+
+			this.comfortSection4Text2.current.style.display = 'none';
+			this.comfortSection4Image2.current.style.display = 'none';
+			this.comfortSection4Hand.current.style.left = '163px';
+			return;
+		}
+
+		if (
+			this.move < 0 &&
+			this.comfortSection4Text1.current.style.display == 'none' &&
+			this.comfortSection4Image1.current.style.display == 'none' &&
+			this.comfortSection4Text2.current.style.display == 'block' &&
+			this.comfortSection4Image2.current.style.display == 'block'
+		) {
+			this.comfortSection5Wrapper.current.style.display = 'block';
+			this.comfortSection4Wrapper.current.style.display = 'none';
+		}
+	}
+
+	// COMFORT SECTION
+	comfortSection5Start(e) {
+		this.updateStartMosePosition(event);
+	}
+	comfortSection5Move(e) {
+		this.updateMoveMousePositon(event);
+		this.move = this.state.endY - this.state.firstY;
+		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
+	}
+	comfortSection5End(e) {
+		if (this.move < 0) {
+			// 向上拉动 进入下一页
+			this.comfortSection5Wrapper.current.style.display = 'none';
+			this.comfortSection6Wrapper.current.style.display = 'block';
+		}
+
+		if (this.move > 0) {
+			// 向下拉动 返回上一页
+			this.comfortSection5Wrapper.current.style.display = 'none';
+
+			this.comfortSection4Wrapper.current.style.display = 'block';
+			this.comfortSection4Text2.current.style.display = 'block';
+			this.comfortSection4Image2.current.style.display = 'block';
+			this.comfortSection4Hand.current.style.left = '163px';
+		}
+	}
+
+	comfortSection6Start(e) {
+		this.updateStartMosePosition(event);
+	}
+	comfortSection6Move(e) {
+		this.updateMoveMousePositon(event);
+		this.move = this.state.endY - this.state.firstY;
+		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
+	}
+	comfortSection6End(e) {
+		if (this.move < 0) {
+			// 向上拉动 进入下一页
+			this.comfortSection6Wrapper.current.style.display = 'none';
+
+			this.comfortSection7Wrapper.current.style.display = 'block';
+		}
+
+		if (this.move > 0) {
+			// 向下拉动 返回上一页
+			this.comfortSection6Wrapper.current.style.display = 'none';
+
+			this.comfortSection5Wrapper.current.style.display = 'block';
+		}
+	}
+
+	comfortSection7Start(e) {
+		this.updateStartMosePosition(event);
+	}
+	comfortSection7Move(e) {
+		this.updateMoveMousePositon(event);
+		this.move = this.state.endY - this.state.firstY;
+		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
+		if (this.move < 0) {
+			// 向上拉动 进入下一页
+			this.comfortSection7Wrapper.current.style.display = 'none';
+
+			this.comfortSection8Wrapper.current.style.display = 'block';
+		}
+
+		if (this.move > 0) {
+			// 向下拉动 返回上一页
+			this.comfortSection7Wrapper.current.style.display = 'none';
+
+			this.comfortSection6Wrapper.current.style.display = 'block';
+		}
+	}
+	comfortSection7End(e) {
+		console.log(e);
+	}
+
+	comfortSection8Start(e) {
+		this.updateStartMosePosition(event);
+	}
+	comfortSection8Move(e) {
+		this.updateMoveMousePositon(event);
+		this.move = this.state.endY - this.state.firstY;
+		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
+		if (this.move < 0 && this.comfortSection8Bg2.current.style.display == 'block') {
+			// 向上拉动 进入下一页
+			this.comfortSection8Wrapper.current.style.display = 'none';
+			this.comfortSection9Wrapper.current.style.display = 'block';
+		}
+
+		if (this.move > 0 && this.comfortSection8Bg2.current.style.display == 'block') {
+			// 向下拉动 返回上一页
+			this.comfortSection8Wrapper.current.style.display = 'none';
+			this.comfortSection8Bg2.current.style.display = 'none';
+			this.comfortSection8Video.current.style.top = '137px';
+			this.comfortSection8Bg.current.style.top = '0px';
+		}
+	}
+	comfortSection9End(e) {
+		console.log(e);
+	}
+
+	comfortSection9Start(e) {
+		this.updateStartMosePosition(event);
+	}
+	comfortSection9Move(e) {
+		this.updateMoveMousePositon(event);
+		this.move = this.state.endY - this.state.firstY;
+		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
+		if (this.move < 0 && this.comfortSection8Bg2.current.style.display == 'block') {
+			// 向上拉动 进入下一页
+			this.comfortSection8Wrapper.current.style.display = 'none';
+		}
+
+		if (this.move > 0 && this.comfortSection8Bg2.current.style.display == 'block') {
+			// 向下拉动 返回上一页
+			this.comfortSection8Wrapper.current.style.display = 'none';
+			this.comfortSection8Bg2.current.style.display = 'none';
+			this.comfortSection8Video.current.style.top = '137px';
+			this.comfortSection8Bg.current.style.top = '0px';
+		}
+	}
+	comfortSection8End(e) {
+		console.log(e);
+	}
+
+	comfortSection8ClickMagamize(event) {
+		console.log('e');
+		this.comfortSection8Bg2.current.style.display = 'block';
+		this.comfortSection8Video.current.style.top = '574px';
+		this.comfortSection8Bg.current.style.top = '574px';
 	}
 
 	letMeKonwDirection() {
@@ -1044,16 +1490,16 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						}}
 					>
 						<svg
-							width="833"
+							width="823"
 							height="892"
-							viewBox="0 0 833 892"
+							viewBox="0 0 823 892"
 							fill="none"
 							xmlns="http://www.w3.org/2000/svg"
 						>
 							<line opacity="0.3" x1="0.5" y1="-2.18557e-08" x2="0.500039" y2="892" stroke="#E8E8E8" />
-							<line opacity="0.3" x1="277.5" y1="-2.18557e-08" x2="277.5" y2="892" stroke="#E8E8E8" />
-							<line opacity="0.3" x1="555.5" y1="-2.18557e-08" x2="555.5" y2="892" stroke="#E8E8E8" />
-							<line opacity="0.3" x1="832.5" y1="-2.18557e-08" x2="832.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="273.5" y1="-2.18557e-08" x2="273.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="549.5" y1="-2.18557e-08" x2="549.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="822.5" y1="-2.18557e-08" x2="822.5" y2="892" stroke="#E8E8E8" />
 						</svg>
 					</div>
 				</div>
@@ -1160,16 +1606,16 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						}}
 					>
 						<svg
-							width="833"
+							width="823"
 							height="892"
-							viewBox="0 0 833 892"
+							viewBox="0 0 823 892"
 							fill="none"
 							xmlns="http://www.w3.org/2000/svg"
 						>
 							<line opacity="0.3" x1="0.5" y1="-2.18557e-08" x2="0.500039" y2="892" stroke="#E8E8E8" />
-							<line opacity="0.3" x1="277.5" y1="-2.18557e-08" x2="277.5" y2="892" stroke="#E8E8E8" />
-							<line opacity="0.3" x1="555.5" y1="-2.18557e-08" x2="555.5" y2="892" stroke="#E8E8E8" />
-							<line opacity="0.3" x1="832.5" y1="-2.18557e-08" x2="832.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="273.5" y1="-2.18557e-08" x2="273.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="549.5" y1="-2.18557e-08" x2="549.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="822.5" y1="-2.18557e-08" x2="822.5" y2="892" stroke="#E8E8E8" />
 						</svg>
 					</div>
 				</div>
@@ -1219,16 +1665,16 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						}}
 					>
 						<svg
-							width="833"
+							width="823"
 							height="892"
-							viewBox="0 0 833 892"
+							viewBox="0 0 823 892"
 							fill="none"
 							xmlns="http://www.w3.org/2000/svg"
 						>
 							<line opacity="0.3" x1="0.5" y1="-2.18557e-08" x2="0.500039" y2="892" stroke="#E8E8E8" />
-							<line opacity="0.3" x1="277.5" y1="-2.18557e-08" x2="277.5" y2="892" stroke="#E8E8E8" />
-							<line opacity="0.3" x1="555.5" y1="-2.18557e-08" x2="555.5" y2="892" stroke="#E8E8E8" />
-							<line opacity="0.3" x1="832.5" y1="-2.18557e-08" x2="832.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="273.5" y1="-2.18557e-08" x2="273.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="549.5" y1="-2.18557e-08" x2="549.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="822.5" y1="-2.18557e-08" x2="822.5" y2="892" stroke="#E8E8E8" />
 						</svg>
 					</div>
 					<div
@@ -1361,16 +1807,16 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						}}
 					>
 						<svg
-							width="833"
+							width="823"
 							height="892"
-							viewBox="0 0 833 892"
+							viewBox="0 0 823 892"
 							fill="none"
 							xmlns="http://www.w3.org/2000/svg"
 						>
 							<line opacity="0.3" x1="0.5" y1="-2.18557e-08" x2="0.500039" y2="892" stroke="#E8E8E8" />
-							<line opacity="0.3" x1="277.5" y1="-2.18557e-08" x2="277.5" y2="892" stroke="#E8E8E8" />
-							<line opacity="0.3" x1="555.5" y1="-2.18557e-08" x2="555.5" y2="892" stroke="#E8E8E8" />
-							<line opacity="0.3" x1="832.5" y1="-2.18557e-08" x2="832.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="273.5" y1="-2.18557e-08" x2="273.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="549.5" y1="-2.18557e-08" x2="549.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="822.5" y1="-2.18557e-08" x2="822.5" y2="892" stroke="#E8E8E8" />
 						</svg>
 					</div>
 					<div
@@ -1468,8 +1914,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							left: '573px',
 							top: '120px',
 							backgroundSize: 'contain',
-							zIndex: '-4',
-							mixBlendMode: 'screen'
+							zIndex: '-4'
 						}}
 					>
 						<Player
@@ -1525,16 +1970,16 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						}}
 					>
 						<svg
-							width="833"
+							width="823"
 							height="892"
-							viewBox="0 0 833 892"
+							viewBox="0 0 823 892"
 							fill="none"
 							xmlns="http://www.w3.org/2000/svg"
 						>
 							<line opacity="0.3" x1="0.5" y1="-2.18557e-08" x2="0.500039" y2="892" stroke="#E8E8E8" />
-							<line opacity="0.3" x1="277.5" y1="-2.18557e-08" x2="277.5" y2="892" stroke="#E8E8E8" />
-							<line opacity="0.3" x1="555.5" y1="-2.18557e-08" x2="555.5" y2="892" stroke="#E8E8E8" />
-							<line opacity="0.3" x1="832.5" y1="-2.18557e-08" x2="832.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="273.5" y1="-2.18557e-08" x2="273.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="549.5" y1="-2.18557e-08" x2="549.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="822.5" y1="-2.18557e-08" x2="822.5" y2="892" stroke="#E8E8E8" />
 						</svg>
 					</div>
 					{/* 右侧标题背景 */}
@@ -1600,7 +2045,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				>
 					<CanvasImageSequence
 						ref={this.section_6_canvasRef}
-						data={this.state.section_6_ImageSrc}
+						data={this.state.privactSection6ImageSequence}
 						loop={true}
 						forward={true}
 						fps={10}
@@ -1989,16 +2434,16 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						}}
 					>
 						<svg
-							width="833"
+							width="823"
 							height="892"
-							viewBox="0 0 833 892"
+							viewBox="0 0 823 892"
 							fill="none"
 							xmlns="http://www.w3.org/2000/svg"
 						>
 							<line opacity="0.3" x1="0.5" y1="-2.18557e-08" x2="0.500039" y2="892" stroke="#E8E8E8" />
-							<line opacity="0.3" x1="277.5" y1="-2.18557e-08" x2="277.5" y2="892" stroke="#E8E8E8" />
-							<line opacity="0.3" x1="555.5" y1="-2.18557e-08" x2="555.5" y2="892" stroke="#E8E8E8" />
-							<line opacity="0.3" x1="832.5" y1="-2.18557e-08" x2="832.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="273.5" y1="-2.18557e-08" x2="273.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="549.5" y1="-2.18557e-08" x2="549.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="822.5" y1="-2.18557e-08" x2="822.5" y2="892" stroke="#E8E8E8" />
 						</svg>
 					</div>
 				</div>
@@ -2030,8 +2475,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							top: '0px',
 							width: '100%',
 							height: '100%',
-							objectFit: 'cover',
-							display: 'none'
+							objectFit: 'cover'
 						}}
 					/>
 
@@ -2047,16 +2491,16 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						ref={this.section_7_bgline}
 					>
 						<svg
-							width="833"
+							width="823"
 							height="892"
-							viewBox="0 0 833 892"
+							viewBox="0 0 823 892"
 							fill="none"
 							xmlns="http://www.w3.org/2000/svg"
 						>
 							<line opacity="0.3" x1="0.5" y1="-2.18557e-08" x2="0.500039" y2="892" stroke="#E8E8E8" />
-							<line opacity="0.3" x1="277.5" y1="-2.18557e-08" x2="277.5" y2="892" stroke="#E8E8E8" />
-							<line opacity="0.3" x1="555.5" y1="-2.18557e-08" x2="555.5" y2="892" stroke="#E8E8E8" />
-							<line opacity="0.3" x1="832.5" y1="-2.18557e-08" x2="832.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="273.5" y1="-2.18557e-08" x2="273.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="549.5" y1="-2.18557e-08" x2="549.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="822.5" y1="-2.18557e-08" x2="822.5" y2="892" stroke="#E8E8E8" />
 						</svg>
 					</div>
 
@@ -2077,8 +2521,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					</div>
 				</div>
 				<div
-					id="section_8_container"
-					ref={this.section_8_container}
+					id="privacySection8Wrapper"
+					ref={this.privacySection8Wrapper}
 					style={{
 						position: 'absolute',
 						width: '100%',
@@ -2094,7 +2538,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						this.section8TouchMove(e);
 					}}
 				>
-					{/*section_8_container*/}
+					{/*privacySection8Wrapper*/}
 					<img src={privacy_section_8_bg} />
 					{/* 背景上部遮罩 */}
 
@@ -2105,8 +2549,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							top: '0px',
 							left: '0px',
 							width: '100%',
-							height: '100%',
-							display: 'none'
+							height: '100%'
 						}}
 						ref={this.section_8_bg}
 					>
@@ -2177,8 +2620,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 								top: '0px',
 								width: '100%',
 								height: '100%',
-								objectFit: 'cover',
-								display: 'none'
+								objectFit: 'cover'
 							}}
 						/>
 						{/* 背景下部遮罩 */}
@@ -2272,8 +2714,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							width: '100%',
 							height: '100%',
 							left: '0px',
-							top: '0px',
-							display: 'none'
+							top: '0px'
 						}}
 					>
 						<div
@@ -2313,8 +2754,1857 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							width: '100%',
 							height: '100%',
 							left: '0px',
+							top: '0px'
+						}}
+					>
+						<div
+							style={{
+								position: 'absolute',
+								width: '43px',
+								height: '102px',
+								left: '1062px',
+								top: '632px',
+								color: '#AFCDFA'
+							}}
+						>
+							<svg
+								width="39"
+								height="40"
+								viewBox="0 0 39 40"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									opacity="0.8"
+									d="M38.15 22.548V16.836H22.61V0.0359967H16.394V16.836H0.853969V22.548H16.394V39.936H22.61V22.548H38.15Z"
+									fill="#AFCDFA"
+								/>
+							</svg>
+						</div>
+						<div
+							className="dFordNormalText"
+							style={{
+								/* Return to Home */
+
+								position: 'absolute',
+								width: '151px',
+								height: '31px',
+								right: '20px',
+								top: '965px',
+
+								fontSize: '22px',
+
+								color: '#D8D8D8'
+							}}
+						>
+							Return to Home
+						</div>
+					</div>
+				</div>
+
+				{/*comfort_section_1*/}
+
+				<div
+					id="comfortSection1Wrapper"
+					ref={this.comfortSection1Wrapper}
+					style={{
+						position: 'absolute',
+						top: '0px',
+						left: '0px',
+						width: '100%',
+						height: '100%',
+						display: 'none'
+					}}
+					onTouchStart={(e) => {
+						this.comfortSection1Start(e);
+					}}
+					onTouchMove={(e) => {
+						this.comfortSection1Move(e);
+					}}
+					onTouchEnd={(e) => {
+						this.comfortSection1End(e);
+					}}
+				>
+					{/* 背景图片 */}
+					<div
+						style={{
+							position: 'absolute',
+							width: '100%',
+							height: '100%',
 							top: '0px',
+							left: '0px'
+						}}
+					>
+						<CanvasImageSequence
+							ref={this.comfortSection1CanvasRef}
+							data={this.state.comfortSection1ImageSequence}
+							loop={true}
+							forward={true}
+							autoPlay={false}
+							fps={10}
+							canvasWidth={this.state.canvasWidth}
+							canvasHeight={this.state.canvasHeight}
+							onChange={() => this.change}
+						/>
+					</div>
+
+					<div id="comfortSection1Text" ref={this.comfortSection1Text}>
+						{/* 左下角编号 */}
+						<div
+							style={{
+								position: 'absolute',
+								width: '90px',
+								height: '105px',
+								left: '45px',
+								top: '891px'
+							}}
+						>
+							<svg
+								width="83"
+								height="47"
+								viewBox="0 0 83 47"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									opacity="0.24"
+									d="M22.4609 46.128C19.1395 46.128 16.1315 45.5953 13.4369 44.53C10.7422 43.402 8.45485 41.8353 6.57485 39.83C4.69485 37.8247 3.22218 35.4433 2.15685 32.686C1.15418 29.866 0.65285 26.764 0.65285 23.38C0.65285 20.184 1.18552 17.176 2.25085 14.356C3.37885 11.536 4.91418 9.092 6.85685 7.024C8.79952 4.956 11.0869 3.32667 13.7189 2.136C16.4135 0.882665 19.3275 0.255999 22.4609 0.255999C25.5942 0.255999 28.4769 0.851332 31.1089 2.042C33.8035 3.17 36.1222 4.768 38.0649 6.836C40.0075 8.84133 41.5115 11.254 42.5769 14.074C43.7049 16.894 44.2689 19.996 44.2689 23.38C44.2689 26.576 43.7362 29.5527 42.6709 32.31C41.6682 35.0673 40.2269 37.48 38.3469 39.548C36.4669 41.616 34.1795 43.2453 31.4849 44.436C28.7902 45.564 25.7822 46.128 22.4609 46.128ZM9.95885 23.38C9.95885 26.5133 10.2722 29.2393 10.8989 31.558C11.5882 33.814 12.4969 35.7253 13.6249 37.292C14.8155 38.8587 16.1629 40.018 17.6669 40.77C19.2335 41.522 20.8942 41.898 22.6489 41.898C24.2782 41.898 25.8135 41.522 27.2549 40.77C28.7589 40.018 30.0749 38.89 31.2029 37.386C32.3309 35.882 33.2082 33.9707 33.8349 31.652C34.5242 29.3333 34.8689 26.576 34.8689 23.38C34.8689 20.184 34.5242 17.3953 33.8349 15.014C33.2082 12.6327 32.3309 10.69 31.2029 9.186C30.0749 7.61933 28.7589 6.46 27.2549 5.708C25.7509 4.89333 24.1529 4.486 22.4609 4.486C20.7689 4.486 19.1709 4.862 17.6669 5.614C16.1629 6.366 14.8155 7.52533 13.6249 9.092C12.4969 10.596 11.5882 12.5387 10.8989 14.92C10.2722 17.3013 9.95885 20.1213 9.95885 23.38ZM52.5577 11.254C52.4324 11.3793 52.2444 11.536 51.9937 11.724C51.8057 11.8493 51.5864 11.912 51.3357 11.912C50.5837 11.912 49.9257 11.5047 49.3617 10.69C51.8057 7.55667 54.5004 5.05 57.4457 3.17C60.4537 1.22733 63.7124 0.255999 67.2217 0.255999C71.5457 0.255999 74.7731 1.384 76.9037 3.64C79.0971 5.83333 80.1937 8.716 80.1937 12.288C80.1937 14.168 79.8177 16.048 79.0657 17.928C78.3764 19.808 77.1857 21.782 75.4937 23.85C73.8017 25.918 71.5457 28.174 68.7257 30.618C65.9057 33.062 62.3964 35.8193 58.1977 38.89H74.0837C75.3371 38.89 76.3711 38.6393 77.1857 38.138C78.0631 37.574 78.8464 36.4773 79.5357 34.848C79.8491 34.1587 80.3504 33.814 81.0397 33.814C81.2277 33.814 81.5724 33.8767 82.0737 34.002C82.2617 34.0647 82.4497 34.096 82.6377 34.096C82.0737 35.7253 81.5411 37.4173 81.0397 39.172C80.6011 40.9267 80.1937 42.6187 79.8177 44.248C79.6924 44.7493 79.5357 45.0627 79.3477 45.188C79.1597 45.3133 78.8464 45.376 78.4077 45.376C77.2797 45.376 75.8697 45.3133 74.1777 45.188C72.4857 45.0627 70.6371 45 68.6317 45H49.3617V42.744C53.2471 39.4853 56.5371 36.5713 59.2317 34.002C61.9891 31.37 64.2137 28.9573 65.9057 26.764C67.5977 24.508 68.8197 22.4087 69.5717 20.466C70.3864 18.5233 70.7937 16.612 70.7937 14.732C70.7937 12.476 70.2297 10.5333 69.1017 8.904C68.0364 7.212 66.1564 6.366 63.4617 6.366C61.6444 6.366 59.8897 6.742 58.1977 7.494C56.5057 8.246 54.6257 9.49933 52.5577 11.254Z"
+									fill="white"
+								/>
+							</svg>
+						</div>
+						{/* 标题  Comfort */}
+						<div
+							style={{
+								position: 'absolute',
+								width: '659px',
+								height: '155px',
+								left: '340px',
+								top: '741px'
+							}}
+							className="dFordMainTitle"
+						>
+							Comfort
+						</div>
+						{/* 标题  + */}
+						<div
+							style={{
+								position: 'absolute',
+								width: '72px',
+								height: '173px',
+								left: '1009px',
+								top: '734px'
+							}}
+						>
+							<svg
+								width="64"
+								height="69"
+								viewBox="0 0 64 69"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									opacity="0.8"
+									d="M63.5273 38.974V29.318H37.2573V0.917994H26.7493V29.318H0.479328V38.974H26.7493V68.368H37.2573V38.974H63.5273Z"
+									fill="white"
+								/>
+							</svg>
+						</div>
+						{/* 向下滚动图标*/}
+						<div
+							style={{
+								position: 'absolute',
+								width: '22px',
+								height: '8px',
+								left: '670px',
+								top: '965px'
+							}}
+						>
+							<svg
+								width="24"
+								height="11"
+								viewBox="0 0 24 11"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path d="M1 1L12.275 9L23 1" stroke="white" strokeWidth="2" strokeLinecap="round" />
+							</svg>
+						</div>
+						{/* 向下滚动文本 scroll to descover*/}
+						<div
+							style={{
+								position: 'absolute',
+								width: '211px',
+								height: '24px',
+								left: '572px',
+								top: '916px'
+							}}
+						>
+							<svg
+								width="211"
+								height="15"
+								viewBox="0 0 211 15"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M6.01203 14.24C9.61203 14.24 11.172 12.34 11.172 10.12C11.172 5.14 3.41203 6.68 3.41203 4.2C3.41203 3.2 4.29203 2.54 5.67203 2.54C7.07203 2.54 8.49203 3.02 9.53203 4.06L10.872 2.32C9.63203 1.12 7.95203 0.459999 5.87203 0.459999C2.95203 0.459999 1.01203 2.16 1.01203 4.36C1.01203 9.28 8.79203 7.54 8.79203 10.34C8.79203 11.22 8.03203 12.16 6.11203 12.16C4.25203 12.16 2.81203 11.3 1.89203 10.32L0.592028 12.12C1.77203 13.38 3.55203 14.24 6.01203 14.24ZM19.527 14.24C22.227 14.24 23.867 12.84 24.887 11.24L22.887 10.22C22.247 11.34 20.967 12.16 19.527 12.16C16.887 12.16 14.927 10.14 14.927 7.34C14.927 4.54 16.887 2.52 19.527 2.52C20.967 2.52 22.247 3.36 22.887 4.46L24.887 3.44C23.887 1.84 22.227 0.439999 19.527 0.439999C15.587 0.439999 12.527 3.24 12.527 7.34C12.527 11.44 15.587 14.24 19.527 14.24ZM36.8798 14L33.6198 8.76C35.2198 8.5 36.7798 7.22 36.7798 4.84C36.7798 2.38 35.0598 0.659999 32.4198 0.659999H26.5598V14H28.8998V9.02H31.2198L34.1798 14H36.8798ZM32.0998 6.96H28.8998V2.72H32.0998C33.4198 2.72 34.3798 3.56 34.3798 4.84C34.3798 6.12 33.4198 6.96 32.0998 6.96ZM45.1384 14.24C49.1384 14.24 51.9584 11.32 51.9584 7.34C51.9584 3.36 49.1384 0.439999 45.1384 0.439999C41.1384 0.439999 38.3184 3.36 38.3184 7.34C38.3184 11.32 41.1384 14.24 45.1384 14.24ZM45.1384 12.16C42.4384 12.16 40.7184 10.08 40.7184 7.34C40.7184 4.58 42.4384 2.52 45.1384 2.52C47.8184 2.52 49.5584 4.58 49.5584 7.34C49.5584 10.08 47.8184 12.16 45.1384 12.16ZM62.2314 14V11.94H56.3514V0.659999H54.0114V14H62.2314ZM72.3634 14V11.94H66.4834V0.659999H64.1434V14H72.3634ZM84.7322 14V2.72H88.7722V0.659999H78.3522V2.72H82.3922V14H84.7322ZM96.2673 14.24C100.267 14.24 103.087 11.32 103.087 7.34C103.087 3.36 100.267 0.439999 96.2673 0.439999C92.2673 0.439999 89.4473 3.36 89.4473 7.34C89.4473 11.32 92.2673 14.24 96.2673 14.24ZM96.2673 12.16C93.5673 12.16 91.8473 10.08 91.8473 7.34C91.8473 4.58 93.5673 2.52 96.2673 2.52C98.9473 2.52 100.687 4.58 100.687 7.34C100.687 10.08 98.9473 12.16 96.2673 12.16ZM115.037 14C119.197 14 122.017 11.26 122.017 7.34C122.017 3.42 119.197 0.659999 115.037 0.659999H110.077V14H115.037ZM115.037 11.94H112.417V2.72H115.037C118.017 2.72 119.617 4.76 119.617 7.34C119.617 9.86 117.937 11.94 115.037 11.94ZM133.216 14V11.94H126.416V8.24H133.076V6.18H126.416V2.72H133.216V0.659999H124.076V14H133.216ZM139.979 14.24C143.579 14.24 145.139 12.34 145.139 10.12C145.139 5.14 137.379 6.68 137.379 4.2C137.379 3.2 138.259 2.54 139.639 2.54C141.039 2.54 142.459 3.02 143.499 4.06L144.839 2.32C143.599 1.12 141.919 0.459999 139.839 0.459999C136.919 0.459999 134.979 2.16 134.979 4.36C134.979 9.28 142.759 7.54 142.759 10.34C142.759 11.22 141.999 12.16 140.079 12.16C138.219 12.16 136.779 11.3 135.859 10.32L134.559 12.12C135.739 13.38 137.519 14.24 139.979 14.24ZM153.494 14.24C156.194 14.24 157.834 12.84 158.854 11.24L156.854 10.22C156.214 11.34 154.934 12.16 153.494 12.16C150.854 12.16 148.894 10.14 148.894 7.34C148.894 4.54 150.854 2.52 153.494 2.52C154.934 2.52 156.214 3.36 156.854 4.46L158.854 3.44C157.854 1.84 156.194 0.439999 153.494 0.439999C149.554 0.439999 146.494 3.24 146.494 7.34C146.494 11.44 149.554 14.24 153.494 14.24ZM166.747 14.24C170.747 14.24 173.567 11.32 173.567 7.34C173.567 3.36 170.747 0.439999 166.747 0.439999C162.747 0.439999 159.927 3.36 159.927 7.34C159.927 11.32 162.747 14.24 166.747 14.24ZM166.747 12.16C164.047 12.16 162.327 10.08 162.327 7.34C162.327 4.58 164.047 2.52 166.747 2.52C169.427 2.52 171.167 4.58 171.167 7.34C171.167 10.08 169.427 12.16 166.747 12.16ZM181.989 14L187.229 0.659999H184.569L180.529 11.46L176.489 0.659999H173.829L179.069 14H181.989ZM197.626 14V11.94H190.826V8.24H197.486V6.18H190.826V2.72H197.626V0.659999H188.486V14H197.626ZM210.149 14L206.889 8.76C208.489 8.5 210.049 7.22 210.049 4.84C210.049 2.38 208.329 0.659999 205.689 0.659999H199.829V14H202.169V9.02H204.489L207.449 14H210.149ZM205.369 6.96H202.169V2.72H205.369C206.689 2.72 207.649 3.56 207.649 4.84C207.649 6.12 206.689 6.96 205.369 6.96Z"
+									fill="#DEDEDE"
+								/>
+							</svg>
+						</div>
+					</div>
+
+					<div
+						style={{
+							position: 'absolute',
+							width: '828px',
+							height: '327px',
+							left: '0px',
+							top: '697px',
+							background: ' rgba(39, 42, 51, 0.32)',
+							backdropFilter: 'blur(48px)'
+						}}
+						ref={this.comfortSection1Text2}
+					>
+						<div
+							className="dFordText"
+							style={{
+								/* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium odio ipsum, eget interdum libero tincidunt efficitur. Maecenas dapibus condimentum commodo. Proin dignissim sem velit, eu blandit purus porta non. */
+
+								position: 'absolute',
+								width: '559px',
+								height: '273px',
+								left: '118px',
+								top: '64px'
+							}}
+						>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium odio ipsum, eget
+							interdum libero tincidunt efficitur. Maecenas dapibus condimentum commodo. Proin dignissim
+							sem velit, eu blandit purus porta non.
+						</div>
+					</div>
+
+					<div id="comfortSection1Title" ref={this.comfortSection1Title}>
+						{/*标题*/}
+						<div
+							className="dFordTitle"
+							style={{
+								position: 'absolute',
+								width: '396px',
+								height: '94px',
+								left: '862px',
+								top: '796px'
+							}}
+						>
+							Comfort
+						</div>
+
+						<div
+							style={{
+								position: 'absolute',
+								width: '45px',
+								height: '110px',
+								right: '60px',
+								top: '790px'
+							}}
+						>
+							<svg
+								width="41"
+								height="44"
+								viewBox="0 0 41 44"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									opacity="0.8"
+									d="M40.2058 23.56V19.78H22.5658V0.789999H18.5158V19.78H0.785781V23.56H18.5158V43.09H22.5658V23.56H40.2058Z"
+									fill="white"
+								/>
+							</svg>
+						</div>
+					</div>
+
+					{/* 背景栅格 */}
+					<div
+						ref={this.comfortSection1BgLine}
+						style={{
+							position: 'absolute',
+							width: '822px',
+							height: '892px',
+							left: '272px',
+							top: '131px'
+						}}
+					>
+						<svg
+							width="823"
+							height="892"
+							viewBox="0 0 823 892"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<line opacity="0.3" x1="0.5" y1="-2.18557e-08" x2="0.500039" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="273.5" y1="-2.18557e-08" x2="273.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="549.5" y1="-2.18557e-08" x2="549.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="822.5" y1="-2.18557e-08" x2="822.5" y2="892" stroke="#E8E8E8" />
+						</svg>
+					</div>
+				</div>
+
+				{/* comfort section 2*/}
+
+				<div
+					id="comfortSection2Wrapper"
+					ref={this.comfortSection2Wrapper}
+					style={{
+						position: 'absolute',
+						top: '0px',
+						left: '0px',
+						width: '100%',
+						height: '100%',
+						display: 'none'
+					}}
+					onTouchStart={(e) => {
+						this.comfortSection2Start(e);
+					}}
+					onTouchMove={(e) => {
+						this.comfortSection2Move(e);
+					}}
+					onTouchEnd={(e) => {
+						this.comfortSection2End(e);
+					}}
+				>
+					<img src={lastComfortSection1ImageSequence} className="imageCover" />
+
+					<div
+						id="comfortSection2Box05"
+						ref={this.comfortSection2Box05}
+						style={{
+							position: 'absolute',
+							width: '100%',
+							height: '208px',
+							left: '0px',
+							top: '816px',
+							background: '#5F6871'
+						}}
+					>
+						<div
+							className="dFordNormalTitle"
+							style={{
+								position: 'absolute',
+								width: '621px',
+								height: '72px',
+								left: '101px',
+								top: '-70px',
+								color: '#FCE9CA',
+								opacity: '0.9'
+							}}
+						>
+							MAXIMAL
+						</div>
+						<div
+							className="dFordNormalTitle"
+							style={{
+								position: 'absolute',
+								width: '819px',
+								height: '72px',
+								left: '101px',
+								top: '10px',
+								opacity: '0.9'
+							}}
+						>
+							SPACE UTILIZATION
+						</div>
+					</div>
+
+					<div
+						id="comfortSection2TextBox05"
+						style={{
+							position: 'absolute',
+							width: '545px',
+							height: '288px',
+							left: '828px',
+							top: '736px',
+							background: 'rgba(30, 33, 41, 0.26)',
+							backdropFilter: ' blur(48px)'
+						}}
+					>
+						<div
+							className="dFordText"
+							style={{
+								position: 'absolute',
+								left: '100px',
+								top: '60px',
+								width: '441px',
+								height: '62px'
+							}}
+						>
+							providing natural and relaxing viewing by conforming to user’s learned behaviors
+						</div>
+					</div>
+
+					{/* 背景栅格 */}
+					<div
+						ref={this.comfortSection2BgLine}
+						style={{
+							position: 'absolute',
+							width: '822px',
+							height: '892px',
+							left: '272px',
+							top: '131px'
+						}}
+					>
+						<svg
+							width="823"
+							height="892"
+							viewBox="0 0 823 892"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<line opacity="0.3" x1="0.5" y1="-2.18557e-08" x2="0.500039" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="273.5" y1="-2.18557e-08" x2="273.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="549.5" y1="-2.18557e-08" x2="549.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="822.5" y1="-2.18557e-08" x2="822.5" y2="892" stroke="#E8E8E8" />
+						</svg>
+					</div>
+				</div>
+
+				<div
+					id="comfortSection3Wrapper"
+					ref={this.comfortSection3Wrapper}
+					onTouchStart={(e) => {
+						this.comfortSection3Start(e);
+					}}
+					onTouchMove={(e) => {
+						this.comfortSection3Move(e);
+					}}
+					onTouchEnd={(e) => {
+						this.comfortSection3End(e);
+					}}
+					style={{
+						position: 'absolute',
+						width: '100%',
+						height: '100%',
+						top: '0px',
+						background:
+							'linear-gradient(175.17deg, rgba(236, 168, 158, 0.16) 12.52%, rgba(27, 22, 82, 0.16) 96.1%)',
+						display: 'none'
+					}}
+				>
+					<img src={comfortBg_4_new} className="imageCover" />
+
+					<div
+						id="comfortSection3Title"
+						ref={this.comfortSection3Title}
+						style={{
+							position: 'absolute',
+							left: '0px',
+							top: '90px',
+							width: '768.73px',
+							height: '239px'
+						}}
+					>
+						<div
+							style={{
+								position: 'absolute',
+								width: '768.73px',
+								height: '239px',
+								left: '434px',
+								top: '151px'
+							}}
+						>
+							<svg
+								width="773"
+								height="243"
+								viewBox="0 0 773 243"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									opacity="0.2"
+									d="M770.726 28.9296V2H2V132.44M770.726 106.352V241H2V210.704"
+									stroke="white"
+									strokeWidth="4"
+								/>
+							</svg>
+						</div>
+
+						<div
+							className="dFordTitle"
+							style={{
+								position: 'absolute',
+								width: '769.81px',
+								height: '204px',
+								left: ' 414.19px',
+								top: '177px'
+							}}
+						>
+							voice-initiated control system
+						</div>
+					</div>
+
+					<div
+						id="comfortSection3Text"
+						ref={this.comfortSection3Text}
+						style={{
+							/* Rectangle 81 */
+
+							position: 'absolute',
+							width: '554px',
+							height: '288px',
+							left: '812px',
+							top: '736px',
+
+							background: 'rgba(30, 33, 41, 0.26)',
+							backdropFilter: 'blur(48px)'
+						}}
+					>
+						<div
+							className="dFordText"
+							style={{
+								position: 'absolute',
+								width: '441px',
+								height: '62px',
+								left: '100px',
+								top: '60px'
+							}}
+						>
+							providing natural and relaxing viewing by conforming to user’s learned behaviors
+						</div>
+					</div>
+					{/* 背景栅格 */}
+					<div
+						ref={this.comfortSection3BgLine}
+						style={{
+							position: 'absolute',
+							width: '822px',
+							height: '892px',
+							left: '272px',
+							top: '131px',
+							zIndex: '9'
+						}}
+					>
+						<svg
+							width="823"
+							height="892"
+							viewBox="0 0 823 892"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<line opacity="0.3" x1="0.5" y1="-2.18557e-08" x2="0.500039" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="273.5" y1="-2.18557e-08" x2="273.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="549.5" y1="-2.18557e-08" x2="549.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="822.5" y1="-2.18557e-08" x2="822.5" y2="892" stroke="#E8E8E8" />
+						</svg>
+					</div>
+
+					<div id="comfortSection3Tab06" ref={this.comfortSection3Tab06}>
+						<div
+							style={{
+								/* Group 113 */
+
+								position: 'absolute',
+								width: '97px',
+								height: '97px',
+								left: '534px',
+								top: '559px'
+							}}
+						>
+							<svg
+								width="97"
+								height="97"
+								viewBox="0 0 97 97"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<g filter="url(#filter0_b_2720_1120)">
+									<circle cx="48.5" cy="48.5" r="48.5" fill="white" fillOpacity="0.3" />
+								</g>
+								<circle opacity="0.9" cx="48.5" cy="48.5" r="18.5" fill="white" />
+								<defs>
+									<filter
+										id="filter0_b_2720_1120"
+										x="-2"
+										y="-2"
+										width="101"
+										height="101"
+										filterUnits="userSpaceOnUse"
+										colorInterpolationFilters="sRGB"
+									>
+										<feFlood floodOpacity="0" result="BackgroundImageFix" />
+										<feGaussianBlur in="BackgroundImage" stdDeviation="1" />
+										<feComposite
+											in2="SourceAlpha"
+											operator="in"
+											result="effect1_backgroundBlur_2720_1120"
+										/>
+										<feBlend
+											mode="normal"
+											in="SourceGraphic"
+											in2="effect1_backgroundBlur_2720_1120"
+											result="shape"
+										/>
+									</filter>
+								</defs>
+							</svg>
+						</div>
+
+						<div
+							className="dFordNormalText"
+							style={{
+								position: 'absolute',
+								width: '148px',
+								height: '31px',
+								left: '509px',
+								top: '661px'
+							}}
+						>
+							Click to Explore
+						</div>
+					</div>
+				</div>
+
+				{/* comfort section 4 */}
+				<div
+					id="comfortSection4Wrapper"
+					style={{
+						position: 'absolute',
+						top: '0px',
+						left: '0px',
+						width: '100%',
+						height: '100%',
+						display: 'none'
+					}}
+					onTouchStart={(e) => {
+						this.comfortSection4Start(e);
+					}}
+					onTouchMove={(e) => {
+						this.comfortSection4Move(e);
+					}}
+					onTouchEnd={(e) => {
+						this.comfortSection4End(e);
+					}}
+					ref={this.comfortSection4Wrapper}
+				>
+					{/* 上半部分背景 */}
+					<div id="comfortSection4Box07" ref={this.comfortSection4Box07}>
+						<div>
+							{' '}
+							<img src={comfortSection4Bg} />
+						</div>
+
+						{/* 上半部分上遮罩 */}
+						<div
+							style={{
+								position: 'absolute',
+								left: '0px',
+								top: '0px'
+							}}
+						>
+							<svg
+								width="1366"
+								height="574"
+								viewBox="0 0 1366 574"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<rect
+									x="-19"
+									width="1385"
+									height="1024"
+									fill="url(#paint0_linear_1205_1254)"
+									fillOpacity="0.16"
+								/>
+								<defs>
+									<linearGradient
+										id="paint0_linear_1205_1254"
+										x1="588.382"
+										y1="101.099"
+										x2="646.168"
+										y2="1025.71"
+										gradientUnits="userSpaceOnUse"
+									>
+										<stop stopColor="#ECA89E" />
+										<stop offset="1" stopColor="#1B1652" />
+									</linearGradient>
+								</defs>
+							</svg>
+						</div>
+						{/* 上半部分下遮罩 */}
+						<div
+							style={{
+								position: 'absolute',
+								left: '0px',
+								top: '130px'
+							}}
+						>
+							<svg
+								width="1366"
+								height="444"
+								viewBox="0 0 1366 444"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<rect
+									x="-10"
+									width="1396"
+									height="447"
+									fill="url(#paint0_linear_1205_1252)"
+									style={{ mixBlendMode: 'multiply' }}
+								/>
+								<defs>
+									<linearGradient
+										id="paint0_linear_1205_1252"
+										x1="594"
+										y1="255"
+										x2="589"
+										y2="586"
+										gradientUnits="userSpaceOnUse"
+									>
+										<stop stopOpacity="0" />
+										<stop offset="1" stopColor="#423C51" stopOpacity="0.42" />
+									</linearGradient>
+								</defs>
+							</svg>
+						</div>
+					</div>
+					{/* 左下角背景 */}
+					<div
+						style={{
+							position: 'absolute',
+							left: '0px',
+							bottom: '0px',
+							width: '545px',
+							height: '450px'
+						}}
+						ref={this.comfortSection4Image1}
+					>
+						<img src={comfortSection4Bg2} className="imageCover" />
+					</div>
+
+					{/* 左下角背景 */}
+					<div
+						style={{
+							position: 'absolute',
+							left: '0px',
+							bottom: '0px',
+							width: '821px',
+							height: '450px',
 							display: 'none'
+						}}
+						ref={this.comfortSection4Image2}
+					>
+						<img src={comfortSection4Bg3} className="imageCover" />
+					</div>
+					{/* 左下角背景遮罩*/}
+					<div
+						style={{
+							position: 'absolute',
+							width: '545px',
+							height: '450px',
+							left: '821px',
+							top: '574px',
+							background: '#6c6b6f',
+							display: 'none'
+						}}
+						className="dFordSubTitle"
+						ref={this.comfortSection4Text2}
+					>
+						<div
+							style={{
+								position: 'absolute',
+								left: '55px',
+								top: '80px'
+							}}
+						>
+							Clicking for activating the selected function
+						</div>
+					</div>
+					{/*右下角背景*/}
+					<div
+						style={{
+							position: 'absolute',
+							width: '832px',
+							height: '450px',
+							left: '545px',
+							top: '574px',
+							background: '#6c6b6f'
+						}}
+						ref={this.comfortSection4Text1}
+					>
+						{/*右下角文本标题 Voice-initiated control system*/}
+						<div
+							style={{
+								position: 'absolute',
+								left: '55px',
+								top: '80px'
+							}}
+							className="dFordSubTitle"
+						>
+							Voice-initiated control system
+						</div>
+						{/*右下角文本标题 control principles: */}
+						<div
+							className="dFordSubTitle"
+							style={{
+								position: 'absolute',
+								left: '55px',
+								top: '128px'
+							}}
+						>
+							control principles:
+						</div>
+						{/*右下角文本内容 */}
+						<div
+							className="dFordText"
+							style={{
+								/* Efficient control by enlarging the advantages of voice commands ; No need for precise hand movements to reduce the burden of keeping attention ; Universal interaction among multiple in-car applications */
+
+								position: 'absolute',
+								left: '55px',
+								top: '215px',
+								width: '752px',
+								height: '100px'
+							}}
+						>
+							Efficient control by enlarging the advantages of voice commands ; No need for precise hand
+							movements to reduce the burden of keeping attention ; Universal interaction among multiple
+							in-car applications
+						</div>
+					</div>
+
+					{/*手型图标 */}
+					<div
+						id="comfortSectoin4Hand"
+						ref={this.comfortSection4Hand}
+						style={{
+							position: 'absolute',
+							width: '184px',
+							height: '335px',
+							left: '163px',
+							top: '667px'
+						}}
+					>
+						<div
+							style={{
+								position: 'absolute',
+								left: '180px',
+								top: '60px'
+							}}
+						>
+							<svg
+								width="133"
+								height="277"
+								viewBox="0 0 133 277"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									opacity="0.8"
+									fillRule="evenodd"
+									clipRule="evenodd"
+									d="M33.7786 2.03681C30.2706 4.74562 27.1755 10.7913 26.5784 16.0996C26.3173 18.4238 25.8881 27.2568 25.6249 35.728C24.6725 66.4033 22.9881 85.5 22.9881 87.5C22.4881 88 22.0056 86.7114 19.5158 84.5651C17.5826 82.8996 14.3691 81.2352 12.3732 80.8675C8.72954 80.1968 2.00102 80.5 0.500569 82.5C0 83.5 0.760095 86.0815 2.32585 90.6038C4.77216 97.6679 5.23571 100.797 5.61222 112.79C5.85412 120.47 5.5272 132.32 4.88652 139.123C1.98071 169.961 1.85924 172.303 2.81469 178.917C3.35112 182.63 5.19623 189.157 6.91583 193.422C11.5109 204.823 28.1714 237.015 36.1986 250.004C40.0366 256.215 44.162 263.95 45.3675 267.194C47.3097 272.425 48.0324 273.286 51.7479 274.804C57.6577 277.218 72.3446 277.745 81.3859 275.867C94.6954 273.103 110.72 265.591 118.526 258.458C120.107 257.013 122.519 253.967 123.887 251.689L126.375 247.548L123.7 241.307C120.66 234.216 120.759 232.191 124.739 219.818C126.111 215.555 127.699 208.842 128.269 204.901C130.1 192.229 133.523 143.695 132.917 139.003C132.312 134.309 125.186 114.893 121.394 107.606C118.588 102.212 114.045 99.1197 108.104 98.5593L103.344 98.1101L101.441 92.616C97.6366 81.6267 90.7228 75.6576 83.3687 77.013C80.3495 77.5685 79.9143 77.3359 78.7332 74.5377C78.0166 72.8385 75.1047 69.3963 72.2616 66.8873C67.1605 62.3838 67.0198 62.3312 61.3711 62.834L55.6486 63.3437L54.9857 55.746C54.6203 51.5675 53.8946 44.7955 53.3734 40.6965C52.8511 36.5975 51.9452 28.1292 51.3602 21.8779C50.2246 9.7429 47.9484 2.86654 44.4596 1.03417C41.237 -0.660081 36.7209 -0.235771 33.7786 2.03681ZM43.3341 6.46289C46.67 11.1382 43.5882 15.9167 38.9881 13.5C36.2472 12.0591 35.2614 7.09885 37.4881 5.5C39.9951 3.70042 41.5467 3.9558 43.3341 6.46289ZM35.4881 15.5C37.6287 17.6017 42.4881 19 45.4881 16C45.4881 16 45.4342 15.6762 47.8623 39.7028C48.7186 48.174 50.0779 60.2474 50.8815 66.5325C51.6861 72.8176 52.6274 83.9967 52.9746 91.3749C53.6011 104.709 54.7974 112.242 56.2883 112.242C56.7174 112.242 57.7882 111.684 58.6678 111C60.0048 109.963 60.1253 108.696 59.3986 103.299C58.9208 99.7467 58.1202 90.8035 57.6192 83.4253C56.8257 71.7504 56.9127 69.8495 58.2872 68.7683C62.6191 65.3609 70.4095 69.4868 73.708 76.9335C74.7737 79.3392 75.9508 86.1043 76.6532 93.8591C78.0206 108.963 79.4619 116.223 81.0884 116.202C83.8606 116.166 85.0559 114.442 84.2796 111.603C83.2766 107.934 80.9102 84.1537 81.4527 83.1769C81.6794 82.7675 83.4324 82.4316 85.3484 82.4316C91.6873 82.4316 95.2186 88.2596 101.033 108.315C105.056 122.194 106.283 125.165 108.971 127.553C111.022 129.376 111.076 129.367 111.949 127.048C112.587 125.357 112.323 123.699 111.019 121.198C108.811 116.963 105.402 104.586 106.221 103.781C107.289 102.733 112.068 104.468 114.255 106.698C116.622 109.112 124.538 127.562 126.815 135.974C128.101 140.724 128.037 144.398 126.247 168.766C123.84 201.528 123.068 207.103 119.154 219.984C115.619 231.623 115.481 234.683 118.182 241.66C119.295 244.536 120.206 247.403 120.206 248.032C120.207 248.661 118.06 251.253 115.437 253.793C102.108 266.694 72.8527 275.326 57.4198 270.91C51.9979 269.358 51.843 269.21 49.5566 263.396C48.2743 260.134 45.4565 254.778 43.2946 251.495C34.393 237.972 15.1262 200.633 10.5068 187.952C8.27207 181.818 7.86417 179.038 7.88138 170.065C7.89251 164.224 8.32168 156.536 8.83584 152.984C10.6081 140.734 11.8833 111.933 10.9613 104.967C10.2174 99.3512 10.35 97.6967 11.7345 95.3288C13.105 92.9846 13.195 91.9264 12.2396 89.4391C9.70724 82.8539 17.4662 87.6485 21.0269 94.8687C23.1847 99.2449 23.2191 99.9286 22.4955 124.217C21.8427 146.153 21.536 149.359 19.8973 151.404C18.0958 153.653 18.0967 153.771 19.9095 155.382C21.6736 156.949 21.9196 156.879 24.2738 154.133C27.0136 150.934 27.1695 148.746 28.6714 92.3686C28.9842 80.6181 29.6664 66.0853 30.1866 60.0735C30.7068 54.0616 31.14 42.659 31.1481 34.7343C31.1602 21.868 32.5641 12.873 32.7442 12.873C32.9244 12.873 34.0306 14.0691 35.4881 15.5ZM9 88.5C9.96354 90.7626 9.69325 92.6774 9.09408 93.2656C8.49389 93.8549 7.71355 93.0092 7 91C4.76826 84.7139 6.49904 82.6213 9 88.5Z"
+									fill="white"
+								/>
+							</svg>
+						</div>
+						{/*圆形图标 */}
+						<div
+							style={{
+								/* Mask Group */
+
+								position: 'absolute',
+								width: '180.5px',
+								height: '131px',
+								left: '130px',
+								top: '0px'
+							}}
+						>
+							<svg
+								width="181"
+								height="131"
+								viewBox="0 0 181 131"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<mask
+									id="mask0_1290_1166"
+									style={{ maskType: 'alpha' }}
+									maskUnits="userSpaceOnUse"
+									x="0"
+									y="0"
+									width="181"
+									height="131"
+								>
+									<path
+										d="M96.5 63C95.7 61.8 92.8333 60.5 91.5 60C83 60 82 68.5 81 70C80.2 71.2 79 117.833 78 131L0 124V0H180.5L173 122.5L104.5 124C102.667 109.333 97.3 64.2 96.5 63Z"
+										fill="#C4C4C4"
+									/>
+								</mask>
+								<g mask="url(#mask0_1290_1166)">
+									<circle opacity="0.4" cx="90.5" cy="64.5" r="45" stroke="white" strokeWidth="5" />
+									<circle
+										opacity="0.5"
+										cx="90.5"
+										cy="64.5"
+										r="20"
+										fill="#D8D8D8"
+										stroke="#F8F8F8"
+										strokeWidth="5"
+									/>
+								</g>
+							</svg>
+						</div>
+					</div>
+					{/* 背景栅格 */}
+					{/* 背景栅格 */}
+					<div
+						style={{
+							position: 'absolute',
+							width: '822px',
+							height: '892px',
+							left: '272px',
+							top: '131px',
+							zIndex: '9'
+						}}
+					>
+						<svg
+							width="823"
+							height="892"
+							viewBox="0 0 823 892"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<line opacity="0.3" x1="0.5" y1="-2.18557e-08" x2="0.500039" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="273.5" y1="-2.18557e-08" x2="273.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="549.5" y1="-2.18557e-08" x2="549.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="822.5" y1="-2.18557e-08" x2="822.5" y2="892" stroke="#E8E8E8" />
+						</svg>
+					</div>
+				</div>
+
+				<div
+					id="comfortSection5Wrapper"
+					ref={this.comfortSection5Wrapper}
+					style={{
+						position: 'absolute',
+						width: '100%',
+						height: '100%',
+						top: '0px',
+						display: 'none',
+						background:
+							'linear-gradient(175.17deg, rgba(236, 168, 158, 0.16) 12.52%, rgba(27, 22, 82, 0.16) 96.1%)'
+					}}
+					onTouchStart={(e) => {
+						this.comfortSection5Start(e);
+					}}
+					onTouchMove={(e) => {
+						this.comfortSection5Move(e);
+					}}
+					onTouchEnd={(e) => {
+						this.comfortSection5End(e);
+					}}
+				>
+					<div>
+						<img src={comfortSection5BG1} className="imageCover" />
+					</div>
+
+					<div
+						id="comfortSection5Title"
+						ref={this.comfortSection5Title}
+						style={{
+							width: '709px',
+							height: '239px',
+							position: 'absolute',
+							left: '466px',
+							top: '369px'
+						}}
+					>
+						<div
+							style={{
+								position: 'absolute',
+								width: '709px',
+								height: '239px'
+							}}
+						>
+							<svg
+								width="713"
+								height="243"
+								viewBox="0 0 713 243"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									opacity="0.2"
+									d="M711 28.9296V2H2V132.44M711 106.352V241H2V210.704"
+									stroke="white"
+									strokeWidth="4"
+								/>
+							</svg>
+						</div>
+
+						<div
+							className="dFordTitle"
+							style={{
+								position: 'absolute',
+								width: '655px',
+								height: '204px',
+								textAlign: 'left',
+								left: '30px',
+								top: '40px'
+							}}
+						>
+							fLEXIBLE DISPLAY SYSTEM
+						</div>
+					</div>
+					{/* 背景栅格 */}
+					<div
+						style={{
+							position: 'absolute',
+							width: '822px',
+							height: '892px',
+							left: '272px',
+							top: '131px',
+							zIndex: '9'
+						}}
+					>
+						<svg
+							width="823"
+							height="892"
+							viewBox="0 0 823 892"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<line opacity="0.3" x1="0.5" y1="-2.18557e-08" x2="0.500039" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="273.5" y1="-2.18557e-08" x2="273.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="549.5" y1="-2.18557e-08" x2="549.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="822.5" y1="-2.18557e-08" x2="822.5" y2="892" stroke="#E8E8E8" />
+						</svg>
+					</div>
+				</div>
+
+				{/*comfort section 6*/}
+				<div
+					id="comfortSection6Wrapper"
+					ref={this.comfortSection6Wrapper}
+					style={{
+						position: 'absolute',
+						top: '0px',
+						left: '0px',
+						width: '100%',
+						height: '100%',
+						display: 'none'
+					}}
+					onTouchStart={(e) => {
+						this.comfortSection6Start(e);
+					}}
+					onTouchMove={(e) => {
+						this.comfortSection6Move(e);
+					}}
+					onTouchEnd={(e) => {
+						this.comfortSection6End(e);
+					}}
+				>
+					<div
+						style={{
+							/* Rectangle 139 */
+
+							position: 'absolute',
+							width: '100%',
+							height: '752px',
+							left: '0px',
+							top: '0px',
+							background:
+								'linear-gradient(175.17deg, rgba(236, 168, 158, 0.16) 12.52%, rgba(27, 22, 82, 0.16) 96.1%)'
+						}}
+					>
+						<img
+							src={comfortSection6BG}
+							className="imageCover"
+							style={{ position: 'absolute', left: '0px', top: '0px' }}
+						/>
+						<div
+							style={{
+								position: 'absolute',
+								width: '100%',
+								height: '752px',
+								left: '0px',
+								top: '0px',
+
+								background: ' linear-gradient(8.2deg, #000000 17.47%, rgba(4, 4, 4, 0) 31.74%)',
+								mixBlendMode: 'multiply',
+								opacity: '0.34'
+							}}
+						/>
+					</div>
+
+					<div
+						id="comfortSection6Title"
+						ref={this.comfortSectoin6Title}
+						style={{
+							/* Replacement for hard screens */
+
+							position: 'absolute',
+							width: '616px',
+							height: '144px',
+							left: '642px',
+							top: '525px'
+						}}
+						className="dFordNormalTitle"
+					>
+						Replacement for hard screens
+					</div>
+
+					<div
+						id="comfortSection6Text"
+						ref={this.comfortSection6Text}
+						style={{
+							position: 'absolute',
+							width: '100%',
+							height: '272px',
+							left: '0px',
+							top: '752px',
+
+							background: '#5F6871',
+							backdropFilter: 'blur(10px)'
+						}}
+					>
+						<div
+							style={{
+								/* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium odio ipsum, eget interdum libero tincidunt efficitur. Maecenas dapibus condimentum commodo. */
+
+								position: 'absolute',
+								width: '627px',
+								height: '93px',
+								left: '100px',
+								top: '65px'
+							}}
+							className="dFordText"
+						>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium odio ipsum, eget
+							interdum libero tincidunt efficitur. Maecenas dapibus condimentum commodo.
+						</div>
+					</div>
+
+					{/* 背景栅格 */}
+					<div
+						style={{
+							position: 'absolute',
+							width: '822px',
+							height: '892px',
+							left: '272px',
+							top: '131px',
+							zIndex: '9'
+						}}
+					>
+						<svg
+							width="823"
+							height="892"
+							viewBox="0 0 823 892"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<line opacity="0.3" x1="0.5" y1="-2.18557e-08" x2="0.500039" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="273.5" y1="-2.18557e-08" x2="273.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="549.5" y1="-2.18557e-08" x2="549.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="822.5" y1="-2.18557e-08" x2="822.5" y2="892" stroke="#E8E8E8" />
+						</svg>
+					</div>
+				</div>
+
+				{/*comfort section 7*/}
+				<div
+					id="comfortSection7Wrapper"
+					ref={this.comfortSection7Wrapper}
+					style={{
+						position: 'absolute',
+						top: '0px',
+						left: '0px',
+						width: '100%',
+						height: '100%',
+						display: 'none',
+						background: '#5F6871'
+					}}
+					onTouchStart={(e) => {
+						this.comfortSection7Start(e);
+					}}
+					onTouchMove={(e) => {
+						this.comfortSection7Move(e);
+					}}
+					onTouchEnd={(e) => {
+						this.comfortSection7End(e);
+					}}
+				>
+					{/* 背景图片*/}
+					<div
+						style={{
+							/* 05 1 */
+
+							position: 'absolute',
+							left: '-150px',
+							top: '0px',
+							width: '100%',
+							height: '100%'
+						}}
+					>
+						<img src={comfortSection7BG} style={{ objectFit: 'contain' }} className="imageCover" />
+					</div>
+					{/* 背景图片全局细节*/}
+					<div
+						style={{
+							position: 'absolute',
+							width: '100%',
+							left: '-140px',
+							top: '0px'
+						}}
+					>
+						<svg
+							width="1089"
+							height="1024"
+							viewBox="0 0 1089 1024"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<rect width="1366" height="1024" fill="url(#paint0_linear_1205_1213)" fillOpacity="0.22" />
+							<defs>
+								<linearGradient
+									id="paint0_linear_1205_1213"
+									x1="599.049"
+									y1="101.099"
+									x2="1208.24"
+									y2="657.215"
+									gradientUnits="userSpaceOnUse"
+								>
+									<stop stopColor="#F2D2C0" />
+									<stop offset="1" stopColor="#1B1652" />
+								</linearGradient>
+							</defs>
+						</svg>
+					</div>
+					{/* 背景图片右侧细节*/}
+					<div
+						style={{
+							position: 'absolute',
+							width: '1106px',
+							height: '1028px',
+							left: '-10px',
+							top: '0px'
+						}}
+					>
+						<svg
+							width="1089"
+							height="1024"
+							viewBox="0 0 1089 1024"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<rect
+								x="-10"
+								width="1106"
+								height="1028"
+								fill="url(#paint0_linear_703_2083)"
+								style={{ mixBlendMode: 'multiply' }}
+							/>
+							<defs>
+								<linearGradient
+									id="paint0_linear_703_2083"
+									x1="270.5"
+									y1="514"
+									x2="757.561"
+									y2="719.041"
+									gradientUnits="userSpaceOnUse"
+								>
+									<stop stopOpacity="0" />
+									<stop offset="1" stopColor="#131528" stopOpacity="0.4" />
+								</linearGradient>
+							</defs>
+						</svg>
+					</div>
+
+					{/* 背景栅格 */}
+					<div
+						style={{
+							position: 'absolute',
+							width: '832px',
+							height: '892px',
+							left: '256px',
+							top: '145px',
+							zIndex: '9'
+						}}
+					>
+						<svg
+							width="823"
+							height="892"
+							viewBox="0 0 823 892"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<line opacity="0.3" x1="0.5" y1="-2.18557e-08" x2="0.500039" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="273.5" y1="-2.18557e-08" x2="273.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="549.5" y1="-2.18557e-08" x2="549.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="822.5" y1="-2.18557e-08" x2="822.5" y2="892" stroke="#E8E8E8" />
+						</svg>
+					</div>
+
+					{/* 标题 */}
+					<div
+						className="dFordNormalTitle"
+						style={{
+							/* rAPID tRACKING Projection */
+
+							position: 'absolute',
+							width: '530px',
+							height: '144px',
+							left: '683px',
+							top: '283px',
+							textAlign: 'left'
+						}}
+					>
+						rAPID tRACKING Projection
+					</div>
+
+					<div
+						style={{
+							position: 'absolute',
+							width: '832px',
+							height: '358px',
+							left: '534px',
+							top: '666px',
+							background: 'rgba(95,104,113,0.6)',
+							backdropFilter: 'blur(22px)'
+							/* Note: backdrop-filter has minimal browser support */
+						}}
+					>
+						{/* 右下角文本 */}
+						<div
+							style={{
+								position: 'absolute',
+								width: '627px',
+								height: '93px',
+								left: '120px',
+								top: '88px',
+								zIndex: '9'
+							}}
+							className="dFordText"
+						>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium odio ipsum, eget
+							interdum libero tincidunt efficitur. Maecenas dapibus condimentum commodo.
+						</div>
+					</div>
+				</div>
+
+				{/*comfort section8*/}
+				<div
+					id="comfortSection8Wrapper"
+					ref={this.comfortSection8Wrapper}
+					style={{
+						position: 'absolute',
+						top: '0px',
+						left: '0px',
+						width: '100%',
+						height: '100%',
+						display: 'none'
+					}}
+					onTouchStart={(e) => {
+						this.comfortSection8Start(e);
+					}}
+					onTouchMove={(e) => {
+						this.comfortSection8Move(e);
+					}}
+					onTouchEnd={(e) => {
+						this.comfortSection8End(e);
+					}}
+				>
+					<div id="comfortSection8BgWrapper">
+						<div
+							style={{
+								position: 'absolute',
+								width: '100%',
+								height: '100%',
+								left: '0px',
+								top: '0px',
+								background:
+									'linear-gradient(124.38deg, rgba(242, 210, 192, 0.22) 30.05%, rgba(27, 22, 82, 0.22) 78.59%)'
+							}}
+						/>
+						<div
+							style={{
+								position: 'absolute',
+								width: '100%',
+								height: '100%',
+								left: '0px',
+								top: '0px',
+								background:
+									'linear-gradient(204.7deg, rgba(0, 0, 0, 0) 57.76%, rgba(19, 21, 40, 0.4) 88.78%)',
+								mixBlendMode: 'multiply'
+							}}
+						/>
+						<img
+							src={comfortSection8Bg}
+							className="imageCover"
+							style={{ mixBlendMode: 'overlay' }}
+							ref={this.comfortSection8Bg}
+						/>
+						<img
+							src={comfortSection8BG1}
+							ref={this.comfortSection8Video}
+							style={{
+								/* interior confort+3_0030 1 */
+
+								position: 'absolute',
+								width: '100%',
+								height: '887px',
+								left: '0px',
+								top: '137px'
+							}}
+						/>
+						<img
+							src={comfortSection8Bg2}
+							className="imageCover"
+							style={{
+								mixBlendMode: 'overlay',
+								height: '574px',
+								display: 'none'
+							}}
+							ref={this.comfortSection8Bg2}
+						/>
+					</div>
+
+					<div id="comfortSection8BgWrapper" />
+
+					{/* 背景栅格 */}
+					<div
+						style={{
+							position: 'absolute',
+							width: '832px',
+							height: '892px',
+							left: '256px',
+							top: '145px',
+							zIndex: '9'
+						}}
+					>
+						<svg
+							width="823"
+							height="892"
+							viewBox="0 0 823 892"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<line opacity="0.3" x1="0.5" y1="-2.18557e-08" x2="0.500039" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="273.5" y1="-2.18557e-08" x2="273.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="549.5" y1="-2.18557e-08" x2="549.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="822.5" y1="-2.18557e-08" x2="822.5" y2="892" stroke="#E8E8E8" />
+						</svg>
+					</div>
+
+					<div
+						className="dFordNormalText"
+						style={{
+							/* Return to Home */
+
+							position: 'absolute',
+							width: '151px',
+							height: '31px',
+							right: '20px',
+							top: '965px',
+
+							fontSize: '22px',
+
+							color: '#D8D8D8'
+						}}
+						onClick={(event) => {
+							this.comfortSection8ClickMagamize(event);
+						}}
+					>
+						Mock Button
+					</div>
+				</div>
+
+				{/*comfort sectoin 9*/}
+				<div
+					id="comfortSection9Wrapper"
+					ref={this.comfortSection9Wrapper}
+					style={{
+						position: 'absolute',
+						top: '0px',
+						left: '0px',
+						width: '100%',
+						height: '100%',
+						display: 'none'
+					}}
+					onTouchStart={(e) => {
+						this.comfortSection9Start(e);
+					}}
+					onTouchMove={(e) => {
+						this.comfortSection9Move(e);
+					}}
+					onTouchEnd={(e) => {
+						this.comfortSection9End(e);
+					}}
+				>
+					<div
+						id="comfortSection9Bg1"
+						style={{
+							position: 'absolute',
+							width: '100%',
+							height: '752px',
+							left: '0px',
+							top: '0px'
+						}}
+					>
+						<div
+							style={{
+								position: 'absolute',
+								width: '100%',
+								height: '752px',
+								left: '0px',
+								top: '0px',
+
+								background: 'linear-gradient(8.2deg, #000000 17.47%, rgba(4, 4, 4, 0) 31.74%)',
+								mixBlendMode: 'multiply',
+								opacity: '0.34'
+							}}
+						/>
+						<img src={comfortSection9Bg1} className="imageCover" style={{ mixBlendMode: 'multiply' }} />
+
+						<div
+							style={{
+								position: 'absolute',
+								width: '100%',
+								height: '752px',
+								left: '0px',
+								top: '0px',
+								background:
+									'linear-gradient(175.17deg, rgba(236, 168, 158, 0.16) 12.52%, rgba(27, 22, 82, 0.16) 96.1%)',
+								backdropFilter: 'blur(40px)'
+							}}
+						/>
+					</div>
+
+					<div
+						id="comfortSection9Bg2"
+						style={{
+							position: 'absolute',
+							width: '545px',
+							height: '756px',
+							left: '0px',
+							top: '268px',
+							zIndex: '1'
+						}}
+					>
+						<div
+							style={{
+								position: 'absolute',
+								width: '100%',
+								height: '752px',
+								left: ' -686px',
+								top: '272px',
+								background:
+									' linear-gradient(175.17deg, rgba(236, 168, 158, 0.16) 12.52%, rgba(27, 22, 82, 0.16) 96.1%)'
+							}}
+						/>
+						<div
+							style={{
+								position: 'absolute',
+								width: '100%',
+								height: '752px',
+								left: '-696px',
+								top: '272px',
+								background: 'linear-gradient(8.2deg, #000000 17.47%, rgba(4, 4, 4, 0) 31.74%)',
+								mixBlendMode: 'multiply',
+								opacity: ' 0.34'
+							}}
+						/>
+						<img src={comfortSection9Bg2} className="imageCover" />
+					</div>
+
+					<div
+						id="comfortSection9Bg3"
+						style={{
+							position: 'absolute',
+							width: '680px',
+							height: '752px',
+							left: '686px',
+							top: '0px'
+						}}
+					>
+						<div
+							style={{
+								position: 'absolute',
+								width: '100%',
+								height: '752px',
+								left: '0px',
+								top: '0px',
+								background:
+									'linear-gradient(175.17deg, rgba(236, 168, 158, 0.16) 12.52%, rgba(27, 22, 82, 0.16) 96.1%)'
+							}}
+						/>
+						<div
+							style={{
+								position: 'absolute',
+								width: '100%',
+								height: '752px',
+								left: '0px',
+								top: '0px',
+								background: 'linear-gradient(8.2deg, #000000 17.47%, rgba(4, 4, 4, 0) 31.74%)',
+								mixBlendMode: 'multiply',
+								opacity: '0.34'
+							}}
+						/>
+						<img src={comfortSection9Bg3} className="imageCover" />
+					</div>
+
+					<div
+						style={{
+							position: 'absolute',
+							width: '100%',
+							height: '272px',
+							left: '0px',
+							top: '752px',
+							background: '#5F6871',
+							backdropFilter: 'blur(10px)'
+						}}
+					/>
+
+					<div id="comfortSection9Title">
+						<div
+							className="dFordNormalTitle"
+							style={{
+								/* keep using personal devices */
+
+								position: 'absolute',
+								width: '605px',
+								height: '144px',
+								left: '608px',
+								top: '559px'
+							}}
+						>
+							keep using personal devices
+						</div>
+					</div>
+
+					<div
+						id="comfortSection9Text"
+						className="dFordText"
+						style={{
+							/* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium odio ipsum, eget interdum libero tincidunt efficitur. Maecenas dapibus condimentum commodo. */
+
+							position: 'absolute',
+							width: '564px',
+							height: '93px',
+							left: '686px',
+							top: '804px'
+						}}
+					>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium odio ipsum, eget
+						interdum libero tincidunt efficitur. Maecenas dapibus condimentum commodo.
+					</div>
+
+					<div id="comfortSection9EndWrapper">
+						<div id="comfortSection9EngBg1">
+							<div
+								style={{
+									position: 'absolute',
+									width: '100%',
+									height: '100%',
+									left: '0px',
+									top: '0px',
+
+									background:
+										' linear-gradient(175.17deg, rgba(236, 168, 158, 0.16) 12.52%, rgba(27, 22, 82, 0.16) 96.1%)'
+								}}
+							/>
+
+							<div
+								style={{
+									position: 'absolute',
+									width: '100%',
+									height: '100%',
+									left: '0px',
+									top: '1024px',
+
+									background:
+										'linear-gradient(2.19deg, rgba(53, 63, 75, 0.71) 8.23%, rgba(66, 60, 81, 0) 67.07%)',
+									mixBlendMode: 'multiply',
+									transform: 'matrix(1, 0, 0, -1, 0, 0)'
+								}}
+							/>
+							<div
+								style={{
+									position: 'absolute',
+									width: '100%',
+									height: '100%',
+									left: '0px',
+									top: '0px',
+									background:
+										' linear-gradient(180deg, rgba(177, 140, 140, 0.2914) 0%, rgba(255, 242, 230, 0.47) 100%)',
+									mixBlendMode: 'multiply'
+								}}
+							/>
+							<div
+								style={{
+									position: 'absolute',
+									width: '100%',
+									height: '100%',
+									left: '-381px',
+									top: '0px',
+									background:
+										'linear-gradient(175.17deg, rgba(236, 168, 158, 0.16) 12.52%, rgba(27, 22, 82, 0.16) 96.1%)'
+								}}
+							/>
+							<div
+								style={{
+									/* Rectangle 74 */
+
+									position: 'absolute',
+									width: '100%',
+									height: '100%',
+									left: '-394.62px',
+									top: '0px',
+
+									background: ' linear-gradient(8.2deg, #000000 17.47%, rgba(4, 4, 4, 0) 31.74%)',
+									mixBlendMode: 'multiply',
+									opacity: '0.34'
+								}}
+							/>
+							<img src={comfortSection9Bg4} className="imageCover" />
+						</div>
+					</div>
+
+					<div id="comfortSectoin9EndReturnHome">
+						<div
+							style={{
+								/* Vector 16 */
+
+								position: 'absolute',
+								width: '100%',
+								height: '95px',
+								left: '0px',
+								top: ' 417px',
+							}}
+						>
+							<svg
+								width="1370"
+								height="98"
+								viewBox="0 0 1370 98"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path d="M1369 1L686 96L0.5 1" stroke="#4F4F4F" strokeWidth="2" />
+							</svg>
+						</div>
+						{/* 中部腰线 */}
+						<div
+							style={{
+								position: 'absolute',
+								width: '1366px',
+								height: '612.5px',
+								left: '0px',
+								top: '412px'
+							}}
+						>
+							<svg
+								width="1366"
+								height="612"
+								viewBox="0 0 1366 612"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path opacity="0.75" d="M0 0L683 90.5L1366 0V612.5H0V0Z" fill="#1D1B1D" />
+							</svg>
+						</div>
+						{/* 底部中线背景 */}
+						<div
+							style={{
+								position: 'absolute',
+								width: '118px',
+								height: '0px',
+								left: '685px',
+								top: '906px'
+							}}
+						>
+							<svg
+								width="2"
+								height="118"
+								viewBox="0 0 2 118"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<line x1="1" y1="-4.37114e-08" x2="1.00001" y2="118" stroke="white" strokeWidth="2" />
+							</svg>
+						</div>
+						{/* 底部原型背景 */}
+						<div
+							style={{
+								position: 'absolute',
+								width: '139px',
+								height: '139px',
+								left: '615px',
+								top: '835px'
+							}}
+						>
+							<svg
+								width="139"
+								height="139"
+								viewBox="0 0 139 139"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<circle opacity="0.28" cx="69.5" cy="69.5" r="68.5" stroke="white" strokeWidth="2" />
+							</svg>
+						</div>
+					</div>
+
+					{/* 中部文本 continue to */}
+					<div
+						id="section_8_title"
+						ref={this.section_8_title}
+						style={{
+							position: 'absolute',
+							width: '100%',
+							height: '100%',
+							left: '0px',
+							top: '0px'
+						}}
+					>
+						<div
+							style={{
+								position: 'absolute',
+								width: '429px',
+								height: '72px',
+								left: '302px',
+								top: '641px'
+							}}
+							className="dFordNormalTitle"
+						>
+							continue to
+						</div>
+						{/* 中部文本 Comfort */}
+						<div
+							style={{
+								position: 'absolute',
+								width: '309px',
+								height: '72px',
+								left: '745px',
+								top: '641px',
+								color: '#AFCDFA'
+							}}
+							className="dFordNormalTitle"
+						>
+							Comfort
+						</div>
+					</div>
+					{/* 中部文本 + */}
+
+					<div
+						id="section_8_text"
+						ref={this.section_8_text}
+						style={{
+							position: 'absolute',
+							width: '100%',
+							height: '100%',
+							left: '0px',
+							top: '0px'
 						}}
 					>
 						<div
