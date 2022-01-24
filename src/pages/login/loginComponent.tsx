@@ -13,7 +13,7 @@ export default class LoginComponent extends React.Component<any, any> {
 	}
 	login() {
 		if (this.state.password === 'admin2020') {
-			window.location.href = '#/';
+			window.location.href = '#/home';
 		}
 	}
 	checkLogin(loginPassword: any) {

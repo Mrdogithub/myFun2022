@@ -876,7 +876,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	// COMFORT SECTION
 	comfortSection1Start(e) {
 		this.updateStartMosePosition(event);
-		if (this.moveDistance == 100) {
+		if (this.move < 0 && this.moveDistance === 100 && this.comfortSection1Text2.current.style.display === 'block') {
+			// 向上拉动 进入下一页
 			this.comfortSection1Wrapper.current.style.display = 'none';
 			this.comfortSection1BgLine.current.className = 'animate__animated animate__fadeOutIn animate__delay-.8s';
 			this.comfortSection1Text2.current.className = 'animate__animated animate__fadeOutLeft animate__delay-1s';
@@ -898,16 +899,19 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			}, 40);
 
 			if (this.moveDistance < 50) {
+				this.comfortSection1Text.current.style.display = 'block';
 				this.comfortSection1Text.current.className = 'animate__animated animate__fadeInDown animate__delay-.5s';
 			}
 
 			if (this.moveDistance < 70) {
 				this.comfortSection1BgLine.current.className =
-					'animate__animated animate__fadeOutIn animate__delay-.8s';
+					'animate__animated animate__fadeOutIn animate__delay-.5s';
 				this.comfortSection1Text2.current.className =
-					'animate__animated animate__fadeOutLeft animate__delay-1s';
+					'animate__animated animate__fadeOutLeft animate__delay-.5s';
 				this.comfortSection1Title.current.className =
-					'animate__animated animate__fadeOutLeft animate__delay-1.2s';
+					'animate__animated animate__fadeOutLeft animate__delay-.5s';
+
+				this.comfortSection1Text2.current.style.display = 'none';
 			}
 		}
 
@@ -919,11 +923,15 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			}
 
 			if (this.moveDistance > 50) {
+				this.comfortSection1Text.current.style.display = 'none';
 				this.comfortSection1Text.current.className =
 					'animate__animated animate__fadeOutDown animate__delay-.5s';
 			}
 
 			if (this.moveDistance > 70) {
+				this.comfortSection1Text2.current.style.display = 'block';
+				this.comfortSection1Title.current.style.display = 'block';
+
 				this.comfortSection1BgLine.current.className = 'animate__animated animate__fadeIn animate__delay-.8s';
 				this.comfortSection1Text2.current.className = 'animate__animated animate__fadeInLeft animate__delay-1s';
 				this.comfortSection1Title.current.className =
@@ -937,27 +945,12 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		}
 	}
 	comfortSection1End(e) {
-		console.log(e);
+		console.log(this.move);
 	}
 
 	// COMFORT SECTION
 	comfortSection2Start(e) {
 		this.updateStartMosePosition(event);
-		if (this.moveDistance == 0) {
-			this.comfortSection1Wrapper.current.style.display = 'block';
-			this.comfortSection1BgLine.current.className = 'animate__animated animate__fadeOutIn animate__delay-.8s';
-			this.comfortSection1Text2.current.className = 'animate__animated animate__fadeOutLeft animate__delay-1s';
-			this.comfortSection1Title.current.className = 'animate__animated animate__fadeOutLeft animate__delay-1.2s';
-		}
-
-		if (this.moveDistance == 100) {
-			this.comfortSection2Wrapper.current.style.display = 'none';
-
-			this.comfortSection3Wrapper.current.style.display = 'block';
-			this.comfortSection3BgLine.current.className = 'animate__animated animate__fadeIn animate__delay-.8s';
-			this.comfortSection3Title.current.className = 'animate__animated animate__fadeIn animate__delay-1.2s';
-			this.comfortSection3Text.current.className = 'animate__animated animate__fadeInUp animate__delay-1.2s';
-		}
 	}
 	comfortSection2Move(e) {
 		this.updateMoveMousePositon(event);
@@ -966,52 +959,74 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 
 		if (this.move > 0) {
 			// 向下拉动 返回上一页
-			setTimeout(() => {
-				console.log(this.moveDistance);
-				this.comfortSection1CanvasRef.current.setCurrent(this.moveDistance);
-			}, 40);
+			this.comfortSection1Text.current.style.display = 'none';
+			this.comfortSection1Wrapper.current.style.display = 'block';
+			this.comfortSection1BgLine.current.style.display = 'block';
+			this.comfortSection1Text2.current.style.display = 'block';
+			this.comfortSection1Title.current.style.display = 'block';
 
-			if (this.moveDistance < 50) {
-				this.comfortSection1Text.current.className = 'animate__animated animate__fadeInDown animate__delay-.5s';
-			}
+			this.comfortSection1BgLine.current.className = 'animate__animated animate__fadeIn animate__delay-.8s';
+			this.comfortSection1Text2.current.className = 'animate__animated animate__fadeInLeft animate__delay-1s';
+			this.comfortSection1Title.current.className = 'animate__animated animate__fadeInLeft animate__delay-1.2s';
 
-			if (this.moveDistance < 70) {
-				this.comfortSection1BgLine.current.className =
-					'animate__animated animate__fadeOutIn animate__delay-.8s';
-				this.comfortSection1Text2.current.className =
-					'animate__animated animate__fadeOutLeft animate__delay-1s';
-				this.comfortSection1Title.current.className =
-					'animate__animated animate__fadeOutLeft animate__delay-1.2s';
-			}
+			this.comfortSection2Wrapper.current.style.display = 'none';
 		}
 
 		if (this.move < 0) {
+			this.comfortSection2Wrapper.current.style.display = 'none';
+
+			this.comfortSection3Wrapper.current.style.display = 'block';
+
 			// 向上拉动 进入下一页
-
-			if (this.moveDistance > 100) {
-				this.moveDistance = 100;
-			}
-
-			if (this.moveDistance > 50) {
-				this.comfortSection1Text.current.className =
-					'animate__animated animate__fadeOutDown animate__delay-.5s';
-			}
-
-			if (this.moveDistance > 70) {
-				this.comfortSection1BgLine.current.className = 'animate__animated animate__fadeIn animate__delay-.8s';
-				this.comfortSection1Text2.current.className = 'animate__animated animate__fadeInLeft animate__delay-1s';
-				this.comfortSection1Title.current.className =
-					'animate__animated animate__fadeInLeft animate__delay-1.2s';
-			}
-
-			setTimeout(() => {
-				console.log(this.moveDistance);
-				this.comfortSection1CanvasRef.current.setCurrent(this.moveDistance);
-			}, 40);
+			// if (this.moveDistance > 100) {
+			// 	this.moveDistance = 100;
+			// }
+			// if (this.moveDistance > 50) {
+			// 	this.comfortSection1Text.current.style.display = 'none';
+			// 	this.comfortSection1Text.current.className =
+			// 		'animate__animated animate__fadeOutDown animate__delay-.5s';
+			// }
+			// if (this.moveDistance > 70) {
+			// 	this.comfortSection1BgLine.current.className = 'animate__animated animate__fadeIn animate__delay-.8s';
+			// 	this.comfortSection1Text2.current.className = 'animate__animated animate__fadeInLeft animate__delay-1s';
+			// 	this.comfortSection1Title.current.className =
+			// 		'animate__animated animate__fadeInLeft animate__delay-1.2s';
+			// }
+			// setTimeout(() => {
+			// 	console.log(this.moveDistance);
+			// 	this.comfortSection1CanvasRef.current.setCurrent(this.moveDistance);
+			// }, 40);
 		}
 	}
 	comfortSection2End(e) {
-		console.log(e);
+		console.log(this.move);
+		console.log(this.moveDistance + ':this.moveDistance');
+		// if (this.move > 0) {
+		// 	// 向下拉动 返回上一页
+		// 	if (this.moveDistance > 100) {
+		// 		this.comfortSection2Wrapper.current.style.display = 'none';
+		// 		this.comfortSection1Wrapper.current.style.display = 'block';
+		// 		// this.comfortSection1BgLine.current.className =
+		// 		// 	'animate__animated animate__fadeOutIn animate__delay-.8s';
+		// 		// this.comfortSection1Text2.current.className =
+		// 		// 	'animate__animated animate__fadeOutLeft animate__delay-1s';
+		// 		// this.comfortSection1Title.current.className =
+		// 		// 	'animate__animated animate__fadeOutLeft animate__delay-1.2s';
+		// 	}
+		// 	return;
+		// }
+
+		// if (this.move < 0) {
+		// 	// 向上拉动 返回下一页
+		// 	if (this.moveDistance === 100) {
+		// 		this.comfortSection2Wrapper.current.style.display = 'none';
+		// 		this.comfortSection3Wrapper.current.style.display = 'block';
+		// 		this.comfortSection3BgLine.current.className = 'animate__animated animate__fadeIn animate__delay-.5s';
+		// 		this.comfortSection3Title.current.className = 'animate__animated animate__fadeIn animate__delay-.5s';
+		// 		this.comfortSection3Text.current.className = 'animate__animated animate__fadeInUp animate__delay-.5s';
+		// 	}
+		// 	return;
+		// }
 	}
 
 	// COMFORT SECTION
@@ -1045,18 +1060,10 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	}
 	comfortSection4Move(e) {
 		this.updateMoveMousePositon(event);
+
 		this.move = this.state.endY - this.state.firstY;
 		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
-
-		if (this.move < 0) {
-			// 向上拉动 进入下一页
-			this.comfortSection4Text1.current.style.display = 'none';
-			this.comfortSection4Image1.current.style.display = 'none';
-
-			this.comfortSection4Text2.current.style.display = 'block';
-			this.comfortSection4Image2.current.style.display = 'block';
-			this.comfortSection4Hand.current.style.left = '33px';
-		}
+		console.log('comfortSection4Move' + this.move);
 	}
 	comfortSection4End(e) {
 		if (
@@ -1077,14 +1084,44 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		}
 
 		if (
+			this.move > 0 &&
+			this.comfortSection4Text1.current.style.display == 'block' &&
+			this.comfortSection4Image1.current.style.display == 'block' &&
+			this.comfortSection4Text2.current.style.display == 'none' &&
+			this.comfortSection4Image2.current.style.display == 'none'
+		) {
+			// 向下拉动 返回上一页
+			this.comfortSection3Wrapper.current.style.display = 'block';
+			this.comfortSection4Wrapper.current.style.display = 'none';
+			return;
+		}
+		if (
+			this.move < 0 &&
+			this.comfortSection4Text1.current.style.display == 'block' &&
+			this.comfortSection4Image1.current.style.display == 'block' &&
+			this.comfortSection4Text2.current.style.display == 'none' &&
+			this.comfortSection4Image2.current.style.display == 'none'
+		) {
+			// 向上拉动 进入下一页
+			this.comfortSection4Text1.current.style.display = 'none';
+			this.comfortSection4Image1.current.style.display = 'none';
+
+			this.comfortSection4Text2.current.style.display = 'block';
+			this.comfortSection4Image2.current.style.display = 'block';
+			this.comfortSection4Hand.current.style.left = '33px';
+			return;
+		}
+		if (
 			this.move < 0 &&
 			this.comfortSection4Text1.current.style.display == 'none' &&
 			this.comfortSection4Image1.current.style.display == 'none' &&
 			this.comfortSection4Text2.current.style.display == 'block' &&
 			this.comfortSection4Image2.current.style.display == 'block'
 		) {
-			this.comfortSection5Wrapper.current.style.display = 'block';
+			// 向上拉动 进入下一页
 			this.comfortSection4Wrapper.current.style.display = 'none';
+			this.comfortSection5Wrapper.current.style.display = 'block';
+			return;
 		}
 	}
 
@@ -2848,7 +2885,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						/>
 					</div>
 
-					<div id="comfortSection1Text" ref={this.comfortSection1Text}>
+					<div id="comfortSection1Text" ref={this.comfortSection1Text} style={{ display: 'block' }}>
 						{/* 左下角编号 */}
 						<div
 							style={{
@@ -2963,7 +3000,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							left: '0px',
 							top: '697px',
 							background: ' rgba(39, 42, 51, 0.32)',
-							backdropFilter: 'blur(48px)'
+							backdropFilter: 'blur(48px)',
+							display: 'none'
 						}}
 						ref={this.comfortSection1Text2}
 					>
@@ -2985,7 +3023,13 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						</div>
 					</div>
 
-					<div id="comfortSection1Title" ref={this.comfortSection1Title}>
+					<div
+						id="comfortSection1Title"
+						ref={this.comfortSection1Title}
+						style={{
+							display: 'none'
+						}}
+					>
 						{/*标题*/}
 						<div
 							className="dFordTitle"
@@ -3475,7 +3519,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							left: '0px',
 							bottom: '0px',
 							width: '545px',
-							height: '450px'
+							height: '450px',
+							display: 'block'
 						}}
 						ref={this.comfortSection4Image1}
 					>
@@ -3528,7 +3573,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							height: '450px',
 							left: '545px',
 							top: '574px',
-							background: '#6c6b6f'
+							background: '#6c6b6f',
+							display: 'block'
 						}}
 						ref={this.comfortSection4Text1}
 					>
@@ -4480,7 +4526,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 								width: '100%',
 								height: '95px',
 								left: '0px',
-								top: ' 417px',
+								top: ' 417px'
 							}}
 						>
 							<svg
