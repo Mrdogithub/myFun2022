@@ -1,4 +1,6 @@
 import React from 'react';
+import SplitterLayout from 'react-splitter-layout';
+import 'react-splitter-layout/lib/index.css';
 // import homePrivacy_1 from './homePrivacy_1.png';
 import homeConfort_2 from './homeConfort_2.png';
 import homeLeisure_3 from './homeLeisure_3.png';
@@ -32,7 +34,10 @@ import privacy_section_8_bg from './privacy_section_8_bg.png';
 import firstPrivactSection6ImageSequence from '../../assets/Video02b_DigitalSealRotate_1/Video02b_DigitalSealRotate0.jpg';
 import firstComfortSection1ImageSequence from '../../assets/Video04_TransitionComfort/Video04_TransitionComfort0.jpg';
 import lastComfortSection1ImageSequence from '../../assets/Video04_TransitionComfort/Video04_TransitionComfort100.jpg';
+import firstLeisureSection2ImageSequence from '../../assets/Video16_FrunkBar/Video16_FrunkBar0.jpg';
 import comfortBg_4_new from '../../assets/images/comfortBg_4_new.png';
+import comfortSection2Bg2 from '../../assets/images/comfortSection2Bg2.png';
+import comfortSection2Bg3 from '../../assets/images/comfortSection2Bg3.png';
 import comfortSection4Bg2 from '../../assets/images/comfortSection4Bg2.png';
 import comfortSection4Bg3 from '../../assets/images/comfortSection4Bg3.png';
 import comfortSection4Bg from '../../assets/images/comfortSection4Bg.png';
@@ -47,7 +52,8 @@ import comfortSection9Bg3 from '../../assets/images/comfortSection9Bg3.png';
 import comfortSection9Bg4 from '../../assets/images/comfortSection9Bg4.png';
 import CanvasImageSequence from 'react-canvas-image-sequence';
 import comfortSection5BG1 from '../../assets/images/comfortSection5BG1.png';
-
+import leisureSection1Bg from '../../assets/images/leisureSection1Bg.png';
+import leisureSection2Bg from '../../assets/images/leisureSection2Bg.png';
 import Video01_AdvancedDimmableWindow from '../../assets/Video01_AdvancedDimmableWindow.mp4';
 import { Info } from '../../components/info/infoComponent';
 import {
@@ -63,6 +69,7 @@ import {
 } from 'video-react';
 
 import { ifStatement } from '@babel/types';
+import { val, height } from 'dom7';
 
 const MAX_IMAGES = [
 	homePrivacy_1,
@@ -139,7 +146,12 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.comfortSection2TextBox05b = React.createRef();
 		this.comfortSection2Box05 = React.createRef();
 		this.comfortSection2BgLine = React.createRef();
+		this.comfortSection2Desc = React.createRef();
+		this.comfortSection2SplitterHook = React.createRef();
+		this.comfortSection2Splitter = React.createRef();
 
+		this.comfortSection2SplitterHook2 = React.createRef();
+		this.comfortSection2Splitter2 = React.createRef();
 		this.comfortSection3Wrapper = React.createRef();
 		this.comfortSection3Title = React.createRef();
 		this.comfortSection3Text = React.createRef();
@@ -163,6 +175,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.comfortSection6Text = React.createRef();
 
 		this.comfortSection7Wrapper = React.createRef();
+		this.comfortSection7Text = React.createRef();
+		this.comfortSection7LeftBg = React.createRef();
 
 		this.comfortSection8Wrapper = React.createRef();
 		this.comfortSection8Bg = React.createRef();
@@ -170,6 +184,36 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.comfortSection8Bg2 = React.createRef();
 
 		this.comfortSection9Wrapper = React.createRef();
+		this.comfortSection10EndWrapper = React.createRef();
+		this.comfortSection9Bg1 = React.createRef();
+
+		this.comfortSectoin9EndReturnHomeTitle = React.createRef();
+		this.comfortSectoin9EndReturnHomeText = React.createRef();
+
+		this.comfortSection9LeftBg = React.createRef();
+		this.comfortSection9BgRight = React.createRef();
+		this.comfortSection9Mask2 = React.createRef();
+		this.comfortSection9Mask1 = React.createRef();
+		this.comfortSectoin9EndReturnHome = React.createRef();
+
+		this.mask1 = React.createRef();
+		this.mask2 = React.createRef();
+
+		this.leisureSection1Wrapper = React.createRef();
+
+		this.leisureSection2Wrapper = React.createRef();
+		this.leisureSection2CanvasRef = React.createRef();
+		this.leisureSection2Title = React.createRef();
+
+		this.leisureSection2Box2 = React.createRef();
+		this.leisureSection2Box3 = React.createRef();
+		this.leisureSection2Text2 = React.createRef();
+		this.leisureSection2Bg2 = React.createRef();
+
+
+		this.leisureSection3Wrapper = React.createRef();
+		this.leisureSection3Title = React.createRef();
+		this.leisureSection3Text = React.createRef();
 		this.state = {
 			x: 0,
 			y: 0,
@@ -183,11 +227,15 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			section_5_ImageSrc: section_5_ImageSrc,
 			canvasWidth: 0,
 			canvasHeight: 0,
+			comfortSection2Bg: lastComfortSection1ImageSequence,
 			privactSection6ImageSequence: [
 				firstPrivactSection6ImageSequence
 			],
 			comfortSection1ImageSequence: [
 				firstComfortSection1ImageSequence
+			],
+			leisureSection2ImageSequence: [
+				firstLeisureSection2ImageSequence
 			],
 			boxDefaultSize: 80,
 			slides: [
@@ -276,6 +324,11 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	startX: any = '0';
 	endX: any = '0';
 	box: any;
+	isDown = false;
+	splitterOffSet = [
+		0,
+		0
+	];
 	player: any;
 	video: any;
 	leftContent: any;
@@ -334,7 +387,11 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	comfortSection2TextBox05b: any;
 	comfortSection2Box05: any;
 	comfortSection2BgLine: any;
-
+	comfortSection2Desc: any;
+	comfortSection2SplitterHook: any;
+	comfortSection2Splitter: any;
+	comfortSection2SplitterHook2: any;
+	comfortSection2Splitter2: any;
 	comfortSection3Wrapper: any;
 	comfortSection3Title: any;
 	comfortSection3Text: any;
@@ -357,6 +414,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	comfortSection6Text: any;
 
 	comfortSection7Wrapper: any;
+	comfortSection7Text: any;
+	comfortSection7LeftBg: any;
 
 	comfortSection8Wrapper: any;
 	comfortSection8Bg: any;
@@ -364,6 +423,33 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	comfortSection8Bg2: any;
 
 	comfortSection9Wrapper: any;
+	comfortSection10EndWrapper: any;
+	comfortSection9Bg1: any;
+
+	comfortSectoin9EndReturnHomeTitle: any;
+	comfortSectoin9EndReturnHomeText: any;
+	comfortSection9LeftBg: any;
+	comfortSection9BgRight: any;
+	comfortSection9Mask2: any;
+	comfortSection9Mask1: any;
+	mask1: any;
+	mask2: any;
+	comfortSectoin9EndReturnHome: any;
+
+	leisureSection1Wrapper: any;
+	leisureSection2CanvasRef: any;
+	leisureSection2Wrapper: any;
+	leisureSection2Title: any;
+
+	leisureSection2Box2: any;
+	leisureSection2Box3: any;
+	leisureSection2Text2: any;
+	leisureSection2Bg2: any;
+
+
+	leisureSection3Wrapper:any;
+	leisureSection3Title:any;
+	leisureSection3Text:any;
 	moveDistance = 0;
 	move = 0;
 	componentDidMount() {
@@ -378,7 +464,11 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			comfortImges.push(require(`../../assets/Video04_TransitionComfort/Video04_TransitionComfort${i}.jpg`));
 			this.setState({ comfortSection1ImageSequence: comfortImges });
 		}
-
+		const leisureImges: any[] = [];
+		for (let i = 0; i <= 40; i++) {
+			leisureImges.push(require(`../../assets/Video16_FrunkBar/Video16_FrunkBar${i}.jpg`));
+			this.setState({ leisureSection2ImageSequence: leisureImges });
+		}
 		this.setState({ canvasWidth: screen.availWidth });
 		this.setState({ canvasHeight: screen.availHeight });
 	}
@@ -884,6 +974,11 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			this.comfortSection1Title.current.className = 'animate__animated animate__fadeOutLeft animate__delay-1.2s';
 
 			this.comfortSection2Wrapper.current.style.display = 'block';
+			this.comfortSection2Splitter.current.style.display = 'flex';
+			this.comfortSection2Desc.current.className = 'animate__animated animate__fadeInDown animate__delay-1.2s';
+			this.comfortSection2Box05.current.className = 'animate__animated animate__fadeInDown animate__delay-1.2s';
+			this.comfortSection2Splitter.current.className =
+				'animate__animated animate__slideInLeft animate__delay-1.2s';
 		}
 	}
 	comfortSection1Move(e) {
@@ -950,14 +1045,21 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 
 	// COMFORT SECTION
 	comfortSection2Start(e) {
+		if (e.target.id === '') return;
 		this.updateStartMosePosition(event);
 	}
 	comfortSection2Move(e) {
+		console.log(e);
+		if (e.target.id === '') return;
 		this.updateMoveMousePositon(event);
 		this.move = this.state.endY - this.state.firstY;
 		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
-
 		if (this.move > 0) {
+			this.comfortSection2Desc.current.className = 'animate__animated animate__fadeOutDown animate__delay-.5s';
+			this.comfortSection2Box05.current.className = 'animate__animated animate__fadeOutDown animate__delay-.5s';
+
+			this.comfortSection2Wrapper.current.style.display = 'none';
+			this.comfortSection2Splitter.current.style.display = 'none';
 			// 向下拉动 返回上一页
 			this.comfortSection1Text.current.style.display = 'none';
 			this.comfortSection1Wrapper.current.style.display = 'block';
@@ -968,67 +1070,117 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			this.comfortSection1BgLine.current.className = 'animate__animated animate__fadeIn animate__delay-.8s';
 			this.comfortSection1Text2.current.className = 'animate__animated animate__fadeInLeft animate__delay-1s';
 			this.comfortSection1Title.current.className = 'animate__animated animate__fadeInLeft animate__delay-1.2s';
-
-			this.comfortSection2Wrapper.current.style.display = 'none';
-		}
-
-		if (this.move < 0) {
-			this.comfortSection2Wrapper.current.style.display = 'none';
-
-			this.comfortSection3Wrapper.current.style.display = 'block';
-
-			// 向上拉动 进入下一页
-			// if (this.moveDistance > 100) {
-			// 	this.moveDistance = 100;
-			// }
-			// if (this.moveDistance > 50) {
-			// 	this.comfortSection1Text.current.style.display = 'none';
-			// 	this.comfortSection1Text.current.className =
-			// 		'animate__animated animate__fadeOutDown animate__delay-.5s';
-			// }
-			// if (this.moveDistance > 70) {
-			// 	this.comfortSection1BgLine.current.className = 'animate__animated animate__fadeIn animate__delay-.8s';
-			// 	this.comfortSection1Text2.current.className = 'animate__animated animate__fadeInLeft animate__delay-1s';
-			// 	this.comfortSection1Title.current.className =
-			// 		'animate__animated animate__fadeInLeft animate__delay-1.2s';
-			// }
-			// setTimeout(() => {
-			// 	console.log(this.moveDistance);
-			// 	this.comfortSection1CanvasRef.current.setCurrent(this.moveDistance);
-			// }, 40);
 		}
 	}
 	comfortSection2End(e) {
-		console.log(this.move);
-		console.log(this.moveDistance + ':this.moveDistance');
-		// if (this.move > 0) {
-		// 	// 向下拉动 返回上一页
-		// 	if (this.moveDistance > 100) {
-		// 		this.comfortSection2Wrapper.current.style.display = 'none';
-		// 		this.comfortSection1Wrapper.current.style.display = 'block';
-		// 		// this.comfortSection1BgLine.current.className =
-		// 		// 	'animate__animated animate__fadeOutIn animate__delay-.8s';
-		// 		// this.comfortSection1Text2.current.className =
-		// 		// 	'animate__animated animate__fadeOutLeft animate__delay-1s';
-		// 		// this.comfortSection1Title.current.className =
-		// 		// 	'animate__animated animate__fadeOutLeft animate__delay-1.2s';
-		// 	}
-		// 	return;
-		// }
+		if (e.target.id === '') return;
+		if (this.move < 0) {
+			this.comfortSection2Wrapper.current.style.display = 'none';
+			this.comfortSection2Splitter.current.style.display = 'none';
+			this.comfortSection3Wrapper.current.style.display = 'block';
+			this.comfortSection3Text.current.className = 'animate__animated animate__fadeInUp animate__delay-1s';
+			this.comfortSection3Tab06.current.className = 'animate__animated animate__fadeIn animate__delay-1.2s';
+		}
+	}
+	comfortSection2SplitterStart(event) {
+		this.isDown = true;
+		this.splitterOffSet = [
+			this.comfortSection2SplitterHook.current.offsetLeft - event.targetTouches[0].clientX,
+			0
+		];
+	}
+	comfortSection2SplitterMove(event) {
+		// event.preventDefault();
+		if (this.isDown) {
+			const absoluteWidth = event.targetTouches[0].clientX + this.splitterOffSet[0];
+			const relativeWidth = (event.targetTouches[0].clientX + this.splitterOffSet[0]) / screen.availWidth * 100;
+			if (absoluteWidth > 90) {
+				this.comfortSection2SplitterHook.current.style.left = absoluteWidth - 45 + 'px';
+				this.mask1.current.style.width = absoluteWidth + 'px';
+			}
 
-		// if (this.move < 0) {
-		// 	// 向上拉动 返回下一页
-		// 	if (this.moveDistance === 100) {
-		// 		this.comfortSection2Wrapper.current.style.display = 'none';
-		// 		this.comfortSection3Wrapper.current.style.display = 'block';
-		// 		this.comfortSection3BgLine.current.className = 'animate__animated animate__fadeIn animate__delay-.5s';
-		// 		this.comfortSection3Title.current.className = 'animate__animated animate__fadeIn animate__delay-.5s';
-		// 		this.comfortSection3Text.current.className = 'animate__animated animate__fadeInUp animate__delay-.5s';
-		// 	}
-		// 	return;
-		// }
+			if (absoluteWidth < 90) {
+				this.comfortSection2SplitterHook.current.style.left = '90px';
+			}
+
+			if (relativeWidth < 40) {
+				this.mask1.current.style.backdropFilter = 'blur(90px)';
+			}
+			if (relativeWidth > 40 && relativeWidth < 45) {
+				this.mask1.current.style.backdropFilter = 'blur(0px)';
+				this.mask2.current.style.display = 'none';
+			}
+			if (relativeWidth > 45 && relativeWidth < 60) {
+				this.mask2.current.style.backdropFilter = 'blur(90px)';
+				this.mask2.current.style.display = 'block';
+				this.mask2.current.style.flex = '1 1 auto';
+				this.mask1.current.style.backdropFilter = 'blur(0px)';
+				// this.comfortSection2Splitter2.current.style.display = 'block'
+				// this.comfortSection2Splitter.current.style.transform = "rotateY(180deg)"
+				// this.comfortSection2Splitter.current.style.backdropFilter = 'blur(90px)';
+				// this.comfortSection2SplitterHook.current.style.left = screen.availWidth - absoluteWidth-45 + 'px';
+				// this.comfortSection2Splitter.current.style.left = screen.availWidth - absoluteWidth + 'px';
+				// this.comfortSection2Splitter.current.style.width = screen.availWidth -this.comfortSection2SplitterHook.current.style.left + 'px';
+				// console.log('absoluteWidth:' + absoluteWidth)
+			}
+
+			if (relativeWidth > 60) {
+				// title move
+				this.comfortSection2Box05.current.style.left = '640px';
+				this.comfortSection2Desc.current.style.display = 'none';
+				this.setState({ comfortSection2Bg: comfortSection2Bg2 });
+			}
+
+			if (relativeWidth > 70) {
+				this.setState({ comfortSection2Bg: comfortSection2Bg3 });
+				// title move
+				this.comfortSection2Desc.current.style.display = 'block';
+				this.comfortSection2Desc.current.style.left = '0px';
+				this.comfortSection2Desc.current.className =
+					'animate__animated animate__fadeInLeft animate__delay-1.2s';
+			}
+			console.log(relativeWidth + ':relativeWidth');
+			if (relativeWidth > 90) {
+				this.comfortSection2SplitterHook.current.style.left = '97%';
+				this.mask1.current.style.width = '90%';
+			}
+		}
+	}
+	comfortSection2SplitterEnd(e) {
+		this.isDown = false;
 	}
 
+	comfortSection2Splitter2Start(event) {
+		this.isDown = true;
+		this.splitterOffSet = [
+			this.comfortSection2SplitterHook.current.offsetLeft - event.targetTouches[0].clientX,
+			0
+		];
+	}
+	comfortSection2Splitter2Move(event) {
+		// event.preventDefault();
+		if (this.isDown) {
+			const absoluteWidth = event.targetTouches[0].clientX + this.splitterOffSet[0];
+			const relativeWidth = (event.targetTouches[0].clientX + this.splitterOffSet[0]) / screen.availWidth * 100;
+
+			if (relativeWidth > 45 && relativeWidth < 60) {
+				this.comfortSection2Splitter2.current.style.backdropFilter = 'blur(90px)';
+				this.comfortSection2SplitterHook2.current.style.left = screen.availWidth - absoluteWidth - 45 + 'px';
+				this.comfortSection2Splitter2.current.style.left = screen.availWidth - absoluteWidth + 'px';
+				this.comfortSection2Splitter2.current.style.width =
+					screen.availWidth - this.comfortSection2SplitterHook.current.style.left + 'px';
+
+				console.log('absoluteWidth:' + absoluteWidth);
+			}
+
+			if (relativeWidth > 60 && relativeWidth < 70) {
+				this.comfortSection2Splitter.current.style.backdropFilter = 'blur(90px)';
+			}
+		}
+	}
+	comfortSection2Splitter2End(e) {
+		this.isDown = false;
+	}
 	// COMFORT SECTION
 	comfortSection3Start(e) {
 		this.updateStartMosePosition(event);
@@ -1038,12 +1190,6 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.move = this.state.endY - this.state.firstY;
 		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
 
-		if (this.move > 0) {
-			// 向下拉动 返回上一页
-			this.comfortSection3Wrapper.current.style.display = 'none';
-			this.comfortSection2Wrapper.current.style.display = 'block';
-		}
-
 		if (this.move < 0) {
 			// 向上拉动 进入下一页
 			this.comfortSection3Wrapper.current.style.display = 'none';
@@ -1051,7 +1197,12 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		}
 	}
 	comfortSection3End(e) {
-		console.log(e);
+		if (this.move > 0) {
+			// 向下拉动 返回上一页
+			this.comfortSection3Wrapper.current.style.display = 'none';
+			this.comfortSection2Wrapper.current.style.display = 'block';
+			this.comfortSection2Splitter.current.style.display = 'flex';
+		}
 	}
 
 	// COMFORT SECTION
@@ -1139,6 +1290,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			// 向上拉动 进入下一页
 			this.comfortSection5Wrapper.current.style.display = 'none';
 			this.comfortSection6Wrapper.current.style.display = 'block';
+			return;
 		}
 
 		if (this.move > 0) {
@@ -1166,6 +1318,9 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			this.comfortSection6Wrapper.current.style.display = 'none';
 
 			this.comfortSection7Wrapper.current.style.display = 'block';
+			this.comfortSection7Text.current.className = 'animate__animated animate__fadeInDown animate__delay-1s';
+			this.comfortSection7LeftBg.current.className = 'animate__animated animate__fadeInRight animate__delay-.8s';
+			return;
 		}
 
 		if (this.move > 0) {
@@ -1188,17 +1343,16 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			this.comfortSection7Wrapper.current.style.display = 'none';
 
 			this.comfortSection8Wrapper.current.style.display = 'block';
+			return;
 		}
-
+	}
+	comfortSection7End(e) {
 		if (this.move > 0) {
 			// 向下拉动 返回上一页
 			this.comfortSection7Wrapper.current.style.display = 'none';
 
 			this.comfortSection6Wrapper.current.style.display = 'block';
 		}
-	}
-	comfortSection7End(e) {
-		console.log(e);
 	}
 
 	comfortSection8Start(e) {
@@ -1212,18 +1366,33 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			// 向上拉动 进入下一页
 			this.comfortSection8Wrapper.current.style.display = 'none';
 			this.comfortSection9Wrapper.current.style.display = 'block';
+			this.comfortSection9Bg1.current.style.display = 'block';
+			this.comfortSection9LeftBg.current.style.display = 'block';
+			this.comfortSection9BgRight.current.style.display = 'block';
+			this.comfortSection9BgRight.current.className = '';
+			this.comfortSection9LeftBg.current.className = '';
+			this.comfortSection9Mask2.current.className = '';
+			this.comfortSection9Bg1.current.style.zIndex = '0';
+			this.comfortSection9Bg1.current.style.height = '752px';
+			return;
 		}
+	}
 
+	comfortSection8End(e) {
 		if (this.move > 0 && this.comfortSection8Bg2.current.style.display == 'block') {
 			// 向下拉动 返回上一页
-			this.comfortSection8Wrapper.current.style.display = 'none';
+			this.comfortSection8Wrapper.current.style.display = 'block';
 			this.comfortSection8Bg2.current.style.display = 'none';
 			this.comfortSection8Video.current.style.top = '137px';
 			this.comfortSection8Bg.current.style.top = '0px';
+			return;
 		}
-	}
-	comfortSection9End(e) {
-		console.log(e);
+
+		if (this.move > 0 && this.comfortSection8Video.current.style.top == '137px') {
+			// 向下拉动 返回上一页
+			this.comfortSection8Wrapper.current.style.display = 'none';
+			this.comfortSection7Wrapper.current.style.display = 'block';
+		}
 	}
 
 	comfortSection9Start(e) {
@@ -1233,29 +1402,199 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.updateMoveMousePositon(event);
 		this.move = this.state.endY - this.state.firstY;
 		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
-		if (this.move < 0 && this.comfortSection8Bg2.current.style.display == 'block') {
+		if (this.move < 0) {
 			// 向上拉动 进入下一页
-			this.comfortSection8Wrapper.current.style.display = 'none';
-		}
+			this.comfortSection9Bg1.current.style.display = 'block';
 
-		if (this.move > 0 && this.comfortSection8Bg2.current.style.display == 'block') {
-			// 向下拉动 返回上一页
-			this.comfortSection8Wrapper.current.style.display = 'none';
-			this.comfortSection8Bg2.current.style.display = 'none';
-			this.comfortSection8Video.current.style.top = '137px';
-			this.comfortSection8Bg.current.style.top = '0px';
+			this.comfortSection9LeftBg.current.className = 'animate__animated animate__fadeOutLeft animate__delay-1.5s';
+			this.comfortSection9BgRight.current.className = 'animate__animated animate__fadeOutRight animate__delay-2s';
+
+			this.comfortSection9Bg1.current.style.zIndex = '1';
+			this.comfortSection9Bg1.current.style.height = '100%';
+			this.comfortSection9Mask1.current.className = 'animate__animated animate__fadeOut animate__delay-2.3s';
+			this.comfortSection9Mask2.current.className = 'animate__animated animate__fadeOut animate__delay-2.3s';
+			this.comfortSectoin9EndReturnHome.current.className =
+				'animate__animated animate__slideInUp  animate__delay-2.3s';
+			setTimeout(() => {
+				this.comfortSection9Wrapper.current.style.display = 'none';
+				this.comfortSection10EndWrapper.current.style.display = 'block';
+				this.comfortSectoin9EndReturnHome.current.style.display = 'block';
+			}, 2300);
 		}
 	}
-	comfortSection8End(e) {
-		console.log(e);
+
+	comfortSection9End(e) {
+		val;
+		if (this.move > 0) {
+			// 向下拉动 返回上一页
+			this.comfortSection9Wrapper.current.style.display = 'none';
+			this.comfortSection8Wrapper.current.style.display = 'block';
+			this.comfortSection8Bg2.current.style.display = 'block';
+			this.comfortSection8Video.current.style.top = '574px';
+			this.comfortSection8Bg.current.style.top = '574px';
+		}
+	}
+
+	comfortSection10End(e) {
+		if (this.move > 0) {
+			// 向下拉动 返回上一页
+			this.comfortSectoin9EndReturnHome.current.className =
+				'animate__animated animate__slideOutUp  animate__delay-2.3s';
+			this.comfortSection10EndWrapper.current.style.display = 'none';
+			this.comfortSectoin9EndReturnHome.current.style.display = 'none';
+
+			this.comfortSection9Wrapper.current.style.display = 'block';
+			this.comfortSection9Bg1.current.style.display = 'block';
+			this.comfortSection9LeftBg.current.className = 'animate__animated animate__fadeInLeft animate__delay-1.5s';
+			this.comfortSection9BgRight.current.className =
+				'animate__animated animate__fadeInRight animate__delay-1.5s';
+
+			this.comfortSection9Bg1.current.style.zIndex = '0';
+			this.comfortSection9Bg1.current.style.height = '752px';
+			this.comfortSection9Mask1.current.className = 'animate__animated animate__fadeIn animate__delay-2.3s';
+			this.comfortSection9Mask2.current.className = 'animate__animated animate__fadeIn animate__delay-2.3s';
+			this.comfortSectoin9EndReturnHome.current.className =
+				'animate__animated animate__slideInUp  animate__delay-2.3s';
+		}
+	}
+
+	comfortSection10Start(e) {
+		this.updateStartMosePosition(event);
+	}
+	comfortSection10Move(e) {
+		this.updateMoveMousePositon(event);
+		this.move = this.state.endY - this.state.firstY;
+		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
+		if (this.move < 0) {
+			// 向上拉动 进入下一页
+			this.comfortSection10EndWrapper.current.style.display = 'none';
+			this.leisureSection1Wrapper.current.style.display = 'block';
+		}
 	}
 
 	comfortSection8ClickMagamize(event) {
-		console.log('e');
 		this.comfortSection8Bg2.current.style.display = 'block';
 		this.comfortSection8Video.current.style.top = '574px';
 		this.comfortSection8Bg.current.style.top = '574px';
 	}
+	leisureSection1Start(e) {
+		console.log(e);
+	}
+	leisureSection1Move(e) {
+		if (this.move < 0) {
+			// 向上拉动 进入下一页
+			this.leisureSection1Wrapper.current.style.display = 'none';
+			this.leisureSection2Wrapper.current.style.display = 'block';
+		}
+	}
+	leisureSection1End(e) {
+		if (this.move > 0) {
+			// 向下拉动，返回上一页
+			this.leisureSection1Wrapper.current.style.display = 'none';
+			this.comfortSection10EndWrapper.current.style.display = 'block';
+		}
+	}
+
+	leisureSection2TouchStart(e) {
+		this.updateStartMosePosition(event);
+	}
+	leisureSection2TouchMove(e) {
+		this.updateMoveMousePositon(event);
+		this.move = this.state.endY - this.state.firstY;
+		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
+
+		if (this.move > 0) {
+			// 向下拉动
+
+			setTimeout(() => {
+				this.leisureSection2CanvasRef.current.setCurrent(this.moveDistance);
+			}, 300);
+		}
+
+		if (this.move < 0) {
+			// 向上拉动
+
+			if (this.moveDistance > 100) {
+				this.moveDistance = 100;
+			}
+			setTimeout(() => {
+				console.log(this.moveDistance);
+				this.leisureSection2CanvasRef.current.setCurrent(this.moveDistance);
+			}, 40);
+			setTimeout(() => {
+				// if (0 < Number(this.moveDistance) && Number(this.moveDistance) < 25) {
+				// 	this.section_6_text_1.current.style.display = 'block';
+				// 	this.section_6_text_1.current.className = 'animate__animated animate__slideInLeft ';
+				// 	this.section_6_text_2.current.style.display = 'none';
+				// 	this.section_6_text_3.current.style.display = 'none';
+				// 	this.section_6_text_4.current.style.display = 'none';
+				// }
+
+				// if (30 < Number(this.moveDistance) && Number(this.moveDistance) < 50) {
+
+				// }
+
+				if (Number(this.moveDistance) > 40) {
+					this.leisureSection2Title.current.style.display = 'none';
+					this.leisureSection2Box2.current.style.display = 'block';
+					this.leisureSection2Box3.current.style.display = 'block';
+					this.leisureSection2Text2.current.style.display = 'block';
+					this.leisureSection2Bg2.current.style.display = 'block';
+				}
+
+				// if (80 < Number(this.moveDistance) && Number(this.moveDistance) <= 100) {
+				// 	this.section_6_text_4.current.style.display = 'block';
+				// 	this.section_6_text_4.current.className = 'animate__animated animate__slideInRight ';
+				// 	this.section_6_text_3.current.className = 'animate__animated animate__slideOutLeft ';
+				// 	this.section_6_text_1.current.style.display = 'none';
+				// 	this.section_6_text_2.current.style.display = 'none';
+				// 	this.section_6_text_3.current.style.display = 'none';
+				// }
+			}, 100);
+		}
+	}
+	leisureSection2TouchEnd(e) {
+		if (this.move > 0 && this.leisureSection2Text2.current.style.display =='none') {
+			// 向下拉动，返回上一页
+			this.leisureSection2Wrapper.current.style.display = 'none';
+			this.leisureSection1Wrapper.current.style.display = 'block';
+		}
+
+		if (this.move > 0 && this.leisureSection2Text2.current.style.display =='block') {
+			// 向下拉动，返回上一页
+			this.leisureSection2Title.current.style.display = 'block';
+			this.leisureSection2Box2.current.style.display = 'none';
+			this.leisureSection2Box3.current.style.display = 'none';
+			this.leisureSection2Text2.current.style.display = 'none';
+			this.leisureSection2Bg2.current.style.display = 'none';
+		}
+
+		if(this.move < 0 && this.leisureSection2Text2.current.style.display == 'block') {
+			this.leisureSection2Wrapper.current.style.display = 'none';
+			this.leisureSection3Wrapper.current.style.display = 'block';
+			this.leisureSection3Text.current.style.display = 'block';
+			this.leisureSection3Title.current.style.display = 'block';
+		}
+	}
+
+	leisureSection3TouchStart(e) {
+		console.log(e);
+	}
+	leisureSection3TouchMove(e) {
+		if (this.move < 0) {
+			// 向上拉动 进入下一页
+			this.leisureSection1Wrapper.current.style.display = 'none';
+			this.leisureSection2Wrapper.current.style.display = 'block';
+		}
+	}
+	leisureSection3TouchEnd(e) {
+		if (this.move > 0) {
+			// 向下拉动，返回上一页
+			this.leisureSection3Wrapper.current.style.display = 'none';
+			this.leisureSection2Wrapper.current.style.display = 'block';
+		}
+	}
+
 
 	letMeKonwDirection() {
 		const moveX = this.state.endX - this.state.firstX;
@@ -1413,7 +1752,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						top: '0px',
 						left: '0px',
 						zIndex: '-1',
-						display: 'none'
+						display: 'none',
+						overflow: 'hidden'
 					}}
 					onTouchStart={(e) => {
 						this.section1TouchStart(e);
@@ -1443,8 +1783,6 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							}}
 						/>
 					</div>
-
-					{/* 视屏播放2.5s 后，需要显示的内容*/}
 
 					{/* 侧边栏背景 */}
 					<div
@@ -1515,15 +1853,16 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						</div>
 					</div>
 					{/* 背景竖纹 */}
+
 					<div
 						ref={this.bgLine}
 						style={{
 							position: 'absolute',
-							width: '832px',
+							width: '822px',
 							height: '892px',
-							left: '257px',
-							top: '132px',
-							pointerEvents: 'none'
+							left: '272px',
+							top: '131px',
+							zIndex: '9'
 						}}
 					>
 						<svg
@@ -1552,7 +1891,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						top: '0px',
 						left: '0px',
 						zIndex: '-1',
-						display: 'none'
+						display: 'none',
+						overflow: 'hidden'
 					}}
 					onTouchStart={(e) => {
 						this.section2TouchStart(e);
@@ -1583,9 +1923,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							objectFit: 'cover'
 						}}
 					/>
-					{/* <div ref={this.section_2_image}>
-						<Player src={Video01_AdvancedDimmableWindow} />
-					</div> */}
+
 					{/* 左下角背景 */}
 					<div
 						ref={this.section_2_leftContent}
@@ -1634,12 +1972,11 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						ref={this.section_2_bgLine}
 						style={{
 							position: 'absolute',
-							width: '832px',
+							width: '822px',
 							height: '892px',
-							left: '257px',
-							top: '132px',
-							pointerEvents: 'none',
-							zIndex: '-1'
+							left: '272px',
+							top: '131px',
+							zIndex: '9'
 						}}
 					>
 						<svg
@@ -1694,11 +2031,11 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						ref={this.section_3_bgline}
 						style={{
 							position: 'absolute',
-							width: '832px',
+							width: '822px',
 							height: '892px',
-							left: '257px',
-							top: '145px',
-							zIndex: '-3'
+							left: '272px',
+							top: '131px',
+							zIndex: '9'
 						}}
 					>
 						<svg
@@ -1816,7 +2153,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						top: '0px',
 						left: '0px',
 						zIndex: '-4',
-						display: 'none'
+						display: 'none',
+						overflow: 'hidden'
 					}}
 				>
 					<img
@@ -1974,7 +2312,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						top: '0px',
 						left: '0px',
 						zIndex: '-5',
-						display: 'none'
+						display: 'none',
+						overflow: 'hidden'
 					}}
 					onTouchStart={(e) => {
 						this.section5TouchStart(e);
@@ -2003,7 +2342,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							height: '892px',
 							left: '257px',
 							top: '145px',
-							zIndex: '-5'
+							zIndex: '-4'
 						}}
 					>
 						<svg
@@ -2077,7 +2416,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						top: '0px',
 						left: '0px',
 						zIndex: '-6',
-						display: 'none'
+						display: 'none',
+						overflow: 'hidden'
 					}}
 				>
 					<CanvasImageSequence
@@ -2493,7 +2833,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						height: '100%',
 						top: '0px',
 						left: '0px',
-						display: 'none'
+						display: 'none',
+						overflow: 'hidden'
 					}}
 					onTouchStart={(e) => {
 						this.section7TouchStart(e);
@@ -2566,7 +2907,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						height: '100%',
 						top: '0px',
 						left: '0px',
-						display: 'none'
+						display: 'none',
+						overflow: 'hidden'
 					}}
 					onTouchStart={(e) => {
 						this.section8TouchStart(e);
@@ -2850,7 +3192,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						left: '0px',
 						width: '100%',
 						height: '100%',
-						display: 'none'
+						display: 'none',
+						overflow: 'hidden'
 					}}
 					onTouchStart={(e) => {
 						this.comfortSection1Start(e);
@@ -3106,7 +3449,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						left: '0px',
 						width: '100%',
 						height: '100%',
-						display: 'none'
+						display: 'none',
+						overflow: 'hidden'
 					}}
 					onTouchStart={(e) => {
 						this.comfortSection2Start(e);
@@ -3118,98 +3462,208 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						this.comfortSection2End(e);
 					}}
 				>
-					<img src={lastComfortSection1ImageSequence} className="imageCover" />
+					<div style={{ position: 'absolute', width: '100%', height: '100%' }}>
+						<img src={this.state.comfortSection2Bg} className="imageCover" />
+
+						<div
+							id="comfortSection2Box05"
+							ref={this.comfortSection2Box05}
+							style={{
+								position: 'absolute',
+								width: '100%',
+								height: '208px',
+								left: '0px',
+								top: '816px',
+								background: '#5F6871',
+								zIndex: '2'
+							}}
+						>
+							<div
+								className="dFordNormalTitle"
+								style={{
+									position: 'absolute',
+									width: '621px',
+									height: '72px',
+									left: '101px',
+									top: '-70px',
+									color: '#FCE9CA',
+									opacity: '0.9'
+								}}
+							>
+								MAXIMAL
+							</div>
+							<div
+								className="dFordNormalTitle"
+								style={{
+									position: 'absolute',
+									width: '819px',
+									height: '72px',
+									left: '101px',
+									top: '10px',
+									opacity: '0.9'
+								}}
+							>
+								SPACE UTILIZATION
+							</div>
+						</div>
+
+						<div
+							id="comfortSection2TextBox05"
+							style={{
+								position: 'absolute',
+								width: '545px',
+								height: '288px',
+								left: '828px',
+								top: '736px',
+								background: 'rgba(30, 33, 41, 0.26)',
+								backdropFilter: ' blur(48px)',
+								zIndex: '2'
+							}}
+							ref={this.comfortSection2Desc}
+						>
+							<div
+								className="dFordText"
+								style={{
+									position: 'absolute',
+									left: '100px',
+									top: '60px',
+									width: '441px',
+									height: '62px'
+								}}
+							>
+								providing natural and relaxing viewing by conforming to user’s learned behaviors
+							</div>
+						</div>
+
+						{/* 背景栅格 */}
+						<div
+							ref={this.comfortSection2BgLine}
+							style={{
+								position: 'absolute',
+								width: '822px',
+								height: '892px',
+								left: '272px',
+								top: '131px'
+							}}
+						>
+							<svg
+								width="823"
+								height="892"
+								viewBox="0 0 823 892"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<line
+									opacity="0.3"
+									x1="0.5"
+									y1="-2.18557e-08"
+									x2="0.500039"
+									y2="892"
+									stroke="#E8E8E8"
+								/>
+								<line opacity="0.3" x1="273.5" y1="-2.18557e-08" x2="273.5" y2="892" stroke="#E8E8E8" />
+								<line opacity="0.3" x1="549.5" y1="-2.18557e-08" x2="549.5" y2="892" stroke="#E8E8E8" />
+								<line opacity="0.3" x1="822.5" y1="-2.18557e-08" x2="822.5" y2="892" stroke="#E8E8E8" />
+							</svg>
+						</div>
+					</div>
 
 					<div
-						id="comfortSection2Box05"
-						ref={this.comfortSection2Box05}
+						id="comfortSection2Splitter"
+						ref={this.comfortSection2Splitter}
 						style={{
 							position: 'absolute',
 							width: '100%',
-							height: '208px',
+							height: '100%',
 							left: '0px',
-							top: '816px',
-							background: '#5F6871'
+							top: '0px',
+							zIndex: '1',
+							display: 'flex'
 						}}
 					>
 						<div
-							className="dFordNormalTitle"
+							id="mask1"
+							ref={this.mask1}
 							style={{
-								position: 'absolute',
-								width: '621px',
-								height: '72px',
-								left: '101px',
-								top: '-70px',
-								color: '#FCE9CA',
-								opacity: '0.9'
+								flex: 'none',
+								background: ' rgba(255, 255, 255, 0.05)',
+								backdropFilter: 'blur(80px)',
+								minWidth: '10%',
+								display: 'block',
+								zIndex: '1'
 							}}
 						>
-							MAXIMAL
+							<div
+								style={{ position: 'absolute', top: '50%', left: '90px', flex: '1 auto' }}
+								ref={this.comfortSection2SplitterHook}
+								onTouchStart={(e) => {
+									this.comfortSection2SplitterStart(e);
+								}}
+								onTouchMove={(e) => {
+									this.comfortSection2SplitterMove(e);
+								}}
+								onTouchEnd={(e) => {
+									this.comfortSection2SplitterEnd(e);
+								}}
+							>
+								<svg
+									width="97"
+									height="97"
+									viewBox="0 0 97 97"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<g filter="url(#filter0_b_2733_1192)">
+										<circle cx="48.5" cy="48.5" r="48.5" fill="white" fillOpacity="0.3" />
+									</g>
+									<g opacity="0.9">
+										<path d="M27 48.5L45 29.8805L45 67.1195L27 48.5Z" fill="white" />
+										<path d="M27 48.5L45 29.8805L45 67.1195L27 48.5Z" fill="white" />
+									</g>
+									<g opacity="0.9">
+										<path d="M70 48.5L52 67.1195L52 29.8805L70 48.5Z" fill="white" />
+										<path d="M70 48.5L52 67.1195L52 29.8805L70 48.5Z" fill="white" />
+									</g>
+									<defs>
+										<filter
+											id="filter0_b_2733_1192"
+											x="-2"
+											y="-2"
+											width="101"
+											height="101"
+											filterUnits="userSpaceOnUse"
+											colorInterpolationFilters="sRGB"
+										>
+											<feFlood floodOpacity="0" result="BackgroundImageFix" />
+											<feGaussianBlur in="BackgroundImage" stdDeviation="1" />
+											<feComposite
+												in2="SourceAlpha"
+												operator="in"
+												result="effect1_backgroundBlur_2733_1192"
+											/>
+											<feBlend
+												mode="normal"
+												in="SourceGraphic"
+												in2="effect1_backgroundBlur_2733_1192"
+												result="shape"
+											/>
+										</filter>
+									</defs>
+								</svg>
+							</div>
 						</div>
-						<div
-							className="dFordNormalTitle"
-							style={{
-								position: 'absolute',
-								width: '819px',
-								height: '72px',
-								left: '101px',
-								top: '10px',
-								opacity: '0.9'
-							}}
-						>
-							SPACE UTILIZATION
-						</div>
-					</div>
 
-					<div
-						id="comfortSection2TextBox05"
-						style={{
-							position: 'absolute',
-							width: '545px',
-							height: '288px',
-							left: '828px',
-							top: '736px',
-							background: 'rgba(30, 33, 41, 0.26)',
-							backdropFilter: ' blur(48px)'
-						}}
-					>
 						<div
-							className="dFordText"
+							id="mask2"
+							ref={this.mask2}
 							style={{
-								position: 'absolute',
-								left: '100px',
-								top: '60px',
-								width: '441px',
-								height: '62px'
+								flex: '1 1 auto',
+								display: 'none',
+								background: ' rgba(255, 255, 255, 0.05)',
+								backdropFilter: 'blur(80px)',
+								minWidth: '10%'
 							}}
-						>
-							providing natural and relaxing viewing by conforming to user’s learned behaviors
-						</div>
-					</div>
-
-					{/* 背景栅格 */}
-					<div
-						ref={this.comfortSection2BgLine}
-						style={{
-							position: 'absolute',
-							width: '822px',
-							height: '892px',
-							left: '272px',
-							top: '131px'
-						}}
-					>
-						<svg
-							width="823"
-							height="892"
-							viewBox="0 0 823 892"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<line opacity="0.3" x1="0.5" y1="-2.18557e-08" x2="0.500039" y2="892" stroke="#E8E8E8" />
-							<line opacity="0.3" x1="273.5" y1="-2.18557e-08" x2="273.5" y2="892" stroke="#E8E8E8" />
-							<line opacity="0.3" x1="549.5" y1="-2.18557e-08" x2="549.5" y2="892" stroke="#E8E8E8" />
-							<line opacity="0.3" x1="822.5" y1="-2.18557e-08" x2="822.5" y2="892" stroke="#E8E8E8" />
-						</svg>
+						/>
 					</div>
 				</div>
 
@@ -3232,11 +3686,11 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						top: '0px',
 						background:
 							'linear-gradient(175.17deg, rgba(236, 168, 158, 0.16) 12.52%, rgba(27, 22, 82, 0.16) 96.1%)',
-						display: 'none'
+						display: 'none',
+						overflow: 'hidden'
 					}}
 				>
 					<img src={comfortBg_4_new} className="imageCover" />
-
 					<div
 						id="comfortSection3Title"
 						ref={this.comfortSection3Title}
@@ -3417,7 +3871,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						left: '0px',
 						width: '100%',
 						height: '100%',
-						display: 'none'
+						display: 'none',
+						overflow: 'hidden'
 					}}
 					onTouchStart={(e) => {
 						this.comfortSection4Start(e);
@@ -3738,6 +4193,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						height: '100%',
 						top: '0px',
 						display: 'none',
+						overflow: 'hidden',
 						background:
 							'linear-gradient(175.17deg, rgba(236, 168, 158, 0.16) 12.52%, rgba(27, 22, 82, 0.16) 96.1%)'
 					}}
@@ -3839,7 +4295,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						left: '0px',
 						width: '100%',
 						height: '100%',
-						display: 'none'
+						display: 'none',
+						overflow: 'hidden'
 					}}
 					onTouchStart={(e) => {
 						this.comfortSection6Start(e);
@@ -3969,7 +4426,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						width: '100%',
 						height: '100%',
 						display: 'none',
-						background: '#5F6871'
+						overflow: 'hidden'
 					}}
 					onTouchStart={(e) => {
 						this.comfortSection7Start(e);
@@ -4091,7 +4548,17 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							<line opacity="0.3" x1="822.5" y1="-2.18557e-08" x2="822.5" y2="892" stroke="#E8E8E8" />
 						</svg>
 					</div>
-
+					<div
+						ref={this.comfortSection7LeftBg}
+						style={{
+							background: '#5F6871',
+							position: 'absolute',
+							top: '0px',
+							right: '0px',
+							width: '288px',
+							height: '100%'
+						}}
+					/>
 					{/* 标题 */}
 					<div
 						className="dFordNormalTitle"
@@ -4110,6 +4577,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					</div>
 
 					<div
+						ref={this.comfortSection7Text}
 						style={{
 							position: 'absolute',
 							width: '832px',
@@ -4149,7 +4617,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						left: '0px',
 						width: '100%',
 						height: '100%',
-						display: 'none'
+						display: 'none',
+						overflow: 'hidden'
 					}}
 					onTouchStart={(e) => {
 						this.comfortSection8Start(e);
@@ -4186,12 +4655,14 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							}}
 						/>
 						<img
+							id="comfortSection8Bg"
 							src={comfortSection8Bg}
 							className="imageCover"
 							style={{ mixBlendMode: 'overlay' }}
 							ref={this.comfortSection8Bg}
 						/>
 						<img
+							id="comfortSection8Video"
 							src={comfortSection8BG1}
 							ref={this.comfortSection8Video}
 							style={{
@@ -4205,6 +4676,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							}}
 						/>
 						<img
+							id="comfortSection8Bg2"
 							src={comfortSection8Bg2}
 							className="imageCover"
 							style={{
@@ -4215,8 +4687,6 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							ref={this.comfortSection8Bg2}
 						/>
 					</div>
-
-					<div id="comfortSection8BgWrapper" />
 
 					{/* 背景栅格 */}
 					<div
@@ -4276,7 +4746,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						left: '0px',
 						width: '100%',
 						height: '100%',
-						display: 'none'
+						display: 'none',
+						overflow: 'hidden'
 					}}
 					onTouchStart={(e) => {
 						this.comfortSection9Start(e);
@@ -4295,14 +4766,18 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							width: '100%',
 							height: '752px',
 							left: '0px',
-							top: '0px'
+							top: '0px',
+							display: 'none'
 						}}
+						ref={this.comfortSection9Bg1}
 					>
 						<div
+							id="comfortSection9Mask1"
+							ref={this.comfortSection9Mask1}
 							style={{
 								position: 'absolute',
 								width: '100%',
-								height: '752px',
+								height: '100%',
 								left: '0px',
 								top: '0px',
 
@@ -4311,13 +4786,15 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 								opacity: '0.34'
 							}}
 						/>
-						<img src={comfortSection9Bg1} className="imageCover" style={{ mixBlendMode: 'multiply' }} />
+						<img src={comfortSection9Bg4} className="imageCover" style={{ mixBlendMode: 'multiply' }} />
 
 						<div
+							id="comfortSection9Mask2"
+							ref={this.comfortSection9Mask2}
 							style={{
 								position: 'absolute',
 								width: '100%',
-								height: '752px',
+								height: '100%',
 								left: '0px',
 								top: '0px',
 								background:
@@ -4328,14 +4805,16 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					</div>
 
 					<div
-						id="comfortSection9Bg2"
+						id="comfortSection9LeftBg"
+						ref={this.comfortSection9LeftBg}
 						style={{
 							position: 'absolute',
 							width: '545px',
 							height: '756px',
 							left: '0px',
 							top: '268px',
-							zIndex: '1'
+							zIndex: '1',
+							display: 'block'
 						}}
 					>
 						<div
@@ -4365,13 +4844,15 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					</div>
 
 					<div
-						id="comfortSection9Bg3"
+						id="comfortSection9BgRight"
+						ref={this.comfortSection9BgRight}
 						style={{
 							position: 'absolute',
 							width: '680px',
 							height: '752px',
 							left: '686px',
-							top: '0px'
+							top: '0px',
+							display: 'block'
 						}}
 					>
 						<div
@@ -4416,8 +4897,6 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						<div
 							className="dFordNormalTitle"
 							style={{
-								/* keep using personal devices */
-
 								position: 'absolute',
 								width: '605px',
 								height: '144px',
@@ -4433,8 +4912,6 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						id="comfortSection9Text"
 						className="dFordText"
 						style={{
-							/* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium odio ipsum, eget interdum libero tincidunt efficitur. Maecenas dapibus condimentum commodo. */
-
 							position: 'absolute',
 							width: '564px',
 							height: '93px',
@@ -4445,83 +4922,111 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium odio ipsum, eget
 						interdum libero tincidunt efficitur. Maecenas dapibus condimentum commodo.
 					</div>
-
-					<div id="comfortSection9EndWrapper">
-						<div id="comfortSection9EngBg1">
-							<div
-								style={{
-									position: 'absolute',
-									width: '100%',
-									height: '100%',
-									left: '0px',
-									top: '0px',
-
-									background:
-										' linear-gradient(175.17deg, rgba(236, 168, 158, 0.16) 12.52%, rgba(27, 22, 82, 0.16) 96.1%)'
-								}}
-							/>
-
-							<div
-								style={{
-									position: 'absolute',
-									width: '100%',
-									height: '100%',
-									left: '0px',
-									top: '1024px',
-
-									background:
-										'linear-gradient(2.19deg, rgba(53, 63, 75, 0.71) 8.23%, rgba(66, 60, 81, 0) 67.07%)',
-									mixBlendMode: 'multiply',
-									transform: 'matrix(1, 0, 0, -1, 0, 0)'
-								}}
-							/>
-							<div
-								style={{
-									position: 'absolute',
-									width: '100%',
-									height: '100%',
-									left: '0px',
-									top: '0px',
-									background:
-										' linear-gradient(180deg, rgba(177, 140, 140, 0.2914) 0%, rgba(255, 242, 230, 0.47) 100%)',
-									mixBlendMode: 'multiply'
-								}}
-							/>
-							<div
-								style={{
-									position: 'absolute',
-									width: '100%',
-									height: '100%',
-									left: '-381px',
-									top: '0px',
-									background:
-										'linear-gradient(175.17deg, rgba(236, 168, 158, 0.16) 12.52%, rgba(27, 22, 82, 0.16) 96.1%)'
-								}}
-							/>
-							<div
-								style={{
-									/* Rectangle 74 */
-
-									position: 'absolute',
-									width: '100%',
-									height: '100%',
-									left: '-394.62px',
-									top: '0px',
-
-									background: ' linear-gradient(8.2deg, #000000 17.47%, rgba(4, 4, 4, 0) 31.74%)',
-									mixBlendMode: 'multiply',
-									opacity: '0.34'
-								}}
-							/>
-							<img src={comfortSection9Bg4} className="imageCover" />
-						</div>
-					</div>
-
-					<div id="comfortSectoin9EndReturnHome">
+				</div>
+				{/*comfort sectoin 10*/}
+				<div
+					id="comfortSection10EndWrapper"
+					ref={this.comfortSection10EndWrapper}
+					style={{
+						display: 'none',
+						position: 'absolute',
+						width: '100%',
+						height: '100%',
+						left: '0px',
+						top: '0px',
+						zIndex: '1',
+						overflow: 'hidden'
+					}}
+					onTouchStart={(e) => {
+						this.comfortSection10Start(e);
+					}}
+					onTouchMove={(e) => {
+						this.comfortSection10Move(e);
+					}}
+					onTouchEnd={(e) => {
+						this.comfortSection10End(e);
+					}}
+				>
+					<div id="comfortSection9EngBg1">
 						<div
 							style={{
-								/* Vector 16 */
+								position: 'absolute',
+								width: '100%',
+								height: '100%',
+								left: '0px',
+								top: '0px',
 
+								background:
+									' linear-gradient(175.17deg, rgba(236, 168, 158, 0.16) 12.52%, rgba(27, 22, 82, 0.16) 96.1%)'
+							}}
+						/>
+
+						<div
+							style={{
+								position: 'absolute',
+								width: '100%',
+								height: '100%',
+								left: '0px',
+								top: '1024px',
+
+								background:
+									'linear-gradient(2.19deg, rgba(53, 63, 75, 0.71) 8.23%, rgba(66, 60, 81, 0) 67.07%)',
+								mixBlendMode: 'multiply',
+								transform: 'matrix(1, 0, 0, -1, 0, 0)'
+							}}
+						/>
+						<div
+							style={{
+								position: 'absolute',
+								width: '100%',
+								height: '100%',
+								left: '0px',
+								top: '0px',
+								background:
+									' linear-gradient(180deg, rgba(177, 140, 140, 0.2914) 0%, rgba(255, 242, 230, 0.47) 100%)',
+								mixBlendMode: 'multiply'
+							}}
+						/>
+						<div
+							style={{
+								position: 'absolute',
+								width: '100%',
+								height: '100%',
+								left: '-381px',
+								top: '0px',
+								background:
+									'linear-gradient(175.17deg, rgba(236, 168, 158, 0.16) 12.52%, rgba(27, 22, 82, 0.16) 96.1%)'
+							}}
+						/>
+						<div
+							style={{
+								position: 'absolute',
+								width: '100%',
+								height: '100%',
+								left: '-394.62px',
+								top: '0px',
+								background: ' linear-gradient(8.2deg, #000000 17.47%, rgba(4, 4, 4, 0) 31.74%)',
+								mixBlendMode: 'multiply',
+								opacity: '0.34'
+							}}
+						/>
+						<img src={comfortSection9Bg4} className="imageCover" />
+					</div>
+
+					<div
+						id="comfortSectoin9EndReturnHome"
+						style={{
+							position: 'absolute',
+							width: '100%',
+							height: '100%',
+							left: '0px',
+							top: '0px',
+							display: 'none'
+						}}
+						ref={this.comfortSectoin9EndReturnHome}
+					>
+						<div
+							style={{
 								position: 'absolute',
 								width: '100%',
 								height: '95px',
@@ -4603,8 +5108,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 
 					{/* 中部文本 continue to */}
 					<div
-						id="section_8_title"
-						ref={this.section_8_title}
+						id="comfortSectoin9EndReturnHomeTitle"
+						ref={this.comfortSectoin9EndReturnHomeTitle}
 						style={{
 							position: 'absolute',
 							width: '100%',
@@ -4643,8 +5148,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					{/* 中部文本 + */}
 
 					<div
-						id="section_8_text"
-						ref={this.section_8_text}
+						id="comfortSectoin9EndReturnHomeText"
+						ref={this.comfortSectoin9EndReturnHomeText}
 						style={{
 							position: 'absolute',
 							width: '100%',
@@ -4695,6 +5200,523 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						>
 							Return to Home
 						</div>
+					</div>
+				</div>
+
+				<div
+					id="leisureSection1"
+					ref={this.leisureSection1Wrapper}
+					onTouchStart={(e) => {
+						this.leisureSection1Start(e);
+					}}
+					onTouchMove={(e) => {
+						this.leisureSection1Move(e);
+					}}
+					onTouchEnd={(e) => {
+						this.leisureSection1End(e);
+					}}
+					style={{
+						position: 'absolute',
+						top: '0px',
+						left: '0px',
+						width: '100%',
+						height: '100%',
+						display: 'none'
+					}}
+				>
+					{/* 背景图片*/}
+					<div>
+						<img src={leisureSection1Bg} />
+					</div>
+					{/* 左下角数字*/}
+					<div
+						style={{
+							position: 'absolute',
+							width: '88px',
+							height: '105px',
+							left: '46px',
+							top: '891px'
+						}}
+					>
+						<svg width="81" height="63" viewBox="0 0 81 63" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path
+								opacity="0.24"
+								d="M22.5165 46.128C19.1952 46.128 16.1872 45.5953 13.4925 44.53C10.7978 43.402 8.51051 41.8353 6.63051 39.83C4.75051 37.8247 3.27785 35.4433 2.21251 32.686C1.20985 29.866 0.708514 26.764 0.708514 23.38C0.708514 20.184 1.24118 17.176 2.30651 14.356C3.43451 11.536 4.96985 9.092 6.91251 7.024C8.85518 4.956 11.1425 3.32667 13.7745 2.136C16.4692 0.882665 19.3832 0.255999 22.5165 0.255999C25.6498 0.255999 28.5325 0.851332 31.1645 2.042C33.8592 3.17 36.1778 4.768 38.1205 6.836C40.0632 8.84133 41.5672 11.254 42.6325 14.074C43.7605 16.894 44.3245 19.996 44.3245 23.38C44.3245 26.576 43.7918 29.5527 42.7265 32.31C41.7238 35.0673 40.2825 37.48 38.4025 39.548C36.5225 41.616 34.2352 43.2453 31.5405 44.436C28.8458 45.564 25.8378 46.128 22.5165 46.128ZM10.0145 23.38C10.0145 26.5133 10.3278 29.2393 10.9545 31.558C11.6438 33.814 12.5525 35.7253 13.6805 37.292C14.8712 38.8587 16.2185 40.018 17.7225 40.77C19.2892 41.522 20.9498 41.898 22.7045 41.898C24.3338 41.898 25.8692 41.522 27.3105 40.77C28.8145 40.018 30.1305 38.89 31.2585 37.386C32.3865 35.882 33.2638 33.9707 33.8905 31.652C34.5798 29.3333 34.9245 26.576 34.9245 23.38C34.9245 20.184 34.5798 17.3953 33.8905 15.014C33.2638 12.6327 32.3865 10.69 31.2585 9.186C30.1305 7.61933 28.8145 6.46 27.3105 5.708C25.8065 4.89333 24.2085 4.486 22.5165 4.486C20.8245 4.486 19.2265 4.862 17.7225 5.614C16.2185 6.366 14.8712 7.52533 13.6805 9.092C12.5525 10.596 11.6438 12.5387 10.9545 14.92C10.3278 17.3013 10.0145 20.1213 10.0145 23.38ZM52.9894 28.268C56.3734 26.576 59.1307 25.1033 61.2614 23.85C63.3921 22.5967 65.0527 21.406 66.2434 20.278C67.4967 19.0873 68.3427 17.928 68.7814 16.8C69.2827 15.6093 69.5334 14.2933 69.5334 12.852C69.5334 10.972 69.0007 9.374 67.9354 8.058C66.9327 6.67933 65.0841 5.99 62.3894 5.99C60.5094 5.99 58.7547 6.366 57.1254 7.118C55.4961 7.80733 53.7101 8.87266 51.7674 10.314C51.6421 10.4393 51.4541 10.596 51.2034 10.784C51.0154 10.9093 50.7961 10.972 50.5454 10.972C49.7307 10.972 49.0414 10.5647 48.4774 9.75C51.4227 6.554 54.2741 4.17266 57.0314 2.606C59.7887 1.03933 62.7967 0.255999 66.0554 0.255999C69.7527 0.255999 72.6981 1.07067 74.8914 2.7C77.0847 4.32933 78.1814 6.836 78.1814 10.22C78.1814 11.8493 77.9307 13.2907 77.4294 14.544C76.9281 15.7973 76.2074 16.9567 75.2674 18.022C74.3274 19.0247 73.2307 19.996 71.9774 20.936C70.7241 21.8133 69.3454 22.722 67.8414 23.662V23.85C71.9774 24.79 75.1107 26.4507 77.2414 28.832C79.3721 31.2133 80.4374 34.0333 80.4374 37.292C80.4374 39.8613 79.7167 42.4307 78.2754 45C76.8967 47.632 74.8287 50.076 72.0714 52.332C69.3141 54.588 65.8987 56.5933 61.8254 58.348C57.8147 60.1027 53.1774 61.4187 47.9134 62.296C47.4121 61.6693 47.1614 61.0427 47.1614 60.416C47.1614 59.852 47.4434 59.476 48.0074 59.288C52.5194 57.784 56.2167 56.2173 59.0994 54.588C61.9821 53.0213 64.2381 51.392 65.8674 49.7C67.5594 48.0707 68.7187 46.3787 69.3454 44.624C69.9721 42.8067 70.2854 40.958 70.2854 39.078C70.2854 36.07 69.4707 33.72 67.8414 32.028C66.2747 30.2733 64.0501 29.396 61.1674 29.396C59.9767 29.396 58.6921 29.5527 57.3134 29.866C55.9347 30.1167 54.4934 30.5867 52.9894 31.276V28.268Z"
+								fill="white"
+							/>
+						</svg>
+					</div>
+					{/* 标题*/}
+					<div
+						style={{
+							position: 'absolute',
+							width: '650px',
+							height: '236px',
+							left: '393px',
+							top: '660px'
+						}}
+						className="dFordMainTitle"
+					>
+						Leisure
+					</div>
+					{/* 向下滚动箭头*/}
+					<div
+						style={{
+							position: 'absolute',
+							width: '211px',
+							height: '57px',
+							left: '572px',
+							top: '916px'
+						}}
+					>
+						<svg
+							width="211"
+							height="59"
+							viewBox="0 0 211 59"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M6.01203 18.24C9.61203 18.24 11.172 16.34 11.172 14.12C11.172 9.14 3.41203 10.68 3.41203 8.2C3.41203 7.2 4.29203 6.54 5.67203 6.54C7.07203 6.54 8.49203 7.02 9.53203 8.06L10.872 6.32C9.63203 5.12 7.95203 4.46 5.87203 4.46C2.95203 4.46 1.01203 6.16 1.01203 8.36C1.01203 13.28 8.79203 11.54 8.79203 14.34C8.79203 15.22 8.03203 16.16 6.11203 16.16C4.25203 16.16 2.81203 15.3 1.89203 14.32L0.592028 16.12C1.77203 17.38 3.55203 18.24 6.01203 18.24ZM19.527 18.24C22.227 18.24 23.867 16.84 24.887 15.24L22.887 14.22C22.247 15.34 20.967 16.16 19.527 16.16C16.887 16.16 14.927 14.14 14.927 11.34C14.927 8.54 16.887 6.52 19.527 6.52C20.967 6.52 22.247 7.36 22.887 8.46L24.887 7.44C23.887 5.84 22.227 4.44 19.527 4.44C15.587 4.44 12.527 7.24 12.527 11.34C12.527 15.44 15.587 18.24 19.527 18.24ZM36.8798 18L33.6198 12.76C35.2198 12.5 36.7798 11.22 36.7798 8.84C36.7798 6.38 35.0598 4.66 32.4198 4.66H26.5598V18H28.8998V13.02H31.2198L34.1798 18H36.8798ZM32.0998 10.96H28.8998V6.72H32.0998C33.4198 6.72 34.3798 7.56 34.3798 8.84C34.3798 10.12 33.4198 10.96 32.0998 10.96ZM45.1384 18.24C49.1384 18.24 51.9584 15.32 51.9584 11.34C51.9584 7.36 49.1384 4.44 45.1384 4.44C41.1384 4.44 38.3184 7.36 38.3184 11.34C38.3184 15.32 41.1384 18.24 45.1384 18.24ZM45.1384 16.16C42.4384 16.16 40.7184 14.08 40.7184 11.34C40.7184 8.58 42.4384 6.52 45.1384 6.52C47.8184 6.52 49.5584 8.58 49.5584 11.34C49.5584 14.08 47.8184 16.16 45.1384 16.16ZM62.2314 18V15.94H56.3514V4.66H54.0114V18H62.2314ZM72.3634 18V15.94H66.4834V4.66H64.1434V18H72.3634ZM84.7322 18V6.72H88.7722V4.66H78.3522V6.72H82.3922V18H84.7322ZM96.2673 18.24C100.267 18.24 103.087 15.32 103.087 11.34C103.087 7.36 100.267 4.44 96.2673 4.44C92.2673 4.44 89.4473 7.36 89.4473 11.34C89.4473 15.32 92.2673 18.24 96.2673 18.24ZM96.2673 16.16C93.5673 16.16 91.8473 14.08 91.8473 11.34C91.8473 8.58 93.5673 6.52 96.2673 6.52C98.9473 6.52 100.687 8.58 100.687 11.34C100.687 14.08 98.9473 16.16 96.2673 16.16ZM115.037 18C119.197 18 122.017 15.26 122.017 11.34C122.017 7.42 119.197 4.66 115.037 4.66H110.077V18H115.037ZM115.037 15.94H112.417V6.72H115.037C118.017 6.72 119.617 8.76 119.617 11.34C119.617 13.86 117.937 15.94 115.037 15.94ZM133.216 18V15.94H126.416V12.24H133.076V10.18H126.416V6.72H133.216V4.66H124.076V18H133.216ZM139.979 18.24C143.579 18.24 145.139 16.34 145.139 14.12C145.139 9.14 137.379 10.68 137.379 8.2C137.379 7.2 138.259 6.54 139.639 6.54C141.039 6.54 142.459 7.02 143.499 8.06L144.839 6.32C143.599 5.12 141.919 4.46 139.839 4.46C136.919 4.46 134.979 6.16 134.979 8.36C134.979 13.28 142.759 11.54 142.759 14.34C142.759 15.22 141.999 16.16 140.079 16.16C138.219 16.16 136.779 15.3 135.859 14.32L134.559 16.12C135.739 17.38 137.519 18.24 139.979 18.24ZM153.494 18.24C156.194 18.24 157.834 16.84 158.854 15.24L156.854 14.22C156.214 15.34 154.934 16.16 153.494 16.16C150.854 16.16 148.894 14.14 148.894 11.34C148.894 8.54 150.854 6.52 153.494 6.52C154.934 6.52 156.214 7.36 156.854 8.46L158.854 7.44C157.854 5.84 156.194 4.44 153.494 4.44C149.554 4.44 146.494 7.24 146.494 11.34C146.494 15.44 149.554 18.24 153.494 18.24ZM166.747 18.24C170.747 18.24 173.567 15.32 173.567 11.34C173.567 7.36 170.747 4.44 166.747 4.44C162.747 4.44 159.927 7.36 159.927 11.34C159.927 15.32 162.747 18.24 166.747 18.24ZM166.747 16.16C164.047 16.16 162.327 14.08 162.327 11.34C162.327 8.58 164.047 6.52 166.747 6.52C169.427 6.52 171.167 8.58 171.167 11.34C171.167 14.08 169.427 16.16 166.747 16.16ZM181.989 18L187.229 4.66H184.569L180.529 15.46L176.489 4.66H173.829L179.069 18H181.989ZM197.626 18V15.94H190.826V12.24H197.486V10.18H190.826V6.72H197.626V4.66H188.486V18H197.626ZM210.149 18L206.889 12.76C208.489 12.5 210.049 11.22 210.049 8.84C210.049 6.38 208.329 4.66 205.689 4.66H199.829V18H202.169V13.02H204.489L207.449 18H210.149ZM205.369 10.96H202.169V6.72H205.369C206.689 6.72 207.649 7.56 207.649 8.84C207.649 10.12 206.689 10.96 205.369 10.96Z"
+								fill="#DEDEDE"
+							/>
+							<path d="M98 49L109.275 57L120 49" stroke="white" strokeWidth="2" strokeLinecap="round" />
+						</svg>
+					</div>
+
+					<div
+						style={{
+							position: 'absolute',
+							width: '148px',
+							height: '133px',
+							left: '460px',
+							top: '335px'
+						}}
+						id="clickTab"
+					>
+						<svg
+							width="148"
+							height="133"
+							viewBox="0 0 148 133"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<g filter="url(#filter0_b_2794_1143)">
+								<circle cx="73.5" cy="48.5" r="48.5" fill="white" fillOpacity="0.15" />
+							</g>
+							<circle opacity="0.9" cx="73.5" cy="48.5" r="18.5" fill="white" />
+							<path
+								d="M9.14417 124.264C11.7402 124.264 13.5002 123.032 14.7322 121.36L13.1702 120.502C12.3342 121.756 10.8162 122.636 9.14417 122.636C5.93217 122.636 3.49017 120.15 3.49017 116.674C3.49017 113.176 5.93217 110.712 9.14417 110.712C10.8162 110.712 12.3342 111.614 13.1702 112.846L14.7102 111.988C13.5442 110.338 11.7402 109.084 9.14417 109.084C4.92017 109.084 1.59817 112.164 1.59817 116.674C1.59817 121.184 4.92017 124.264 9.14417 124.264ZM18.4234 124V109.326H16.7734V124H18.4234ZM22.3088 111.856C22.9248 111.856 23.4308 111.372 23.4308 110.756C23.4308 110.14 22.9248 109.634 22.3088 109.634C21.7148 109.634 21.2088 110.14 21.2088 110.756C21.2088 111.372 21.7148 111.856 22.3088 111.856ZM23.1448 124V113.374H21.4948V124H23.1448ZM30.9022 124.264C32.8382 124.264 33.9822 123.472 34.7962 122.416L33.6962 121.404C32.9922 122.35 32.0902 122.79 30.9902 122.79C28.7242 122.79 27.3162 121.03 27.3162 118.676C27.3162 116.322 28.7242 114.584 30.9902 114.584C32.0902 114.584 32.9922 115.002 33.6962 115.97L34.7962 114.958C33.9822 113.902 32.8382 113.11 30.9022 113.11C27.7342 113.11 25.6002 115.53 25.6002 118.676C25.6002 121.844 27.7342 124.264 30.9022 124.264ZM46.2388 124L41.5088 118.192L46.2168 113.374H44.1268L38.5388 119.028V109.326H36.8888V124H38.5388V120.964L40.2988 119.226L44.1268 124H46.2388ZM56.1054 124.264C57.0734 124.264 57.6674 123.978 58.0854 123.582L57.6014 122.35C57.3814 122.592 56.9414 122.79 56.4794 122.79C55.7534 122.79 55.4014 122.218 55.4014 121.426V114.826H57.5574V113.374H55.4014V110.47H53.7514V113.374H51.9914V114.826H53.7514V121.778C53.7514 123.362 54.5434 124.264 56.1054 124.264ZM64.3102 124.264C67.5442 124.264 69.5682 121.756 69.5682 118.676C69.5682 115.596 67.5442 113.11 64.3102 113.11C61.0762 113.11 59.0522 115.596 59.0522 118.676C59.0522 121.756 61.0762 124.264 64.3102 124.264ZM64.3102 122.79C62.0442 122.79 60.7682 120.854 60.7682 118.676C60.7682 116.52 62.0442 114.584 64.3102 114.584C66.5762 114.584 67.8302 116.52 67.8302 118.676C67.8302 120.854 66.5762 122.79 64.3102 122.79ZM87.1699 124V122.372H79.3819V117.312H87.0159V115.684H79.3819V110.954H87.1699V109.326H77.5559V124H87.1699ZM98.5953 124L94.5033 118.544L98.3533 113.374H96.4393L93.4913 117.422L90.5433 113.374H88.6293L92.4793 118.544L88.4093 124H90.3013L93.4913 119.644L96.6813 124H98.5953ZM105.511 124.264C108.305 124.264 110.241 122.108 110.241 118.676C110.241 115.222 108.305 113.11 105.511 113.11C104.015 113.11 102.695 113.88 101.925 114.958V113.374H100.275V128.048H101.925V122.394C102.783 123.582 104.059 124.264 105.511 124.264ZM105.093 122.79C103.795 122.79 102.497 121.998 101.925 121.074V116.278C102.497 115.354 103.795 114.584 105.093 114.584C107.227 114.584 108.503 116.322 108.503 118.676C108.503 121.03 107.227 122.79 105.093 122.79ZM114.294 124V109.326H112.644V124H114.294ZM122.008 124.264C125.242 124.264 127.266 121.756 127.266 118.676C127.266 115.596 125.242 113.11 122.008 113.11C118.774 113.11 116.75 115.596 116.75 118.676C116.75 121.756 118.774 124.264 122.008 124.264ZM122.008 122.79C119.742 122.79 118.466 120.854 118.466 118.676C118.466 116.52 119.742 114.584 122.008 114.584C124.274 114.584 125.528 116.52 125.528 118.676C125.528 120.854 124.274 122.79 122.008 122.79ZM131.386 124V116.476C131.87 115.618 133.256 114.782 134.268 114.782C134.532 114.782 134.73 114.804 134.928 114.848V113.154C133.476 113.154 132.244 113.968 131.386 115.09V113.374H129.736V124H131.386ZM141.573 124.264C143.311 124.264 144.741 123.692 145.797 122.636L145.005 121.558C144.169 122.416 142.937 122.9 141.727 122.9C139.439 122.9 138.031 121.228 137.899 119.226H146.501V118.808C146.501 115.618 144.609 113.11 141.397 113.11C138.361 113.11 136.161 115.596 136.161 118.676C136.161 121.998 138.427 124.264 141.573 124.264ZM144.873 118.016H137.899C137.987 116.388 139.109 114.474 141.375 114.474C143.795 114.474 144.851 116.432 144.873 118.016Z"
+								fill="white"
+							/>
+							<defs>
+								<filter
+									id="filter0_b_2794_1143"
+									x="23"
+									y="-2"
+									width="101"
+									height="101"
+									filterUnits="userSpaceOnUse"
+									colorInterpolationFilters="sRGB"
+								>
+									<feFlood floodOpacity="0" result="BackgroundImageFix" />
+									<feGaussianBlur in="BackgroundImage" stdDeviation="1" />
+									<feComposite
+										in2="SourceAlpha"
+										operator="in"
+										result="effect1_backgroundBlur_2794_1143"
+									/>
+									<feBlend
+										mode="normal"
+										in="SourceGraphic"
+										in2="effect1_backgroundBlur_2794_1143"
+										result="shape"
+									/>
+								</filter>
+							</defs>
+						</svg>
+					</div>
+
+					<div id="leisureSection1Title">
+						<div
+							className="dFordTitle"
+							style={{
+								position: 'absolute',
+								width: '342px',
+								height: '94px',
+								left: '894px',
+								top: '338px',
+								opacity: '0.9'
+							}}
+						>
+							leisure
+						</div>
+						<div
+							style={{
+								/* + */
+
+								position: 'absolute',
+								width: '45px',
+								height: '110px',
+								left: '1238px',
+								top: '302px',
+
+								opacity: ' 0.8'
+							}}
+						>
+							<svg
+								width="41"
+								height="44"
+								viewBox="0 0 41 44"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									opacity="0.8"
+									d="M40.2058 23.56V19.78H22.5658V0.789999H18.5158V19.78H0.785781V23.56H18.5158V43.09H22.5658V23.56H40.2058Z"
+									fill="white"
+								/>
+							</svg>
+						</div>
+
+						<div
+							style={{
+								position: 'absolute',
+								width: '820px',
+								height: '296px',
+								left: '546px',
+								top: '731px',
+								background: 'rgba(99, 102, 113, 0.38)',
+								backdropFilter: 'blur(48px)'
+							}}
+						>
+							<div
+								className="dFordText"
+								style={{
+									position: 'absolute',
+									width: '702px',
+									height: '211px',
+									left: '60px',
+									top: '60px'
+								}}
+							>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium odio ipsum,
+								eget interdum libero tincidunt efficitur. Maecenas dapibus condimentum commodo. Proin
+								dignissim sem velit, eu blandit purus porta non. Fusce tristique, risus eget finibus
+								euismod, diam arcu pellentesque lectus, ac consequat nulla purus at tellus. (Topic
+								Introduction)
+							</div>
+						</div>
+					</div>
+
+					{/* 背景栅格 */}
+					<div
+						style={{
+							position: 'absolute',
+							width: '822px',
+							height: '892px',
+							left: '272px',
+							top: '131px',
+							zIndex: '9'
+						}}
+					>
+						<svg
+							width="823"
+							height="892"
+							viewBox="0 0 823 892"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<line opacity="0.3" x1="0.5" y1="-2.18557e-08" x2="0.500039" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="273.5" y1="-2.18557e-08" x2="273.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="549.5" y1="-2.18557e-08" x2="549.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="822.5" y1="-2.18557e-08" x2="822.5" y2="892" stroke="#E8E8E8" />
+						</svg>
+					</div>
+				</div>
+				<div
+					id="leisureSection2Wrapper"
+					onTouchStart={(e) => {
+						this.leisureSection2TouchStart(e);
+					}}
+					onTouchMove={(e) => {
+						this.leisureSection2TouchMove(e);
+					}}
+					onTouchEnd={(e) => {
+						this.leisureSection2TouchEnd(e);
+					}}
+					style={{
+						position: 'absolute',
+						width: '100%',
+						height: '100%',
+						top: '0px',
+						left: '0px',
+						display: 'none',
+						overflow: 'hidden'
+					}}
+					ref={this.leisureSection2Wrapper}
+				>
+					<CanvasImageSequence
+						ref={this.leisureSection2CanvasRef}
+						data={this.state.leisureSection2ImageSequence}
+						loop={true}
+						forward={true}
+						fps={10}
+						canvasWidth={this.state.canvasWidth}
+						canvasHeight={this.state.canvasHeight}
+						onChange={() => this.change}
+					/>
+
+					<div
+						ref={this.leisureSection2Title}
+						id="leisureSection2Title"
+						style={{
+							/* Group 79 */
+
+							position: 'absolute',
+							width: '538px',
+							height: '142px',
+							left: '92px',
+							top: '753px'
+						}}
+					>
+						<div
+							style={{
+								position: 'absolute',
+								width: '538px',
+								height: '142px',
+								left: '0px',
+								top: '-34px'
+							}}
+						>
+							<svg
+								width="542"
+								height="146"
+								viewBox="0 0 542 146"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									opacity="0.2"
+									d="M540 18V2H2V79.5M540 64V144H2V126"
+									stroke="white"
+									strokeWidth="4"
+								/>
+							</svg>
+						</div>
+						<div className="dFordTitle">fRunk bar</div>
+					</div>
+					{/* 背景栅格 */}
+					<div
+						style={{
+							position: 'absolute',
+							width: '822px',
+							height: '892px',
+							left: '272px',
+							top: '131px',
+							zIndex: '9'
+						}}
+					>
+						<svg
+							width="823"
+							height="892"
+							viewBox="0 0 823 892"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<line opacity="0.3" x1="0.5" y1="-2.18557e-08" x2="0.500039" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="273.5" y1="-2.18557e-08" x2="273.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="549.5" y1="-2.18557e-08" x2="549.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="822.5" y1="-2.18557e-08" x2="822.5" y2="892" stroke="#E8E8E8" />
+						</svg>
+					</div>
+					<div
+						id="leisureSection2Box2"
+						ref={this.leisureSection2Box2}
+						style={{
+							position: 'absolute',
+							width: '545px',
+							height: '100%',
+							left: '0px',
+							top: '0px',
+							background: '#5B5058',
+							zIndex: '1',
+							display: 'none'
+						}}
+					/>
+					<div
+						id="leisureSection2Box3"
+						ref={this.leisureSection2Box3}
+						style={{
+							position: 'absolute',
+							width: '1366px',
+							height: '100%',
+							left: '0px',
+							top: '0px',
+							background: '#5C5C6F',
+							display: 'none'
+						}}
+					/>
+					<div
+						id="leisureSection2Bg2"
+						ref={this.leisureSection2Bg2}
+						style={{
+							/* Rectangle 59 */
+
+							position: 'absolute',
+							width: '1122px',
+							height: '841px',
+							left: ' -26px',
+							top: '0px',
+							display: 'none',
+							background:
+								'linear-gradient(178.54deg, rgba(26, 29, 103, 0.8) 1.31%, rgba(193, 176, 180, 0) 98.83%)',
+							opacity: ' 0.69',
+							zIndex: '1'
+						}}
+					>
+						<img src={leisureSection2Bg} className="imageCover" />
+					</div>
+
+					<div
+						id="leisureSection2Text2"
+						ref={this.leisureSection2Text2}
+						style={{
+							position: 'absolute',
+							width: '544px',
+							height: '651px',
+							left: '822px',
+							top: '375px',
+							display: 'none',
+							zIndex: '2',
+							background: 'rgba(99, 102, 113, 0.38)',
+							backdropFilter: ' blur(48px)'
+						}}
+					>
+						<div
+							className="dFordNormalTitle"
+							style={{
+								/* fRunk bar */
+
+								position: 'absolute',
+								width: '357px',
+								height: '72px',
+								left: '60px',
+								top: '60px',
+
+								opacity: '0.9'
+							}}
+						>
+							fRunk bar
+						</div>
+
+						<div
+							style={{
+								position: 'absolute',
+								width: '357px',
+								height: '155px',
+								left: '60px',
+								top: ' 220px'
+							}}
+							className="dFordText"
+						>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium odio ipsum, eget
+							interdum libero tincidunt efficitur. Maecenas dapibus condimentum commodo.
+						</div>
+					</div>
+				</div>
+				
+				<div id="leisureSection3Wrapper" 
+				ref = {this.leisureSection3Wrapper}
+				onTouchStart={(e) => {
+						this.leisureSection3TouchStart(e);
+					}}
+					onTouchMove={(e) => {
+						this.leisureSection3TouchMove(e);
+					}}
+					onTouchEnd={(e) => {
+						this.leisureSection3TouchEnd(e);
+					}}
+					style={{
+						position: 'absolute',
+						width: '100%',
+						height: '100%',
+						top: '0px',
+						left: '0px',
+						display: 'none',
+						overflow: 'hidden',
+						background: '#5C5C6F',
+					}}>
+					<div
+						id="leisureSection3Text"
+						ref = {this.leisureSection3Text}
+						style={{
+							position: 'absolute',
+							width: '544px',
+							height: '464px',
+							left: '822px',
+							top: '562px',
+							background: 'rgba(113, 112, 129, 0.38)',
+							backdropFilter: 'blur(48px)',
+							display:'none'
+						}}
+					>
+						<div
+							className="dFordText"
+							style={{
+								position: 'absolute',
+								width: '440px',
+								height: '246px',
+								left: '60px',
+								top: '160px'
+							}}
+						>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium odio ipsum, eget
+							interdum libero tincidunt efficitur. Maecenas dapibus condimentum commodo.
+						</div>
+					</div>
+
+					<div
+						id="leisureSection3Title"
+						ref = {this.leisureSection3Title}
+						className="dFordNormalTitle"
+						style={{
+							position: 'absolute',
+							width: '540px',
+							height: '144px',
+							left: '137px',
+							top: '807px',
+							opacity: '0.9',
+							display:'none',
+							zIndex: '2'
+						}}
+					>
+						Entertainment studio
+					</div>
+
+						{/* 背景栅格 */}
+						<div
+						style={{
+							position: 'absolute',
+							width: '822px',
+							height: '892px',
+							left: '272px',
+							top: '131px',
+							zIndex: '9'
+						}}
+					>
+						<svg
+							width="823"
+							height="892"
+							viewBox="0 0 823 892"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<line opacity="0.3" x1="0.5" y1="-2.18557e-08" x2="0.500039" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="273.5" y1="-2.18557e-08" x2="273.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="549.5" y1="-2.18557e-08" x2="549.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="822.5" y1="-2.18557e-08" x2="822.5" y2="892" stroke="#E8E8E8" />
+						</svg>
 					</div>
 				</div>
 			</div>

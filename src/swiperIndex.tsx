@@ -213,7 +213,7 @@ export default class SwiperIndex extends React.Component<any, any> {
             {/* <ComfortComponentIndex2 /> */}
                   {/* <ComfortComponentIndex9 /> */}
            
-              
+            {/* <LeisureComponentIndex2/> */}
             
         </>)
      
