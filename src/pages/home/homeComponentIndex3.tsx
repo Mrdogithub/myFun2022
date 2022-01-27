@@ -1,7 +1,6 @@
 import React from 'react';
-import SplitterLayout from 'react-splitter-layout';
-import 'react-splitter-layout/lib/index.css';
-// import homePrivacy_1 from './homePrivacy_1.png';
+import Slider from 'react-slider-light';
+import 'react-slider-light/lib/index.css';
 import homeConfort_2 from './homeConfort_2.png';
 import homeLeisure_3 from './homeLeisure_3.png';
 import homeUnique_4 from './homeUnique_4.png';
@@ -54,6 +53,20 @@ import CanvasImageSequence from 'react-canvas-image-sequence';
 import comfortSection5BG1 from '../../assets/images/comfortSection5BG1.png';
 import leisureSection1Bg from '../../assets/images/leisureSection1Bg.png';
 import leisureSection2Bg from '../../assets/images/leisureSection2Bg.png';
+import leisureSection3Bg1 from '../../assets/images/leisureSection3Bg1.png';
+import leisureSection3Bg2 from '../../assets/images/leisureSection3Bg2.png';
+import leisureSection4Bg4 from '../../assets/images/leisureSection4Bg4.png';
+import leisureSection4Bg3 from '../../assets/images/leisureSection4Bg3.png';
+import leisureSection5Bg1 from '../../assets/images/leisureSection5Bg1.png';
+import leisureSection6Bg1 from '../../assets/images/leisureSection6Bg1.png';
+import leisureSection6Bg2 from '../../assets/images/leisureSection6Bg2.png';
+import leisureSection6Bg3 from '../../assets/images/leisureSection6Bg3.png';
+
+import uniqueSection1Bg1 from '../../assets/images/luniqueSection1Bg1.png';
+import uniqueSection1Bg2 from '../../assets/images/uniqueSection1Bg2.png';
+import unqiueSection2Bg1 from '../../assets/images/unqiueSection2Bg1.png';
+import unqiueSection2Bg2 from '../../assets/images/unqiueSection2Bg2.png';
+
 import Video01_AdvancedDimmableWindow from '../../assets/Video01_AdvancedDimmableWindow.mp4';
 import { Info } from '../../components/info/infoComponent';
 import {
@@ -210,10 +223,33 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.leisureSection2Text2 = React.createRef();
 		this.leisureSection2Bg2 = React.createRef();
 
-
 		this.leisureSection3Wrapper = React.createRef();
 		this.leisureSection3Title = React.createRef();
 		this.leisureSection3Text = React.createRef();
+
+		this.leisureSection3Bg1 = React.createRef();
+		this.leisureSection3Bg2 = React.createRef();
+
+		this.leisureSection4Wrapper = React.createRef();
+		this.leisureSection5Wrapper = React.createRef();
+
+		this.leisureSection6Wrapper = React.createRef();
+		this.leisureSection7Wrapper = React.createRef();
+
+		this.leisureSection6Grally = React.createRef();
+
+		this.uniqueSection1Wrapper = React.createRef();
+		this.uniqueSection1CanvasRef = React.createRef();
+		this.uniqueSection1Text = React.createRef();
+		this.uniqueSection1Text2 = React.createRef();
+		this.uniqueSection1Title = React.createRef();
+		this.uniqueSection1BgLine = React.createRef();
+
+		this.uniqueSection2Wrapper = React.createRef();
+
+		this.uniqueSection3Wrapper = React.createRef();
+
+		this.uniqueSection2DynamicBg = React.createRef();
 		this.state = {
 			x: 0,
 			y: 0,
@@ -228,6 +264,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			canvasWidth: 0,
 			canvasHeight: 0,
 			comfortSection2Bg: lastComfortSection1ImageSequence,
+			leisureSetion6GrallyMaxImage: this.grallyList[0],
 			privactSection6ImageSequence: [
 				firstPrivactSection6ImageSequence
 			],
@@ -235,6 +272,9 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				firstComfortSection1ImageSequence
 			],
 			leisureSection2ImageSequence: [
+				firstLeisureSection2ImageSequence
+			],
+			uniqueSection1ImageSequence: [
 				firstLeisureSection2ImageSequence
 			],
 			boxDefaultSize: 80,
@@ -321,6 +361,31 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			]
 		};
 	}
+	grallyList = [
+		leisureSection6Bg1,
+		leisureSection6Bg2,
+		leisureSection6Bg3
+	];
+	setSection6Grally = [
+		{
+			image: leisureSection6Bg1,
+			title: '',
+			desc:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium odio ipsum, eget interdum libero tincidunt efficitur. Maecenas dapibus condimentum commodo.'
+		},
+		{
+			image: leisureSection6Bg2,
+			title: '',
+			desc:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium odio ipsum, eget interdum libero tincidunt efficitur. Maecenas dapibus condimentum commodo.'
+		},
+		{
+			image: leisureSection6Bg3,
+			title: '',
+			desc:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium odio ipsum, eget interdum libero tincidunt efficitur. Maecenas dapibus condimentum commodo.'
+		}
+	];
 	startX: any = '0';
 	endX: any = '0';
 	box: any;
@@ -432,6 +497,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	comfortSection9BgRight: any;
 	comfortSection9Mask2: any;
 	comfortSection9Mask1: any;
+	absoluteHeight: any;
 	mask1: any;
 	mask2: any;
 	comfortSectoin9EndReturnHome: any;
@@ -446,10 +512,30 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	leisureSection2Text2: any;
 	leisureSection2Bg2: any;
 
+	leisureSection3Wrapper: any;
+	leisureSection3Title: any;
+	leisureSection3Text: any;
 
-	leisureSection3Wrapper:any;
-	leisureSection3Title:any;
-	leisureSection3Text:any;
+	leisureSection3Bg1: any;
+	leisureSection3Bg2: any;
+
+	leisureSection4Wrapper: any;
+	leisureSection5Wrapper: any;
+
+	leisureSection7Wrapper: any;
+	leisureSection6Wrapper: any;
+	leisureSection6Grally: any;
+
+	uniqueSection1Wrapper: any;
+	uniqueSection1CanvasRef: any;
+
+	uniqueSection1Text: any;
+	uniqueSection1Text2: any;
+	uniqueSection1Title: any;
+	uniqueSection1BgLine: any;
+	uniqueSection2Wrapper: any;
+	uniqueSection3Wrapper: any;
+	uniqueSection2DynamicBg: any;
 	moveDistance = 0;
 	move = 0;
 	componentDidMount() {
@@ -468,6 +554,12 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		for (let i = 0; i <= 40; i++) {
 			leisureImges.push(require(`../../assets/Video16_FrunkBar/Video16_FrunkBar${i}.jpg`));
 			this.setState({ leisureSection2ImageSequence: leisureImges });
+		}
+
+		const uniqueImges: any[] = [];
+		for (let i = 0; i <= 40; i++) {
+			uniqueImges.push(require(`../../assets/Video16_FrunkBar/Video16_FrunkBar${i}.jpg`));
+			this.setState({ uniqueSection1ImageSequence: uniqueImges });
 		}
 		this.setState({ canvasWidth: screen.availWidth });
 		this.setState({ canvasHeight: screen.availHeight });
@@ -964,7 +1056,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	}
 
 	// COMFORT SECTION
-	comfortSection1Start(e) {
+	comfortSection1Start(event) {
 		this.updateStartMosePosition(event);
 		if (this.move < 0 && this.moveDistance === 100 && this.comfortSection1Text2.current.style.display === 'block') {
 			// 向上拉动 进入下一页
@@ -981,7 +1073,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				'animate__animated animate__slideInLeft animate__delay-1.2s';
 		}
 	}
-	comfortSection1Move(e) {
+	comfortSection1Move(event) {
 		this.updateMoveMousePositon(event);
 		this.move = this.state.endY - this.state.firstY;
 		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
@@ -1039,18 +1131,17 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			}, 40);
 		}
 	}
-	comfortSection1End(e) {
+	comfortSection1End(event) {
 		console.log(this.move);
 	}
 
 	// COMFORT SECTION
-	comfortSection2Start(e) {
-		if (e.target.id === '') return;
+	comfortSection2Start(event) {
+		if (event.target.id === '') return;
 		this.updateStartMosePosition(event);
 	}
-	comfortSection2Move(e) {
-		console.log(e);
-		if (e.target.id === '') return;
+	comfortSection2Move(event) {
+		if (event.target.id === '') return;
 		this.updateMoveMousePositon(event);
 		this.move = this.state.endY - this.state.firstY;
 		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
@@ -1072,8 +1163,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			this.comfortSection1Title.current.className = 'animate__animated animate__fadeInLeft animate__delay-1.2s';
 		}
 	}
-	comfortSection2End(e) {
-		if (e.target.id === '') return;
+	comfortSection2End(event) {
+		if (event.target.id === '') return;
 		if (this.move < 0) {
 			this.comfortSection2Wrapper.current.style.display = 'none';
 			this.comfortSection2Splitter.current.style.display = 'none';
@@ -1090,7 +1181,6 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		];
 	}
 	comfortSection2SplitterMove(event) {
-		// event.preventDefault();
 		if (this.isDown) {
 			const absoluteWidth = event.targetTouches[0].clientX + this.splitterOffSet[0];
 			const relativeWidth = (event.targetTouches[0].clientX + this.splitterOffSet[0]) / screen.availWidth * 100;
@@ -1115,13 +1205,6 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				this.mask2.current.style.display = 'block';
 				this.mask2.current.style.flex = '1 1 auto';
 				this.mask1.current.style.backdropFilter = 'blur(0px)';
-				// this.comfortSection2Splitter2.current.style.display = 'block'
-				// this.comfortSection2Splitter.current.style.transform = "rotateY(180deg)"
-				// this.comfortSection2Splitter.current.style.backdropFilter = 'blur(90px)';
-				// this.comfortSection2SplitterHook.current.style.left = screen.availWidth - absoluteWidth-45 + 'px';
-				// this.comfortSection2Splitter.current.style.left = screen.availWidth - absoluteWidth + 'px';
-				// this.comfortSection2Splitter.current.style.width = screen.availWidth -this.comfortSection2SplitterHook.current.style.left + 'px';
-				// console.log('absoluteWidth:' + absoluteWidth)
 			}
 
 			if (relativeWidth > 60) {
@@ -1139,14 +1222,13 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				this.comfortSection2Desc.current.className =
 					'animate__animated animate__fadeInLeft animate__delay-1.2s';
 			}
-			console.log(relativeWidth + ':relativeWidth');
 			if (relativeWidth > 90) {
 				this.comfortSection2SplitterHook.current.style.left = '97%';
 				this.mask1.current.style.width = '90%';
 			}
 		}
 	}
-	comfortSection2SplitterEnd(e) {
+	comfortSection2SplitterEnd(event) {
 		this.isDown = false;
 	}
 
@@ -1169,8 +1251,6 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				this.comfortSection2Splitter2.current.style.left = screen.availWidth - absoluteWidth + 'px';
 				this.comfortSection2Splitter2.current.style.width =
 					screen.availWidth - this.comfortSection2SplitterHook.current.style.left + 'px';
-
-				console.log('absoluteWidth:' + absoluteWidth);
 			}
 
 			if (relativeWidth > 60 && relativeWidth < 70) {
@@ -1178,14 +1258,14 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			}
 		}
 	}
-	comfortSection2Splitter2End(e) {
+	comfortSection2Splitter2End(event) {
 		this.isDown = false;
 	}
 	// COMFORT SECTION
-	comfortSection3Start(e) {
+	comfortSection3Start(event) {
 		this.updateStartMosePosition(event);
 	}
-	comfortSection3Move(e) {
+	comfortSection3Move(event) {
 		this.updateMoveMousePositon(event);
 		this.move = this.state.endY - this.state.firstY;
 		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
@@ -1196,7 +1276,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			this.comfortSection4Wrapper.current.style.display = 'block';
 		}
 	}
-	comfortSection3End(e) {
+	comfortSection3End(event) {
 		if (this.move > 0) {
 			// 向下拉动 返回上一页
 			this.comfortSection3Wrapper.current.style.display = 'none';
@@ -1206,17 +1286,17 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	}
 
 	// COMFORT SECTION
-	comfortSection4Start(e) {
+	comfortSection4Start(event) {
 		this.updateStartMosePosition(event);
 	}
-	comfortSection4Move(e) {
+	comfortSection4Move(event) {
 		this.updateMoveMousePositon(event);
 
 		this.move = this.state.endY - this.state.firstY;
 		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
 		console.log('comfortSection4Move' + this.move);
 	}
-	comfortSection4End(e) {
+	comfortSection4End(event) {
 		if (
 			this.move > 0 &&
 			this.comfortSection4Text1.current.style.display == 'none' &&
@@ -1277,15 +1357,15 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	}
 
 	// COMFORT SECTION
-	comfortSection5Start(e) {
+	comfortSection5Start(event) {
 		this.updateStartMosePosition(event);
 	}
-	comfortSection5Move(e) {
+	comfortSection5Move(event) {
 		this.updateMoveMousePositon(event);
 		this.move = this.state.endY - this.state.firstY;
 		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
 	}
-	comfortSection5End(e) {
+	comfortSection5End(event) {
 		if (this.move < 0) {
 			// 向上拉动 进入下一页
 			this.comfortSection5Wrapper.current.style.display = 'none';
@@ -1304,15 +1384,15 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		}
 	}
 
-	comfortSection6Start(e) {
+	comfortSection6Start(event) {
 		this.updateStartMosePosition(event);
 	}
-	comfortSection6Move(e) {
+	comfortSection6Move(event) {
 		this.updateMoveMousePositon(event);
 		this.move = this.state.endY - this.state.firstY;
 		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
 	}
-	comfortSection6End(e) {
+	comfortSection6End(event) {
 		if (this.move < 0) {
 			// 向上拉动 进入下一页
 			this.comfortSection6Wrapper.current.style.display = 'none';
@@ -1331,10 +1411,10 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		}
 	}
 
-	comfortSection7Start(e) {
+	comfortSection7Start(event) {
 		this.updateStartMosePosition(event);
 	}
-	comfortSection7Move(e) {
+	comfortSection7Move(event) {
 		this.updateMoveMousePositon(event);
 		this.move = this.state.endY - this.state.firstY;
 		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
@@ -1346,7 +1426,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			return;
 		}
 	}
-	comfortSection7End(e) {
+	comfortSection7End(event) {
 		if (this.move > 0) {
 			// 向下拉动 返回上一页
 			this.comfortSection7Wrapper.current.style.display = 'none';
@@ -1355,10 +1435,10 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		}
 	}
 
-	comfortSection8Start(e) {
+	comfortSection8Start(event) {
 		this.updateStartMosePosition(event);
 	}
-	comfortSection8Move(e) {
+	comfortSection8Move(event) {
 		this.updateMoveMousePositon(event);
 		this.move = this.state.endY - this.state.firstY;
 		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
@@ -1378,7 +1458,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		}
 	}
 
-	comfortSection8End(e) {
+	comfortSection8End(event) {
 		if (this.move > 0 && this.comfortSection8Bg2.current.style.display == 'block') {
 			// 向下拉动 返回上一页
 			this.comfortSection8Wrapper.current.style.display = 'block';
@@ -1395,10 +1475,10 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		}
 	}
 
-	comfortSection9Start(e) {
+	comfortSection9Start(event) {
 		this.updateStartMosePosition(event);
 	}
-	comfortSection9Move(e) {
+	comfortSection9Move(event) {
 		this.updateMoveMousePositon(event);
 		this.move = this.state.endY - this.state.firstY;
 		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
@@ -1419,12 +1499,11 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				this.comfortSection9Wrapper.current.style.display = 'none';
 				this.comfortSection10EndWrapper.current.style.display = 'block';
 				this.comfortSectoin9EndReturnHome.current.style.display = 'block';
-			}, 2300);
+			}, 2000);
 		}
 	}
 
-	comfortSection9End(e) {
-		val;
+	comfortSection9End(event) {
 		if (this.move > 0) {
 			// 向下拉动 返回上一页
 			this.comfortSection9Wrapper.current.style.display = 'none';
@@ -1435,7 +1514,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		}
 	}
 
-	comfortSection10End(e) {
+	comfortSection10End(event) {
 		if (this.move > 0) {
 			// 向下拉动 返回上一页
 			this.comfortSectoin9EndReturnHome.current.className =
@@ -1458,10 +1537,10 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		}
 	}
 
-	comfortSection10Start(e) {
+	comfortSection10Start(event) {
 		this.updateStartMosePosition(event);
 	}
-	comfortSection10Move(e) {
+	comfortSection10Move(event) {
 		this.updateMoveMousePositon(event);
 		this.move = this.state.endY - this.state.firstY;
 		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
@@ -1477,17 +1556,19 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.comfortSection8Video.current.style.top = '574px';
 		this.comfortSection8Bg.current.style.top = '574px';
 	}
-	leisureSection1Start(e) {
-		console.log(e);
+	leisureSection1Start(event) {
+		this.updateStartMosePosition(event);
 	}
-	leisureSection1Move(e) {
+	leisureSection1Move(event) {
+		this.updateMoveMousePositon(event);
+		this.move = this.state.endY - this.state.firstY;
 		if (this.move < 0) {
 			// 向上拉动 进入下一页
 			this.leisureSection1Wrapper.current.style.display = 'none';
 			this.leisureSection2Wrapper.current.style.display = 'block';
 		}
 	}
-	leisureSection1End(e) {
+	leisureSection1End(event) {
 		if (this.move > 0) {
 			// 向下拉动，返回上一页
 			this.leisureSection1Wrapper.current.style.display = 'none';
@@ -1495,10 +1576,10 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		}
 	}
 
-	leisureSection2TouchStart(e) {
+	leisureSection2TouchStart(event) {
 		this.updateStartMosePosition(event);
 	}
-	leisureSection2TouchMove(e) {
+	leisureSection2TouchMove(event) {
 		this.updateMoveMousePositon(event);
 		this.move = this.state.endY - this.state.firstY;
 		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
@@ -1514,8 +1595,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		if (this.move < 0) {
 			// 向上拉动
 
-			if (this.moveDistance > 100) {
-				this.moveDistance = 100;
+			if (this.moveDistance > 40) {
+				this.moveDistance = 40;
 			}
 			setTimeout(() => {
 				console.log(this.moveDistance);
@@ -1534,7 +1615,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 
 				// }
 
-				if (Number(this.moveDistance) > 40) {
+				if (Number(this.moveDistance) > 35) {
 					this.leisureSection2Title.current.style.display = 'none';
 					this.leisureSection2Box2.current.style.display = 'block';
 					this.leisureSection2Box3.current.style.display = 'block';
@@ -1553,14 +1634,14 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			}, 100);
 		}
 	}
-	leisureSection2TouchEnd(e) {
-		if (this.move > 0 && this.leisureSection2Text2.current.style.display =='none') {
+	leisureSection2TouchEnd(event) {
+		if (this.move > 0 && this.leisureSection2Text2.current.style.display == 'none') {
 			// 向下拉动，返回上一页
 			this.leisureSection2Wrapper.current.style.display = 'none';
 			this.leisureSection1Wrapper.current.style.display = 'block';
 		}
 
-		if (this.move > 0 && this.leisureSection2Text2.current.style.display =='block') {
+		if (this.move > 0 && this.leisureSection2Text2.current.style.display == 'block') {
 			// 向下拉动，返回上一页
 			this.leisureSection2Title.current.style.display = 'block';
 			this.leisureSection2Box2.current.style.display = 'none';
@@ -1569,33 +1650,202 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			this.leisureSection2Bg2.current.style.display = 'none';
 		}
 
-		if(this.move < 0 && this.leisureSection2Text2.current.style.display == 'block') {
+		if (
+			this.move < 0 &&
+			Number(this.moveDistance) === 40 &&
+			this.leisureSection2Text2.current.style.display == 'block'
+		) {
+			// 向上拉动，进入下一页
 			this.leisureSection2Wrapper.current.style.display = 'none';
+
 			this.leisureSection3Wrapper.current.style.display = 'block';
 			this.leisureSection3Text.current.style.display = 'block';
 			this.leisureSection3Title.current.style.display = 'block';
 		}
 	}
 
-	leisureSection3TouchStart(e) {
-		console.log(e);
-	}
-	leisureSection3TouchMove(e) {
-		if (this.move < 0) {
-			// 向上拉动 进入下一页
-			this.leisureSection1Wrapper.current.style.display = 'none';
-			this.leisureSection2Wrapper.current.style.display = 'block';
+	leisureSection3TouchStart(event) {
+		this.updateStartMosePosition(event);
+		if (this.leisureSection3Bg2.current.style.top !== 0) {
+			this.isDown = true;
+			this.splitterOffSet = [
+				0,
+				this.leisureSection3Bg1.current.offsetTop - event.targetTouches[0].clientY,
+				this.leisureSection3Bg2.current.offsetTop - event.targetTouches[0].clientY
+			];
 		}
 	}
-	leisureSection3TouchEnd(e) {
-		if (this.move > 0) {
+	leisureSection3TouchMove(event) {
+		this.updateMoveMousePositon(event);
+		this.move = this.state.endY - this.state.firstY;
+		this.absoluteHeight = event.targetTouches[0].clientY + this.splitterOffSet[1];
+
+		this.absoluteHeight =
+			Math.abs(this.absoluteHeight) === this.leisureSection3Bg1.offsetHeight ? 0 : this.absoluteHeight;
+		if (this.absoluteHeight != 0 && this.absoluteHeight < 0) {
+			if (this.isDown) {
+				setTimeout(() => {
+					this.leisureSection3Bg1.current.style.top = this.absoluteHeight + 'px';
+					this.leisureSection3Bg2.current.style.top =
+						event.targetTouches[0].clientY + this.splitterOffSet[2] + 'px';
+				}, 10);
+			}
+		}
+		console.log(this.absoluteHeight);
+		if (this.move < 0 && this.absoluteHeight < -975) {
+			this.comfortSection10EndWrapper.current.style.display = 'none';
+			// 向上拉动 进入下一页
+			this.leisureSection3Wrapper.current.style.display = 'none';
+			this.leisureSection4Wrapper.current.style.display = 'block';
+		}
+	}
+	leisureSection3TouchEnd(event) {
+		if (this.leisureSection3Bg2.current.style.top === '-875px') {
+			this.isDown = false;
+		}
+		if (this.move > 0 && this.absoluteHeight > 0) {
 			// 向下拉动，返回上一页
 			this.leisureSection3Wrapper.current.style.display = 'none';
 			this.leisureSection2Wrapper.current.style.display = 'block';
 		}
 	}
 
+	leisureSection4TouchStart(event) {
+		this.updateStartMosePosition(event);
+	}
+	leisureSection4TouchMove(event) {
+		this.updateMoveMousePositon(event);
+		this.move = this.state.endY - this.state.firstY;
+		if (this.move < 0) {
+			// 向上拉动 进入下一页
+			this.leisureSection4Wrapper.current.style.display = 'none';
+			this.leisureSection5Wrapper.current.style.display = 'block';
+		}
+	}
+	leisureSection4TouchEnd(event) {
+		if (this.move > 0) {
+			// 向下拉动，返回上一页
+			this.leisureSection4Wrapper.current.style.display = 'none';
+			this.leisureSection3Wrapper.current.style.display = 'block';
+		}
+	}
+	leisureSection5TouchStart(event) {
+		this.updateStartMosePosition(event);
+	}
+	leisureSection5TouchMove(event) {
+		this.updateMoveMousePositon(event);
+		this.move = this.state.endY - this.state.firstY;
+		if (this.move < 0) {
+			// 向上拉动 进入下一页
+			this.leisureSection5Wrapper.current.style.display = 'none';
+			this.leisureSection6Wrapper.current.style.display = 'block';
+		}
+	}
+	leisureSection5TouchEnd(event) {
+		if (this.move > 0) {
+			// 向下拉动，返回上一页
+			this.leisureSection5Wrapper.current.style.display = 'none';
+			this.leisureSection4Wrapper.current.style.display = 'block';
+		}
+	}
+	leisureSection6TouchStart(event) {
+		this.updateStartMosePosition(event);
+	}
+	leisureSection6TouchMove(event) {
+		this.updateMoveMousePositon(event);
+		this.move = this.state.endY - this.state.firstY;
+		if (this.move < 0) {
+			// 向上拉动 进入下一页
+			this.leisureSection7Wrapper.current.style.display = 'block';
+			this.leisureSection6Wrapper.current.style.display = 'none';
+		}
+	}
+	leisureSection6TouchEnd(event) {
+		if (this.move > 0) {
+			// 向下拉动，返回上一页
+			this.leisureSection6Wrapper.current.style.display = 'none';
+			this.leisureSection5Wrapper.current.style.display = 'block';
+		}
+	}
+	leisureSection7TouchStart(event) {
+		this.updateStartMosePosition(event);
+	}
+	leisureSection7TouchMove(event) {
+		this.updateMoveMousePositon(event);
+		this.move = this.state.endY - this.state.firstY;
+		if (this.move < 0) {
+			// 向上拉动 进入下一页
+			this.leisureSection7Wrapper.current.style.display = 'none';
+			this.uniqueSection1Wrapper.current.style.display = 'block';
+		}
+	}
+	leisureSection7TouchEnd(event) {
+		if (this.move > 0) {
+			// 向下拉动，返回上一页
+			this.leisureSection6Wrapper.current.style.display = 'none';
+			this.leisureSection5Wrapper.current.style.display = 'block';
+		}
+	}
 
+	uniqueSection1TouchStart(event) {
+		this.updateStartMosePosition(event);
+	}
+	uniqueSection1TouchMove(event) {
+		this.updateMoveMousePositon(event);
+		this.move = this.state.endY - this.state.firstY;
+		if (this.move < 0) {
+			// 向上拉动 进入下一页
+			this.uniqueSection1Wrapper.current.style.display = 'none';
+			this.uniqueSection2Wrapper.current.style.display = 'block';
+		}
+	}
+	uniqueSection1TouchEnd(event) {
+		if (this.move > 0) {
+			// 向下拉动，返回上一页
+			this.uniqueSection1Wrapper.current.style.display = 'none';
+			this.leisureSection7Wrapper.current.style.display = 'block';
+		}
+	}
+
+	uniqueSection2TouchStart(event) {
+		this.updateStartMosePosition(event);
+	}
+	uniqueSection2TouchMove(event) {
+		this.updateMoveMousePositon(event);
+		this.move = this.state.endY - this.state.firstY;
+		if (this.move < 0) {
+			// 向上拉动 进入下一页
+			this.uniqueSection3Wrapper.current.style.display = 'block';
+			this.uniqueSection2Wrapper.current.style.display = 'none';
+		}
+	}
+	uniqueSection2TouchEnd(event) {
+		if (this.move > 0) {
+			// 向下拉动，返回上一页
+			this.uniqueSection2Wrapper.current.style.display = 'block';
+			this.uniqueSection2Wrapper.current.style.display = 'none';
+		}
+	}
+	uniqueSection3TouchStart(event) {
+		this.updateStartMosePosition(event);
+	}
+	uniqueSection3TouchMove(event) {
+		this.updateMoveMousePositon(event);
+		this.move = this.state.endY - this.state.firstY;
+		if (this.move < 0) {
+			// 向上拉动 进入下一页
+			// this.uniqueSection1Wrapper.current.style.display = 'block';
+			// this.leisureSection6Wrapper.current.style.display = 'none';
+		}
+		if (this.move > 0) {
+			// 向下拉动，返回上一页
+			this.uniqueSection3Wrapper.current.style.display = 'none';
+			this.uniqueSection2Wrapper.current.style.display = 'block';
+		}
+	}
+	uniqueSection3TouchEnd(event) {
+		console.log(event)
+	}
 	letMeKonwDirection() {
 		const moveX = this.state.endX - this.state.firstX;
 		const moveY = this.state.endY - this.state.firstY;
@@ -1607,7 +1857,26 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			}
 		}
 	}
+	onInfoItemChange(index){
+		this.uniqueSection2DynamicBg.current.childNodes.forEach((item,i)=>{
+			if(i === index) {
+				item.style.display = 'block'
+			} else {
+				item.style.display = 'none'
+			}
+		})
+	}
+	leisureSetion6GrallySmallImage(index) {
+		this.setState({ leisureSetion6GrallyMaxImage: this.grallyList[index] });
 
+		this.leisureSection6Grally.current.childNodes.forEach((item, i) => {
+			if (i === index) {
+				item.className = `activeGrally${index}`;
+			} else {
+				item.className = 'normalGrally';
+			}
+		});
+	}
 	render() {
 		return (
 			<div
@@ -1745,21 +2014,15 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				</div>
 				<div
 					ref={this.belowContent}
+					className="sectionWrapper"
 					style={{
-						position: 'absolute',
-						width: '100%',
-						height: '100%',
-						top: '0px',
-						left: '0px',
-						zIndex: '-1',
-						display: 'none',
-						overflow: 'hidden'
+						zIndex: '-1'
 					}}
-					onTouchStart={(e) => {
-						this.section1TouchStart(e);
+					onTouchStart={(event) => {
+						this.section1TouchStart(event);
 					}}
-					onTouchMove={(e) => {
-						this.section1TouchMove(e);
+					onTouchMove={(event) => {
+						this.section1TouchMove(event);
 					}}
 				>
 					<div
@@ -1884,21 +2147,15 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				<div
 					id="section_2"
 					ref={this.section_2}
+					className="sectionWrapper"
 					style={{
-						position: 'absolute',
-						width: '100%',
-						height: '100%',
-						top: '0px',
-						left: '0px',
-						zIndex: '-1',
-						display: 'none',
-						overflow: 'hidden'
+						zIndex: '-1'
 					}}
-					onTouchStart={(e) => {
-						this.section2TouchStart(e);
+					onTouchStart={(event) => {
+						this.section2TouchStart(event);
 					}}
-					onTouchMove={(e) => {
-						this.section2TouchMove(e);
+					onTouchMove={(event) => {
+						this.section2TouchMove(event);
 					}}
 				>
 					<div
@@ -1997,21 +2254,15 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				<div
 					id="section_3_container"
 					ref={this.section_3_container}
-					onTouchStart={(e) => {
-						this.section3TouchStart(e);
+					onTouchStart={(event) => {
+						this.section3TouchStart(event);
 					}}
-					onTouchMove={(e) => {
-						this.section3TouchMove(e);
+					onTouchMove={(event) => {
+						this.section3TouchMove(event);
 					}}
+					className="sectionWrapper"
 					style={{
-						position: 'absolute',
-						width: '100%',
-						height: '100%',
-						top: '0px',
-						left: '0px',
-						zIndex: '-3',
-						overflow: 'hidden',
-						display: 'none'
+						zIndex: '-3'
 					}}
 				>
 					<img
@@ -2139,22 +2390,16 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				</div>
 				<div
 					id="section_4_container"
-					onTouchStart={(e) => {
-						this.section4TouchStart(e);
+					onTouchStart={(event) => {
+						this.section4TouchStart(event);
 					}}
-					onTouchMove={(e) => {
-						this.section4TouchMove(e);
+					onTouchMove={(event) => {
+						this.section4TouchMove(event);
 					}}
 					ref={this.section_4_container}
+					className="sectionWrapper"
 					style={{
-						position: 'absolute',
-						width: '100%',
-						height: '100%',
-						top: '0px',
-						left: '0px',
-						zIndex: '-4',
-						display: 'none',
-						overflow: 'hidden'
+						zIndex: '-4'
 					}}
 				>
 					<img
@@ -2315,11 +2560,11 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						display: 'none',
 						overflow: 'hidden'
 					}}
-					onTouchStart={(e) => {
-						this.section5TouchStart(e);
+					onTouchStart={(event) => {
+						this.section5TouchStart(event);
 					}}
-					onTouchMove={(e) => {
-						this.section5TouchMove(e);
+					onTouchMove={(event) => {
+						this.section5TouchMove(event);
 					}}
 				>
 					<img
@@ -2399,25 +2644,19 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				</div>
 				<div
 					id="section_6_container"
-					onTouchStart={(e) => {
-						this.section6TouchStart(e);
+					onTouchStart={(event) => {
+						this.section6TouchStart(event);
 					}}
-					onTouchMove={(e) => {
-						this.section6TouchMove(e);
+					onTouchMove={(event) => {
+						this.section6TouchMove(event);
 					}}
-					onTouchEnd={(e) => {
-						this.section6TouchEnd(e);
+					onTouchEnd={(event) => {
+						this.section6TouchEnd(event);
 					}}
 					ref={this.section_6_container}
+					className="sectionWrapper"
 					style={{
-						position: 'absolute',
-						width: '100%',
-						height: '100%',
-						top: '0px',
-						left: '0px',
-						zIndex: '-6',
-						display: 'none',
-						overflow: 'hidden'
+						zIndex: '-6'
 					}}
 				>
 					<CanvasImageSequence
@@ -2827,20 +3066,12 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				<div
 					id="section_7_container"
 					ref={this.section_7_container}
-					style={{
-						position: 'absolute',
-						width: '100%',
-						height: '100%',
-						top: '0px',
-						left: '0px',
-						display: 'none',
-						overflow: 'hidden'
+					className="sectionWrapper"
+					onTouchStart={(event) => {
+						this.section7TouchStart(event);
 					}}
-					onTouchStart={(e) => {
-						this.section7TouchStart(e);
-					}}
-					onTouchMove={(e) => {
-						this.section7TouchMove(e);
+					onTouchMove={(event) => {
+						this.section7TouchMove(event);
 					}}
 				>
 					{/*section_7_container*/}
@@ -2901,20 +3132,12 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				<div
 					id="privacySection8Wrapper"
 					ref={this.privacySection8Wrapper}
-					style={{
-						position: 'absolute',
-						width: '100%',
-						height: '100%',
-						top: '0px',
-						left: '0px',
-						display: 'none',
-						overflow: 'hidden'
+					className="sectionWrapper"
+					onTouchStart={(event) => {
+						this.section8TouchStart(event);
 					}}
-					onTouchStart={(e) => {
-						this.section8TouchStart(e);
-					}}
-					onTouchMove={(e) => {
-						this.section8TouchMove(e);
+					onTouchMove={(event) => {
+						this.section8TouchMove(event);
 					}}
 				>
 					{/*privacySection8Wrapper*/}
@@ -3186,23 +3409,15 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				<div
 					id="comfortSection1Wrapper"
 					ref={this.comfortSection1Wrapper}
-					style={{
-						position: 'absolute',
-						top: '0px',
-						left: '0px',
-						width: '100%',
-						height: '100%',
-						display: 'none',
-						overflow: 'hidden'
+					className="sectionWrapper"
+					onTouchStart={(event) => {
+						this.comfortSection1Start(event);
 					}}
-					onTouchStart={(e) => {
-						this.comfortSection1Start(e);
+					onTouchMove={(event) => {
+						this.comfortSection1Move(event);
 					}}
-					onTouchMove={(e) => {
-						this.comfortSection1Move(e);
-					}}
-					onTouchEnd={(e) => {
-						this.comfortSection1End(e);
+					onTouchEnd={(event) => {
+						this.comfortSection1End(event);
 					}}
 				>
 					{/* 背景图片 */}
@@ -3230,15 +3445,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 
 					<div id="comfortSection1Text" ref={this.comfortSection1Text} style={{ display: 'block' }}>
 						{/* 左下角编号 */}
-						<div
-							style={{
-								position: 'absolute',
-								width: '90px',
-								height: '105px',
-								left: '45px',
-								top: '891px'
-							}}
-						>
+						<div className="homePageIndex">
 							<svg
 								width="83"
 								height="47"
@@ -3443,26 +3650,18 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				<div
 					id="comfortSection2Wrapper"
 					ref={this.comfortSection2Wrapper}
-					style={{
-						position: 'absolute',
-						top: '0px',
-						left: '0px',
-						width: '100%',
-						height: '100%',
-						display: 'none',
-						overflow: 'hidden'
+					className="sectionWrapper"
+					onTouchStart={(event) => {
+						this.comfortSection2Start(event);
 					}}
-					onTouchStart={(e) => {
-						this.comfortSection2Start(e);
+					onTouchMove={(event) => {
+						this.comfortSection2Move(event);
 					}}
-					onTouchMove={(e) => {
-						this.comfortSection2Move(e);
-					}}
-					onTouchEnd={(e) => {
-						this.comfortSection2End(e);
+					onTouchEnd={(event) => {
+						this.comfortSection2End(event);
 					}}
 				>
-					<div style={{ position: 'absolute', width: '100%', height: '100%' }}>
+					<div className="imageWrapper">
 						<img src={this.state.comfortSection2Bg} className="imageCover" />
 
 						<div
@@ -3596,14 +3795,14 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							<div
 								style={{ position: 'absolute', top: '50%', left: '90px', flex: '1 auto' }}
 								ref={this.comfortSection2SplitterHook}
-								onTouchStart={(e) => {
-									this.comfortSection2SplitterStart(e);
+								onTouchStart={(event) => {
+									this.comfortSection2SplitterStart(event);
 								}}
-								onTouchMove={(e) => {
-									this.comfortSection2SplitterMove(e);
+								onTouchMove={(event) => {
+									this.comfortSection2SplitterMove(event);
 								}}
-								onTouchEnd={(e) => {
-									this.comfortSection2SplitterEnd(e);
+								onTouchEnd={(event) => {
+									this.comfortSection2SplitterEnd(event);
 								}}
 							>
 								<svg
@@ -3670,24 +3869,19 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				<div
 					id="comfortSection3Wrapper"
 					ref={this.comfortSection3Wrapper}
-					onTouchStart={(e) => {
-						this.comfortSection3Start(e);
+					onTouchStart={(event) => {
+						this.comfortSection3Start(event);
 					}}
-					onTouchMove={(e) => {
-						this.comfortSection3Move(e);
+					onTouchMove={(event) => {
+						this.comfortSection3Move(event);
 					}}
-					onTouchEnd={(e) => {
-						this.comfortSection3End(e);
+					onTouchEnd={(event) => {
+						this.comfortSection3End(event);
 					}}
+					className="sectionWrapper"
 					style={{
-						position: 'absolute',
-						width: '100%',
-						height: '100%',
-						top: '0px',
 						background:
-							'linear-gradient(175.17deg, rgba(236, 168, 158, 0.16) 12.52%, rgba(27, 22, 82, 0.16) 96.1%)',
-						display: 'none',
-						overflow: 'hidden'
+							'linear-gradient(175.17deg, rgba(236, 168, 158, 0.16) 12.52%, rgba(27, 22, 82, 0.16) 96.1%)'
 					}}
 				>
 					<img src={comfortBg_4_new} className="imageCover" />
@@ -3865,30 +4059,21 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				{/* comfort section 4 */}
 				<div
 					id="comfortSection4Wrapper"
-					style={{
-						position: 'absolute',
-						top: '0px',
-						left: '0px',
-						width: '100%',
-						height: '100%',
-						display: 'none',
-						overflow: 'hidden'
+					className="sectionWrapper"
+					onTouchStart={(event) => {
+						this.comfortSection4Start(event);
 					}}
-					onTouchStart={(e) => {
-						this.comfortSection4Start(e);
+					onTouchMove={(event) => {
+						this.comfortSection4Move(event);
 					}}
-					onTouchMove={(e) => {
-						this.comfortSection4Move(e);
-					}}
-					onTouchEnd={(e) => {
-						this.comfortSection4End(e);
+					onTouchEnd={(event) => {
+						this.comfortSection4End(event);
 					}}
 					ref={this.comfortSection4Wrapper}
 				>
 					{/* 上半部分背景 */}
 					<div id="comfortSection4Box07" ref={this.comfortSection4Box07}>
 						<div>
-							{' '}
 							<img src={comfortSection4Bg} />
 						</div>
 
@@ -4187,24 +4372,19 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				<div
 					id="comfortSection5Wrapper"
 					ref={this.comfortSection5Wrapper}
+					className="sectionWrapper"
 					style={{
-						position: 'absolute',
-						width: '100%',
-						height: '100%',
-						top: '0px',
-						display: 'none',
-						overflow: 'hidden',
 						background:
 							'linear-gradient(175.17deg, rgba(236, 168, 158, 0.16) 12.52%, rgba(27, 22, 82, 0.16) 96.1%)'
 					}}
-					onTouchStart={(e) => {
-						this.comfortSection5Start(e);
+					onTouchStart={(event) => {
+						this.comfortSection5Start(event);
 					}}
-					onTouchMove={(e) => {
-						this.comfortSection5Move(e);
+					onTouchMove={(event) => {
+						this.comfortSection5Move(event);
 					}}
-					onTouchEnd={(e) => {
-						this.comfortSection5End(e);
+					onTouchEnd={(event) => {
+						this.comfortSection5End(event);
 					}}
 				>
 					<div>
@@ -4289,23 +4469,15 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				<div
 					id="comfortSection6Wrapper"
 					ref={this.comfortSection6Wrapper}
-					style={{
-						position: 'absolute',
-						top: '0px',
-						left: '0px',
-						width: '100%',
-						height: '100%',
-						display: 'none',
-						overflow: 'hidden'
+					className="sectionWrapper"
+					onTouchStart={(event) => {
+						this.comfortSection6Start(event);
 					}}
-					onTouchStart={(e) => {
-						this.comfortSection6Start(e);
+					onTouchMove={(event) => {
+						this.comfortSection6Move(event);
 					}}
-					onTouchMove={(e) => {
-						this.comfortSection6Move(e);
-					}}
-					onTouchEnd={(e) => {
-						this.comfortSection6End(e);
+					onTouchEnd={(event) => {
+						this.comfortSection6End(event);
 					}}
 				>
 					<div
@@ -4419,23 +4591,15 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				<div
 					id="comfortSection7Wrapper"
 					ref={this.comfortSection7Wrapper}
-					style={{
-						position: 'absolute',
-						top: '0px',
-						left: '0px',
-						width: '100%',
-						height: '100%',
-						display: 'none',
-						overflow: 'hidden'
+					className="sectionWrapper"
+					onTouchStart={(event) => {
+						this.comfortSection7Start(event);
 					}}
-					onTouchStart={(e) => {
-						this.comfortSection7Start(e);
+					onTouchMove={(event) => {
+						this.comfortSection7Move(event);
 					}}
-					onTouchMove={(e) => {
-						this.comfortSection7Move(e);
-					}}
-					onTouchEnd={(e) => {
-						this.comfortSection7End(e);
+					onTouchEnd={(event) => {
+						this.comfortSection7End(event);
 					}}
 				>
 					{/* 背景图片*/}
@@ -4611,23 +4775,15 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				<div
 					id="comfortSection8Wrapper"
 					ref={this.comfortSection8Wrapper}
-					style={{
-						position: 'absolute',
-						top: '0px',
-						left: '0px',
-						width: '100%',
-						height: '100%',
-						display: 'none',
-						overflow: 'hidden'
+					className="sectionWrapper"
+					onTouchStart={(event) => {
+						this.comfortSection8Start(event);
 					}}
-					onTouchStart={(e) => {
-						this.comfortSection8Start(e);
+					onTouchMove={(event) => {
+						this.comfortSection8Move(event);
 					}}
-					onTouchMove={(e) => {
-						this.comfortSection8Move(e);
-					}}
-					onTouchEnd={(e) => {
-						this.comfortSection8End(e);
+					onTouchEnd={(event) => {
+						this.comfortSection8End(event);
 					}}
 				>
 					<div id="comfortSection8BgWrapper">
@@ -4740,23 +4896,15 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				<div
 					id="comfortSection9Wrapper"
 					ref={this.comfortSection9Wrapper}
-					style={{
-						position: 'absolute',
-						top: '0px',
-						left: '0px',
-						width: '100%',
-						height: '100%',
-						display: 'none',
-						overflow: 'hidden'
+					className="sectionWrapper"
+					onTouchStart={(event) => {
+						this.comfortSection9Start(event);
 					}}
-					onTouchStart={(e) => {
-						this.comfortSection9Start(e);
+					onTouchMove={(event) => {
+						this.comfortSection9Move(event);
 					}}
-					onTouchMove={(e) => {
-						this.comfortSection9Move(e);
-					}}
-					onTouchEnd={(e) => {
-						this.comfortSection9End(e);
+					onTouchEnd={(event) => {
+						this.comfortSection9End(event);
 					}}
 				>
 					<div
@@ -4927,24 +5075,18 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				<div
 					id="comfortSection10EndWrapper"
 					ref={this.comfortSection10EndWrapper}
+					className="sectionWrapper"
 					style={{
-						display: 'none',
-						position: 'absolute',
-						width: '100%',
-						height: '100%',
-						left: '0px',
-						top: '0px',
-						zIndex: '1',
-						overflow: 'hidden'
+						// zIndex: '1'
 					}}
-					onTouchStart={(e) => {
-						this.comfortSection10Start(e);
+					onTouchStart={(event) => {
+						this.comfortSection10Start(event);
 					}}
-					onTouchMove={(e) => {
-						this.comfortSection10Move(e);
+					onTouchMove={(event) => {
+						this.comfortSection10Move(event);
 					}}
-					onTouchEnd={(e) => {
-						this.comfortSection10End(e);
+					onTouchEnd={(event) => {
+						this.comfortSection10End(event);
 					}}
 				>
 					<div id="comfortSection9EngBg1">
@@ -5206,38 +5348,23 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				<div
 					id="leisureSection1"
 					ref={this.leisureSection1Wrapper}
-					onTouchStart={(e) => {
-						this.leisureSection1Start(e);
+					onTouchStart={(event) => {
+						this.leisureSection1Start(event);
 					}}
-					onTouchMove={(e) => {
-						this.leisureSection1Move(e);
+					onTouchMove={(event) => {
+						this.leisureSection1Move(event);
 					}}
-					onTouchEnd={(e) => {
-						this.leisureSection1End(e);
+					onTouchEnd={(event) => {
+						this.leisureSection1End(event);
 					}}
-					style={{
-						position: 'absolute',
-						top: '0px',
-						left: '0px',
-						width: '100%',
-						height: '100%',
-						display: 'none'
-					}}
+					className="sectionWrapper"
 				>
 					{/* 背景图片*/}
 					<div>
 						<img src={leisureSection1Bg} />
 					</div>
 					{/* 左下角数字*/}
-					<div
-						style={{
-							position: 'absolute',
-							width: '88px',
-							height: '105px',
-							left: '46px',
-							top: '891px'
-						}}
-					>
+					<div className="homePageIndex">
 						<svg width="81" height="63" viewBox="0 0 81 63" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path
 								opacity="0.24"
@@ -5436,23 +5563,18 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				</div>
 				<div
 					id="leisureSection2Wrapper"
-					onTouchStart={(e) => {
-						this.leisureSection2TouchStart(e);
+					onTouchStart={(event) => {
+						this.leisureSection2TouchStart(event);
 					}}
-					onTouchMove={(e) => {
-						this.leisureSection2TouchMove(e);
+					onTouchMove={(event) => {
+						this.leisureSection2TouchMove(event);
 					}}
-					onTouchEnd={(e) => {
-						this.leisureSection2TouchEnd(e);
+					onTouchEnd={(event) => {
+						this.leisureSection2TouchEnd(event);
 					}}
+					className="sectionWrapper"
 					style={{
-						position: 'absolute',
-						width: '100%',
-						height: '100%',
-						top: '0px',
-						left: '0px',
-						display: 'none',
-						overflow: 'hidden'
+						zIndex: '10'
 					}}
 					ref={this.leisureSection2Wrapper}
 				>
@@ -5561,8 +5683,6 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						id="leisureSection2Bg2"
 						ref={this.leisureSection2Bg2}
 						style={{
-							/* Rectangle 59 */
-
 							position: 'absolute',
 							width: '1122px',
 							height: '841px',
@@ -5625,31 +5745,27 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						</div>
 					</div>
 				</div>
-				
-				<div id="leisureSection3Wrapper" 
-				ref = {this.leisureSection3Wrapper}
-				onTouchStart={(e) => {
-						this.leisureSection3TouchStart(e);
+
+				<div
+					id="leisureSection3Wrapper"
+					ref={this.leisureSection3Wrapper}
+					onTouchStart={(event) => {
+						this.leisureSection3TouchStart(event);
 					}}
-					onTouchMove={(e) => {
-						this.leisureSection3TouchMove(e);
+					onTouchMove={(event) => {
+						this.leisureSection3TouchMove(event);
 					}}
-					onTouchEnd={(e) => {
-						this.leisureSection3TouchEnd(e);
+					onTouchEnd={(event) => {
+						this.leisureSection3TouchEnd(event);
 					}}
+					className="sectionWrapper"
 					style={{
-						position: 'absolute',
-						width: '100%',
-						height: '100%',
-						top: '0px',
-						left: '0px',
-						display: 'none',
-						overflow: 'hidden',
-						background: '#5C5C6F',
-					}}>
+						background: '#5C5C6F'
+					}}
+				>
 					<div
 						id="leisureSection3Text"
-						ref = {this.leisureSection3Text}
+						ref={this.leisureSection3Text}
 						style={{
 							position: 'absolute',
 							width: '544px',
@@ -5658,7 +5774,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							top: '562px',
 							background: 'rgba(113, 112, 129, 0.38)',
 							backdropFilter: 'blur(48px)',
-							display:'none'
+							zIndex: '1',
+							display: 'none'
 						}}
 					>
 						<div
@@ -5675,10 +5792,32 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							interdum libero tincidunt efficitur. Maecenas dapibus condimentum commodo.
 						</div>
 					</div>
-
+					<div
+						style={{
+							position: 'absolute',
+							left: '0px',
+							top: '0px',
+							width: '100%',
+							height: '876px',
+							overflow: 'hidden'
+						}}
+					>
+						<div
+							ref={this.leisureSection3Bg1}
+							style={{ position: 'absolute', left: '0px', top: '0px', width: '100%', height: '100%' }}
+						>
+							<img src={leisureSection3Bg1} className="imageCover" />
+						</div>
+						<div
+							ref={this.leisureSection3Bg2}
+							style={{ position: 'absolute', left: '0px', top: '876px', width: '100%', height: '100%' }}
+						>
+							<img src={leisureSection3Bg2} className="imageCover" />
+						</div>
+					</div>
 					<div
 						id="leisureSection3Title"
-						ref = {this.leisureSection3Title}
+						ref={this.leisureSection3Title}
 						className="dFordNormalTitle"
 						style={{
 							position: 'absolute',
@@ -5687,15 +5826,15 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							left: '137px',
 							top: '807px',
 							opacity: '0.9',
-							display:'none',
+							display: 'none',
 							zIndex: '2'
 						}}
 					>
 						Entertainment studio
 					</div>
 
-						{/* 背景栅格 */}
-						<div
+					{/* 背景栅格 */}
+					<div
 						style={{
 							position: 'absolute',
 							width: '822px',
@@ -5717,6 +5856,927 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							<line opacity="0.3" x1="549.5" y1="-2.18557e-08" x2="549.5" y2="892" stroke="#E8E8E8" />
 							<line opacity="0.3" x1="822.5" y1="-2.18557e-08" x2="822.5" y2="892" stroke="#E8E8E8" />
 						</svg>
+					</div>
+				</div>
+
+				{/* leisure section4*/}
+				<div
+					id="leisureSection4Wrapper"
+					ref={this.leisureSection4Wrapper}
+					onTouchStart={(event) => {
+						this.leisureSection4TouchStart(event);
+					}}
+					onTouchMove={(event) => {
+						this.leisureSection4TouchMove(event);
+					}}
+					onTouchEnd={(event) => {
+						this.leisureSection4TouchEnd(event);
+					}}
+					style={{
+						position: 'absolute',
+						width: '100%',
+						height: '100%',
+						left: '0px',
+						top: '0px',
+						display: 'none',
+						overflow: 'hidden'
+					}}
+				>
+					<div id="leisureSection4Bg">
+						<div
+							style={{
+								/* Rectangle 112 */
+
+								position: 'absolute',
+								width: '1368px',
+								height: '369px',
+								left: '-2px',
+								top: '0px',
+
+								background: 'linear-gradient(180deg, #331C36 -9.89%, rgba(43, 46, 55, 0) 100%)',
+								mixBlendMode: 'soft-light'
+							}}
+						/>
+					</div>
+					<div
+						style={{
+							position: 'absolute',
+							width: '100%',
+							height: '100%',
+							left: '0px',
+							top: '0px',
+							background: 'linear-gradient(180deg, rgba(17, 17, 17, 0.3) 0%, rgba(17, 17, 17, 0) 100%)',
+							opacity: '0.66',
+							backdropFilter: 'blur(25px)'
+						}}
+					/>
+
+					<div
+						style={{
+							position: 'absolute',
+							width: '100%',
+							height: '100%',
+							left: '0px',
+							top: '1024px',
+							background: ' linear-gradient(207.15deg, #3D2B37 19.73%, rgba(123, 175, 253, 0.31) 73.87%)',
+							mixBlendMode: 'multiply',
+							transform: 'matrix(1, 0, 0, -1, 0, 0)'
+						}}
+					/>
+					{/*背景图片*/}
+					<div className="imageWrapper">
+						<img src={leisureSection4Bg3} />
+					</div>
+
+					<div
+						className="floating-balloon-1 imageWrapper"
+						style={{
+							background:
+								'linear-gradient(180deg, rgba(45, 107, 126, 0.2) 12.3%, rgba(186, 98, 217, 0.154) 88.58%), url(image.png)',
+							mixBlendMode: 'unset'
+						}}
+					>
+						<img src={leisureSection4Bg4} />
+					</div>
+
+					{/* 标题*/}
+					<div
+						style={{
+							/* music studio */
+
+							position: 'absolute',
+							left: '82px',
+							top: '728px',
+							width: '528px',
+							height: '72px',
+							opacity: '0.9'
+						}}
+						className="dFordNormalTitle"
+					>
+						Shared Session
+					</div>
+
+					{/*文本图标*/}
+					<div
+						style={{
+							/* Line 39 */
+
+							position: 'absolute',
+							width: '68px',
+							height: '0px',
+							left: '82px',
+							top: '838px',
+							transform: ' rotate(180deg)'
+						}}
+					>
+						<svg width="68" height="8" viewBox="0 0 68 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<line x1="68" y1="4" y2="4" stroke="#BCB4E8" strokeWidth="8" />
+						</svg>
+					</div>
+
+					{/*文本*/}
+					<div
+						style={{
+							/* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium odio ipsum, eget interdum libero tincidunt efficitur. Maecenas dapibus condimentum commodo. */
+
+							position: 'absolute',
+							width: '626px',
+							height: '93px',
+							left: '82px',
+							top: '858px'
+						}}
+						className="dFordNormalText"
+					>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium odio ipsum, eget
+						interdum libero tincidunt efficitur. Maecenas dapibus condimentum commodo.
+					</div>
+				</div>
+
+				{/* leisure section5*/}
+				<div
+					id="leisureSection5Wrapper"
+					ref={this.leisureSection5Wrapper}
+					onTouchStart={(event) => {
+						this.leisureSection5TouchStart(event);
+					}}
+					onTouchMove={(event) => {
+						this.leisureSection5TouchMove(event);
+					}}
+					onTouchEnd={(event) => {
+						this.leisureSection5TouchEnd(event);
+					}}
+					style={{
+						position: 'absolute',
+						width: '100%',
+						height: '100%',
+						left: '0px',
+						top: '0px',
+						display: 'none'
+					}}
+				>
+					<div
+						style={{
+							/* Rectangle 59 */
+
+							position: 'absolute',
+							width: '683px',
+							height: '100%',
+							left: '683px',
+							bottom: '0px',
+
+							background: 'linear-gradient(275.35deg, #1A1B2F 10.8%, rgba(196, 196, 196, 0) 42.29%)',
+							mixBlendMode: 'multiply',
+							opacity: '0.69',
+							transform: 'matrix(1, 0, 0, -1, 0, 0)'
+						}}
+					/>
+					<div
+						className="imageWrapper"
+						style={{
+							background:
+								'linear-gradient(180deg, rgba(45, 107, 126, 0.2) 12.3%, rgba(186, 98, 217, 0.154) 88.58%), url(image.png)',
+							mixBlendMode: 'unset'
+						}}
+					>
+						<img src={leisureSection5Bg1} />
+					</div>
+
+					{/* 标题*/}
+					<div
+						style={{
+							/* music studio */
+
+							position: 'absolute',
+							left: '82px',
+							top: '728px',
+							width: '528px',
+							height: '72px',
+							opacity: '0.9'
+						}}
+						className="dFordNormalTitle"
+					>
+						Shared Session
+					</div>
+
+					{/*文本图标*/}
+					<div
+						style={{
+							/* Line 39 */
+
+							position: 'absolute',
+							width: '68px',
+							height: '0px',
+							left: '82px',
+							top: '838px',
+							transform: ' rotate(180deg)'
+						}}
+					>
+						<svg width="68" height="8" viewBox="0 0 68 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<line x1="68" y1="4" y2="4" stroke="#BCB4E8" strokeWidth="8" />
+						</svg>
+					</div>
+
+					{/*文本*/}
+					<div
+						style={{
+							/* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium odio ipsum, eget interdum libero tincidunt efficitur. Maecenas dapibus condimentum commodo. */
+
+							position: 'absolute',
+							width: '626px',
+							height: '93px',
+							left: '82px',
+							top: '858px'
+						}}
+						className="dFordNormalText"
+					>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium odio ipsum, eget
+						interdum libero tincidunt efficitur. Maecenas dapibus condimentum commodo.
+					</div>
+				</div>
+
+				{/* leisure section6*/}
+				<div
+					id="leisureSection6Wrapper"
+					ref={this.leisureSection6Wrapper}
+					onTouchStart={(event) => {
+						this.leisureSection6TouchStart(event);
+					}}
+					onTouchMove={(event) => {
+						this.leisureSection6TouchMove(event);
+					}}
+					onTouchEnd={(event) => {
+						this.leisureSection6TouchEnd(event);
+					}}
+					style={{
+						position: 'absolute',
+						width: '100%',
+						height: '100%',
+						left: '0px',
+						top: '0px',
+						display: 'none'
+					}}
+				>
+					<div id="leisureSection6Grally">
+						<div className="maxImage">
+							<img src={this.state.leisureSetion6GrallyMaxImage} className="imageCover" />
+						</div>
+						<div
+							style={{
+								position: 'absolute',
+								width: '273px',
+								height: '100%',
+								right: '0px',
+								top: '0px',
+								background: 'rgba(45, 42, 64, 0.28)',
+								backdropFilter: ' blur(73px)'
+							}}
+						/>
+						<div
+							className="smallImges"
+							style={{
+								position: 'absolute',
+								right: '0px',
+								width: '341px',
+								height: '100%'
+							}}
+							ref={this.leisureSection6Grally}
+						>
+							<div
+								onClick={() => {
+									this.leisureSetion6GrallySmallImage(0);
+								}}
+								className="activeGrally0"
+								style={{
+									padding: '15px',
+									boxSizing: 'border-box',
+									width: '300px',
+									height: '200px',
+									position: 'absolute',
+									top: '203px'
+								}}
+							>
+								<img
+									src={leisureSection6Bg1}
+									className="imageCover"
+									style={{ width: '270px', height: '170px' }}
+								/>
+							</div>
+							<div
+								onClick={() => {
+									this.leisureSetion6GrallySmallImage(1);
+								}}
+								className="normalGrally"
+								style={{
+									width: '300px',
+									height: '200px',
+									position: 'absolute',
+									top: '433px',
+									padding: '15px',
+									boxSizing: 'border-box'
+								}}
+							>
+								<img
+									src={leisureSection6Bg2}
+									className="imageCover"
+									style={{ width: '270px', height: '170px' }}
+								/>
+							</div>
+							<div
+								onClick={() => {
+									this.leisureSetion6GrallySmallImage(2);
+								}}
+								className="normalGrally"
+								style={{
+									width: '300px',
+									height: '200px',
+									position: 'absolute',
+									top: '663px',
+									padding: '15px',
+									boxSizing: 'border-box'
+								}}
+							>
+								<img
+									src={leisureSection6Bg3}
+									className="imageCover"
+									style={{ width: '270px', height: '170px' }}
+								/>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				{/* leisure section7*/}
+				<div
+					id="leisureSection7Wrapper"
+					ref={this.leisureSection7Wrapper}
+					onTouchStart={(event) => {
+						this.leisureSection7TouchStart(event);
+					}}
+					onTouchMove={(event) => {
+						this.leisureSection7TouchMove(event);
+					}}
+					onTouchEnd={(event) => {
+						this.leisureSection7TouchEnd(event);
+					}}
+					style={{
+						position: 'absolute',
+						width: '100%',
+						height: '100%',
+						left: '0px',
+						top: '0px',
+						display: 'none',
+						overflow: 'hidden'
+					}}
+				>
+					<div style={{ position: 'absolute', left: '0px', top: '0px', width: '100%', height: '100%' }}>
+						<img src={this.state.leisureSetion6GrallyMaxImage} className="imageCover" />
+					</div>
+
+					<div
+						id="comfortSectoin9EndReturnHome"
+						style={{
+							position: 'absolute',
+							width: '100%',
+							height: '100%',
+							left: '0px',
+							top: '0px',
+							display: 'block'
+						}}
+					>
+						<div style={{ position: 'absolute', width: '100%', height: '95px', left: '0px', top: '417px' }}>
+							<svg
+								width="1370"
+								height="98"
+								viewBox="0 0 1370 98"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path d="M1369 1L686 96L0.5 1" stroke="#4F4F4F" strokeWidth="2" />
+							</svg>
+						</div>
+						<div
+							style={{
+								position: 'absolute',
+								width: '1366px',
+								height: '612.5px',
+								left: '0px',
+								top: '412px'
+							}}
+						>
+							<svg
+								width="1366"
+								height="612"
+								viewBox="0 0 1366 612"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path opacity="0.75" d="M0 0L683 90.5L1366 0V612.5H0V0Z" fill="#1D1B1D" />
+							</svg>
+						</div>
+						<div
+							style={{ position: 'absolute', width: '118px', height: '0px', left: '685px', top: '906px' }}
+						>
+							<svg
+								width="2"
+								height="118"
+								viewBox="0 0 2 118"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<line x1="1" y1="-4.37114e-08" x2="1.00001" y2="118" stroke="white" strokeWidth="2" />
+							</svg>
+						</div>
+						<div
+							style={{
+								position: 'absolute',
+								width: '139px',
+								height: '139px',
+								left: '615px',
+								top: '835px'
+							}}
+						>
+							<svg
+								width="139"
+								height="139"
+								viewBox="0 0 139 139"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<circle opacity="0.28" cx="69.5" cy="69.5" r="68.5" stroke="white" strokeWidth="2" />
+							</svg>
+						</div>
+					</div>
+					<div
+						id="comfortSectoin9EndReturnHomeTitle"
+						style={{ position: 'absolute', width: '100%', height: ' 100%', left: '0px', top: ' 0px' }}
+					>
+						<div
+							className="dFordNormalTitle"
+							style={{
+								position: 'absolute',
+								width: '429px',
+								height: '72px',
+								left: '302px',
+								top: '641px'
+							}}
+						>
+							continue to
+						</div>
+						<div
+							className="dFordNormalTitle"
+							style={{
+								position: 'absolute',
+								width: '309px',
+								height: '72px',
+								left: '745px',
+								top: '641px',
+								color: ' rgb(175, 205, 250)'
+							}}
+						>
+							Unique
+						</div>
+					</div>
+				</div>
+
+				{/* Unique Section1 */}
+				<div
+					id="uniqueSection1Wrapper"
+					className="sectionWrapper"
+					onTouchStart={(event) => {
+						this.uniqueSection1TouchStart(event);
+					}}
+					onTouchMove={(event) => {
+						this.uniqueSection1TouchMove(event);
+					}}
+					onTouchEnd={(event) => {
+						this.uniqueSection1TouchEnd(event);
+					}}
+					ref={this.uniqueSection1Wrapper}
+				>
+					{/* 背景图片 */}
+					<div
+						style={{
+							position: 'absolute',
+							width: '100%',
+							height: '100%',
+							top: '0px',
+							left: '0px'
+						}}
+					>
+						<CanvasImageSequence
+							ref={this.uniqueSection1CanvasRef}
+							data={this.state.uniqueSection1ImageSequence}
+							loop={true}
+							forward={true}
+							autoPlay={false}
+							fps={10}
+							canvasWidth={this.state.canvasWidth}
+							canvasHeight={this.state.canvasHeight}
+							onChange={() => this.change}
+						/>
+					</div>
+
+					<div id="uniqueSection1Text" ref={this.uniqueSection1Text} style={{ display: 'block' }}>
+						{/* 左下角编号 */}
+						<div className="homePageIndex">
+							<svg
+								width="89"
+								height="61"
+								viewBox="0 0 89 61"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									opacity="0.24"
+									d="M22.3036 46.128C18.9823 46.128 15.9743 45.5953 13.2796 44.53C10.585 43.402 8.29762 41.8353 6.41762 39.83C4.53762 37.8247 3.06496 35.4433 1.99962 32.686C0.996957 29.866 0.495624 26.764 0.495624 23.38C0.495624 20.184 1.02829 17.176 2.09362 14.356C3.22162 11.536 4.75696 9.092 6.69962 7.024C8.64229 4.956 10.9296 3.32667 13.5616 2.136C16.2563 0.882665 19.1703 0.255999 22.3036 0.255999C25.437 0.255999 28.3196 0.851332 30.9516 2.042C33.6463 3.17 35.965 4.768 37.9076 6.836C39.8503 8.84133 41.3543 11.254 42.4196 14.074C43.5476 16.894 44.1116 19.996 44.1116 23.38C44.1116 26.576 43.579 29.5527 42.5136 32.31C41.511 35.0673 40.0696 37.48 38.1896 39.548C36.3096 41.616 34.0223 43.2453 31.3276 44.436C28.633 45.564 25.625 46.128 22.3036 46.128ZM9.80162 23.38C9.80162 26.5133 10.115 29.2393 10.7416 31.558C11.431 33.814 12.3396 35.7253 13.4676 37.292C14.6583 38.8587 16.0056 40.018 17.5096 40.77C19.0763 41.522 20.737 41.898 22.4916 41.898C24.121 41.898 25.6563 41.522 27.0976 40.77C28.6016 40.018 29.9176 38.89 31.0456 37.386C32.1736 35.882 33.051 33.9707 33.6776 31.652C34.367 29.3333 34.7116 26.576 34.7116 23.38C34.7116 20.184 34.367 17.3953 33.6776 15.014C33.051 12.6327 32.1736 10.69 31.0456 9.186C29.9176 7.61933 28.6016 6.46 27.0976 5.708C25.5936 4.89333 23.9956 4.486 22.3036 4.486C20.6116 4.486 19.0136 4.862 17.5096 5.614C16.0056 6.366 14.6583 7.52533 13.4676 9.092C12.3396 10.596 11.431 12.5387 10.7416 14.92C10.115 17.3013 9.80162 20.1213 9.80162 23.38ZM88.4025 38.89V45H80.6005V60.98H72.1405V45H46.1965C46.0712 44.3733 46.0085 43.872 46.0085 43.496C46.0085 43.12 46.2592 42.6187 46.7605 41.992L77.4985 1.384C77.8118 0.945332 78.2505 0.725999 78.8145 0.725999H80.6005V38.89H88.4025ZM72.1405 14.638L53.7165 38.89H72.1405V14.638Z"
+									fill="white"
+								/>
+							</svg>
+						</div>
+						{/* 标题  Comfort */}
+						<div
+							style={{
+								position: 'absolute',
+								width: '659px',
+								height: '155px',
+								left: '340px',
+								top: '741px'
+							}}
+							className="dFordMainTitle"
+						>
+							Unique
+						</div>
+						{/* 标题  + */}
+						<div
+							style={{
+								position: 'absolute',
+								width: '72px',
+								height: '173px',
+								left: '1009px',
+								top: '734px'
+							}}
+						>
+							<svg
+								width="64"
+								height="69"
+								viewBox="0 0 64 69"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									opacity="0.8"
+									d="M63.5273 38.974V29.318H37.2573V0.917994H26.7493V29.318H0.479328V38.974H26.7493V68.368H37.2573V38.974H63.5273Z"
+									fill="white"
+								/>
+							</svg>
+						</div>
+						{/* 向下滚动图标*/}
+						<div
+							style={{
+								position: 'absolute',
+								width: '22px',
+								height: '8px',
+								left: '670px',
+								top: '965px'
+							}}
+						>
+							<svg
+								width="24"
+								height="11"
+								viewBox="0 0 24 11"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path d="M1 1L12.275 9L23 1" stroke="white" strokeWidth="2" strokeLinecap="round" />
+							</svg>
+						</div>
+						{/* 向下滚动文本 scroll to descover*/}
+						<div
+							style={{
+								position: 'absolute',
+								width: '211px',
+								height: '24px',
+								left: '572px',
+								top: '916px'
+							}}
+						>
+							<svg
+								width="211"
+								height="15"
+								viewBox="0 0 211 15"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M6.01203 14.24C9.61203 14.24 11.172 12.34 11.172 10.12C11.172 5.14 3.41203 6.68 3.41203 4.2C3.41203 3.2 4.29203 2.54 5.67203 2.54C7.07203 2.54 8.49203 3.02 9.53203 4.06L10.872 2.32C9.63203 1.12 7.95203 0.459999 5.87203 0.459999C2.95203 0.459999 1.01203 2.16 1.01203 4.36C1.01203 9.28 8.79203 7.54 8.79203 10.34C8.79203 11.22 8.03203 12.16 6.11203 12.16C4.25203 12.16 2.81203 11.3 1.89203 10.32L0.592028 12.12C1.77203 13.38 3.55203 14.24 6.01203 14.24ZM19.527 14.24C22.227 14.24 23.867 12.84 24.887 11.24L22.887 10.22C22.247 11.34 20.967 12.16 19.527 12.16C16.887 12.16 14.927 10.14 14.927 7.34C14.927 4.54 16.887 2.52 19.527 2.52C20.967 2.52 22.247 3.36 22.887 4.46L24.887 3.44C23.887 1.84 22.227 0.439999 19.527 0.439999C15.587 0.439999 12.527 3.24 12.527 7.34C12.527 11.44 15.587 14.24 19.527 14.24ZM36.8798 14L33.6198 8.76C35.2198 8.5 36.7798 7.22 36.7798 4.84C36.7798 2.38 35.0598 0.659999 32.4198 0.659999H26.5598V14H28.8998V9.02H31.2198L34.1798 14H36.8798ZM32.0998 6.96H28.8998V2.72H32.0998C33.4198 2.72 34.3798 3.56 34.3798 4.84C34.3798 6.12 33.4198 6.96 32.0998 6.96ZM45.1384 14.24C49.1384 14.24 51.9584 11.32 51.9584 7.34C51.9584 3.36 49.1384 0.439999 45.1384 0.439999C41.1384 0.439999 38.3184 3.36 38.3184 7.34C38.3184 11.32 41.1384 14.24 45.1384 14.24ZM45.1384 12.16C42.4384 12.16 40.7184 10.08 40.7184 7.34C40.7184 4.58 42.4384 2.52 45.1384 2.52C47.8184 2.52 49.5584 4.58 49.5584 7.34C49.5584 10.08 47.8184 12.16 45.1384 12.16ZM62.2314 14V11.94H56.3514V0.659999H54.0114V14H62.2314ZM72.3634 14V11.94H66.4834V0.659999H64.1434V14H72.3634ZM84.7322 14V2.72H88.7722V0.659999H78.3522V2.72H82.3922V14H84.7322ZM96.2673 14.24C100.267 14.24 103.087 11.32 103.087 7.34C103.087 3.36 100.267 0.439999 96.2673 0.439999C92.2673 0.439999 89.4473 3.36 89.4473 7.34C89.4473 11.32 92.2673 14.24 96.2673 14.24ZM96.2673 12.16C93.5673 12.16 91.8473 10.08 91.8473 7.34C91.8473 4.58 93.5673 2.52 96.2673 2.52C98.9473 2.52 100.687 4.58 100.687 7.34C100.687 10.08 98.9473 12.16 96.2673 12.16ZM115.037 14C119.197 14 122.017 11.26 122.017 7.34C122.017 3.42 119.197 0.659999 115.037 0.659999H110.077V14H115.037ZM115.037 11.94H112.417V2.72H115.037C118.017 2.72 119.617 4.76 119.617 7.34C119.617 9.86 117.937 11.94 115.037 11.94ZM133.216 14V11.94H126.416V8.24H133.076V6.18H126.416V2.72H133.216V0.659999H124.076V14H133.216ZM139.979 14.24C143.579 14.24 145.139 12.34 145.139 10.12C145.139 5.14 137.379 6.68 137.379 4.2C137.379 3.2 138.259 2.54 139.639 2.54C141.039 2.54 142.459 3.02 143.499 4.06L144.839 2.32C143.599 1.12 141.919 0.459999 139.839 0.459999C136.919 0.459999 134.979 2.16 134.979 4.36C134.979 9.28 142.759 7.54 142.759 10.34C142.759 11.22 141.999 12.16 140.079 12.16C138.219 12.16 136.779 11.3 135.859 10.32L134.559 12.12C135.739 13.38 137.519 14.24 139.979 14.24ZM153.494 14.24C156.194 14.24 157.834 12.84 158.854 11.24L156.854 10.22C156.214 11.34 154.934 12.16 153.494 12.16C150.854 12.16 148.894 10.14 148.894 7.34C148.894 4.54 150.854 2.52 153.494 2.52C154.934 2.52 156.214 3.36 156.854 4.46L158.854 3.44C157.854 1.84 156.194 0.439999 153.494 0.439999C149.554 0.439999 146.494 3.24 146.494 7.34C146.494 11.44 149.554 14.24 153.494 14.24ZM166.747 14.24C170.747 14.24 173.567 11.32 173.567 7.34C173.567 3.36 170.747 0.439999 166.747 0.439999C162.747 0.439999 159.927 3.36 159.927 7.34C159.927 11.32 162.747 14.24 166.747 14.24ZM166.747 12.16C164.047 12.16 162.327 10.08 162.327 7.34C162.327 4.58 164.047 2.52 166.747 2.52C169.427 2.52 171.167 4.58 171.167 7.34C171.167 10.08 169.427 12.16 166.747 12.16ZM181.989 14L187.229 0.659999H184.569L180.529 11.46L176.489 0.659999H173.829L179.069 14H181.989ZM197.626 14V11.94H190.826V8.24H197.486V6.18H190.826V2.72H197.626V0.659999H188.486V14H197.626ZM210.149 14L206.889 8.76C208.489 8.5 210.049 7.22 210.049 4.84C210.049 2.38 208.329 0.659999 205.689 0.659999H199.829V14H202.169V9.02H204.489L207.449 14H210.149ZM205.369 6.96H202.169V2.72H205.369C206.689 2.72 207.649 3.56 207.649 4.84C207.649 6.12 206.689 6.96 205.369 6.96Z"
+									fill="#DEDEDE"
+								/>
+							</svg>
+						</div>
+					</div>
+
+					<div
+						style={{
+							position: 'absolute',
+							width: '828px',
+							height: '327px',
+							left: '0px',
+							top: '697px',
+							background: ' rgba(39, 42, 51, 0.32)',
+							backdropFilter: 'blur(48px)',
+							display: 'none'
+						}}
+						ref={this.uniqueSection1Text2}
+					>
+						<div
+							className="dFordText"
+							style={{
+								/* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium odio ipsum, eget interdum libero tincidunt efficitur. Maecenas dapibus condimentum commodo. Proin dignissim sem velit, eu blandit purus porta non. */
+
+								position: 'absolute',
+								width: '559px',
+								height: '273px',
+								left: '118px',
+								top: '64px'
+							}}
+						>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium odio ipsum, eget
+							interdum libero tincidunt efficitur. Maecenas dapibus condimentum commodo. Proin dignissim
+							sem velit, eu blandit purus porta non.
+						</div>
+					</div>
+
+					<div
+						id="uniqueSection1Title"
+						ref={this.uniqueSection1Title}
+						style={{
+							display: 'none'
+						}}
+					>
+						{/*标题*/}
+						<div
+							className="dFordTitle"
+							style={{
+								position: 'absolute',
+								width: '396px',
+								height: '94px',
+								left: '862px',
+								top: '796px'
+							}}
+						>
+							Unique
+						</div>
+
+						<div
+							style={{
+								position: 'absolute',
+								width: '45px',
+								height: '110px',
+								right: '60px',
+								top: '790px'
+							}}
+						>
+							<svg
+								width="41"
+								height="44"
+								viewBox="0 0 41 44"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									opacity="0.8"
+									d="M40.2058 23.56V19.78H22.5658V0.789999H18.5158V19.78H0.785781V23.56H18.5158V43.09H22.5658V23.56H40.2058Z"
+									fill="white"
+								/>
+							</svg>
+						</div>
+					</div>
+
+					{/* 背景栅格 */}
+					<div
+						style={{
+							position: 'absolute',
+							width: '822px',
+							height: '892px',
+							left: '272px',
+							top: '131px',
+							zIndex: '9'
+						}}
+					>
+						<svg
+							width="823"
+							height="892"
+							viewBox="0 0 823 892"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<line opacity="0.3" x1="0.5" y1="-2.18557e-08" x2="0.500039" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="273.5" y1="-2.18557e-08" x2="273.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="549.5" y1="-2.18557e-08" x2="549.5" y2="892" stroke="#E8E8E8" />
+							<line opacity="0.3" x1="822.5" y1="-2.18557e-08" x2="822.5" y2="892" stroke="#E8E8E8" />
+						</svg>
+					</div>
+				</div>
+
+				{/* Unique Section2 */}
+				<div
+					id="uniqueSection2Wrapper"
+					className="sectionWrapper"
+					onTouchStart={(event) => {
+						this.uniqueSection2TouchStart(event);
+					}}
+					onTouchMove={(event) => {
+						this.uniqueSection2TouchMove(event);
+					}}
+					onTouchEnd={(event) => {
+						this.uniqueSection2TouchEnd(event);
+					}}
+					ref={this.uniqueSection2Wrapper}
+				>
+					<div
+						id="uniqueSection2Title"
+						className="dFordNormalTitle"
+						style={{
+							position: 'absolute',
+							width: '534px',
+							height: '72px',
+							left: '137px',
+							top: '670px',
+							opacity: '0.9'
+						}}
+					>
+						Generative art
+					</div>
+					<div id="uniqueSection2MaxImageBg">
+						<img src={unqiueSection2Bg1} className="imageCover" />
+					</div>
+
+					<div
+						id="uniqueSection2DynamicBg"
+						style={{
+							position: 'absolute',
+							width: '531px',
+							height: '226px',
+							left: '147px',
+							top: '169px',
+							overflow: 'hidden'
+						}}
+						ref = {this.uniqueSection2DynamicBg}
+					>
+						<div className = 'infoItemBg1' style = {{display: 'block'}}></div>
+
+						<div className="lines" style = {{display: 'block'}}>
+							<div className="line"></div>
+							<div className="line"></div>
+							<div className="line"></div>
+						</div>
+
+						<div style = {{display: 'block'}}>
+							<div className="bg"></div>
+							<div className="bg bg2"></div>
+							<div className="bg bg3"></div>
+						</div>
+
+						<div className  = 'lightWrapper' style = {{display: 'block'}}>
+
+							<div className='light x1'></div>
+							<div className='light x2'></div>
+							<div className='light x3'></div>
+							<div className='light x4'></div>
+							<div className='light x5'></div>
+							<div className='light x6'></div>
+							<div className='light x7'></div>
+							<div className='light x8'></div>
+							<div className='light x9'></div>
+						</div>
+					</div>
+					<div
+						id="uniqueSection2RightBox"
+						style={{
+							position: 'absolute',
+							top: '0px',
+							width: '100%',
+							height: '100%'
+						}}
+					>
+						<Info
+							// inAnimate={this.state.infoInAnimate}
+							// outAnimate={this.state.infoOutAnimate}
+							onInfoItemChange = {(data)=>{this.onInfoItemChange(data)}}
+							isInfoExpanded={true}
+							// onCloseInfoPanel={() => this.onCloseInfoPanel()}
+						/>
+					</div>
+				</div>
+
+				{/*unquie section3*/}
+				<div
+					id="uniqueSection3Wrapper"
+					className="sectionWrapper"
+					onTouchStart={(event) => {
+						this.uniqueSection3TouchStart(event);
+					}}
+					onTouchMove={(event) => {
+						this.uniqueSection3TouchMove(event);
+					}}
+					onTouchEnd={(event) => {
+						this.uniqueSection3TouchEnd(event);
+					}}
+					ref={this.uniqueSection3Wrapper}
+				>
+					<div
+						id="comfortSectoin9EndReturnHome"
+						style={{
+							position: 'absolute',
+							width: '100%',
+							height: '100%',
+							left: '0px',
+							top: '0px',
+							display: 'block'
+						}}
+					><img src={unqiueSection2Bg1} className="imageCover" />
+						<div style={{ position: 'absolute', width: '100%', height: '95px', left: '0px', top: '417px' }}>
+							<svg
+								width="1370"
+								height="98"
+								viewBox="0 0 1370 98"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path d="M1369 1L686 96L0.5 1" stroke="#4F4F4F" strokeWidth="2" />
+							</svg>
+						</div>
+						<div
+							style={{
+								position: 'absolute',
+								width: '1366px',
+								height: '612.5px',
+								left: '0px',
+								top: '412px'
+							}}
+						>
+							<svg
+								width="1366"
+								height="612"
+								viewBox="0 0 1366 612"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path opacity="0.75" d="M0 0L683 90.5L1366 0V612.5H0V0Z" fill="#1D1B1D" />
+							</svg>
+						</div>
+						<div
+							style={{ position: 'absolute', width: '118px', height: '0px', left: '685px', top: '906px' }}
+						>
+							<svg
+								width="2"
+								height="118"
+								viewBox="0 0 2 118"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<line x1="1" y1="-4.37114e-08" x2="1.00001" y2="118" stroke="white" strokeWidth="2" />
+							</svg>
+						</div>
+						<div
+							style={{
+								position: 'absolute',
+								width: '139px',
+								height: '139px',
+								left: '615px',
+								top: '835px'
+							}}
+						>
+							<svg
+								width="139"
+								height="139"
+								viewBox="0 0 139 139"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<circle opacity="0.28" cx="69.5" cy="69.5" r="68.5" stroke="white" strokeWidth="2" />
+							</svg>
+						</div>
+					</div>
+					<div
+						id="comfortSectoin9EndReturnHomeTitle"
+						style={{ position: 'absolute', width: '100%', height: ' 100%', left: '0px', top: ' 0px' }}
+					>
+						<div
+							className="dFordNormalTitle"
+							style={{
+								/* Returen to Home */
+
+								position: 'absolute',
+								width: '610px',
+								height: '72px',
+								left: '378px',
+								top: '641px',
+								opacity: '0.8'
+							}}
+						>
+							Returen to Home
+						</div>
 					</div>
 				</div>
 			</div>

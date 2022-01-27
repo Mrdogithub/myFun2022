@@ -8,6 +8,7 @@ import reportWebVitals from './reportWebVitals';
 import 'animate.css';
 import 'video-react/dist/video-react.css';
 import './assets/base.css';
+import './assets/animate.css';
 ReactDOM.render(
 	<React.StrictMode>
 		<App />
