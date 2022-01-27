@@ -34,6 +34,7 @@ import firstPrivactSection6ImageSequence from '../../assets/Video02b_DigitalSeal
 import firstComfortSection1ImageSequence from '../../assets/Video04_TransitionComfort/Video04_TransitionComfort0.jpg';
 import lastComfortSection1ImageSequence from '../../assets/Video04_TransitionComfort/Video04_TransitionComfort100.jpg';
 import firstLeisureSection2ImageSequence from '../../assets/Video16_FrunkBar/Video16_FrunkBar0.jpg';
+import firstMagaziImageSequneence from '../../assets/Video13_Magazine/Video13_Magazine0.jpg';
 import comfortBg_4_new from '../../assets/images/comfortBg_4_new.png';
 import comfortSection2Bg2 from '../../assets/images/comfortSection2Bg2.png';
 import comfortSection2Bg3 from '../../assets/images/comfortSection2Bg3.png';
