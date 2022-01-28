@@ -49,7 +49,6 @@ export class MainComponent extends React.Component<any, any> {
 		].forEach((v: any, index: any, arr: any) => {
 			const image = new Image();
 			image.src = v;
-			console.log(v);
 			image.onload = () => {
 				arr.successLength = (arr.successLength || 0) + 1;
 				const status = Math.round(arr.successLength / arr.length) * 100;
@@ -68,7 +67,6 @@ export class MainComponent extends React.Component<any, any> {
 	}
 	async loadFont() {
 		(document as any).fonts.ready.then((fontFaceSet: any) => {
-			console.log(fontFaceSet.size, 'FontFaces loaded.');
 			this.setState({ loadInProgress: 1 });
 			setTimeout(() => {
                 

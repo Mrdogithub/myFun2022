@@ -34,7 +34,7 @@ import firstPrivactSection6ImageSequence from '../../assets/Video02b_DigitalSeal
 import firstComfortSection1ImageSequence from '../../assets/Video04_TransitionComfort/Video04_TransitionComfort0.jpg';
 import lastComfortSection1ImageSequence from '../../assets/Video04_TransitionComfort/Video04_TransitionComfort100.jpg';
 import firstLeisureSection2ImageSequence from '../../assets/Video16_FrunkBar/Video16_FrunkBar0.jpg';
-import firstMagaziImageSequneence from '../../assets/Video13_Magazine/Video13_Magazine0.jpg';
+import firstMagaziImageSequneence from '../../assets/Video13_Magazine/Video13_Magazine0.png';
 import comfortBg_4_new from '../../assets/images/comfortBg_4_new.png';
 import comfortSection2Bg2 from '../../assets/images/comfortSection2Bg2.png';
 import comfortSection2Bg3 from '../../assets/images/comfortSection2Bg3.png';
@@ -209,6 +209,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.comfortSection9Mask2 = React.createRef();
 		this.comfortSection9Mask1 = React.createRef();
 		this.comfortSectoin9EndReturnHome = React.createRef();
+		this.comfortSection1CanvasRef = React.createRef();
+		this.comfortSection8CanvasRef = React.createRef();
 
 		this.mask1 = React.createRef();
 		this.mask2 = React.createRef();
@@ -271,6 +273,9 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			],
 			comfortSection1ImageSequence: [
 				firstComfortSection1ImageSequence
+			],
+			comfortSection8ImageSequence: [
+				firstMagaziImageSequneence
 			],
 			leisureSection2ImageSequence: [
 				firstLeisureSection2ImageSequence
@@ -487,6 +492,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	comfortSection8Bg: any;
 	comfortSection8Video: any;
 	comfortSection8Bg2: any;
+	comfortSection8CanvasRef: any;
 
 	comfortSection9Wrapper: any;
 	comfortSection10EndWrapper: any;
@@ -551,6 +557,13 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			comfortImges.push(require(`../../assets/Video04_TransitionComfort/Video04_TransitionComfort${i}.jpg`));
 			this.setState({ comfortSection1ImageSequence: comfortImges });
 		}
+
+		const comfort8Imges: any[] = [];
+		for (let i = 0; i <= 15; i++) {
+			comfort8Imges.push(require(`../../assets/Video13_Magazine/Video13_Magazine${i}.png`));
+			this.setState({ comfortSection8ImageSequence: comfort8Imges });
+		}
+
 		const leisureImges: any[] = [];
 		for (let i = 0; i <= 40; i++) {
 			leisureImges.push(require(`../../assets/Video16_FrunkBar/Video16_FrunkBar${i}.jpg`));
@@ -1442,34 +1455,44 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	comfortSection8Move(event) {
 		this.updateMoveMousePositon(event);
 		this.move = this.state.endY - this.state.firstY;
-		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
-		if (this.move < 0 && this.comfortSection8Bg2.current.style.display == 'block') {
-			// 向上拉动 进入下一页
+		const moveX = this.state.endX - this.state.firstX;
+		console.log(this.move);
+		this.moveDistance = Math.ceil(Math.pow(Math.abs(moveX), 0.4));
+		console.log(this.moveDistance);
+		if (moveX > 0 && this.comfortSection8Video.current.style.top != '574px') {
+			// 向右拉动翻页
+		}
+		if (moveX < 0 && this.comfortSection8Video.current.style.top != '574px') {
+			// 向左拉动翻页
+
+			if (this.moveDistance > 15) {
+				this.moveDistance = 15;
+			}
+
+			setTimeout(() => {
+				this.comfortSection8CanvasRef.current.setCurrent(this.moveDistance);
+			}, 100);
+		}
+
+		if (this.move < 0 && this.comfortSection8Video.current.style.top == '574px') {
+			// 向上拉动，进入下一页
 			this.comfortSection8Wrapper.current.style.display = 'none';
 			this.comfortSection9Wrapper.current.style.display = 'block';
-			this.comfortSection9Bg1.current.style.display = 'block';
-			this.comfortSection9LeftBg.current.style.display = 'block';
-			this.comfortSection9BgRight.current.style.display = 'block';
-			this.comfortSection9BgRight.current.className = '';
-			this.comfortSection9LeftBg.current.className = '';
-			this.comfortSection9Mask2.current.className = '';
-			this.comfortSection9Bg1.current.style.zIndex = '0';
-			this.comfortSection9Bg1.current.style.height = '752px';
 			return;
 		}
 	}
 
 	comfortSection8End(event) {
-		if (this.move > 0 && this.comfortSection8Bg2.current.style.display == 'block') {
+		if (this.move > 0 && this.comfortSection8Video.current.style.top == '574px') {
 			// 向下拉动 返回上一页
 			this.comfortSection8Wrapper.current.style.display = 'block';
 			this.comfortSection8Bg2.current.style.display = 'none';
-			this.comfortSection8Video.current.style.top = '137px';
+			this.comfortSection8Video.current.style.top = '0px';
 			this.comfortSection8Bg.current.style.top = '0px';
 			return;
 		}
 
-		if (this.move > 0 && this.comfortSection8Video.current.style.top == '137px') {
+		if (this.move > 0 && this.comfortSection8Video.current.style.top  == '0px') {
 			// 向下拉动 返回上一页
 			this.comfortSection8Wrapper.current.style.display = 'none';
 			this.comfortSection7Wrapper.current.style.display = 'block';
@@ -1845,7 +1868,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		}
 	}
 	uniqueSection3TouchEnd(event) {
-		console.log(event)
+		console.log(event);
 	}
 	letMeKonwDirection() {
 		const moveX = this.state.endX - this.state.firstX;
@@ -1858,14 +1881,14 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			}
 		}
 	}
-	onInfoItemChange(index){
-		this.uniqueSection2DynamicBg.current.childNodes.forEach((item,i)=>{
-			if(i === index) {
-				item.style.display = 'block'
+	onInfoItemChange(index) {
+		this.uniqueSection2DynamicBg.current.childNodes.forEach((item, i) => {
+			if (i === index) {
+				item.style.display = 'block';
 			} else {
-				item.style.display = 'none'
+				item.style.display = 'none';
 			}
-		})
+		});
 	}
 	leisureSetion6GrallySmallImage(index) {
 		this.setState({ leisureSetion6GrallyMaxImage: this.grallyList[index] });
@@ -2665,7 +2688,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						data={this.state.privactSection6ImageSequence}
 						loop={true}
 						forward={true}
-						fps={10}
+						fps={1}
 						canvasWidth={this.state.canvasWidth}
 						canvasHeight={this.state.canvasHeight}
 						onChange={() => this.change}
@@ -3437,7 +3460,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							loop={true}
 							forward={true}
 							autoPlay={false}
-							fps={10}
+							fps={1	}
 							canvasWidth={this.state.canvasWidth}
 							canvasHeight={this.state.canvasHeight}
 							onChange={() => this.change}
@@ -4777,6 +4800,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					id="comfortSection8Wrapper"
 					ref={this.comfortSection8Wrapper}
 					className="sectionWrapper"
+					style = {{zIndex:'1'}}
 					onTouchStart={(event) => {
 						this.comfortSection8Start(event);
 					}}
@@ -4818,20 +4842,28 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							style={{ mixBlendMode: 'overlay' }}
 							ref={this.comfortSection8Bg}
 						/>
-						<img
+						<div
 							id="comfortSection8Video"
-							src={comfortSection8BG1}
 							ref={this.comfortSection8Video}
 							style={{
-								/* interior confort+3_0030 1 */
-
 								position: 'absolute',
 								width: '100%',
 								height: '887px',
 								left: '0px',
-								top: '137px'
+								top: '0px'
 							}}
-						/>
+						>
+							<CanvasImageSequence
+								ref={this.comfortSection8CanvasRef}
+								data={this.state.comfortSection8ImageSequence}
+								loop={true}
+								forward={true}
+								fps={1}
+								canvasWidth={this.state.canvasWidth}
+								canvasHeight={this.state.canvasHeight}
+								onChange={() => this.change}
+							/>
+						</div>
 						<img
 							id="comfortSection8Bg2"
 							src={comfortSection8Bg2}
@@ -5584,7 +5616,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						data={this.state.leisureSection2ImageSequence}
 						loop={true}
 						forward={true}
-						fps={10}
+						fps={1}
 						canvasWidth={this.state.canvasWidth}
 						canvasHeight={this.state.canvasHeight}
 						onChange={() => this.change}
@@ -6370,7 +6402,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							loop={true}
 							forward={true}
 							autoPlay={false}
-							fps={10}
+							fps={1}
 							canvasWidth={this.state.canvasWidth}
 							canvasHeight={this.state.canvasHeight}
 							onChange={() => this.change}
@@ -6622,33 +6654,32 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							top: '169px',
 							overflow: 'hidden'
 						}}
-						ref = {this.uniqueSection2DynamicBg}
+						ref={this.uniqueSection2DynamicBg}
 					>
-						<div className = 'infoItemBg1' style = {{display: 'block'}}></div>
+						<div className="infoItemBg1" style={{ display: 'block' }} />
 
-						<div className="lines" style = {{display: 'block'}}>
-							<div className="line"></div>
-							<div className="line"></div>
-							<div className="line"></div>
+						<div className="lines" style={{ display: 'block' }}>
+							<div className="line" />
+							<div className="line" />
+							<div className="line" />
 						</div>
 
-						<div style = {{display: 'block'}}>
-							<div className="bg"></div>
-							<div className="bg bg2"></div>
-							<div className="bg bg3"></div>
+						<div style={{ display: 'block' }}>
+							<div className="bg" />
+							<div className="bg bg2" />
+							<div className="bg bg3" />
 						</div>
 
-						<div className  = 'lightWrapper' style = {{display: 'block'}}>
-
-							<div className='light x1'></div>
-							<div className='light x2'></div>
-							<div className='light x3'></div>
-							<div className='light x4'></div>
-							<div className='light x5'></div>
-							<div className='light x6'></div>
-							<div className='light x7'></div>
-							<div className='light x8'></div>
-							<div className='light x9'></div>
+						<div className="lightWrapper" style={{ display: 'block' }}>
+							<div className="light x1" />
+							<div className="light x2" />
+							<div className="light x3" />
+							<div className="light x4" />
+							<div className="light x5" />
+							<div className="light x6" />
+							<div className="light x7" />
+							<div className="light x8" />
+							<div className="light x9" />
 						</div>
 					</div>
 					<div
@@ -6663,7 +6694,9 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						<Info
 							// inAnimate={this.state.infoInAnimate}
 							// outAnimate={this.state.infoOutAnimate}
-							onInfoItemChange = {(data)=>{this.onInfoItemChange(data)}}
+							onInfoItemChange={(data) => {
+								this.onInfoItemChange(data);
+							}}
 							isInfoExpanded={true}
 							// onCloseInfoPanel={() => this.onCloseInfoPanel()}
 						/>
@@ -6695,7 +6728,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							top: '0px',
 							display: 'block'
 						}}
-					><img src={unqiueSection2Bg1} className="imageCover" />
+					>
+						<img src={unqiueSection2Bg1} className="imageCover" />
 						<div style={{ position: 'absolute', width: '100%', height: '95px', left: '0px', top: '417px' }}>
 							<svg
 								width="1370"
