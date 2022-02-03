@@ -22,7 +22,7 @@ import leisureSmallIndex from './leisureSmallIndex.svg';
 import uniqueSmallTitle from './uniqueSmallTitle.svg';
 import uniqueSmallIndex from './uniqueSmallIndex.svg';
 import videoPRemoteVhauffeur from '../../assets/remoteVhauffeur.webm';
-import homePrivacy_1 from '../../assets/Video00(ImageSequence)/Video00_TransitionPrivacy00.jpg';
+import homePrivacy_1 from '../../assets/Video00(ImageSequence)/Video00_TransitionPrivacy0.jpg';
 import section2IndeImage from '../../assets/Video01_AdvancedDimmableWindow/Video01_AdvancedDimmableWindow0.jpg';
 import sectoin_4_phoneVideo from '../../assets/VideoP_RemoteVhauffeur/VideoP_RemoteVhauffeur0.jpg';
 
@@ -84,6 +84,7 @@ import {
 
 import { ifStatement } from '@babel/types';
 import { val, height } from 'dom7';
+import { match } from 'assert';
 
 const MAX_IMAGES = [
 	homePrivacy_1,
@@ -107,6 +108,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.leftContent = React.createRef();
 		this.bgLine = React.createRef();
 		this.belowContent = React.createRef();
+		this.privacyContent = React.createRef();
+		this.section_1_canvasRef = React.createRef();
 		this.section_2 = React.createRef();
 		this.section_2_colorBg = React.createRef();
 		this.section_2_image = React.createRef();
@@ -256,8 +259,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.state = {
 			x: 0,
 			y: 0,
-			firstX: 0,
-			firstY: 0,
+			startX: 0,
+			startY: 0,
 			completedLoadImage: false,
 			seconds: 0,
 			imgSrc: `/static/media/Video00_TransitionPrivacy000.png`,
@@ -266,8 +269,15 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			section_5_ImageSrc: section_5_ImageSrc,
 			canvasWidth: 0,
 			canvasHeight: 0,
+			previousStart: 0,
+			previousEnd: 0,
+			previousDis: 0,
+			previousTime: 0,
 			comfortSection2Bg: lastComfortSection1ImageSequence,
 			leisureSetion6GrallyMaxImage: this.grallyList[0],
+			section1SequenceImageIndex: 0,
+			section3SequenceImageIndex: 0,
+			comfortSection1SequenceImageIndex: 0,
 			privactSection6ImageSequence: [
 				firstPrivactSection6ImageSequence
 			],
@@ -295,6 +305,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					isFilter: false,
 
 					maxTitle: 'privacy',
+					key: 'privacy',
 					bgFilter:
 						'linear-gradient(90deg, rgba(177, 143, 132, 0.3) -8.64%, rgba(14, 15, 31, 0.234) 112.68%)',
 					onChange: (currentSlide: any) => {
@@ -320,6 +331,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					bgFilter:
 						'linear-gradient(90deg, rgba(177, 143, 132, 0.3) -8.64%, rgba(14, 15, 31, 0.234) 112.68%)',
 					maxTitle: 'comfort',
+					key: 'comfort',
 					onChange: () => {
 						console.log('s');
 					},
@@ -334,6 +346,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					smallIndex: leisureSmallIndex,
 					smallTitle: leisureSmallTitle,
 					maxTitle: 'Leisure',
+					key: 'Leisure',
 					isActive: false,
 					isFilter: false,
 					bgFilter:
@@ -353,6 +366,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					smallIndex: uniqueSmallIndex,
 					smallTitle: uniqueSmallTitle,
 					maxTitle: 'unique',
+					key: 'unique',
 					bgFilter:
 						'linear-gradient(90deg, rgba(177, 143, 132, 0.3) -8.64%, rgba(14, 15, 31, 0.234) 112.68%)',
 					isActive: false,
@@ -406,6 +420,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	bgLine: any;
 	section_2: any;
 	belowContent: any;
+	privacyContent: any;
+	section_1_canvasRef: any;
 	section_2_colorBg: any;
 	section_2_image: any;
 	section_2_bgLine: any;
@@ -545,6 +561,13 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	uniqueSection2DynamicBg: any;
 	moveDistance = 0;
 	move = 0;
+	timer: any;
+	sectionImageSequenceList = {
+		privacy: [] as any,
+		comfort: [] as any,
+		leisure: [] as any,
+		unique: [] as any
+	};
 	componentDidMount() {
 		const imges: any[] = [];
 		for (let i = 0; i <= 100; i++) {
@@ -575,6 +598,25 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			uniqueImges.push(require(`../../assets/Video16_FrunkBar/Video16_FrunkBar${i}.jpg`));
 			this.setState({ uniqueSection1ImageSequence: uniqueImges });
 		}
+
+		const privacyImages: any[] = [];
+
+		for (let i = 0; i <= 100; i++) {
+			privacyImages.push(require(`../../assets/Video00(ImageSequence)/Video00_TransitionPrivacy${i}.jpg`));
+		}
+
+		this.sectionImageSequenceList['privacy'] = privacyImages;
+		this.sectionImageSequenceList['comfort'] = comfortImges;
+		this.sectionImageSequenceList['leisure'] = leisureImges;
+		this.sectionImageSequenceList['unique'] = uniqueImges;
+		this.sectionImageSequenceList['privacy'].forEach((item) => {
+			const _image = new Image();
+			_image.src = item;
+			_image.onload = () => {
+				console.log('completed');
+			};
+		});
+
 		this.setState({ canvasWidth: screen.availWidth });
 		this.setState({ canvasHeight: screen.availHeight });
 	}
@@ -623,18 +665,44 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	}
 	section1TouchMove(event) {
 		this.updateMoveMousePositon(event);
-		const move = this.state.endY - this.state.firstY;
-		const seconds = Number(Math.abs(move / 100).toFixed(2).split('.')[1]);
-		const direction = this.letMeKonwDirection();
-
-		this.leftContent.current.className = 'animate__animated animate__slideOutLeft animate__delay-1s';
-		this.move = this.state.endY - this.state.firstY;
+		this.move = this.state.endY - this.state.startY;
 
 		if (this.move > 0) {
 			// 向下拉动，返回上一页
-			this.belowContent.current.style.zIndex = '-1';
 			this.belowContent.current.style.display = 'none';
 			this.box.current.style.display = 'flex';
+			const image = require(`../../assets/Video00(ImageSequence)/Video00_TransitionPrivacy0.jpg`);
+			const _image = new Image();
+			_image.src = image;
+			_image.onload = () => {
+				this.box.current.childNodes[0].style.backgroundImage = `url(${image})`;
+			};
+
+			this.setState({
+				section1SequenceImageIndex: 0
+			});
+			//this.box.current.childNodes[0].style.backgroundImage = `url(${image})`;
+			// const _backInterval = setInterval(() => {
+			// 	if (this.startX.section1SequenceImageIndex < 0) {
+			// 		this.setState({
+			// 			section1SequenceImageIndex: 0
+			// 		});
+			// 		clearInterval(_backInterval);
+			// 	}
+			// 	if (this.state.section1SequenceImageIndex >= 0) {
+			// 		const image = require(`../../assets/Video00(ImageSequence)/Video00_TransitionPrivacy${this.state
+			// 			.section1SequenceImageIndex}.jpg`);
+			// 		const _image = new Image();
+			// 		_image.src = image;
+			// 		_image.onload = () => {
+			// 			this.box.current.childNodes[0].style.backgroundImage = `url(${image})`;
+			// 		};
+
+			// 		this.setState({
+			// 			section1SequenceImageIndex: this.state.section1SequenceImageIndex - 1
+			// 		});
+			// 	}
+			// }, 10);
 		}
 		if (this.move < 0) {
 			// 向上拉动，进入下一页
@@ -643,42 +711,43 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			this.belowContent.current.style.display = 'none';
 			this.section_2.current.style.zIndex = '1';
 			this.section_2.current.style.display = 'block';
-			this.section_2.current.className = 'animate__animated animate__fadeIn animate__delay-1.5s';
-			let count = 0;
+			this.section_2.current.className = 'sectionWrapper animate__animated animate__fadeIn animate__delay-1.5s';
 
 			setTimeout(() => {
 				setTimeout(() => {
 					this.section_2_colorBg.current.style.zIndex = '1';
-					this.section_2_image.current.style.zIndex = '1';
-				}, 100);
-
-				setTimeout(() => {
-					this.section_2_colorBg.current.className = 'animate__animated animate__slideInLeft';
-					this.section_2_image.current.style.width = '81%';
-					this.moveAnimate(this.section_2_image.current, 257);
+					this.section_2_colorBg.current.className =
+						'animate__animated animate__slideInLeft  animate__delay-1.5s';
+					//	this.section_2_image.current.style.width = '81%';
+					//	this.moveAnimate(this.section_2_image.current, 272);
 				}, 500);
 
 				setTimeout(() => {
 					this.section_2_leftContent.current.style.zIndex = '1';
 
 					this.section_2_bgLine.current.style.zIndex = '1';
-				}, 550);
-				setTimeout(() => {
-					this.section_2_leftContent.current.className = 'animate__animated animate__slideInLeft';
+					this.section_2_leftContent.current.className =
+						'animate__animated animate__slideInLeft animate__delay-1.5s';
 
-					this.section_2_bgLine.current.className = 'animate__animated animate__fadeIn';
+					this.section_2_bgLine.current.className = 'animate__animated animate__fadeIn animate__delay-1.5s';
 				}, 20);
 			}, 1500);
 
-			const renderImage = setInterval(() => {
-				if (count > 269) {
-					count = 0;
-				}
-
-				const image = require(`../../assets/Video01_AdvancedDimmableWindow/Video01_AdvancedDimmableWindow${count}.jpg`);
-				this.setState({ section_2_ImageSrc: image });
-				count++;
-			}, 150);
+			this.debounce(() => {
+				setInterval(() => {
+					const image = require(`../../assets/Video01_AdvancedDimmableWindow/Video01_AdvancedDimmableWindow${this
+						.state.section3SequenceImageIndex}.jpg`);
+					const _image = new Image();
+					_image.src = image;
+					_image.onload = () => {
+						this.section_2.current.style.backgroundImage = `url(${image})`;
+					};
+					this.setState({
+						section3SequenceImageIndex:
+							this.state.section3SequenceImageIndex >= 269 ? 0 : this.state.section3SequenceImageIndex + 1
+					});
+				}, 10);
+			}, 10)();
 		}
 	}
 	section2TouchStart(event) {
@@ -688,7 +757,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	section2TouchMove(event) {
 		this.updateMoveMousePositon(event);
 
-		this.move = this.state.endY - this.state.firstY;
+		this.move = this.state.endY - this.state.startY;
 		if (this.move > 0) {
 			// 向下拉动，返回上一页
 			this.section_2.current.className = 'animate__animated animate__fadeOut';
@@ -728,7 +797,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	section3TouchMove(event) {
 		this.updateMoveMousePositon(event);
 
-		this.move = this.state.endY - this.state.firstY;
+		this.move = this.state.endY - this.state.startY;
 		if (this.move > 0) {
 			// 向下拉动，返回上一页
 			this.section_3_container.current.style.display = 'none';
@@ -736,8 +805,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 
 			this.section_2_leftContent.current.className = 'animate__animated animate__slideInLeft animate__delay-2.5s';
 			this.section_2_colorBg.current.className = 'animate__animated animate__slideInLeft animate__delay-2.5s';
-			this.section_2_image.current.style.width = '81%';
-			this.moveAnimate(this.section_2_image.current, 257);
+			//	this.section_2_image.current.style.width = '81%';
+			//	this.moveAnimate(this.section_2_image.current, 257);
 			this.section_2.current.style.display = 'block';
 
 			return;
@@ -760,6 +829,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			this.section_4_colorBg.current.className = 'animate__animated animate__slideInLeft animate__delay-1s';
 			this.section_4_leftContent.current.className = 'animate__animated animate__slideInLeft animate__delay-1.5s';
 			this.sectoin_4_phoneVideo.current.className = 'animate__animated animate__slideInRight animate__delay-1.7s';
+			this.player.play();
 		}
 	}
 	section4TouchStart(event) {
@@ -769,7 +839,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	section4TouchMove(event) {
 		this.updateMoveMousePositon(event);
 
-		this.move = this.state.endY - this.state.firstY;
+		this.move = this.state.endY - this.state.startY;
 
 		if (this.move > 0) {
 			// 向下拉动，返回上一页
@@ -834,7 +904,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 
 	section5TouchMove(event) {
 		this.updateMoveMousePositon(event);
-		this.move = this.state.endY - this.state.firstY;
+		this.move = this.state.endY - this.state.startY;
 
 		if (this.move > 0) {
 			// 向下拉动，返回上一页
@@ -885,7 +955,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 
 	section6TouchMove(event) {
 		this.updateMoveMousePositon(event);
-		this.move = this.state.endY - this.state.firstY;
+		this.move = this.state.endY - this.state.startY;
 		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
 
 		if (this.move > 0) {
@@ -951,7 +1021,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	section7TouchMove(event) {
 		this.updateMoveMousePositon(event);
 
-		this.move = this.state.endY - this.state.firstY;
+		this.move = this.state.endY - this.state.startY;
 		if (this.move < 0) {
 			// 向s上拉动，进入下一页
 			this.section_7_container.current.style.display = 'none';
@@ -976,16 +1046,18 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	}
 
 	updateStartMosePosition(event) {
+		if (!event.targetTouches.length) return;
 		this.setState({
-			firstX: event.targetTouches[0].clientX,
-			firstY: event.targetTouches[0].clientY
+			startX: event.targetTouches[0].pageX,
+			startY: event.targetTouches[0].pageY
 		});
 	}
 
 	updateMoveMousePositon(event) {
+		if (!event.targetTouches.length) return;
 		this.setState({
-			endX: event.targetTouches[0].clientX,
-			endY: event.targetTouches[0].clientY
+			endX: event.targetTouches[0].pageX,
+			endY: event.targetTouches[0].pageY
 		});
 	}
 
@@ -1004,7 +1076,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	section8TouchMove(event) {
 		this.updateMoveMousePositon(event);
 
-		this.move = this.state.endY - this.state.firstY;
+		this.move = this.state.endY - this.state.startY;
 		if (this.move < 0) {
 			// 向s上拉动，进入下一页
 			// this.section_8_text.current.style.display = 'none';
@@ -1037,36 +1109,263 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	}
 
 	handleTouchStart(event, item, index) {
+		// 切换背景图片
 		this.onChange(item, index);
 		this.updateStartMosePosition(event);
 	}
-	handleTouchMove(event, item, index) {
-		this.endX = event.touches[0].clientX;
 
+	debounce(fn, delay) {
+		const _this = this;
+		return function() {
+			if (_this.timer) {
+				clearTimeout(_this.timer);
+			}
+
+			_this.timer = setTimeout(() => {
+				fn.apply(_this);
+			}, delay);
+		};
+	}
+	handleTouchMove(event, item, index) {
+		const addressUrl = [
+			'../../assets/Video00(ImageSequence)/Video00_TransitionPrivacy',
+			'../../assets/Video04_TransitionComfort/Video04_TransitionComfort'
+		];
+		// 判断拖动方向
+		// 拖动距离与播放序列帧的频率成正比
 		this.updateMoveMousePositon(event);
 		const direction = this.letMeKonwDirection();
 
 		if (direction === 'toLeft') {
 			this.box.current.childNodes[item.index].style.flex = `1 1 80%`;
 		}
+		this.move = this.state.endY - this.state.startY;
+		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
 
+		if (this.move > 0) {
+			// 向下拉动 返回上一页
+			this.debounce(() => {
+				console.log(this.state.section1SequenceImageIndex);
+
+				// 通过滑动距离控制轮询次数
+				setInterval(() => {
+					if (this.state.section1SequenceImageIndex >= 0) {
+						const image = require(`../../assets/Video00(ImageSequence)/Video00_TransitionPrivacy${this.state
+							.section1SequenceImageIndex}.jpg`);
+						const _image = new Image();
+						_image.src = image;
+						_image.onload = () => {
+							this.box.current.childNodes[index].style.backgroundImage = `url(${image})`;
+						};
+						this.setState({
+							section1SequenceImageIndex:
+								this.state.section1SequenceImageIndex <= 0
+									? 0
+									: this.state.section1SequenceImageIndex - 1
+						});
+					}
+				}, 10);
+			}, 10)();
+		}
 		if (direction === 'toTop' || direction === 'toLeft') {
 			this.box.current.childNodes[item.index].style.flex = `1 1 100%`;
-			const move = this.state.endY - this.state.firstY;
-			const seconds = Math.abs(move / 100).toFixed(2).split('.')[1];
+			const move = this.state.endY - this.state.startY;
+			// console.log(move + ':' + move / 100);
+			// const seconds = Math.abs(move / 100).toFixed(2).split('.')[1];
 
-			let image = '';
-			this.leftContent.current.className = 'animate__animated animate__slideInLeft';
-			this.bgLine.current.className = 'animate__animated animate__fadeIn';
-			this.bgLine.current.style.zIndex = '1';
-			this.leftContent.current.style.zIndex = '1';
+			// const _seconds = Math.sqrt(Math.pow(move,2) / 100;
+			// console.log('Math.pow:' + Math.pow(move, 2));
+			// console.log('Math.sqrt:' + Math.sqrt(Math.pow(move, 2)));
+			// console.log('currentTime:' + event.timeStamp * 1000);
+			// console.log('previousTime:' + this.state.previousTime * 1000);
+			// const deltaTime = event.timeStamp - this.state.previousTime;
+			// console.log('时间差：' + deltaTime * 1000);
+			// const deltaDis = Math.sqrt(Math.pow(this.state.endY - this.state.previousEnd, 2));
+			// console.log('速度：' + deltaDis / deltaTime * 1000);
+			// console.log('move' + move);
+			// console.log('previousDis' + this.state.previousDis);
+			// console.log('位置差：' + (move - this.state.previousDis));
+			this.debounce(() => {
+				// 	// 通过滑动距离控制轮询次数
+				const belowBg = null;
+				const _interval = setInterval(() => {
+					if (this.state.section1SequenceImageIndex === 100) {
+						this.box.current.style.zIndex = '-1';
+						this.box.current.style.display = 'none';
+						clearInterval(_interval);
+						this.setState({
+							section1SequenceImageIndex: 0
+						});
 
-			this.belowContent.current.style.zIndex = '1';
-			this.belowContent.current.style.display = 'block';
-			this.video.current.style.zIndex = '1';
-			image = require(`../../assets/Video00(ImageSequence)/Video00_TransitionPrivacy${seconds}.jpg`);
-			this.setState({ imgSrc: image });
+						if(item.key === 'privacy') {
+							this.belowContent.current.style.display = 'block';
+							this.belowContent.current.style.zIndex = '1';
+							const image = require(`../../assets/Video00(ImageSequence)/Video00_TransitionPrivacy100.jpg`);
+							this.belowContent.current.style.backgroundImage = `url(${image})`;
+							this.leftContent.current.className = 'animate__animated animate__slideInLeft animate__delay-1s';
+							this.bgLine.current.className = 'animate__animated animate__fadeIn animate__delay-1s';
+						}
+						
+						if(item.key === 'comfort') {
+
+							this.comfortSection1Text.current.style.display = 'none';
+							this.comfortSection1Text.current.className =
+								'animate__animated animate__fadeOutDown animate__delay-.5s';
+
+							this.comfortSection1Wrapper.current.style.display = 'block';
+							this.setState({comfortSection1SequenceImageIndex: 100})
+							this.comfortSection1CanvasRef.current.setCurrent(this.state.comfortSection1SequenceImageIndex);
+							this.comfortSection1Wrapper.current.style.display = 'block';
+							this.comfortSection1BgLine.current.style.display = 'block';
+							this.comfortSection1Text2.current.style.display = 'block';
+							this.comfortSection1Title.current.style.display = 'block';
+				
+							this.comfortSection1BgLine.current.className = 'animate__animated animate__fadeIn animate__delay-.8s';
+							this.comfortSection1Text2.current.className = 'animate__animated animate__fadeInLeft animate__delay-1s';
+							this.comfortSection1Title.current.className = 'animate__animated animate__fadeInLeft animate__delay-1.2s';
+						}
+					}
+
+
+
+					if (this.state.section1SequenceImageIndex < 101 && this.state.section1SequenceImageIndex >= 0) {
+						this.setState({
+							section1SequenceImageIndex:
+								this.state.section1SequenceImageIndex >= 100
+									? 100
+									: this.state.section1SequenceImageIndex + 1
+						});
+
+						if (item.key === 'comfort') {
+							const image = require(`../../assets/Video04_TransitionComfort/Video04_TransitionComfort${this
+								.state.section1SequenceImageIndex}.jpg`);
+							const _image = new Image();
+							_image.src = image;
+							_image.onload = () => {
+								if (this.box.current) {
+									this.box.current.childNodes[index].style.backgroundImage = `url(${image})`;
+								}
+							};
+						}
+
+						if(item.key === 'privacy') {
+							const image = require(`../../assets/Video00(ImageSequence)/Video00_TransitionPrivacy${this.state
+								.section1SequenceImageIndex}.jpg`);
+							const _image = new Image();
+							_image.src = image;
+							_image.onload = () => {
+								if (this.box.current) {
+									this.box.current.childNodes[index].style.backgroundImage = `url(${image})`;
+								}
+							};
+						}
+					}
+				}, 10);
+			}, 10)();
+
+			// if(Math.ceil(Math.abs(move)) %2 === 0){
+
+			// 	console.log( this.state.section1SequenceImageIndex )
+			// 	const image = require(`../../assets/Video00(ImageSequence)/Video00_TransitionPrivacy${this.state
+			// 		.section1SequenceImageIndex}.jpg`);
+			// 	const _image = new Image();
+			// 	_image.src = image;
+			// 	_image.onload = () => {
+			// 		this.box.current.childNodes[index].style.backgroundImage = `url(${image})`
+			// 		this.setState({
+			// 			section1SequenceImageIndex: this.state.section1SequenceImageIndex + 1
+			// 		});
+			// 	};
+			// }
+			// setTimeout(()=>{
+
+			// },10)
+			// if (
+
+			// 	this.state.section1SequenceImageIndex <= 99
+			// ) {
+			// 	console.log(this.state.section1SequenceImageIndex);
+
+			// const deltaTime = event.timeStamp - this.state.previousTime;
+			// console.log('时间：' + deltaTime * 1000);
+			// const deltaDis = Math.sqrt(Math.pow(this.state.endY - this.state.previousEnd, 2));
+			// console.log('速度：' + deltaDis / deltaTime * 1000);
+
+			// console.log('位置差：' + (move - this.state.previousDis));
+			// console.log(
+			// 	'延时位置差：' +
+			// 		setTimeout(() => {
+			// 			move - this.state.previousDis;
+			// 		}, 20)
+			// );
+
+			// this.section_1_canvasRef.current.setCurrent(this.state.section1SequenceImageIndex);
+			// setTimeout(()=>{
+			// 	this.box.current.childNodes[index].style.backgroundImage = `url(${this.sectionImageSequenceList.privacy[this.state.section1SequenceImageIndex]})`;
+			// this.setState({
+			// 	section1SequenceImageIndex: this.state.section1SequenceImageIndex + 1
+			// });
+			// },10)
+			// const distanceX = this.state.endX - this.state.startX;
+			// const distanceY = this.state.endY - this.state.startY;
+			// const clientHeight = document.documentElement.clientHeight;
+			// const disxx = move - this.state.previousEnd;
+
+			// const dis = move - this.state.previousEnd;
+			// if (this.state.startY != Math.abs(distanceY)) {
+			// 	if (Math.abs(distanceY) > clientHeight * 0.1) {
+			// 		console.log('i:' + dis);
+			// 		console.log(this.state.section1SequenceImageIndex);
+
+			// 	}
+			// }
+			// setTimeout(() => {
+
+			// }, 10);
+			// }
+
+			// this.setState({previousStart: event.targetTouches[0].screenX})
+
+			// this.setState({ previousDis: move });
+			// this.setState({ previousTime: event.timeStamp });
+
+			// let image = '';
+
+			// console.log(seconds);
+			// console.log(this.box.current.childNodes[index].style.offsetTop + '>>> offsetTop')
+			// function pad(num, size) {
+			// 	var s = num + "";
+			// 	while (s.length < size) s = "0" + s;
+			// 	return s;
+			// }
+
+			// // Variable to store the current image index
+			// var currentIdx = 1;
+			// var max = 200; // Qtd of images in the folder
+
+			// 移动距离
+
+			// setTimeout(()=>{
+
+			// },10)
+			// setInterval(function() {
+			// 	// Reset the index when overflow
+			// 	if(currentIdx > max) currentIdx = 1;
+			// 	// Change the background
+			// 	$('body').css('background-image', 'url(/web/images/' + pad(currentIdx,4) + '.png)');
+			// 	currentIdx ++;
+			// }, 5000); // 5000ms == 5 seconds
+			// this.belowContent.current.style.zIndex = '1';
+			// this.belowContent.current.style.display = 'block';
+			// this.video.current.style.zIndex = '1';
+
+			// this.setState({ imgSrc: image });
 		}
+	}
+
+	handleTouchEnd(event, item, index) {
+		event.preventDefault();
+		// console.log('end:' + this.state.section1SequenceImageIndex);
 	}
 
 	// COMFORT SECTION
@@ -1089,7 +1388,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	}
 	comfortSection1Move(event) {
 		this.updateMoveMousePositon(event);
-		this.move = this.state.endY - this.state.firstY;
+		this.move = this.state.endY - this.state.startY;
 		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
 
 		if (this.move > 0) {
@@ -1139,10 +1438,16 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					'animate__animated animate__fadeInLeft animate__delay-1.2s';
 			}
 
-			setTimeout(() => {
-				console.log(this.moveDistance);
-				this.comfortSection1CanvasRef.current.setCurrent(this.moveDistance);
-			}, 40);
+			this.debounce(() => {
+				setInterval(() => {
+					this.comfortSection1CanvasRef.current.setCurrent(this.state.comfortSection1SequenceImageIndex);
+					this.setState({
+						comfortSection1SequenceImageIndex:
+							this.state.comfortSection1SequenceImageIndex >= 100 ? 100 : this.state.section3SequenceImageIndex + 1
+					});
+				}, 10);
+			}, 10)();
+		
 		}
 	}
 	comfortSection1End(event) {
@@ -1157,7 +1462,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	comfortSection2Move(event) {
 		if (event.target.id === '') return;
 		this.updateMoveMousePositon(event);
-		this.move = this.state.endY - this.state.firstY;
+		this.move = this.state.endY - this.state.startY;
 		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
 		if (this.move > 0) {
 			this.comfortSection2Desc.current.className = 'animate__animated animate__fadeOutDown animate__delay-.5s';
@@ -1281,7 +1586,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	}
 	comfortSection3Move(event) {
 		this.updateMoveMousePositon(event);
-		this.move = this.state.endY - this.state.firstY;
+		this.move = this.state.endY - this.state.startY;
 		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
 
 		if (this.move < 0) {
@@ -1306,7 +1611,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	comfortSection4Move(event) {
 		this.updateMoveMousePositon(event);
 
-		this.move = this.state.endY - this.state.firstY;
+		this.move = this.state.endY - this.state.startY;
 		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
 		console.log('comfortSection4Move' + this.move);
 	}
@@ -1376,7 +1681,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	}
 	comfortSection5Move(event) {
 		this.updateMoveMousePositon(event);
-		this.move = this.state.endY - this.state.firstY;
+		this.move = this.state.endY - this.state.startY;
 		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
 	}
 	comfortSection5End(event) {
@@ -1403,7 +1708,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	}
 	comfortSection6Move(event) {
 		this.updateMoveMousePositon(event);
-		this.move = this.state.endY - this.state.firstY;
+		this.move = this.state.endY - this.state.startY;
 		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
 	}
 	comfortSection6End(event) {
@@ -1430,7 +1735,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	}
 	comfortSection7Move(event) {
 		this.updateMoveMousePositon(event);
-		this.move = this.state.endY - this.state.firstY;
+		this.move = this.state.endY - this.state.startY;
 		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
 		if (this.move < 0) {
 			// 向上拉动 进入下一页
@@ -1454,8 +1759,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	}
 	comfortSection8Move(event) {
 		this.updateMoveMousePositon(event);
-		this.move = this.state.endY - this.state.firstY;
-		const moveX = this.state.endX - this.state.firstX;
+		this.move = this.state.endY - this.state.startY;
+		const moveX = this.state.endX - this.state.startX;
 		console.log(this.move);
 		this.moveDistance = Math.ceil(Math.pow(Math.abs(moveX), 0.4));
 		console.log(this.moveDistance);
@@ -1492,7 +1797,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			return;
 		}
 
-		if (this.move > 0 && this.comfortSection8Video.current.style.top  == '0px') {
+		if (this.move > 0 && this.comfortSection8Video.current.style.top == '0px') {
 			// 向下拉动 返回上一页
 			this.comfortSection8Wrapper.current.style.display = 'none';
 			this.comfortSection7Wrapper.current.style.display = 'block';
@@ -1504,7 +1809,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	}
 	comfortSection9Move(event) {
 		this.updateMoveMousePositon(event);
-		this.move = this.state.endY - this.state.firstY;
+		this.move = this.state.endY - this.state.startY;
 		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
 		if (this.move < 0) {
 			// 向上拉动 进入下一页
@@ -1566,7 +1871,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	}
 	comfortSection10Move(event) {
 		this.updateMoveMousePositon(event);
-		this.move = this.state.endY - this.state.firstY;
+		this.move = this.state.endY - this.state.startY;
 		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
 		if (this.move < 0) {
 			// 向上拉动 进入下一页
@@ -1585,7 +1890,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	}
 	leisureSection1Move(event) {
 		this.updateMoveMousePositon(event);
-		this.move = this.state.endY - this.state.firstY;
+		this.move = this.state.endY - this.state.startY;
 		if (this.move < 0) {
 			// 向上拉动 进入下一页
 			this.leisureSection1Wrapper.current.style.display = 'none';
@@ -1605,7 +1910,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	}
 	leisureSection2TouchMove(event) {
 		this.updateMoveMousePositon(event);
-		this.move = this.state.endY - this.state.firstY;
+		this.move = this.state.endY - this.state.startY;
 		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
 
 		if (this.move > 0) {
@@ -1701,7 +2006,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	}
 	leisureSection3TouchMove(event) {
 		this.updateMoveMousePositon(event);
-		this.move = this.state.endY - this.state.firstY;
+		this.move = this.state.endY - this.state.startY;
 		this.absoluteHeight = event.targetTouches[0].clientY + this.splitterOffSet[1];
 
 		this.absoluteHeight =
@@ -1739,7 +2044,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	}
 	leisureSection4TouchMove(event) {
 		this.updateMoveMousePositon(event);
-		this.move = this.state.endY - this.state.firstY;
+		this.move = this.state.endY - this.state.startY;
 		if (this.move < 0) {
 			// 向上拉动 进入下一页
 			this.leisureSection4Wrapper.current.style.display = 'none';
@@ -1758,7 +2063,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	}
 	leisureSection5TouchMove(event) {
 		this.updateMoveMousePositon(event);
-		this.move = this.state.endY - this.state.firstY;
+		this.move = this.state.endY - this.state.startY;
 		if (this.move < 0) {
 			// 向上拉动 进入下一页
 			this.leisureSection5Wrapper.current.style.display = 'none';
@@ -1777,7 +2082,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	}
 	leisureSection6TouchMove(event) {
 		this.updateMoveMousePositon(event);
-		this.move = this.state.endY - this.state.firstY;
+		this.move = this.state.endY - this.state.startY;
 		if (this.move < 0) {
 			// 向上拉动 进入下一页
 			this.leisureSection7Wrapper.current.style.display = 'block';
@@ -1796,7 +2101,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	}
 	leisureSection7TouchMove(event) {
 		this.updateMoveMousePositon(event);
-		this.move = this.state.endY - this.state.firstY;
+		this.move = this.state.endY - this.state.startY;
 		if (this.move < 0) {
 			// 向上拉动 进入下一页
 			this.leisureSection7Wrapper.current.style.display = 'none';
@@ -1816,7 +2121,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	}
 	uniqueSection1TouchMove(event) {
 		this.updateMoveMousePositon(event);
-		this.move = this.state.endY - this.state.firstY;
+		this.move = this.state.endY - this.state.startY;
 		if (this.move < 0) {
 			// 向上拉动 进入下一页
 			this.uniqueSection1Wrapper.current.style.display = 'none';
@@ -1836,7 +2141,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	}
 	uniqueSection2TouchMove(event) {
 		this.updateMoveMousePositon(event);
-		this.move = this.state.endY - this.state.firstY;
+		this.move = this.state.endY - this.state.startY;
 		if (this.move < 0) {
 			// 向上拉动 进入下一页
 			this.uniqueSection3Wrapper.current.style.display = 'block';
@@ -1855,7 +2160,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	}
 	uniqueSection3TouchMove(event) {
 		this.updateMoveMousePositon(event);
-		this.move = this.state.endY - this.state.firstY;
+		this.move = this.state.endY - this.state.startY;
 		if (this.move < 0) {
 			// 向上拉动 进入下一页
 			// this.uniqueSection1Wrapper.current.style.display = 'block';
@@ -1871,8 +2176,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		console.log(event);
 	}
 	letMeKonwDirection() {
-		const moveX = this.state.endX - this.state.firstX;
-		const moveY = this.state.endY - this.state.firstY;
+		const moveX = this.state.endX - this.state.startX;
+		const moveY = this.state.endY - this.state.startY;
 		if (Math.abs(moveX) > 10 || Math.abs(moveY) > 10) {
 			if (Math.abs(moveX) > Math.abs(moveY)) {
 				return moveX > 0 ? 'toRight' : 'toLeft';
@@ -1920,9 +2225,15 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							<div
 								className="box"
 								key={index}
-								style={{ position: 'relative' }}
+								style={{
+									position: 'relative',
+									backgroundSize: 'cover',
+									backgroundPosition: 'center',
+									backgroundImage: `url(${this.state.slides[index].defaultImage})`
+								}}
 								onTouchStart={(event) => this.handleTouchStart(event, item, index)}
 								onTouchMove={(event) => this.handleTouchMove(event, item, index)}
+								onTouchEnd={(event) => this.handleTouchEnd(event, item, index)}
 							>
 								{/* 手风琴 收起状态虚化效果*/}
 								<div
@@ -1934,8 +2245,6 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 										backgroundColor: item.isFilter ? item.bgFilter : ''
 									}}
 								/>
-								{/* 手风琴 激活状态下滑动提示*/}
-								<img src={this.state.slides[index].defaultImage} />
 
 								{/* 手风琴 激活状态下滑动提示*/}
 								<div
@@ -2040,7 +2349,10 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					ref={this.belowContent}
 					className="sectionWrapper"
 					style={{
-						zIndex: '-1'
+						position: 'absolute',
+						display: 'none',
+						backgroundSize: 'cover',
+						backgroundPosition: 'center'
 					}}
 					onTouchStart={(event) => {
 						this.section1TouchStart(event);
@@ -2049,34 +2361,12 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						this.section1TouchMove(event);
 					}}
 				>
-					<div
-						ref={this.video}
-						style={{
-							position: 'absolute',
-							left: '0px',
-							right: '0px',
-							top: '0px',
-							width: '100%',
-							height: '100%'
-						}}
-					>
-						<img
-							src={this.state.imgSrc}
-							style={{
-								position: 'absolute',
-								width: '100%',
-								height: ' 100%',
-								objectFit: 'cover'
-							}}
-						/>
-					</div>
-
 					{/* 侧边栏背景 */}
 					<div
 						ref={this.leftContent}
 						style={{
 							position: 'absolute',
-							width: '533px',
+							width: '544px',
 							height: '100%',
 							left: '1px',
 							top: '0px',
@@ -2173,7 +2463,9 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					ref={this.section_2}
 					className="sectionWrapper"
 					style={{
-						zIndex: '-1'
+						backgroundSize: 'cover',
+						backgroundPosition: 'center',
+						backgroundImage: `url(${this.state.section_2_ImageSrc})`
 					}}
 					onTouchStart={(event) => {
 						this.section2TouchStart(event);
@@ -2186,22 +2478,12 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						ref={this.section_2_colorBg}
 						style={{
 							position: 'absolute',
-							width: '100%',
+							width: '20%',
 							height: '100%',
 							top: '0px',
 							left: '0px',
 							zIndex: '-1',
 							background: '#3F3E44'
-						}}
-					/>
-					<img
-						src={this.state.section_2_ImageSrc}
-						ref={this.section_2_image}
-						style={{
-							position: 'absolute',
-							width: '100%',
-							height: ' 100%',
-							objectFit: 'cover'
 						}}
 					/>
 
@@ -2210,7 +2492,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						ref={this.section_2_leftContent}
 						style={{
 							position: 'absolute',
-							width: '537px',
+							width: '545px',
 							height: '430px',
 							left: '0px',
 							top: '594px',
@@ -2343,7 +2625,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						ref={this.section_3_leftContent}
 						style={{
 							position: 'absolute',
-							width: '536px',
+							width: '545px',
 							height: '100%',
 							left: '0px',
 							top: '0px',
@@ -2475,6 +2757,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							background: '#48423D'
 						}}
 					/>
+
 					{/* 左侧模糊背景 */}
 					<div
 						ref={this.section_4_leftContent}
@@ -2490,6 +2773,28 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						}}
 						className={'dFordText '}
 					>
+						<div
+							ref={this.sectoin_4_phoneVideo}
+							style={{
+								position: 'absolute',
+								width: '750px',
+								height: '750px',
+								left: '573px',
+								top: '120px',
+								backgroundSize: 'contain',
+								zIndex: '-4'
+							}}
+						>
+							<Player
+								ref={(player) => {
+									this.player = player;
+								}}
+								autoPlay
+								loop={true}
+							>
+								<source src={videoPRemoteVhauffeur} />
+							</Player>
+						</div>
 						{/* 文本 */}
 						<div
 							style={{
@@ -2499,7 +2804,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 								width: '370px',
 								height: '248px',
 								left: '113px',
-								top: '322px'
+								top: '322px',
+								zIndex: '1'
 							}}
 							className={'dFordText '}
 						>
@@ -2514,7 +2820,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 								width: '913px',
 								height: '142px',
 								left: '113px',
-								top: '731px'
+								top: '731px',
+								zIndex: '1'
 							}}
 						>
 							<svg
@@ -2547,28 +2854,6 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						>
 							remote chauffeur
 						</div>
-					</div>
-
-					<div
-						ref={this.sectoin_4_phoneVideo}
-						style={{
-							position: 'absolute',
-							width: '750px',
-							height: '750px',
-							left: '573px',
-							top: '120px',
-							backgroundSize: 'contain',
-							zIndex: '-4'
-						}}
-					>
-						<Player
-							ref={(player) => {
-								this.player = player;
-							}}
-							autoPlay={true}
-						>
-							<source src={videoPRemoteVhauffeur} />
-						</Player>
 					</div>
 				</div>
 				<div
@@ -3460,7 +3745,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							loop={true}
 							forward={true}
 							autoPlay={false}
-							fps={1	}
+							fps={10}
 							canvasWidth={this.state.canvasWidth}
 							canvasHeight={this.state.canvasHeight}
 							onChange={() => this.change}
@@ -3569,7 +3854,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					<div
 						style={{
 							position: 'absolute',
-							width: '828px',
+							width: '821px',
 							height: '327px',
 							left: '0px',
 							top: '697px',
@@ -4800,7 +5085,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					id="comfortSection8Wrapper"
 					ref={this.comfortSection8Wrapper}
 					className="sectionWrapper"
-					style = {{zIndex:'1'}}
+					style={{ zIndex: '1' }}
 					onTouchStart={(event) => {
 						this.comfortSection8Start(event);
 					}}

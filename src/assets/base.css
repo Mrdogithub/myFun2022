@@ -22,7 +22,12 @@
     font-family: 'Lincoln-ProximaNova-Thin';
     src: url('./fonts/Lincoln-ProximaNova-Thin.otf')
 }
-
+html {
+    scroll-behavior: smooth;
+  }
+  body {
+    overflow-y: hidden;
+}
 .dFordTextThin {
 
     font-family: 'Lincoln-ProximaNova-Thin';
