@@ -14,8 +14,6 @@ import comfortBg_10 from './assets/images/comfortBg_10.png';
 import comfortBg_11 from './assets/images/comfortBg_11_1.png';
 import comfortBg_12 from './assets/images/comfortBg_12.png';
 
-import introBg_1 from './assets/images/introBg_1.png';
-import introBgMask from './assets/images/introBgMask.png';
 
 export class MainComponent extends React.Component<any, any> {
 	constructor(props: any) {
@@ -44,8 +42,6 @@ export class MainComponent extends React.Component<any, any> {
 			comfortBg_10,
 			comfortBg_11,
 			comfortBg_12,
-			introBg_1,
-			introBgMask
 		].forEach((v: any, index: any, arr: any) => {
 			const image = new Image();
 			image.src = v;

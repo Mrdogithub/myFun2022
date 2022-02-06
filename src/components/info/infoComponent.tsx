@@ -15,9 +15,8 @@ export class Info extends React.Component<any, any> {
 	}
 	
 	infoItem(e,index) {
-		console.log(index)
+		if(this.props.isStatic) return
 		this.infoItems.current.childNodes.forEach((item,i)=>{
-
 			if(index === i) {
 				this.props.onInfoItemChange(i);
 				item.className = 'activeInfo'
@@ -47,8 +46,6 @@ export class Info extends React.Component<any, any> {
 					{/* 文本*/}
 					<div
 						style={{
-							/* Collected data with in the session. Permission needed before any of the following items are to be uploaded. */
-
 							position: 'absolute',
 							width: '389px',
 							height: '71px',
@@ -80,7 +77,7 @@ export class Info extends React.Component<any, any> {
 						{/* 数据*/}
 						<div
 							onClick = {(e)=>{this.infoItem(e,0)}}
-							className = 'activeInfo'
+							className = {this.props.isStatic?'normalInfo':'activeInfo'}
 							style={{
 								position: 'absolute',
 								width: '372px',

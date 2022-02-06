@@ -25,7 +25,6 @@ export class Menu extends React.Component<any, any> {
 		});
 	}
 	openMenu(e) {
-		console.log('test')
 		e.stopPropagation();
 		setTimeout(() => {
 			this.setState({ isMenuExpanded: true });
@@ -77,18 +76,21 @@ export class Menu extends React.Component<any, any> {
 					}}
 					className={this.state.menuInAnimate + ' ' + this.state.menuOutAnimate}
 				>
-					{subMenuList.map((item, index) => {
-						return (
-							<SubMenu
-								key={'subMenu' + index}
-								left={item.left}
-								top={item.top}
-								bgColor={item.bgColor}
-								indexGroup={item.indexGroup}
-								onSwiperTo={(index: number) => this.swiperTo(index)}
-							/>
-						);
-					})}
+					<div>
+						{subMenuList.map((item, index) => {
+							return (
+								<SubMenu
+									key={'subMenu' + index}
+									left={item.left}
+									top={item.top}
+									isActiveOnly = {true}
+									bgColor={item.bgColor}
+									indexGroup={item.indexGroup}
+									onSwiperTo={(index: number) => this.swiperTo(index)}
+								/>
+							);
+						})}
+					</div>
 					{/*关闭按钮*/}
 					<div
 						style={{
@@ -98,7 +100,7 @@ export class Menu extends React.Component<any, any> {
 							left: '60px',
 							top: '911px',
 						}}
-						onClick={(e: any) => this.closeMenu(e)}
+						onTouchStart={(e: any) => this.closeMenu(e)}
 					>
 						<svg width="59" height="59" viewBox="0 0 59 59" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="29.5" cy="29.5" r="28.5" stroke="white" strokeWidth="2" />

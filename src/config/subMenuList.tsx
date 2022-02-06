@@ -20,16 +20,16 @@ export const subMenuList = [
         bgColor: '#3F434A',
         indexGroup: [
             {
-                indexText: firstActiveIndex,
+                indexText: '01',
                 isActive: true,
-                slideIndex: 6,
+                slideIndex: 'privacySection2Wrapper',
                 indexTextStyle: {
                     left: '24px',
                     top: '21px',
                     width: '47px',
                     height: '47px'
                 },
-                subText: groupOne1ActiveSubText,
+                subText: 'Advanced dimmabel window',
                 subTextStyle: {
                     left: '75px',
                     top: '30px',
@@ -38,7 +38,7 @@ export const subMenuList = [
                 }
             },
             {
-                indexText: secondNormalIndex,
+                indexText: '02',
                 isActive: false,
                 slideIndex: 7,
                 indexTextStyle: {
@@ -49,7 +49,7 @@ export const subMenuList = [
                 }
             },
             {
-                indexText: thirdNormalIndex,
+                indexText: '03',
                 isActive: false,
                 slideIndex: 10,
                 indexTextStyle: {
@@ -62,12 +62,12 @@ export const subMenuList = [
         ]
     },
     {
-        left: '472px',
-        top: '279px',
+        left: '-50px',
+        top: '407px',
         bgColor: '#3F434A',
         indexGroup: [
             {
-                indexText: firstNormalIndex,
+                indexText: '01',
                 isActive: false,
                 slideIndex: 6,
                 indexTextStyle: {
@@ -76,22 +76,22 @@ export const subMenuList = [
                 }
             },
             {
-                indexText: secondActiveIndex,
+                indexText: '02',
                 isActive: true,
-                slideIndex: 7,
+                slideIndex: 'privacySection3Wrapper',
                 indexTextStyle: {
                     left: '125px',
                     top: '21px'
                 },
 
-                subText: groupOne2ActiveSubText,
+                subText: 'Remote chauffeur',
                 subTextStyle: {
                     left: '182px',
                     top: '30px'
                 }
             },
             {
-                indexText: thirdNormalIndex,
+                indexText: '03',
                 isActive: false,
                 slideIndex: 10,
                 indexTextStyle: {
@@ -102,13 +102,13 @@ export const subMenuList = [
         ]
     },
     {
-        left: '904px',
-        top: '279px',
+        left: '-120px',
+        top: '535px',
         bgColor: '#3F434A',
         indexGroup: [
             {
                 slideIndex: 6,
-                indexText: firstNormalIndex,
+                indexText: '01',
                 isActive: false,
                 indexTextStyle: {
                     left: '42px',
@@ -116,7 +116,7 @@ export const subMenuList = [
                 }
             },
             {
-                indexText: secondNormalIndex,
+                indexText: '02',
                 isActive: false,
                 slideIndex: 7,
                 indexTextStyle: {
@@ -125,14 +125,14 @@ export const subMenuList = [
                 }
             },
             {
-                indexText: thirdActiveIndex,
+                indexText: '03',
                 isActive: true,
-                slideIndex: 10,
+                slideIndex: 'privacySection5Wrapper',
                 indexTextStyle: {
                     left: '211px',
                     top: '21px'
                 },
-                subText: groupOne3ActiveSubText,
+                subText: 'Digital seal',
                 subTextStyle: {
                     left: '269px',
                     top: '30px'
@@ -141,26 +141,26 @@ export const subMenuList = [
         ]
     },
     {
-        left: '40px',
-        top: '407px',
+        left: '372px',
+        top: '279px',
         bgColor: '#817066',
         indexGroup: [
             {
-                indexText: firstActiveIndex,
+                indexText: '01',
                 isActive: true,
-                slideIndex: 18,
+                slideIndex: 'comfortSection2Wrapper',
                 indexTextStyle: {
                     left: '24px',
                     top: '21px'
                 },
-                subText: groupTwo1ActiveSubText,
+                subText: 'maximal space utilization',
                 subTextStyle: {
                     left: '75px',
                     top: '30px'
                 }
             },
             {
-                indexText: secondNormalIndex,
+                indexText: '02',
                 isActive: false,
                 slideIndex: 20,
                 indexTextStyle: {
@@ -169,7 +169,7 @@ export const subMenuList = [
                 }
             },
             {
-                indexText: thirdNormalIndex,
+                indexText: '03',
                 isActive: false,
                 slideIndex: 23,
                 indexTextStyle: {
@@ -180,12 +180,12 @@ export const subMenuList = [
         ]
     },
     {
-        left: '472px',
+        left: '280px',
         top: '407px',
         bgColor: '#817066',
         indexGroup: [
             {
-                indexText: firstNormalIndex,
+                indexText: '01',
                 isActive: false,
                 slideIndex: 18,
                 indexTextStyle: {
@@ -194,21 +194,21 @@ export const subMenuList = [
                 }
             },
             {
-                indexText: secondActiveIndex,
+                indexText: '02',
                 isActive: true,
-                slideIndex: 20,
+                slideIndex: 'comfortSection3Wrapper',
                 indexTextStyle: {
                     left: '125px',
                     top: '21px'
                 },
-                subText: groupTwo2ActiveSubText,
+                subText: 'Voice-initiated touch control system',
                 subTextStyle: {
                     left: '182px',
                     top: '30px'
                 }
             },
             {
-                indexText: thirdNormalIndex,
+                indexText: '03',
                 isActive: false,
                 slideIndex: 23,
                 indexTextStyle: {
@@ -219,12 +219,12 @@ export const subMenuList = [
         ]
     },
     {
-        left: '904px',
-        top: '407px',
+        left: '240px',
+        top: '534px',
         bgColor: '#817066',
         indexGroup: [
             {
-                indexText: firstNormalIndex,
+                indexText: '01',
                 isActive: false,
                 slideIndex: 18,
                 indexTextStyle: {
@@ -233,7 +233,7 @@ export const subMenuList = [
                 }
             },
             {
-                indexText: secondNormalIndex,
+                indexText: '02',
                 isActive: false,
                 slideIndex: 20,
                 indexTextStyle: {
@@ -242,14 +242,14 @@ export const subMenuList = [
                 }
             },
             {
-                indexText: thirdActiveIndex,
+                indexText: '03',
                 isActive: true,
-                slideIndex: 23,
+                slideIndex: 'comfortSection5Wrapper',
                 indexTextStyle: {
                     left: '181px',
                     top: '21px'
                 },
-                subText: groupTwo3ActiveSubText,
+                subText: 'Flexible display system',
                 subTextStyle: {
                     left: '239px',
                     top: '30px'
@@ -258,26 +258,26 @@ export const subMenuList = [
         ]
     },
     {
-        left: '40px',
-        top: '535px',
+        left: '704px',
+        top: '279px',
         bgColor: '#594E5B',
         indexGroup: [
             {
-                indexText: firstActiveIndex,
+                indexText: '01',
                 isActive: true,
-                slideIndex: 30,
+                slideIndex: 'leisureSection2Wrapper',
                 indexTextStyle: {
                     left: '24px',
                     top: '21px'
                 },
-                subText: groupThird1ActiveSubText,
+                subText: 'frunk bar',
                 subTextStyle: {
                     left: '75px',
                     top: '30px'
                 }
             },
             {
-                indexText: secondNormalIndex,
+                indexText: '02',
                 isActive: false,
                 slideIndex: 32,
                 indexTextStyle: {
@@ -286,7 +286,7 @@ export const subMenuList = [
                 }
             },
             {
-                indexText: thirdNormalIndex,
+                indexText: '03',
                 isActive: false,
                 slideIndex: 34,
                 indexTextStyle: {
@@ -297,12 +297,12 @@ export const subMenuList = [
         ]
     },
     {
-        left: '472px',
-        top: '535px',
+        left: '605px',
+        top: '407px',
         bgColor: '#594E5B',
         indexGroup: [
             {
-                indexText: firstNormalIndex,
+                indexText: '01',
                 isActive: false,
                 slideIndex: 30,
                 indexTextStyle: {
@@ -311,21 +311,21 @@ export const subMenuList = [
                 }
             },
             {
-                indexText: secondActiveIndex,
+                indexText: '02',
                 isActive: true,
-                slideIndex: 32,
+                slideIndex: 'leisureSection3Wrapper',
                 indexTextStyle: {
                     left: '125px',
                     top: '21px'
                 },
-                subText: groupThird2ActiveSubText,
+                subText: 'music studio',
                 subTextStyle: {
                     left: '182px',
                     top: '30px'
                 }
             },
             {
-                indexText: thirdNormalIndex,
+                indexText: '03',
                 isActive: false,
                 slideIndex: 34,
                 indexTextStyle: {
@@ -336,13 +336,13 @@ export const subMenuList = [
         ]
     },
     {
-        left: '904px',
+        left: '555px',
         top: '535px',
         bgColor: '#594E5B',
         activeIndex: 3,
         indexGroup: [
             {
-                indexText: firstNormalIndex,
+                indexText: '01',
                 isActive: false,
                 slideIndex: 30,
                 indexTextStyle: {
@@ -351,7 +351,7 @@ export const subMenuList = [
                 }
             },
             {
-                indexText: secondNormalIndex,
+                indexText: '02',
                 isActive: false,
                 slideIndex: 32,
                 indexTextStyle: {
@@ -360,18 +360,65 @@ export const subMenuList = [
                 }
             },
             {
-                indexText: thirdActiveIndex,
+                indexText: '03',
                 isActive: true,
-                slideIndex: 34,
+                slideIndex: 'leisureSection6Wrapper',
                 indexTextStyle: {
                     left: '181px',
                     top: '21px'
                 },
 
-                subText: groupThird3ActiveSubText,
+                subText: 'memory gallery',
                 subTextStyle: {
                     left: '239px',
                     top: '30px'
+                }
+            }
+        ]
+    },
+    {
+        left: '904px',
+        top: '279px',
+        bgColor: '#657388',
+        indexGroup: [
+            {
+                indexText: '01',
+                isActive: true,
+                slideIndex: 'uniqueSection2Wrapper',
+                indexTextStyle: {
+                    left: '24px',
+                    top: '21px',
+                    width: '47px',
+                    height: '47px'
+                },
+                subText: 'Generative Art',
+                subTextStyle: {
+                    left: '75px',
+                    top: '30px',
+                    width: '199px',
+                    height: '17px'
+                }
+            },
+            {
+                indexText: '02',
+                isActive: false,
+                slideIndex: 7,
+                indexTextStyle: {
+                    left: '292px',
+                    top: '30px',
+                    width: '35px',
+                    height: '30px'
+                }
+            },
+            {
+                indexText: '03',
+                isActive: false,
+                slideIndex: 10,
+                indexTextStyle: {
+                    left: '355px',
+                    top: '30px',
+                    width: '35px',
+                    height: '30px'
                 }
             }
         ]

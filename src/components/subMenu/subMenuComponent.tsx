@@ -27,7 +27,7 @@ interface Style {
 export class SubMenu extends React.Component<any, any> {
 	constructor(props: any) {
 		super(props);
-		const { left = '944px', top = '934px', bgColor = '#3F434A' } = this.props;
+		const { left = '944px', top = '934px', bgColor = '#3F434A',isActiveOnly } = this.props;
 		this.state = {
 			left,
 			top,
@@ -35,7 +35,6 @@ export class SubMenu extends React.Component<any, any> {
 		};
 	}
 	swiperTo(index: number) {
-		console.log('subMenu index:' + index);
 		if (!this.props.onSwiperTo) return;
 		this.props.onSwiperTo(index);
 	}
@@ -50,7 +49,7 @@ export class SubMenu extends React.Component<any, any> {
 						right: this.props.right,
 						top: this.props.top,
 						bottom: this.props.bottom,
-						background: this.props.bgColor,
+						background:this.props.isActiveOnly?'none': this.props.bgColor,
 						width: '422px',
 						height: '90px',
 						zIndex: '999',
@@ -67,6 +66,7 @@ export class SubMenu extends React.Component<any, any> {
 								onSwiperTo={(index: number) => this.swiperTo(index)}
 							/>
 						) : (
+							this.props.isActiveOnly?'':
 							<NormalIndex
 								indexItem={item}
 								key={'NormalIndex' + index}

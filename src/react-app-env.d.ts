@@ -9,3 +9,4 @@ declare module '*.webm' {
 	export default src;
 }
 declare module '*.jpg';
+declare module '*.png';

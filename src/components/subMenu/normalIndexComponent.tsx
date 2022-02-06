@@ -20,9 +20,10 @@ export class NormalIndex extends React.Component<any, any> {
 					padding: '5px',
 					boxSizing: 'border-box'
 				}}
-				onClick={() => this.swiperTo(slideIndex)}
+				className = 'dFordSunMenuNormalIndex'
+				onTouchStart={() => this.swiperTo(slideIndex)}
 			>
-				<img src={indexText} />
+				{indexText}
 			</div>
 		);
 	}

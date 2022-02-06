@@ -23,9 +23,10 @@ export class ActiveIndex extends React.Component<any, any> {
 						boxSizing: 'border-box',
 						padding: '7px',
 					}}
-					onClick={() => this.swiperTo(slideIndex)}
+					className = 'dFordSunMenuActiveIndex'
+					onTouchStart={() => this.swiperTo(slideIndex)}
 				>
-					<img src={indexText} style={{ objectFit: 'contain' }} />
+					{indexText}
 				</div>
 				<div
 					style={{
@@ -33,13 +34,13 @@ export class ActiveIndex extends React.Component<any, any> {
 						borderBottom: '2px solid rgba(255, 255, 255,0.5)',
 						position: 'absolute',
 						left: subTextStyle.left,
-						top: subTextStyle.top,
-						minHeight:'30px'
-					}}
-				>
-					<img src={subText} />
+						bottom:'28px',
+						maxWidth: '160px'
 
-				
+					}}
+					className = 'dFordSunMenuText'
+				>
+					{subText}
 				</div>
 				
 			</div>
