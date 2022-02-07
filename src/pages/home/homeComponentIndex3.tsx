@@ -3,41 +3,42 @@ import 'react-slider-light/lib/index.css';
 import { SubMenu } from '../../components/subMenu/subMenuComponent';
 import { subMenuList } from '../../config/subMenuList';
 
+import CanvasImageSequence from 'react-canvas-image-sequence';
 // demo intro
 import demoIntroSection1Bg from '../../assets/images/demoIntroSection1Bg.png';
 import demoIntroSection1Bg3 from '../../assets/images/demoIntroSection1Bg3.png';
 import demoIntroSection3Bg1 from '../../assets/images/demoIntroSection3Bg1.png';
 
-import homePrivacy_1_small from './homePrivacy_1_small.png';
-import homeConfort_2_small from './homeConfort_2_small.png';
-import homeLeisure_3_small from './homeLeisure_3_small.png';
-import homeUnique_4_small from './homeUnique_4_small.png';
+import homePrivacy_1_small from '../../assets/images/homePrivacy_1_small.png';
+import homeConfort_2_small from '../../assets/images/homeConfort_2_small.png';
+import homeLeisure_3_small from '../../assets/images/homeLeisure_3_small.png';
+import homeUnique_4_small from '../../assets/images/homeUnique_4_small.png';
 
-import privacySmallTitle from './privacySmallTitle.svg';
-import privacySmallIndex from './privacySmallIndex.svg';
+import privacySmallTitle from '../../assets/images/privacySmallTitle.svg';
+import privacySmallIndex from '../../assets/images/privacySmallIndex.svg';
 
-import comfortSmallTitle from './comfortSmallTitle.svg';
-import comfortSmallIndex from './comfortSmallIndex.svg';
+import comfortSmallTitle from '../../assets/images/comfortSmallTitle.svg';
+import comfortSmallIndex from '../../assets/images/comfortSmallIndex.svg';
 
-import leisureSmallTitle from './leisureSmallTitle.svg';
-import leisureSmallIndex from './leisureSmallIndex.svg';
+import leisureSmallTitle from '../../assets/images/leisureSmallTitle.svg';
+import leisureSmallIndex from '../../assets/images/leisureSmallIndex.svg';
 
-import uniqueSmallTitle from './uniqueSmallTitle.svg';
-import uniqueSmallIndex from './uniqueSmallIndex.svg';
+import uniqueSmallTitle from '../../assets/images/uniqueSmallTitle.svg';
+import uniqueSmallIndex from '../../assets/images/uniqueSmallIndex.svg';
 
 import videoPRemoteVhauffeur from '../../assets/remoteVhauffeur.webm';
 import homePrivacy_1 from '../../assets/Video00(ImageSequence)/Video00_TransitionPrivacy0.jpg';
-import homeConfort_2 from './homeConfort_2.png';
-import homeLeisure_3 from './homeLeisure_3.png';
-import homeUnique_4 from './homeUnique_4.png';
+import homeConfort_2 from '../../assets/images/homeConfort_2.png';
+import homeLeisure_3 from '../../assets/images/homeLeisure_3.png';
+import homeUnique_4 from '../../assets/images/homeUnique_4.png';
 
 import section2IndeImage from '../../assets/Video01_AdvancedDimmableWindow/Video01_AdvancedDimmableWindow0.jpg';
 import sectoin_4_phoneVideo from '../../assets/VideoP_RemoteVhauffeur/VideoP_RemoteVhauffeur0.jpg';
 
 import privacySection5ImageSequence from '../../assets/Video02_DigitalSealInsert/Video02_DigitalSealInsert0.jpg';
-import privacy_section_3_bg from './privacy_section_3_bg.png';
-import privacy_section_7_bg from './privacy_section_7_bg.png';
-import privacy_section_8_bg from './privacy_section_8_bg.png';
+import privacy_section_3_bg from '../../assets/images/privacy_section_3_bg.png';
+import privacy_section_7_bg from '../../assets/images/privacy_section_7_bg.png';
+import privacy_section_8_bg from '../../assets/images/privacy_section_8_bg.png';
 import firstPrivactSection6ImageSequence from '../../assets/Video02b_DigitalSealRotate_1/Video02b_DigitalSealRotate0.jpg';
 import firstComfortSection1ImageSequence from '../../assets/Video04_TransitionComfort/Video04_TransitionComfort0.jpg';
 import lastComfortSection1ImageSequence from '../../assets/Video04_TransitionComfort/Video04_TransitionComfort100.jpg';
@@ -58,7 +59,6 @@ import comfortSection9Bg1 from '../../assets/images/comfortSection9Bg1.png';
 import comfortSection9Bg2 from '../../assets/images/comfortSection9Bg2.png';
 import comfortSection9Bg3 from '../../assets/images/comfortSection9Bg3.png';
 import comfortSection9Bg4 from '../../assets/images/comfortSection9Bg4.png';
-import CanvasImageSequence from 'react-canvas-image-sequence';
 import comfortSection5BG1 from '../../assets/images/comfortSection5BG1.png';
 import leisureSection3Bg1 from '../../assets/images/leisureSection3Bg1.png';
 import leisureSection3Bg2 from '../../assets/images/leisureSection3Bg2.png';
