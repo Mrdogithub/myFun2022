@@ -93,7 +93,48 @@ export class MainComponent extends React.Component<any, any> {
 	}
 
 	async loadImages() {
-		await [
+
+		const imges: any[] = [];
+		for (let i = 0; i <= 100; i++) {
+			imges.push(require(`./assets/Video02b_DigitalSealRotate_1/Video02b_DigitalSealRotate${i}.jpg`));
+		}
+
+		/* comfort  首页序列帧 */
+		const comfortImges: any[] = [];
+		for (let i = 0; i <= 100; i++) {
+			imges.push(require(`./assets/Video04_TransitionComfort/Video04_TransitionComfort${i}.jpg`));
+		}
+
+		const comfort8Imges: any[] = [];
+		for (let i = 0; i <= 15; i++) {
+			imges.push(require(`./assets/Video13_Magazine/Video13_Magazine${i}.png`));
+		}
+
+		/* leisure section2 序列帧 */
+		const leisureImges: any[] = [];
+		for (let i = 0; i <= 40; i++) {
+			imges.push(require(`./assets/Video16_FrunkBar/Video16_FrunkBar${i}.jpg`));
+		}
+
+		/* leisure 首页序列帧 */
+		const leisure1Imges: any[] = [];
+		for (let i = 0; i <= 100; i++) {
+			imges.push(require(`./assets/Video04_TransitionComfort/Video04_TransitionComfort${i}.jpg`));
+		}
+
+		/* unique 首页序列帧 */
+		const uniqueImges: any[] = [];
+		for (let i = 0; i <= 100; i++) {
+			imges.push(require(`./assets/Video04_TransitionComfort/Video04_TransitionComfort${i}.jpg`));
+		}
+
+		/* privacy 首页序列帧 */
+		const privacyImages: any[] = [];
+		for (let i = 0; i <= 100; i++) {
+			imges.push(require(`./assets/Video00(ImageSequence)/Video00_TransitionPrivacy${i}.jpg`));
+		}
+
+		imges.push.apply(imges, [
 			demoIntroSection1Bg,
 			demoIntroSection1Bg3,
 			demoIntroSection3Bg1,
@@ -151,31 +192,39 @@ export class MainComponent extends React.Component<any, any> {
 			leisureSection6Bg2,
 			leisureSection6Bg3,
 			unqiueSection2Bg1
-		].forEach((v: any, index: any, arr: any) => {
+		])
+		imges.forEach((v: any, index: any, arr: any) => {
 			const image = new Image();
 			image.src = v;
+
 			image.onload = () => {
 				arr.successLength = (arr.successLength || 0) + 1;
-				const status = Math.round(arr.successLength / arr.length) * 100;
-
+				const status = Math.ceil( (arr.successLength / arr.length) * 100);
+				console.log(arr.successLength)
+				console.log(arr.length)
+				console.log(status)
 				setTimeout(() => {
 					this.setState({ loadInProgress: status });
-				}, 1000);
+				}, 100);
 
-				if (status === 100) {
+				if (status > 99) {
 					this.setState({ images: arr });
+					this.loadFont();
+					return
 				}
 			};
 		});
 
-		this.loadFont();
+		
 	}
 	async loadFont() {
 		(document as any).fonts.ready.then((fontFaceSet: any) => {
-			this.setState({ loadInProgress: 1 });
+			console.log(fontFaceSet)
 			setTimeout(() => {
-                
+
 				this.setState({ isResourceLoaded: true });
+
+				this.setState({ loadInProgress: 1 });
 			}, 1500);
 		});
 	}

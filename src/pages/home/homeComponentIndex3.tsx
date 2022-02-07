@@ -1413,11 +1413,11 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 
 	// COMFORT SECTION
 	comfortSection2Start(event) {
-		if (event.target.id === '') return;
+		if (event.target.tagName === 'circle') return;
 		this.updateStartMosePosition(event);
 	}
 	comfortSection2Move(event) {
-		// if (event.target.id === '') return;
+		if (event.target.tagName === 'circle') return;
 		this.updateMoveMousePositon(event);
 		this.move = this.state.endY - this.state.startY;
 		if (this.move > 80) {
@@ -1436,7 +1436,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		}
 	}
 	comfortSection2End(event) {
-		if (event.target.id === '') return;
+		if (event.target.tagName === 'circle') return;
 	}
 	comfortSection2SplitterStart(event) {
 		this.isDown = true;
@@ -1460,7 +1460,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			}
 
 			if (relativeWidth < 40) {
-				this.mask1.current.style.backdropFilter = `blur(${90 - relativeWidth}px)`;
+				this.mask1.current.style.backdropFilter = `blur(${90 - relativeWidth*2.5}px)`;
 			}
 			if (relativeWidth > 40 && relativeWidth < 45) {
 				this.mask1.current.style.backdropFilter = 'blur(0px)';
@@ -1505,25 +1505,25 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			0
 		];
 	}
-	comfortSection2Splitter2Move(event) {
-		// event.preventDefault();
-		if (this.isDown) {
-			const absoluteWidth = event.targetTouches[0].clientX - this.splitterOffSet[0];
-			const relativeWidth = (event.targetTouches[0].clientX - this.splitterOffSet[0]) / screen.availWidth * 100;
-			console.log('relativeWidth:' + relativeWidth);
-			if (relativeWidth > 45 && relativeWidth < 60) {
-				this.comfortSection2Splitter2.current.style.backdropFilter = 'blur(90px)';
-				this.comfortSection2SplitterHook2.current.style.left = screen.availWidth - absoluteWidth - 45 + 'px';
-				this.comfortSection2Splitter2.current.style.left = screen.availWidth - absoluteWidth + 'px';
-				this.comfortSection2Splitter2.current.style.width =
-					screen.availWidth - this.comfortSection2SplitterHook.current.style.left + 'px';
-			}
+	// comfortSection2Splitter2Move(event) {
+	// 	// event.preventDefault();
+	// 	if (this.isDown) {
+	// 		const absoluteWidth = event.targetTouches[0].clientX - this.splitterOffSet[0];
+	// 		const relativeWidth = (event.targetTouches[0].clientX - this.splitterOffSet[0]) / screen.availWidth * 100;
+	// 		console.log('relativeWidth:' + relativeWidth);
+	// 		if (relativeWidth > 45 && relativeWidth < 60) {
+	// 			this.comfortSection2Splitter2.current.style.backdropFilter = 'blur(90px)';
+	// 			this.comfortSection2SplitterHook2.current.style.left = screen.availWidth - absoluteWidth - 45 + 'px';
+	// 			this.comfortSection2Splitter2.current.style.left = screen.availWidth - absoluteWidth + 'px';
+	// 			this.comfortSection2Splitter2.current.style.width =
+	// 				screen.availWidth - this.comfortSection2SplitterHook.current.style.left + 'px';
+	// 		}
 
-			if (relativeWidth > 60 && relativeWidth < 70) {
-				this.comfortSection2Splitter.current.style.backdropFilter = 'blur(90px)';
-			}
-		}
-	}
+	// 		if (relativeWidth > 60 && relativeWidth < 70) {
+	// 			this.comfortSection2Splitter.current.style.backdropFilter = 'blur(90px)';
+	// 		}
+	// 	}
+	// }
 	comfortSection2Splitter2End(event) {
 		this.isDown = false;
 	}
