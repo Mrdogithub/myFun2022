@@ -33,7 +33,7 @@ import homeLeisure_3 from '../../assets/images/homeLeisure_3.png';
 import homeUnique_4 from '../../assets/images/homeUnique_4.png';
 
 import section2IndeImage from '../../assets/Video01_AdvancedDimmableWindow/Video01_AdvancedDimmableWindow0.jpg';
-import sectoin_4_phoneVideo from '../../assets/VideoP_RemoteVhauffeur/VideoP_RemoteVhauffeur0.jpg';
+import privacySection3PhoneVideo from '../../assets/VideoP_RemoteVhauffeur/VideoP_RemoteVhauffeur0.jpg';
 
 import privacySection5ImageSequence from '../../assets/Video02_DigitalSealInsert/Video02_DigitalSealInsert0.jpg';
 import privacy_section_3_bg from '../../assets/images/privacy_section_3_bg.png';
@@ -102,7 +102,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.demoIntroSection3Wrapper = React.createRef();
 		this.box = React.createRef();
 		this.video = React.createRef();
-		this.leftContent = React.createRef();
+		this.privacySection1WrapperLeftContent = React.createRef();
 		this.bgLine = React.createRef();
 		this.privacySection1Wrapper = React.createRef();
 		this.privacyContent = React.createRef();
@@ -111,19 +111,21 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.section_2_colorBg = React.createRef();
 		this.section_2_image = React.createRef();
 		this.section_2_bgLine = React.createRef();
-		this.section_2_leftContent = React.createRef();
+		this.privacySection2leftContent = React.createRef();
 		this.privacySection3Wrapper = React.createRef();
 		this.privacySection3image = React.createRef();
 		this.privacySection3leftContent = React.createRef();
 		this.privacySection3bgline = React.createRef();
 		this.privacySection3colorBg = React.createRef();
+		this.privacySection3Text = React.createRef();
+		this.privacySection3Title = React.createRef();
 
 		this.privacySection4Wrapper = React.createRef();
 		this.section_4_image = React.createRef();
 		this.section_4_leftContent = React.createRef();
 		this.section_4_bgline = React.createRef();
 		this.section_4_colorBg = React.createRef();
-		this.sectoin_4_phoneVideo = React.createRef();
+		this.privacySection3PhoneVideo = React.createRef();
 
 		this.privacySection5Wrapper = React.createRef();
 		this.privacySection5title = React.createRef();
@@ -138,7 +140,10 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.privacySection7bg = React.createRef();
 		this.privacySection7text = React.createRef();
 		this.privacySection7bgline = React.createRef();
+		this.privacySection7bgMask = React.createRef();
+		this.privacySection7SubMenu = React.createRef();
 		this.privacySection8Wrapper = React.createRef();
+		this.privacySection8bgPlaceHolder = React.createRef();
 		this.privacySection8text = React.createRef();
 		this.privacySection8title = React.createRef();
 		this.privacySection8bg = React.createRef();
@@ -269,7 +274,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			seconds: 0,
 			imgSrc: `/static/media/Video00_TransitionPrivacy0.png`,
 			section_2_ImageSrc: section2IndeImage,
-			sectoin_4_phoneVideo: sectoin_4_phoneVideo,
+			privacySection3PhoneVideo: privacySection3PhoneVideo,
 			privacySection5ImageSequence: privacySection5ImageSequence,
 			canvasWidth: 0,
 			canvasHeight: 0,
@@ -290,6 +295,10 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			leisureSection2SequenceImageIndex: 0,
 			uniqueSection1SequenceImageIndex: 0,
 			comfortSection8ImageSequenceIndex: 0,
+			privacySectionAnimateContrl: {
+				isShowPrivacySection3leftContentPart1: true,
+				isShowPrivacySection3leftContentPart2: false
+			},
 			privactSection6ImageSequence: [
 				firstPrivactSection6ImageSequence
 			],
@@ -431,7 +440,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	];
 	player: any;
 	video: any;
-	leftContent: any;
+	privacySection1WrapperLeftContent: any;
 	bgLine: any;
 	interval: any;
 	privacySection2Wrapper: any;
@@ -441,18 +450,21 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	section_2_colorBg: any;
 	section_2_image: any;
 	section_2_bgLine: any;
-	section_2_leftContent: any;
+	privacySection2leftContent: any;
 	privacySection3Wrapper: any;
 	privacySection3image: any;
 	privacySection3leftContent: any;
 	privacySection3bgline: any;
 	privacySection3colorBg: any;
+	privacySection3Text: any;
+	privacySection3Title: any;
+
 	privacySection4Wrapper: any;
 	section_4_image: any;
 	section_4_leftContent: any;
 	section_4_bgline: any;
 	section_4_colorBg: any;
-	sectoin_4_phoneVideo: any;
+	privacySection3PhoneVideo: any;
 
 	privacySection5Wrapper: any;
 	privacySection5leftContent: any;
@@ -472,12 +484,14 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	privacySection7bg: any;
 	privacySection7text: any;
 	privacySection7bgline: any;
+	privacySection7SubMenu: any;
+	privacySection7bgMask: any;
 	privacySection8Wrapper: any;
 	privacySection8text: any;
 	privacySection8title: any;
 	privacySection8bg: any;
 	privacySection8image: any;
-
+	privacySection8bgPlaceHolder:any;
 	comfortSection1Wrapper: any;
 	comfortSection1CanvasRef: any;
 	comfortSection1Text: any;
@@ -568,8 +582,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	leisureSection5Wrapper: any;
 
 	leisureSection7Wrapper: any;
-	leisureSection7ReturnHome:any;
-	leisureSection7ReturnHomeTitle:any;
+	leisureSection7ReturnHome: any;
+	leisureSection7ReturnHomeTitle: any;
 	leisureSection6Wrapper: any;
 	leisureSection6Grally: any;
 	uniqueHomeContent: any;
@@ -583,9 +597,9 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	uniqueSection2Wrapper: any;
 	uniqueSection3Wrapper: any;
 	uniqueSection2DynamicBg: any;
-	uniqueSection2RightBox:any;
-	uniqueSection3ReturnHome:any;
-	uniqueSection3ReturnHomeTitle:any;
+	uniqueSection2RightBox: any;
+	uniqueSection3ReturnHome: any;
+	uniqueSection3ReturnHomeTitle: any;
 	demoIntroSection1Wrapper: any;
 	demoIntroSection2Wrapper: any;
 	demoIntroSection3Wrapper: any;
@@ -599,6 +613,10 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		unique: [] as any
 	};
 	componentDidMount() {
+		// demoIntroSection1Wrapper 默认入场动画淡入效果
+		this.demoIntroSection1Wrapper.current.className =
+			'demoIntroSection1Wrapper  animate__animated animate__fadeIn animate__delay-1.5s';
+
 		/* DigitalSealRotate 序列帧*/
 		const imges: any[] = [];
 		for (let i = 0; i <= 100; i++) {
@@ -779,30 +797,29 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		}
 		if (this.move < -80) {
 			// 向上拉动，进入下一页
-			this.box.current.style.display = 'none';
-			this.privacySection1Wrapper.current.style.zIndex = '-1';
-			this.privacySection1Wrapper.current.style.display = 'none';
-			this.privacySection2Wrapper.current.style.zIndex = '1';
-			this.privacySection2Wrapper.current.style.display = 'block';
+
+			// privacySection1Wrapper 结束动画
+			this.privacySection1WrapperOutAnimate();
+
+			// privacySection2Wrapper 入场动画
 			this.setState({ lastActiveSectionRef: this.privacySection2Wrapper.current });
 			this.setState({ lastActiveSectionRefCallback: this.privacySection2WrapperInAnimate() });
-			this.privacySection2Wrapper.current.className =
-				'sectionWrapper animate__animated animate__fadeIn animate__delay-1.5s';
 			this.privacySection2WrapperInAnimate();
 		}
 	}
-	section2TouchStart(event) {
+	privacySection2WrapperTouchStart(event) {
 		this.updateStartMosePosition(event);
 	}
 
-	section2TouchMove(event) {
+	privacySection2WrapperTouchMove(event) {
 		this.updateMoveMousePositon(event);
 
 		this.move = this.state.endY - this.state.startY;
 		if (this.move > 80) {
 			// 向下拉动，返回上一页
 			this.privacySection2Wrapper.current.className = 'sectionWrapper animate__animated animate__fadeOut';
-			this.leftContent.current.className = 'animate__animated animate__slideInLeft animate__delay-1s';
+			this.privacySection1WrapperLeftContent.current.className =
+				'privacySection1WrapperLeftContent animate__animated animate__slideInLeft animate__delay-1s';
 			this.privacySection2Wrapper.current.style.display = 'none';
 
 			this.box.current.style.display = 'flex';
@@ -819,44 +836,77 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		if (this.move < -80) {
 			// 向s上拉动，进入下一页
 
-			this.section_2_leftContent.current.className = 'animate__animated animate__slideOutLeft animate__delay-1s';
-			this.section_2_colorBg.current.className = 'animate__animated animate__slideOutLeft animate__delay-1s';
-			this.privacySection2Wrapper.current.style.zIndex = '-1';
-			this.privacySection2Wrapper.current.style.display = 'none';
+			// privacySection2Wrapper 结束动画
+			this.privacySection2WrapperOutAnimate();
 
-			this.privacySection3Wrapper.current.style.display = 'block';
 			this.privacySection3WrapperInAnimate();
-			this.setState({ lastActiveSectionRef: this.privacySection3Wrapper.current });
 		}
 	}
 
-	section3TouchStart(event) {
+	privacySection3WrapperTouchStart(event) {
 		this.updateStartMosePosition(event);
 	}
 
-	section3TouchMove(event) {
+	privacySection3WrapperTouchMove(event) {
 		this.updateMoveMousePositon(event);
 
 		this.move = this.state.endY - this.state.startY;
-		if (this.move > 80) {
+	}
+	privacySection3WrapperTouchEnd(event) {
+		// part1 转场到上一页
+		if (this.move > 80 && this.state.privacySectionAnimateContrl.isShowPrivacySection3leftContentPart1) {
 			// 向下拉动，返回上一页
-			this.privacySection3Wrapper.current.style.display = 'none';
-			this.privacySection3Wrapper.current.style.zIndex = '-1';
+			this.privacySection3WrapperOutAnimate();
 
-			this.section_2_leftContent.current.className = 'animate__animated animate__slideInLeft animate__delay-2.5s';
-			this.section_2_colorBg.current.className = 'animate__animated animate__slideInLeft animate__delay-2.5s';
-			//	this.section_2_image.current.style.width = '81%';
-			//	this.moveAnimate(this.section_2_image.current, 257);
-			this.privacySection2Wrapper.current.style.display = 'block';
-			this.setState({ lastActiveSectionRef: this.privacySection2Wrapper.current });
+			this.privacySection2WrapperInAnimate();
 			return;
 		}
 
+		// part2转场到part1
+		if (this.move > 80 && this.state.privacySectionAnimateContrl.isShowPrivacySection3leftContentPart2) {
+			// 向下拉动，返回上一页
+			// this.privacySection3WrapperPart2OutAnimate();
+			this.privacySection3leftContent.current.className = 'privacySection3leftContentOut';
+			this.privacySection3colorBg.current.style.background = '#48423D';
+			this.privacySection3PhoneVideo.current.className =
+				'animate__animated animate__slideOutUp animate__delay-1.7s';
+			setTimeout(() => {
+				this.privacySection3PhoneVideo.current.style.display = 'none';
+			}, 2000);
+
+			this.setState({
+				privacySectionAnimateContrl: {
+					isShowPrivacySection3leftContentPart1: true,
+					isShowPrivacySection3leftContentPart2: false
+				}
+			});
+			return;
+		}
 		if (this.move < -80) {
 			// 向s上拉动，进入下一页
-			this.privacySection3Wrapper.current.style.display = 'none';
-			this.privacySection3Wrapper.current.style.zIndex = '-1';
-			this.privacySection4WrapperInAnimate();
+			// part1 转场到part2
+			if (this.state.privacySectionAnimateContrl.isShowPrivacySection3leftContentPart1) {
+				this.privacySection3WrapperPart2InAnimate();
+				this.setState({
+					privacySectionAnimateContrl: {
+						isShowPrivacySection3leftContentPart1: false,
+						isShowPrivacySection3leftContentPart2: true
+					}
+				});
+				return;
+			}
+
+			// 在显示part2的时候向上拉动，显示下个片子
+			if (this.state.privacySectionAnimateContrl.isShowPrivacySection3leftContentPart2) {
+				this.privacySection5WrapperInAnimate();
+				this.privacySection3WrapperPart2OutAnimate();
+				this.setState({
+					privacySectionAnimateContrl: {
+						isShowPrivacySection3leftContentPart1: true,
+						isShowPrivacySection3leftContentPart2: false
+					}
+				});
+			}
 		}
 	}
 	privacySection4WrapperTouchStart(event) {
@@ -892,7 +942,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.move = this.state.endY - this.state.startY;
 		if (this.move > 80) {
 			// 向下拉动，返回上一页
-			this.privacySection4WrapperInAnimate();
+			this.privacySection3WrapperInAnimate();
 			this.privacySection5WrapperOutAnimate();
 		}
 		if (this.move < -80) {
@@ -923,8 +973,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	privacySection6WrapperTouchMove(event) {
 		this.updateMoveMousePositon(event);
 		this.move = this.state.endY - this.state.startY;
-		this.moveDistance = Math.ceil(Math.pow(Math.abs(this.move), 0.8));
-
+	}
+	privacySection6WrapperTouchEnd(event) {
 		if (this.move > 0) {
 			// 向下拉动 返回上一页
 			this.privacySection6WrapperOutAnimate();
@@ -936,15 +986,12 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		if (this.move < 0 && this.state.privacySection6SequenceImageIndex == 100) {
 			// 最后一帧，进入到privacySection7Wrapper
 			this.privacySection6WrapperOutAnimate();
-			this.privacySection7Wrapper.current.style.display = 'block';
-			console.log('100:' + this.state.privacySection6SequenceImageIndex);
+			this.privacySection7WrapperInAnimate();
 			return;
 		}
 
-		console.log('note100:' + this.state.privacySection6SequenceImageIndex);
 		this.privacySection6WrapperInAnimate();
 	}
-
 	privacySection7WrapperTouchStart(event) {
 		this.updateStartMosePosition(event);
 	}
@@ -953,11 +1000,60 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.updateMoveMousePositon(event);
 
 		this.move = this.state.endY - this.state.startY;
-		if (this.move < -80) {
+	}
+
+	privacySection7WrapperTouchEnd(event) {
+		// Part1 转场进入part2
+		if (this.move < -80 && this.privacySection8bg.current.style.display == 'none') {
 			// 向上拉动，进入下一页
-			this.privacySection7Wrapper.current.style.display = 'none';
-			this.privacySection8WrapperInAnimate();
+			// this.privacySection7Wrapper.current.style.display = 'none';
+			this.privacySection7bg.current.className = 'privacy_section_7_bgIn';
+			this.privacySection7text.current.className = 'dFordText animate__animated animate__slideOutRight';
+
+			setTimeout(() => {
+				this.privacySection8bg.current.style.display = 'block';
+				this.privacySection8title.current.style.display = 'block';
+			}, 1500);
+			this.privacySection7SubMenu.current.className = 'animate__animated animate__fadeOut';
+			this.privacySection8bg.current.className = '  animate__animated animate__slideInUp animate__delay-1.5s';
+			this.privacySection8title.current.className =
+				' dFordText animate__animated animate__fadeIn animate__delay-1.5s';
+			return;
+			// this.privacySection8WrapperInAnimate();
 		}
+
+		// Part2 转场进入 comfortSection1Wrapper
+		if (this.move < -80 && this.privacySection8bg.current.style.display == 'block') {
+			// this.privacySection8bgPlaceHolder.current.display = 'block'
+			// setTimeout(()=>{
+			// 	this.privacySection7Wrapper.current.style.display = 'none';
+			// },2300)
+
+			this.privacySection7WrapperOutPart2Animate()
+			setTimeout(()=>{
+				this.comfortSection1WrapperInAnimate();
+			},2200)
+			// this.privacySection8bg.current.className = '  animate__animated animate__slideOutDown animate__delay-1.5s';
+			// this.privacySection8title.current.className = '  animate__animated animate__fadeOut animate__delay-1.5s';
+
+			// this.privacySection7bg.current.className = 'animate__animated animate__fadeOut animate__delay-2s';
+			// 向上拉动，进入下一页
+			// this.privacySection7Wrapper.current.style.display = 'none';
+			// this.privacySection7bg.current.className = 'privacy_section_7_bgIn';
+			// this.privacySection7text.current.className = 'dFordText animate__animated animate__slideOutRight';
+
+			// setTimeout(() => {
+			// 	this.privacySection8bg.current.style.display = 'block';
+			// 	this.privacySection8title.current.style.display = 'block';
+			// }, 1500);
+			// this.privacySection7bgMask.current.className = 'animate__animated animate__fadeIn';
+			// this.privacySection7SubMenu.current.className = 'animate__animated animate__fadeOut';
+			// this.privacySection8bg.current.className = '  animate__animated animate__slideInUp animate__delay-1.5s';
+			// this.privacySection8title.current.className =
+			// 	' dFordText animate__animated animate__fadeIn animate__delay-1.5s';
+			// this.privacySection8WrapperInAnimate();
+		}
+
 		if (this.move > 80) {
 			// 向下拉动，返回上一页
 
@@ -1014,20 +1110,10 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		});
 	}
 
-	privacySection6WrapperTouchEnd(event) {
-		// clearInterval(const _interval);
-		console.log(event);
-	}
 	change(index, paused?) {
 		if (this.privacySection6CanvasRef) {
 			this.privacySection6CanvasRef.current.setCurrent(index);
 		}
-	}
-
-	homePageTouchStart(event, item, index) {
-		// 切换背景图片
-		this.onChange(item, index);
-		this.updateStartMosePosition(event);
 	}
 
 	debounce(fn, delay) {
@@ -1041,6 +1127,12 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				fn.apply(_this);
 			}, delay);
 		};
+	}
+
+	homePageTouchStart(event, item, index) {
+		// 切换背景图片
+		this.onChange(item, index);
+		this.updateStartMosePosition(event);
 	}
 	homePageTouchMove(event, item, index) {
 		// 判断拖动方向
@@ -1113,8 +1205,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							this.privacySection1Wrapper.current.style.zIndex = '1';
 							const image = require(`../../assets/Video00(ImageSequence)/Video00_TransitionPrivacy100.jpg`);
 							this.privacySection1Wrapper.current.style.backgroundImage = `url(${image})`;
-							this.leftContent.current.className =
-								'animate__animated animate__slideInLeft animate__delay-1s';
+							this.privacySection1WrapperLeftContent.current.className =
+								'privacySection1WrapperLeftContent animate__animated animate__slideInLeft animate__delay-1s';
 							this.bgLine.current.className = 'animate__animated animate__fadeIn animate__delay-1s';
 						}
 
@@ -1361,7 +1453,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 
 		if (this.move > 80) {
 			this.comfortSection1WrapperOutAnimate();
-			this.privacySection8WrapperInAnimate();
+			this.privacySection7WrapperInAnimate();
 		}
 
 		if (this.move < -80) {
@@ -1413,11 +1505,11 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 
 	// COMFORT SECTION
 	comfortSection2Start(event) {
-		if (event.target.id === '') return;
+		if (event.target.tagName === 'cirle') return;
 		this.updateStartMosePosition(event);
 	}
 	comfortSection2Move(event) {
-		// if (event.target.id === '') return;
+		if (event.target.tagName === 'cirle') return;
 		this.updateMoveMousePositon(event);
 		this.move = this.state.endY - this.state.startY;
 		if (this.move > 80) {
@@ -1436,7 +1528,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		}
 	}
 	comfortSection2End(event) {
-		if (event.target.id === '') return;
+		if (event.target.tagName === 'cirle') return;
 	}
 	comfortSection2SplitterStart(event) {
 		this.isDown = true;
@@ -2284,9 +2376,13 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			// 向上拉动 进入下一页
 			this.leisureSection6WrapperOutAnimate();
 
-			setTimeout(()=>{this.leisureSection7Wrapper.current.style.display = 'block'},1200)
-			this.leisureSection7ReturnHome.current.className = 'animate__animated animate__slideInUp animate__delay-1.2s';
-			this.leisureSection7ReturnHomeTitle.current.className = 'animate__animated animate__slideInUp animate__delay-1.2s';
+			setTimeout(() => {
+				this.leisureSection7Wrapper.current.style.display = 'block';
+			}, 1200);
+			this.leisureSection7ReturnHome.current.className =
+				'animate__animated animate__slideInUp animate__delay-1.2s';
+			this.leisureSection7ReturnHomeTitle.current.className =
+				'animate__animated animate__slideInUp animate__delay-1.2s';
 			this.setState({ lastActiveSectionRef: this.leisureSection7Wrapper.current });
 		}
 	}
@@ -2311,7 +2407,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			this.leisureSection7Wrapper.current.style.display = 'none';
 			this.uniqueSection1Wrapper.current.style.display = 'block';
 			this.uniqueSection1CanvasRef.current.setCurrent(1);
-			this.setState({uniqueSection1SequenceImageIndex:0});
+			this.setState({ uniqueSection1SequenceImageIndex: 0 });
 			this.setState({ lastActiveSectionRef: this.uniqueSection1Wrapper.current });
 		}
 	}
@@ -2338,11 +2434,11 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			if (this.state.uniqueSection1SequenceImageIndex == 100) {
 				this.uniqueSection1Wrapper.current.style.display = 'none';
 				this.uniqueSection2Wrapper.current.style.display = 'block';
-				this.uniqueSection2RightBox.current.className = 'animate__animated animate__slideInRight animate__delay-1.5s';
+				this.uniqueSection2RightBox.current.className =
+					'animate__animated animate__slideInRight animate__delay-1.5s';
 				this.setState({ lastActiveSectionRef: this.uniqueSection2Wrapper.current });
 				this.uniqueSection2WrapperInAnimate();
 			}
-
 
 			this.debounce(() => {
 				const _interval = setInterval(() => {
@@ -2374,8 +2470,6 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					}
 				}, 10);
 			}, 10)();
-
-
 		}
 	}
 	uniqueSection1TouchEnd(event) {
@@ -2396,13 +2490,15 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.move = this.state.endY - this.state.startY;
 		if (this.move < 0) {
 			// 向上拉动 进入下一页
-			this.uniqueSection3Wrapper.current.style.display = 'block'
-			setTimeout(()=>{
-				this.uniqueSection3ReturnHome.current.style.display = 'block'
-				this.uniqueSection3ReturnHomeTitle.current.style.display = 'block'
-			},1300)
-			this.uniqueSection3ReturnHome.current.className  =	'animate__animated animate__slideInUp  animate__delay-1.3s';
-			this.uniqueSection3ReturnHomeTitle.current.className = 	'animate__animated animate__slideInUp  animate__delay-1.3s';
+			this.uniqueSection3Wrapper.current.style.display = 'block';
+			setTimeout(() => {
+				this.uniqueSection3ReturnHome.current.style.display = 'block';
+				this.uniqueSection3ReturnHomeTitle.current.style.display = 'block';
+			}, 1300);
+			this.uniqueSection3ReturnHome.current.className =
+				'animate__animated animate__slideInUp  animate__delay-1.3s';
+			this.uniqueSection3ReturnHomeTitle.current.className =
+				'animate__animated animate__slideInUp  animate__delay-1.3s';
 			this.setState({ lastActiveSectionRef: this.uniqueSection3Wrapper.current });
 
 			this.uniqueSection2InWrapperAnimateHide();
@@ -2477,27 +2573,83 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.box.current.style.display = 'flex';
 		this.onChange(this.state.slides[targetSlideIndex], targetSlideIndex);
 	}
-	privacySection2WrapperInAnimate() {
+
+	// demoIntroSection1Wrapper 结束动画
+	demoIntroSection1WrapperOutAnimate() {
+		this.demoIntroSection1Wrapper.current.className =
+			'demoIntroSection1Wrapper animate__animated animate__fadeOut  animate__delay-1s';
 		setTimeout(() => {
-			setTimeout(() => {
-				this.section_2_colorBg.current.style.zIndex = '1';
-				this.section_2_colorBg.current.className =
-					'animate__animated animate__slideInLeft  animate__delay-1.5s';
-				//	this.section_2_image.current.style.width = '81%';
-				//	this.moveAnimate(this.section_2_image.current, 272);
-			}, 500);
+			this.demoIntroSection1Wrapper.current.style.display = 'none';
+		}, 1000);
+	}
 
-			setTimeout(() => {
-				this.section_2_leftContent.current.style.zIndex = '1';
+	// demoIntroSection2Wrapper  入场动画
+	demoIntroSection2WrapperInAnimate() {
+		this.demoIntroSection2Wrapper.current.style.display = 'block';
+		this.demoIntroSection2Wrapper.current.className = 'animate__animated animate__fadeIn animate__delay-.5s';
+		this.setState({ lastActiveSectionRef: this.demoIntroSection2Wrapper.current });
+	}
 
-				this.section_2_bgLine.current.style.zIndex = '1';
-				this.section_2_leftContent.current.className =
-					'animate__animated animate__slideInLeft animate__delay-1.5s';
+	// demoIntroSection2Wrapper  结束动画
+	demoIntroSection2WrapperOutAnimate() {
+		this.demoIntroSection2Wrapper.current.className = 'animate__animated animate__fadeOut  animate__delay-1s';
+		setTimeout(() => {
+			this.demoIntroSection2Wrapper.current.style.display = 'none';
+		}, 1000);
+	}
 
-				this.section_2_bgLine.current.className = 'animate__animated animate__fadeIn animate__delay-1.5s';
-			}, 20);
+	// demoIntroSection3Wrapper  入场动画
+	demoIntroSection3WrapperInAnimate() {
+		this.demoIntroSection3Wrapper.current.style.display = 'block';
+		this.demoIntroSection3Wrapper.current.className = 'animate__animated animate__fadeIn animate__delay-.5s';
+		this.setState({ lastActiveSectionRef: this.demoIntroSection3Wrapper.current });
+	}
+	// demoIntroSection3Wrapper  结束动画
+	demoIntroSection3WrapperOutAnimate() {
+		this.demoIntroSection3Wrapper.current.className = 'animate__animated animate__fadeOut  animate__delay-1s';
+		setTimeout(() => {
+			this.demoIntroSection3Wrapper.current.style.display = 'none';
+		}, 1000);
+	}
+
+	// homeSectionWrapper  进入动画
+	homeSectionWrapperInAnimate() {
+		this.box.current.style.display = 'flex';
+		this.box.current.className = 'homePageWrapper animate__animated animate__fadeIn animate__delay-.5s';
+		this.setState({ lastActiveSectionRef: this.box.current });
+	}
+
+	// privacySection1Wrapper 结束动画
+	privacySection1WrapperOutAnimate() {
+		this.privacySection1WrapperLeftContent.current.className =
+			'privacySection1WrapperLeftContent animate__animated animate__slideOutLeft animate__delay-1s';
+		this.section_2_colorBg.current.className = 'animate__animated animate__slideOutLeft animate__delay-1s';
+		setTimeout(() => {
+			this.privacySection1Wrapper.current.style.display = 'none';
+			this.box.current.style.display = 'none';
 		}, 1500);
+	}
 
+	// privacySection2Wrapper 入场动画
+	privacySection2WrapperInAnimate() {
+		this.setState({ lastActiveSectionRef: this.privacySection2Wrapper.current });
+		setTimeout(() => {
+			this.privacySection2Wrapper.current.style.display = 'block';
+		}, 1000);
+		this.privacySection2Wrapper.current.className =
+			'sectionWrapper animate__animated animate__fadeIn animate__delay-1.8s';
+		setTimeout(() => {
+			this.section_2_colorBg.current.style.display = 'block';
+			this.privacySection2leftContent.current.style.display = 'block';
+		}, 2500);
+		setTimeout(() => {
+			this.section_2_colorBg.current.className = 'animate__animated animate__slideInLeft  animate__delay-2.5s';
+			this.privacySection2leftContent.current.className =
+				'privacySection2leftContent animate__animated animate__slideInLeft animate__delay-2.5s';
+		}, 2000);
+		this.section_2_bgLine.current.className = 'animate__animated animate__fadeIn animate__delay-1.5s';
+
+		// 播放序列帧
 		this.debounce(() => {
 			const _interval = setInterval(() => {
 				if (
@@ -2517,25 +2669,137 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					section3SequenceImageIndex:
 						this.state.section3SequenceImageIndex >= 269 ? 0 : this.state.section3SequenceImageIndex + 1
 				});
-			}, 10);
+			}, 55);
 		}, 10)();
 	}
 
-	privacySection3WrapperInAnimate() {
-		this.privacySection3Wrapper.current.style.display = 'block';
-		this.setState({ lastActiveSectionRef: this.privacySection3Wrapper.current });
-		this.privacySection3Wrapper.current.style.zIndex = '1';
-		this.privacySection3leftContent.current.style.zIndex = '1';
-		this.privacySection3bgline.current.style.zIndex = '1';
-		this.privacySection3colorBg.current.style.zIndex = '1';
-		this.privacySection3image.current.style.zIndex = '1';
-		this.privacySection3image.current.style.width = '80%';
-		this.privacySection3image.current.style.transform = 'scale(2.5)';
-		this.privacySection3image.current.style.left = '-300px';
-		this.privacySection3leftContent.current.className =
-			'animate__animated animate__slideInLeft animate__delay-2.5s';
-		this.privacySection3colorBg.current.className = 'animate__animated animate__slideInLeft animate__delay-2.5s';
+	// privacySection2Wrapper 结束动画
+	privacySection2WrapperOutAnimate() {
+		this.privacySection2leftContent.current.className =
+			'privacySection2leftContent animate__animated animate__slideOutLeft animate__delay-1.5s';
+		this.section_2_colorBg.current.className = 'animate__animated animate__slideOutLeft animate__delay-1.5s';
+		// setTimeout(() => {
+		// 	this.privacySection3image.current.className = 'privacySection3image';
+		// }, 1500);
+		setTimeout(() => {
+			this.privacySection2Wrapper.current.style.display = 'none';
+			this.section_2_colorBg.current.style.display = 'none';
+			this.privacySection2leftContent.current.style.display = 'none';
+		}, 2500);
+
+		// setTimeout(()=>{this.privacySection2Wrapper.current.style.display = 'block';},1000)
+		// this.privacySection2Wrapper.current.className =
+		// 	'sectionWrapper animate__animated animate__fadeIn animate__delay-1.8s';
+		// setTimeout(()=>{
+		// 	this.section_2_colorBg.current.style.display = 'block'
+		// 	this.privacySection2leftContent.current.style.display = 'block'
+		// },2500)
+		// setTimeout(()=>{
+		// 	this.section_2_colorBg.current.className = 'animate__animated animate__slideInLeft  animate__delay-2.5s';
+		// 	this.privacySection2leftContent.current.className =
+		// 		'privacySection2leftContent animate__animated animate__slideInLeft animate__delay-2.5s';
+		// },2000)
+		// this.section_2_bgLine.current.className = 'animate__animated animate__fadeIn animate__delay-1.5s';
 	}
+
+	privacySection3WrapperInAnimate() {
+		this.privacySection3colorBg.current.style.background = '#48423D';
+		setTimeout(() => {
+			this.privacySection3Wrapper.current.style.display = 'block';
+		}, 1500);
+		this.setState({ lastActiveSectionRef: this.privacySection3Wrapper.current });
+		// this.privacySection3Wrapper.current.style.zIndex = '1';
+		// this.privacySection3leftContent.current.style.zIndex = '1';
+		// this.privacySection3bgline.current.style.zIndex = '1';
+		// this.privacySection3colorBg.current.style.zIndex = '1';
+		// this.privacySection3image.current.style.zIndex = '1';
+		// this.privacySection3image.current.style.width = '80%';
+		// this.privacySection3image.current.style.transform = 'scale(2.5)';
+		// this.privacySection3image.current.style.left = '-300px';
+		setTimeout(() => {
+			this.privacySection3image.current.className = 'privacySection3imageIn';
+		}, 2500);
+
+		setTimeout(() => {
+			this.privacySection3leftContent.current.style.display = 'block';
+			this.privacySection3colorBg.current.style.display = 'block';
+		}, 3500);
+
+		setTimeout(() => {
+			this.privacySection3leftContent.current.className =
+				'animate__animated animate__slideInLeft animate__delay-2.5s';
+			this.privacySection3colorBg.current.className =
+				'animate__animated animate__slideInLeft animate__delay-2.5s';
+
+			this.privacySection3Text.current.className =
+				'dFordText animate__animated animate__slideInLeft animate__delay-2.5s';
+			this.privacySection3Title.current.className = 'animate__animated animate__slideInLeft animate__delay-2.5s';
+		}, 3000);
+	}
+
+	privacySection3WrapperOutAnimate() {
+		setTimeout(() => {
+			this.privacySection3Wrapper.current.style.display = 'none';
+			this.privacySection3image.current.className = ' ';
+		}, 2800);
+		this.setState({ lastActiveSectionRef: this.privacySection3Wrapper.current });
+		// this.privacySection3Wrapper.current.style.zIndex = '1';
+		// this.privacySection3leftContent.current.style.zIndex = '1';
+		// this.privacySection3bgline.current.style.zIndex = '1';
+		// this.privacySection3colorBg.current.style.zIndex = '1';
+		// this.privacySection3image.current.style.zIndex = '1';
+		// this.privacySection3image.current.style.width = '80%';
+		// this.privacySection3image.current.style.transform = 'scale(2.5)';
+		// this.privacySection3image.current.style.left = '-300px';
+		setTimeout(() => {
+			this.privacySection3image.current.className = 'privacySection3imageOut';
+		}, 2500);
+
+		setTimeout(() => {
+			this.privacySection3leftContent.current.style.display = 'none';
+			this.privacySection3colorBg.current.style.display = 'none';
+		}, 1500);
+
+		setTimeout(() => {
+			this.privacySection3leftContent.current.className =
+				'animate__animated animate__slideOutLeft animate__delay-2.5s';
+			this.privacySection3colorBg.current.className =
+				'animate__animated animate__slideOutLeft animate__delay-2.5s';
+		}, 1000);
+	}
+	privacySection3WrapperPart2InAnimate() {
+		this.privacySection3leftContent.current.className = 'privacySection3leftContentIn';
+		this.privacySection3colorBg.current.style.background = '#2B393A';
+		this.privacySection3PhoneVideo.current.style.display = 'block';
+		this.privacySection3PhoneVideo.current.className = 'animate__animated animate__slideInDown animate__delay-1.7s';
+		this.player.play();
+	}
+
+	privacySection3WrapperPart2OutAnimate() {
+		// this.privacySection3leftContent.current.className = 'privacySection3leftContentOut';
+		//
+		setTimeout(() => {
+			this.privacySection3PhoneVideo.current.style.display = 'none';
+			this.privacySection3Wrapper.current.style.display = 'none';
+			this.privacySection3leftContent.current.style.display = 'none';
+			this.privacySection3image.current.className = ' ';
+			this.privacySection3colorBg.current.className = '';
+			this.privacySection3colorBg.current.style.display = 'none';
+			this.privacySection3Text.current.className = ' dFordText';
+			this.privacySection3Title.current.className = ' ';
+			this.privacySection3leftContent.current.className = ' ';
+			this.privacySection3colorBg.current.style.background = '#48423D';
+			this.privacySection3PhoneVideo.current.className = ' ';
+			this.privacySection3image.current.className = ' ';
+		}, 2500);
+
+		this.privacySection3PhoneVideo.current.className = 'animate__animated animate__slideOutUp animate__delay-1.7s';
+		this.privacySection3Text.current.className =
+			'dFordText animate__animated animate__slideOutLeft animate__delay-1.7s';
+		this.privacySection3Title.current.className = 'animate__animated animate__slideOutLeft animate__delay-1.7s';
+		// this.player.play();
+	}
+
 	privacySection4WrapperInAnimate() {
 		this.privacySection4Wrapper.current.style.display = 'block';
 		this.setState({ lastActiveSectionRef: this.privacySection4Wrapper.current });
@@ -2546,10 +2810,11 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.section_4_image.current.style.zIndex = '1';
 		this.section_4_leftContent.current.style.width = '100%';
 		this.section_4_colorBg.current.style.backgroundColor = '#2B393A';
-		this.sectoin_4_phoneVideo.current.style.zIndex = '1';
+		this.privacySection3PhoneVideo.current.style.zIndex = '1';
 		this.section_4_colorBg.current.className = 'animate__animated animate__slideInLeft animate__delay-1s';
 		this.section_4_leftContent.current.className = 'animate__animated animate__slideInLeft animate__delay-1.5s';
-		this.sectoin_4_phoneVideo.current.className = 'animate__animated animate__slideInRight animate__delay-1.7s';
+		this.privacySection3PhoneVideo.current.className =
+			'animate__animated animate__slideInRight animate__delay-1.7s';
 		this.player.play();
 	}
 	privacySection4WrapperOutAnimate() {
@@ -2561,15 +2826,17 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.section_4_image.current.style.zIndex = '-5';
 	}
 	privacySection5WrapperInAnimate() {
-		this.privacySection5Wrapper.current.style.display = 'block';
+		setTimeout(() => {
+			this.privacySection5Wrapper.current.style.display = 'block';
+		}, 2400);
 		this.setState({ lastActiveSectionRef: this.privacySection5Wrapper.current });
-		this.privacySection5Wrapper.current.style.zIndex = '5';
-		this.privacySection5bgline.current.style.zIndex = '5';
-		this.privacySection5title.current.style.zIndex = '5';
-		this.privacySection5titleBg.current.style.zIndex = '5';
+		// this.privacySection5Wrapper.current.style.zIndex = '5';
+		// this.privacySection5bgline.current.style.zIndex = '5';
+		// this.privacySection5title.current.style.zIndex = '5';
+		// this.privacySection5titleBg.current.style.zIndex = '5';
 		this.privacySection5title.current.className =
-			'dFordTitle animate__animated animate__slideInDown animate__delay-.5s';
-		this.privacySection5titleBg.current.className = 'animate__animated animate__slideInDown animate__delay-.5s';
+			'dFordTitle animate__animated animate__slideInDown animate__delay-2.4s';
+		this.privacySection5titleBg.current.className = 'animate__animated animate__slideInDown animate__delay-2.4s';
 
 		this.debounce(() => {
 			// 通过滑动距离控制轮询次数
@@ -2594,30 +2861,36 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					});
 				}
 			}, 10);
-		}, 10)();
+		}, 2000)();
 	}
 	privacySection5WrapperOutAnimate() {
-		//this.privacySection5Wrapper.current.style.zIndex = '-5';
-		this.privacySection5Wrapper.current.style.display = 'none';
-		//this.privacySection5bgline.current.style.zIndex = '-5';
-
-		this.setState({
-			privacySection5SequenceImageIndex: 0
-		});
-		const image = require(`../../assets/Video02_DigitalSealInsert/Video02_DigitalSealInsert${this.state
-			.privacySection5SequenceImageIndex}.jpg`);
-		const _image = new Image();
-		_image.src = image;
-		_image.onload = () => {
-			this.privacySection5Wrapper.current.style.backgroundImage = `url(${image})`;
-		};
+		setTimeout(() => {
+			this.privacySection5Wrapper.current.style.display = 'none';
+			this.setState({
+				privacySection5SequenceImageIndex: 0
+			});
+			const image = require(`../../assets/Video02_DigitalSealInsert/Video02_DigitalSealInsert${this.state
+				.privacySection5SequenceImageIndex}.jpg`);
+			const _image = new Image();
+			_image.src = image;
+			_image.onload = () => {
+				this.privacySection5Wrapper.current.style.backgroundImage = `url(${image})`;
+			};
+		}, 1600);
 	}
 	privacySection6WrapperOutAnimate() {
+		// BackgroundTransition: FromPrevious, Fade&ZoomOut, Ease
+		// @SameTime Box03: SlideOut_Right, Ease
+		this.privacySection6text4.current.className = 'animate__animated animate__slideOutRight animate__delay-.5s';
+		this.privacySection6Wrapper.current.className = 'animate__animated animate__zoomOut animate__delay-2s';
+		this.privacySection6Wrapper.current.className = 'animate__animated animate__fadeOut animate__delay-2s';
 		setTimeout(() => {
 			this.privacySection6Wrapper.current.style.display = 'none';
+			this.privacySection6text4.current.className = '';
+			this.privacySection6Wrapper.current.className = '';
 			this.privacySection6CanvasRef.current.setCurrent(0);
 			this.setState({ privacySection6SequenceImageIndex: 0 });
-		}, 200);
+		}, 2500);
 		// this.privacySection5WrapperInAnimate();
 		// this.privacySection6text1.current.style.display = 'block';
 		// this.privacySection6text1.current.className = 'animate__animated animate__slideInLeft ';
@@ -2688,6 +2961,29 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		}, 10)();
 	}
 
+	privacySection7WrapperInAnimate(){
+		setTimeout(() => {
+			this.privacySection7Wrapper.current.style.display = 'block';
+		}, 2300);
+	}
+	privacySection7WrapperOutPart2Animate(){
+		setTimeout(()=>{
+			this.privacySection7Wrapper.current.style.display = 'none';
+			this.privacySection8bg.current.className = ' ';
+			this.privacySection8title.current.className = '';
+			this.privacySection7bg.current.className = '';
+			this.privacySection8bg.current.style.display = 'none';
+			this.privacySection8title.current.style.display = 'none';
+			this.privacySection7text.current.className = 'dFordText ';
+			this.privacySection7bg.current.className = '';
+			this.privacySection7SubMenu.current.className = '';
+		},2300)
+
+	
+		this.privacySection8bg.current.className = '  animate__animated animate__slideOutDown animate__delay-1.5s';
+		this.privacySection8title.current.className = '  animate__animated animate__fadeOut animate__delay-1.5s';
+		this.privacySection7bg.current.className = 'animate__animated animate__fadeOut animate__delay-2s';
+	}
 	privacySection8WrapperInAnimate() {
 		this.privacySection8text.current.style.display = 'block';
 		this.privacySection8title.current.style.display = 'block';
@@ -2731,10 +3027,15 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		// this.comfortSection1BgLine.current.style.display = 'none';
 		// this.comfortSection1Text2.current.style.display = 'none';
 		// this.comfortSection1Title.current.style.display = 'none';
-		this.comfortSection1Wrapper.current.style.display = 'none';
-		this.comfortSection1BgLine.current.className = 'animate__animated animate__fadeOutIn animate__delay-.8s';
-		this.comfortSection1Text2.current.className = 'animate__animated animate__fadeOutLeft animate__delay-1s';
-		this.comfortSection1Title.current.className = 'animate__animated animate__fadeOutLeft animate__delay-1.2s';
+		setTimeout(()=>{
+			this.comfortSection1Wrapper.current.style.display = 'none';
+			this.comfortSection1BgLine.current.className = ' ';
+			this.comfortSection1Text2.current.className = ' ';
+			this.comfortSection1Title.current.className = ' ';
+		},2200)
+		this.comfortSection1BgLine.current.className = 'animate__animated animate__fadeOutIn animate__delay-1.5s';
+		this.comfortSection1Text2.current.className = 'animate__animated animate__fadeOutLeft animate__delay-1.5s';
+		this.comfortSection1Title.current.className = 'animate__animated animate__fadeOutLeft animate__delay-1.5s';
 	}
 	comfortSection2WrapperInAnimate() {
 		this.comfortSection2Wrapper.current.style.display = 'block';
@@ -2793,9 +3094,11 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		console.log('animate');
 	}
 	leisureSection6WrapperOutAnimate() {
-		setTimeout(()=>{this.leisureSection6Wrapper.current.style.display = 'none';},1500)
+		setTimeout(() => {
+			this.leisureSection6Wrapper.current.style.display = 'none';
+		}, 1500);
 		this.leisureSection6Grally.current.className =
-		'smallImges animate__animated animate__slideOutRight animate__delay-1.5s';
+			'smallImges animate__animated animate__slideOutRight animate__delay-1.5s';
 	}
 	uniqueSection2WrapperInAnimate() {
 		console.log('animate');
@@ -2809,16 +3112,23 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		if (this.state.userName) {
 			// 跳转
 			this.props.onUserNameChange(this.state.userName);
-			this.demoIntroSection1Wrapper.current.style.display = 'none';
-			this.demoIntroSection2Wrapper.current.style.display = 'block';
-			this.setState({ lastActiveSectionRef: this.demoIntroSection2Wrapper.current });
+
+			// demoIntroSection1Wrapper 结束动画
+			this.demoIntroSection1WrapperOutAnimate();
+
+			//demoIntroSection2Wrapper  入场动画
+			this.demoIntroSection2WrapperInAnimate();
 		}
 	}
 
 	goToDemoInfoSection3Wrapper() {
-		this.demoIntroSection2Wrapper.current.style.display = 'none';
-		this.demoIntroSection3Wrapper.current.style.display = 'block';
-		this.setState({ lastActiveSectionRef: this.demoIntroSection3Wrapper.current });
+		//demoIntroSection2Wrapper  结束动画
+		this.demoIntroSection2WrapperOutAnimate();
+
+		//demoIntroSection3Wrapper  入场动画
+		this.demoIntroSection3WrapperInAnimate();
+
+		// 显示顶部菜单
 		this.props.onShowMenu();
 	}
 
@@ -2828,14 +3138,16 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	demoIntroSection3WrapperTouchMove(event) {
 		this.updateMoveMousePositon(event);
 		this.move = this.state.endY - this.state.startY;
-		if (this.move < 0) {
+		if (this.move < -80) {
 			// 向上拉动，进入下一页
-			this.demoIntroSection3Wrapper.current.style.display = 'none';
-			this.box.current.style.display = 'flex';
-			this.setState({ lastActiveSectionRef: this.box.current });
+			//demoIntroSection3Wrapper  结束动画
+			this.demoIntroSection3WrapperOutAnimate();
+
+			//homeSectionWrapper  进入动画
+			this.homeSectionWrapperInAnimate();
 		}
 
-		if (this.move > 0) {
+		if (this.move > 80) {
 			// 向下拉动，返回上一页
 			// this.demoIntroSection3Wrapper.current.style.display = 'none';
 			// this.demoIntroSection2Wrapper.current.style.display = 'flex'
@@ -2857,15 +3169,10 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					height: ' 100%'
 				}}
 			>
+				{/*********************demoIntroSection1Wrapper start *************************/}
 				<div
+					className="demoIntroSection1Wrapper"
 					style={{
-						position: 'absolute',
-						width: '100%',
-						height: '100%',
-						left: '0px',
-						top: '0px',
-						backgroundSize: 'cover',
-						backgroundPosition: 'center',
 						backgroundImage: `url(${demoIntroSection1Bg3})`
 					}}
 					ref={this.demoIntroSection1Wrapper}
@@ -3002,7 +3309,9 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						</div>
 					</div>
 				</div>
+				{/*********************demoIntroSection1Wrapper end *************************/}
 
+				{/*********************demoIntroSection2Wrapper start *************************/}
 				<div
 					style={{
 						position: 'absolute',
@@ -3015,7 +3324,6 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						backgroundPosition: 'center',
 						backgroundImage: `url(${demoIntroSection1Bg3})`
 					}}
-					className="swiper-no-swiping"
 					id="demoIntroSection2Wrapper"
 					ref={this.demoIntroSection2Wrapper}
 				>
@@ -3252,7 +3560,9 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					</div>
 				</div>
 
-				{/* DEMO INFO SECTOIN 3*/}
+				{/*********************demoIntroSection2Wrapper end *************************/}
+
+				{/*********************demoIntroSection3Wrapper start *************************/}
 				<div
 					id="demoIntroSection3Wrapper"
 					ref={this.demoIntroSection3Wrapper}
@@ -3301,8 +3611,10 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						laboris nisi ut aliquip ex ea commodo consequat.
 					</div>
 				</div>
-				{/* section 1  start*/}
-				<div className="container" ref={this.box} style={{ display: 'none' }}>
+				{/*********************demoIntroSection3Wrapper end *************************/}
+
+				{/*********************homePageWrapper start *************************/}
+				<div className="homePageWrapper" ref={this.box} style={{ display: 'none' }}>
 					{this.state.slides.map((item: any, index: any) => {
 						return (
 							<div
@@ -3428,6 +3740,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						);
 					})}
 				</div>
+				{/*********************homePageWrapper end *************************/}
 				<div
 					ref={this.privacySection1Wrapper}
 					id="privacySection1Wrapper"
@@ -3446,19 +3759,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					}}
 				>
 					{/* 侧边栏背景 */}
-					<div
-						ref={this.leftContent}
-						style={{
-							position: 'absolute',
-							width: '544px',
-							height: '100%',
-							left: '1px',
-							top: '0px',
-							background: 'rgba(26, 32, 50, 0.16)',
-							backdropFilter: 'blur(15px)',
-							zIndex: '-1'
-						}}
-					>
+					<div ref={this.privacySection1WrapperLeftContent} className="privacySection1WrapperLeftContent">
 						{/* 左侧文本 */}
 						<div
 							style={{
@@ -3552,10 +3853,10 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						backgroundImage: `url(${this.state.section_2_ImageSrc})`
 					}}
 					onTouchStart={(event) => {
-						this.section2TouchStart(event);
+						this.privacySection2WrapperTouchStart(event);
 					}}
 					onTouchMove={(event) => {
-						this.section2TouchMove(event);
+						this.privacySection2WrapperTouchMove(event);
 					}}
 				>
 					<div
@@ -3566,24 +3867,16 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							height: '100%',
 							top: '0px',
 							left: '0px',
-							zIndex: '-1',
+							display: 'none',
 							background: '#3F3E44'
 						}}
 					/>
 
 					{/* 左下角背景 */}
 					<div
-						ref={this.section_2_leftContent}
-						style={{
-							position: 'absolute',
-							width: '545px',
-							height: '430px',
-							left: '0px',
-							top: '594px',
-							background: 'rgba(139, 146, 156, 0.2)',
-							backdropFilter: ' blur(46px)',
-							zIndex: '-1'
-						}}
+						ref={this.privacySection2leftContent}
+						style={{ display: 'none' }}
+						className="privacySection2leftContent"
 					>
 						{/* 左下角标题 */}
 						<div
@@ -3653,14 +3946,17 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					id="privacySection3Wrapper"
 					ref={this.privacySection3Wrapper}
 					onTouchStart={(event) => {
-						this.section3TouchStart(event);
+						this.privacySection3WrapperTouchStart(event);
 					}}
 					onTouchMove={(event) => {
-						this.section3TouchMove(event);
+						this.privacySection3WrapperTouchMove(event);
+					}}
+					onTouchEnd={(event) => {
+						this.privacySection3WrapperTouchEnd(event);
 					}}
 					className="sectionWrapper"
 					style={{
-						zIndex: '-3'
+						display: 'none'
 					}}
 				>
 					<img
@@ -3670,8 +3966,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							position: 'absolute',
 							width: '100%',
 							height: ' 100%',
-							objectFit: 'cover',
-							zIndex: '-3'
+							objectFit: 'cover'
 						}}
 					/>
 
@@ -3684,7 +3979,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							height: '892px',
 							left: '272px',
 							top: '131px',
-							zIndex: '9'
+							zIndex: '0'
 						}}
 					>
 						<svg
@@ -3702,19 +3997,21 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					</div>
 					<div
 						ref={this.privacySection3colorBg}
+						id="privacySection3colorBg"
 						style={{
 							position: 'absolute',
-							width: '257px',
+							width: '273px',
 							height: '100%',
 							top: '0px',
 							left: '0px',
-							zIndex: '-3',
-							background: '#48423D'
+							background: '#48423D',
+							display: 'none'
 						}}
 					/>
 					{/* 左侧模糊背景 */}
 					<div
 						ref={this.privacySection3leftContent}
+						id="privacySection3leftContent"
 						style={{
 							position: 'absolute',
 							width: '545px',
@@ -3722,16 +4019,14 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							left: '0px',
 							top: '0px',
 							background: 'rgba(13, 19, 20, 0.38)',
-							backdropFilter: ' blur(5px)',
-							zIndex: '-3'
+							backdropFilter: 'blur(5px)',
+							display: 'none'
 						}}
 						className={'dFordText '}
 					>
 						{/* 文本 */}
 						<div
 							style={{
-								/* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium odio ipsum, eget interdum libero tincidunt efficitur. Maecenas dapibus condimentum commodo. Proin dignissim sem velit, eu blandit purus porta non. */
-
 								position: 'absolute',
 								width: '370px',
 								height: '248px',
@@ -3739,12 +4034,14 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 								top: '322px'
 							}}
 							className={'dFordText '}
+							id="privacySection3Text"
+							ref={this.privacySection3Text}
 						>
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium odio ipsum, eget
 							interdum libero tincidunt efficitur. Maecenas dapibus condimentum commodo. Proin dignissim
 							sem velit, eu blandit purus porta non.
 						</div>
-						{/* 标题 背景*/}
+						{/* 标题*/}
 						<div
 							style={{
 								position: 'absolute',
@@ -3753,6 +4050,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 								left: '113px',
 								top: '731px'
 							}}
+							id="privacySection3Title"
+							ref={this.privacySection3Title}
 						>
 							<svg
 								width="917"
@@ -3768,23 +4067,50 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 									strokeWidth="4"
 								/>
 							</svg>
-						</div>
-						{/* 标题 */}
-						<div
-							className="dFordTitle"
-							style={{
-								/* remote chauffeur */
+							{/* 标题 */}
+							<div
+								className="dFordTitle"
+								style={{
+									/* remote chauffeur */
 
+									position: 'absolute',
+									width: '851px',
+									height: '102px',
+									left: '20px',
+									top: '30px'
+								}}
+							>
+								remote chauffeur
+							</div>
+						</div>
+
+						{/*part 2*/}
+
+						<div
+							ref={this.privacySection3PhoneVideo}
+							style={{
 								position: 'absolute',
-								width: '851px',
-								height: '102px',
-								left: '136px',
-								top: '760px'
+								width: '750px',
+								height: '750px',
+								left: '573px',
+								top: '120px',
+								backgroundSize: 'contain',
+								display: 'none',
+								zIndex: '-1'
 							}}
 						>
-							remote chauffeur
+							<Player
+								ref={(player) => {
+									this.player = player;
+								}}
+								autoPlay
+								loop={true}
+							>
+								<source src={videoPRemoteVhauffeur} />
+							</Player>
 						</div>
 					</div>
+
 					<SubMenu
 						right="0px"
 						bottom="0px"
@@ -3857,103 +4183,6 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						}}
 					/>
 
-					{/* 左侧模糊背景 */}
-					<div
-						ref={this.section_4_leftContent}
-						style={{
-							position: 'absolute',
-							width: '536px',
-							height: '100%',
-							left: '0px',
-							top: '0px',
-							background: 'rgba(13, 19, 20, 0.38)',
-							backdropFilter: ' blur(5px)',
-							zIndex: '-4'
-						}}
-						className={'dFordText '}
-					>
-						<div
-							ref={this.sectoin_4_phoneVideo}
-							style={{
-								position: 'absolute',
-								width: '750px',
-								height: '750px',
-								left: '573px',
-								top: '120px',
-								backgroundSize: 'contain',
-								zIndex: '-4'
-							}}
-						>
-							<Player
-								ref={(player) => {
-									this.player = player;
-								}}
-								autoPlay
-								loop={true}
-							>
-								<source src={videoPRemoteVhauffeur} />
-							</Player>
-						</div>
-						{/* 文本 */}
-						<div
-							style={{
-								/* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium odio ipsum, eget interdum libero tincidunt efficitur. Maecenas dapibus condimentum commodo. Proin dignissim sem velit, eu blandit purus porta non. */
-
-								position: 'absolute',
-								width: '370px',
-								height: '248px',
-								left: '113px',
-								top: '322px',
-								zIndex: '1'
-							}}
-							className={'dFordText '}
-						>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium odio ipsum, eget
-							interdum libero tincidunt efficitur. Maecenas dapibus condimentum commodo. Proin dignissim
-							sem velit, eu blandit purus porta non.
-						</div>
-						{/* 标题 背景*/}
-						<div
-							style={{
-								position: 'absolute',
-								width: '913px',
-								height: '142px',
-								left: '113px',
-								top: '731px',
-								zIndex: '1'
-							}}
-						>
-							<svg
-								width="917"
-								height="146"
-								viewBox="0 0 917 146"
-								fill="none"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path
-									opacity="0.2"
-									d="M915 18V2H2V79.5M915 64V144H2V126"
-									stroke="white"
-									strokeWidth="4"
-								/>
-							</svg>
-						</div>
-						{/* 标题 */}
-						<div
-							className="dFordTitle"
-							style={{
-								/* remote chauffeur */
-
-								position: 'absolute',
-								width: '851px',
-								height: '102px',
-								left: '136px',
-								top: '760px'
-							}}
-						>
-							remote chauffeur
-						</div>
-					</div>
 					<SubMenu
 						right="0px"
 						bottom="0px"
@@ -4486,17 +4715,21 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					onTouchMove={(event) => {
 						this.privacySection7WrapperTouchMove(event);
 					}}
+					onTouchEnd={(event) => {
+						this.privacySection7WrapperTouchEnd(event);
+					}}
 				>
 					<img
 						ref={this.privacySection7bg}
 						src={privacy_section_7_bg}
 						style={{
 							position: 'absolute',
-							left: '0px',
-							top: '0px',
 							width: '100%',
+							top: '200px',
+							left: '-660px',
 							height: '100%',
-							objectFit: 'cover'
+							objectFit: 'cover',
+							transform: 'scale(2)'
 						}}
 					/>
 
@@ -4540,29 +4773,35 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium odio ipsum, eget
 						interdum libero tincidunt efficitur. Maecenas dapibus condimentum commodo.
 					</div>
-					<SubMenu
-						right="0px"
-						bottom="0px"
-						bgColor={subMenuList[2].bgColor}
-						indexGroup={subMenuList[2].indexGroup}
-						noScale="true"
-					/>
-				</div>
-				<div
-					id="privacySection8Wrapper"
-					ref={this.privacySection8Wrapper}
-					className="sectionWrapper"
-					onTouchStart={(event) => {
-						this.privacySection8WrapperTouchStart(event);
-					}}
-					onTouchMove={(event) => {
-						this.privacySection8WrapperTouchMove(event);
-					}}
-				>
-					{/*privacySection8Wrapper*/}
-					<img src={privacy_section_8_bg} />
-					{/* 背景上部遮罩 */}
 
+					{/* <div
+						ref={this.privacySection7bgMask}
+						id="privacySectionBg7Mask"
+						style={{
+							position: 'absolute',
+							width: '1366px',
+							height: '1024px',
+							left: '0px',
+							top: '0px',
+							display: 'none',
+							background:
+								'linear-gradient(175.17deg, rgba(236, 168, 158, 0.16) 12.52%, rgba(27, 22, 82, 0.16) 96.1%)'
+						}}
+					/> */}
+					<div
+					id = 'privacySection8bgPlaceHolder'
+					ref = {this.privacySection8bgPlaceHolder}
+							style={{
+								position: 'absolute',
+								width: '1366px',
+								height: '612.5px',
+								left: '0px',
+								top: '412px',
+								opacity:'.9',
+								background:"#1D1B1D",
+								display:'none'
+							}}
+						></div>
 					<div
 						id="privacySection8bg"
 						style={{
@@ -4570,49 +4809,13 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							top: '0px',
 							left: '0px',
 							width: '100%',
-							height: '100%'
+							height: '100%',
+							display: 'none'
 						}}
 						ref={this.privacySection8bg}
 					>
-						<div
-							style={{
-								position: 'absolute',
-								width: '1366px',
-								height: '1024px',
-								left: '0px',
-								top: '0px'
-							}}
-						>
-							<svg
-								width="1366"
-								height="1024"
-								viewBox="0 0 1366 1024"
-								fill="none"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<rect
-									width="1366"
-									height="1024"
-									fill="url(#paint0_linear_1254_1463)"
-									fillOpacity="0.47"
-									style={{ mixBlendMode: 'multiply' }}
-								/>
-								<defs>
-									<linearGradient
-										id="paint0_linear_1254_1463"
-										x1="683"
-										y1="0"
-										x2="683"
-										y2="1024"
-										gradientUnits="userSpaceOnUse"
-									>
-										<stop stopColor="#B18C8C" stopOpacity="0.62" />
-										<stop offset="1" stopColor="#FFF2E6" />
-									</linearGradient>
-								</defs>
-							</svg>
-						</div>
 						{/* 背景下部底色 */}
+							
 						<div
 							style={{
 								position: 'absolute',
@@ -4632,18 +4835,6 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 								<path opacity="0.25" d="M0 0L683 90.5L1366 0V612.5H0V0Z" fill="#1D1B1D" />
 							</svg>
 						</div>
-						<img
-							src={privacy_section_8_bg}
-							ref={this.privacySection8image}
-							style={{
-								position: 'absolute',
-								left: '0px',
-								top: '0px',
-								width: '100%',
-								height: '100%',
-								objectFit: 'cover'
-							}}
-						/>
 						{/* 背景下部遮罩 */}
 						<div
 							style={{
@@ -4735,7 +4926,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							width: '100%',
 							height: '100%',
 							left: '0px',
-							top: '0px'
+							top: '0px',
+							display: 'none'
 						}}
 					>
 						<div
@@ -4764,20 +4956,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						>
 							Comfort
 						</div>
-					</div>
-					{/* 中部文本 + */}
 
-					<div
-						id="privacySection8text"
-						ref={this.privacySection8text}
-						style={{
-							position: 'absolute',
-							width: '100%',
-							height: '100%',
-							left: '0px',
-							top: '0px'
-						}}
-					>
 						<div
 							style={{
 								position: 'absolute',
@@ -4802,6 +4981,20 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 								/>
 							</svg>
 						</div>
+					</div>
+					{/* 中部文本 + */}
+
+					<div
+						id="privacySection8text"
+						ref={this.privacySection8text}
+						style={{
+							position: 'absolute',
+							width: '100%',
+							height: '100%',
+							left: '0px',
+							top: '0px'
+						}}
+					>
 						<div
 							className="dFordNormalText"
 							onTouchStart={(event) => {
@@ -4820,7 +5013,33 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							Return to Home
 						</div>
 					</div>
+					<div ref={this.privacySection7SubMenu}>
+						<SubMenu
+							right="0px"
+							bottom="0px"
+							bgColor={subMenuList[2].bgColor}
+							indexGroup={subMenuList[2].indexGroup}
+							noScale="true"
+						/>
+					</div>
 				</div>
+				{/* <div
+					id="privacySection8Wrapper"
+					ref={this.privacySection8Wrapper}
+					className="sectionWrapper"
+					onTouchStart={(event) => {
+						this.privacySection8WrapperTouchStart(event);
+					}}
+					onTouchMove={(event) => {
+						this.privacySection8WrapperTouchMove(event);
+					}}
+				>
+				
+					<img src={privacy_section_8_bg} />
+				
+
+				
+				</div> */}
 
 				{/*comfort_section_1*/}
 
@@ -7868,7 +8087,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							height: '142px',
 							left: '159px',
 							top: '203px',
-							zIndex:'1'
+							zIndex: '1'
 						}}
 					>
 						<svg
@@ -7901,7 +8120,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							height: '124px',
 							left: '159px',
 							top: '820px',
-							zIndex:'1'
+							zIndex: '1'
 						}}
 					>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium odio ipsum, eget
@@ -8032,7 +8251,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 
 					<div
 						id="leisureSection7ReturnHome"
-						ref = {this.leisureSection7ReturnHome}
+						ref={this.leisureSection7ReturnHome}
 						style={{
 							position: 'absolute',
 							width: '100%',
@@ -8107,7 +8326,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					</div>
 					<div
 						id="leisureSection7ReturnHomeTitle"
-						ref = {this.leisureSection7ReturnHomeTitle}
+						ref={this.leisureSection7ReturnHomeTitle}
 						style={{ position: 'absolute', width: '100%', height: ' 100%', left: '0px', top: ' 0px' }}
 					>
 						<div
@@ -8485,7 +8704,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							width: '100%',
 							height: '100%'
 						}}
-						ref = {this.uniqueSection2RightBox}
+						ref={this.uniqueSection2RightBox}
 					>
 						<Info
 							// inAnimate={this.state.infoInAnimate}
@@ -8524,7 +8743,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					<img src={unqiueSection2Bg1} className="imageCover" />
 					<div
 						id="uniqueSection3ReturnHome"
-						ref = {this.uniqueSection3ReturnHome}
+						ref={this.uniqueSection3ReturnHome}
 						style={{
 							position: 'absolute',
 							width: '100%',
@@ -8534,7 +8753,6 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							display: 'none'
 						}}
 					>
-					
 						<div style={{ position: 'absolute', width: '100%', height: '95px', left: '0px', top: '417px' }}>
 							<svg
 								width="1370"
@@ -8600,8 +8818,15 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					</div>
 					<div
 						id="uniqueSection3ReturnHomeTitle"
-						ref = {this.uniqueSection3ReturnHomeTitle}
-						style={{ position: 'absolute', width: '100%', height: ' 100%', left: '0px', top: ' 0px',display:'none' }}
+						ref={this.uniqueSection3ReturnHomeTitle}
+						style={{
+							position: 'absolute',
+							width: '100%',
+							height: ' 100%',
+							left: '0px',
+							top: ' 0px',
+							display: 'none'
+						}}
 					>
 						<div
 							className="dFordNormalTitle"
