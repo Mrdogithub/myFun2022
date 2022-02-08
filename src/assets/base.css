@@ -189,8 +189,7 @@ body {
 
 
 
-.container {
-    display: flex;
+.homePageWrapper {
     width: 100%;
     box-sizing: border-box;
     height: 100vh;
@@ -844,5 +843,158 @@ leisureSection3Bg2In{
 
     to {
         opacity: 1;
+    }
+}
+
+/*demoIntroSection1Wrapper*/ 
+
+.demoIntroSection1Wrapper{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    background-size: cover;
+    background-position: center;
+}
+
+/*privacySection2*/
+
+.privacySection2leftContent{
+    position: absolute;
+    width: 545px;
+    height:430px;
+    left: 0px;
+    top: 594px;
+    background:rgba(139, 146, 156, 0.2);
+    backdrop-filter: blur(46px);
+}
+/*privacySection1*/
+.privacySection1WrapperLeftContent{
+    position: absolute;
+    width: 545px;
+    height:100%;
+    left: 0px;
+    top: 0px;
+    background:rgba(26, 32, 50, 0.16);
+    backdrop-filter: blur(15px);
+}
+/*privacySection3*/
+
+.privacySection3imageIn{
+    animation-duration: 1.5s;
+    animation-name: privacySection3imageIn;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes privacySection3imageIn {
+    from {
+       width: 100%;
+       transform:scale(1);
+       left: 0px;
+    }
+
+    to {
+        width: 80%;
+        transform:scale(2.5);
+        left: -300px;
+    }
+}
+
+
+.privacySection3imageOut{
+    animation-duration: 1.5s;
+    animation-name: privacySection3imageOut;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes privacySection3imageOut {
+    from {
+       width: 80%;
+       transform:scale(2.5);
+       left: -300px;
+    }
+
+    to {
+       
+        width: 100%;
+        transform:scale(1);
+        left: 0px;
+    }
+}
+.privacySection3leftContentIn{
+    animation-duration: 2.8s;
+    animation-name: privacySection3leftContentIn;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes privacySection3leftContentIn {
+    from {
+       width: 545px;
+    }
+
+    to {
+       
+        width: 100%;
+    }
+}
+
+.privacySection3leftContentOut{
+    animation-duration: 2.8s;
+    animation-name: privacySection3leftContentOut;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes privacySection3leftContentOut {
+    from {
+       width: 100%;
+    }
+
+    to {
+       
+        width: 545px;
+    }
+}
+
+
+/* privacy section 7*/
+
+.privacy_section_7_bgIn{
+    animation-duration: 2.8s;
+    animation-name: privacy_section_7_bgIn;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes privacy_section_7_bgIn {
+    from {
+        top: 200px;
+        left: -660px;
+        transform: scale(2);
+    }
+
+    to {
+        top: -39px;
+        left: -386px;
+        transform: scale(1.57);
+    }
+}
+
+.privacy_section_7_bgBack{
+    animation-duration: 2.8s;
+    animation-name: privacy_section_7_bgBack;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes privacy_section_7_bgBack {
+    from {
+
+        top: -39px;
+        left: -386px;
+        transform: scale(1.57);
+    }
+    to {
+        top: 200px;
+        left: -660px;
+        transform: scale(2);
     }
 }
