@@ -9,6 +9,8 @@ export class Info extends React.Component<any, any> {
 
 		this.infoItems = React.createRef();
 	}
+	infoData = [48,28,32,51]
+	total = 0
 	infoItems:any;
 	closeInfoPanel() {
 		this.props.onCloseInfoPanel();
@@ -18,12 +20,20 @@ export class Info extends React.Component<any, any> {
 		if(this.props.isStatic) return
 		this.infoItems.current.childNodes.forEach((item,i)=>{
 			if(index === i) {
-				this.props.onInfoItemChange(i);
-				item.className = 'activeInfo'
-			} else {
-				item.className = 'normalInfo'
-			}
+			
+				if(item.className == 'activeInfo'){
+					item.className = 'normalInfo'
+					this.total = this.total-this.infoData[index]
+				
+				}else {
+					item.className = 'activeInfo'
+					this.total =this.total + this.infoData[index]
+				}
+				
+			} 
 		})
+		this.props.onInfoItemChange(index,this.total);
+		console.log(this.total)
 	}
 	render() {
 		return (
@@ -77,7 +87,7 @@ export class Info extends React.Component<any, any> {
 						{/* 数据*/}
 						<div
 							onClick = {(e)=>{this.infoItem(e,0)}}
-							className = {this.props.isStatic?'normalInfo':'activeInfo'}
+							className = {this.props.isStatic?'normalInfo':'normalInfo'}
 							style={{
 								position: 'absolute',
 								width: '372px',

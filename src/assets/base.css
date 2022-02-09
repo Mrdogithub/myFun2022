@@ -749,6 +749,7 @@ h1 {
 
 .comfortSection8ClickMagamizeOut {
     animation-duration: 1.5s;
+    
     animation-name: slideOut;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
@@ -766,6 +767,7 @@ h1 {
 
 .leisureSection2CanvasRefWrapperIn {
     animation-duration: 1.5s;
+    animation-delay: 1s;
     animation-name: leisureSection2;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
@@ -996,5 +998,128 @@ leisureSection3Bg2In{
         top: 200px;
         left: -660px;
         transform: scale(2);
+    }
+}
+
+/* comfort section 2*/
+
+
+.comfortSection2Box05In{
+    animation-duration: 2.8s;
+    animation-name: comfortSection2Box05In;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes comfortSection2Box05In {
+    from {
+        left: 0px
+    }
+    to {
+        left: 530px
+    }
+}
+
+.comfortSection2Box05Out{
+    animation-duration: 2.8s;
+    animation-name: comfortSection2Box05Out;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes comfortSection2Box05Out {
+    from {
+
+        left: 530px
+    }
+    to {
+        left: 0px
+    }
+}
+
+
+.comfortSection2SplitterMoveHanlder::before{
+    width: 0;
+    height: 0;
+    border: 25px solid transparent;
+    border-left: 25px solid #e0d9d9;
+    content: '';
+    position: absolute;
+    top: 25px;
+    left: 51px;
+}
+
+.comfortSection2SplitterMoveHanlder::after{
+    width: 0;
+    height: 0;
+    border: 25px solid transparent;
+    border-right: 25px solid #e0d9d9;
+    content: '';
+    position: absolute;
+    top: 25px;
+    left: -5px;
+}
+
+.comfortSection4Image1In{
+    animation-duration: 1.5s;
+    animation-name: comfortSection4Image1In;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes comfortSection4Image1In {
+    from {
+
+        width: 545px
+    }
+    to {
+        width: 821px
+    }
+}
+
+.comfortSection4Image1Out{
+    animation-duration: 1.5s;
+    animation-name: comfortSection4Image1Out;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes comfortSection4Image1Out {
+    from {
+
+  
+        width: 821px
+    }
+    to {
+        width: 545px
+    }
+}
+
+.comfortSection4HandIn{
+    animation-duration: 1.5s;
+    animation-name: comfortSection4HandIn;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes comfortSection4HandIn {
+    from {
+
+        left: 33px
+    }
+    to {
+        left: 333px
+    }
+}
+
+.comfortSection4HandOut{
+    animation-duration: 1.5s;
+    animation-name: comfortSection4HandOut;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes comfortSection4HandOut {
+    from {
+
+   
+        left: 333px
+    }
+    to {
+        left: 33px
     }
 }

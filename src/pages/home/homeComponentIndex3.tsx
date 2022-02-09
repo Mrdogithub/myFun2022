@@ -166,10 +166,10 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.comfortSection2Box05 = React.createRef();
 		this.comfortSection2BgLine = React.createRef();
 		this.comfortSection2Desc = React.createRef();
-		this.comfortSection2SplitterHook = React.createRef();
+		this.comfortSection2SplitterMoveHanlder = React.createRef();
 		this.comfortSection2Splitter = React.createRef();
 
-		this.comfortSection2SplitterHook2 = React.createRef();
+		this.comfortSection2SplitterMoveHanlder2 = React.createRef();
 		this.comfortSection2Splitter2 = React.createRef();
 		this.comfortSection3Wrapper = React.createRef();
 		this.comfortSection3Title = React.createRef();
@@ -505,9 +505,9 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	comfortSection2Box05: any;
 	comfortSection2BgLine: any;
 	comfortSection2Desc: any;
-	comfortSection2SplitterHook: any;
+	comfortSection2SplitterMoveHanlder: any;
 	comfortSection2Splitter: any;
-	comfortSection2SplitterHook2: any;
+	comfortSection2SplitterMoveHanlder2: any;
 	comfortSection2Splitter2: any;
 	comfortSection3Wrapper: any;
 	comfortSection3Title: any;
@@ -604,6 +604,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	demoIntroSection2Wrapper: any;
 	demoIntroSection3Wrapper: any;
 	moveDistance = 0;
+	total =0;
 	move = 0;
 	timer: any;
 	sectionImageSequenceList = {
@@ -1505,11 +1506,11 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 
 	// COMFORT SECTION
 	comfortSection2Start(event) {
-		if (event.target.tagName === 'circle') return;
+		if (event.target.id === 'comfortSection2SplitterMoveHanlder') return;
 		this.updateStartMosePosition(event);
 	}
 	comfortSection2Move(event) {
-		if (event.target.tagName === 'circle') return;
+		if (event.target.id === 'comfortSection2SplitterMoveHanlder') return;
 		this.updateMoveMousePositon(event);
 		this.move = this.state.endY - this.state.startY;
 		if (this.move > 80) {
@@ -1528,60 +1529,96 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		}
 	}
 	comfortSection2End(event) {
-		if (event.target.tagName === 'circle') return;
+		if (event.target.id === 'comfortSection2SplitterMoveHanlder') return;
 	}
 	comfortSection2SplitterStart(event) {
+		this.updateStartMosePosition(event);
 		this.isDown = true;
 		this.splitterOffSet = [
-			event.targetTouches[0].clientX - this.comfortSection2SplitterHook.current.offsetLeft,
-			0
+			event.targetTouches[0].clientX,
+			0,
+			this.comfortSection2SplitterMoveHanlder.current.offsetLeft,
+			this.mask1.current.offsetWidth,
+
 		];
 	}
 	comfortSection2SplitterMove(event) {
 		if (this.isDown) {
+			this.updateMoveMousePositon(event);
+			// 计算绝对位置
 			const absoluteWidth = event.targetTouches[0].clientX - this.splitterOffSet[0];
-			const relativeWidth = (event.targetTouches[0].clientX - this.splitterOffSet[0]) / screen.availWidth * 100;
 
-			if (absoluteWidth > 90) {
-				this.comfortSection2SplitterHook.current.style.left = absoluteWidth - 45 + 'px';
-				this.mask1.current.style.width = absoluteWidth + 'px';
+			// 计算相对于屏幕的位置
+			const relativeWidth = (this.comfortSection2SplitterMoveHanlder.current.offsetLeft+this.comfortSection2SplitterMoveHanlder.current.offsetWidth) / screen.availWidth * 100;
+			console.log('absoluteWidth:' + absoluteWidth)
+			console.log('relativeWidth:' + relativeWidth)
+			console.log(this.comfortSection2SplitterMoveHanlder.current.offsetWidth/2)
+			console.log(this.comfortSection2SplitterMoveHanlder.current.offsetLeft)
+			console.log(this.letMeKonwDirection())
+			const direction = this.letMeKonwDirection();
+			this.comfortSection2SplitterMoveHanlder.current.style.left = (absoluteWidth+this.splitterOffSet[2] ) + 'px';
+			this.mask1.current.style.width = absoluteWidth +this.splitterOffSet[3]+ 'px';
+
+			if (this.comfortSection2SplitterMoveHanlder.current.offsetLeft < 90) {
+				this.comfortSection2SplitterMoveHanlder.current.style.left = '90px';
 			}
 
-			if (absoluteWidth < 90) {
-				this.comfortSection2SplitterHook.current.style.left = '90px';
+			// 40%区域内mask层由模糊变透明
+			if (this.comfortSection2SplitterMoveHanlder.current.offsetLeft<500  && direction === 'toRight') {
+				this.mask1.current.style.backdropFilter = `blur(${90 - Math.abs(relativeWidth)*3.5}px)`;
 			}
-
-			if (relativeWidth < 40) {
-				this.mask1.current.style.backdropFilter = `blur(${90 - relativeWidth*2.5}px)`;
+			if (this.comfortSection2SplitterMoveHanlder.current.offsetLeft<500  && direction === 'toLeft') {
+				this.mask1.current.style.backdropFilter = `blur(${Math.abs(40- Math.abs(relativeWidth))*3}px)`;
 			}
-			if (relativeWidth > 40 && relativeWidth < 45) {
+			// 向左拖动区域小于40% 显示右侧文本描述
+			if (relativeWidth < 40 && direction === 'toLeft') {
+				setTimeout(()=>{this.comfortSection2Desc.current.style.display = 'block'},500)
+				this.comfortSection2Desc.current.style.left = '821px';
+				this.comfortSection2Desc.current.className = 'animate__animated animate__slideInRight';
+			}
+			// 40% - 60% 区域内不显示mask层
+			if (this.comfortSection2SplitterMoveHanlder.current.offsetLeft>500 && this.comfortSection2SplitterMoveHanlder.current.offsetLeft<820) {
 				this.mask1.current.style.backdropFilter = 'blur(0px)';
+				this.mask1.current.style.background= 'rgba(255, 255, 255, 0)';
 				this.mask2.current.style.display = 'none';
+				this.comfortSection2Desc.current.className = 'animate__animated animate__fadeOut';
+			
 			}
-			if (relativeWidth > 45 && relativeWidth < 60) {
-				this.mask2.current.style.backdropFilter = `blur(${relativeWidth}px)`;
+
+			if(relativeWidth > 45&& direction === 'toRight') {
+				this.comfortSection2Box05.current.className = 'comfortSection2Box05In'
+			} 
+			if(relativeWidth <45 && direction === 'toLeft') {
+				this.comfortSection2Box05.current.className = 'comfortSection2Box05Out'
+
+			}
+
+			// 60% 区域内title向右侧移动，mask层由透明变模糊
+			if (this.comfortSection2SplitterMoveHanlder.current.offsetLeft>770  && direction === 'toRight') {
+				this.mask2.current.style.backdropFilter = `blur(${relativeWidth-60}px)`;
 				this.mask2.current.style.display = 'block';
 				this.mask2.current.style.flex = '1 1 auto';
-				this.mask1.current.style.backdropFilter = 'blur(0px)';
-			}
-
-			if (relativeWidth > 60) {
-				// title move
-				this.comfortSection2Box05.current.style.left = '640px';
-				this.comfortSection2Desc.current.style.display = 'none';
 				this.setState({ comfortSection2Bg: comfortSection2Bg2 });
 			}
 
-			if (relativeWidth > 70) {
-				this.setState({ comfortSection2Bg: comfortSection2Bg3 });
-				// title move
-				this.comfortSection2Desc.current.style.display = 'block';
-				this.comfortSection2Desc.current.style.left = '0px';
-				this.comfortSection2Desc.current.className =
-					'animate__animated animate__fadeInLeft animate__delay-1.2s';
+			if (this.comfortSection2SplitterMoveHanlder.current.offsetLeft>770  && direction === 'toLeft') {
+				this.mask2.current.style.backdropFilter = `blur(${90 - Math.abs(relativeWidth)*4.5}px)`;
+				this.mask2.current.style.display = 'block';
+				this.mask2.current.style.flex = '1 1 auto';
+				this.setState({ comfortSection2Bg: comfortSection2Bg2 });
 			}
-			if (relativeWidth > 90) {
-				this.comfortSection2SplitterHook.current.style.left = '97%';
+
+			if (this.comfortSection2SplitterMoveHanlder.current.offsetLeft>870 && direction === 'toRight') {
+				this.setState({ comfortSection2Bg: comfortSection2Bg3 });
+				if(this.comfortSection2Desc.current.className !== 'animate__animated animate__slideInLeft') {
+					this.comfortSection2Desc.current.style.display = 'block';
+					this.comfortSection2Desc.current.style.left = '0px';
+					this.comfortSection2Desc.current.className ='animate__animated animate__slideInLeft';
+				}
+			}
+
+			if (relativeWidth > 90 && direction === 'toRight') {
+				this.comfortSection2SplitterMoveHanlder.current.style.left = '96%';
 				this.mask1.current.style.width = '90%';
 			}
 		}
@@ -1593,7 +1630,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	comfortSection2Splitter2Start(event) {
 		this.isDown = true;
 		this.splitterOffSet = [
-			this.comfortSection2SplitterHook.current.offsetLeft - event.targetTouches[0].clientX,
+			this.comfortSection2SplitterMoveHanlder.current.offsetLeft - event.targetTouches[0].clientX,
 			0
 		];
 	}
@@ -1605,10 +1642,10 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	// 		console.log('relativeWidth:' + relativeWidth);
 	// 		if (relativeWidth > 45 && relativeWidth < 60) {
 	// 			this.comfortSection2Splitter2.current.style.backdropFilter = 'blur(90px)';
-	// 			this.comfortSection2SplitterHook2.current.style.left = screen.availWidth - absoluteWidth - 45 + 'px';
+	// 			this.comfortSection2SplitterMoveHanlder2.current.style.left = screen.availWidth - absoluteWidth - 45 + 'px';
 	// 			this.comfortSection2Splitter2.current.style.left = screen.availWidth - absoluteWidth + 'px';
 	// 			this.comfortSection2Splitter2.current.style.width =
-	// 				screen.availWidth - this.comfortSection2SplitterHook.current.style.left + 'px';
+	// 				screen.availWidth - this.comfortSection2SplitterMoveHanlder.current.style.left + 'px';
 	// 		}
 
 	// 		if (relativeWidth > 60 && relativeWidth < 70) {
@@ -1629,8 +1666,12 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	}
 	comfortSection3Tab06Click() {
 		this.comfortSection3WrapperOutAnimate();
-		this.comfortSection4Wrapper.current.style.display = 'block';
-		//this.comfortSection4Box07.current.className = 'animate__animated animate__slideInDown animate__delay-1.5s';
+		
+		setTimeout(()=>{
+			this.comfortSection4Wrapper.current.style.display = 'block';
+			this.comfortSection4Box07.current.className = 'animate__animated animate__slideInDown';
+		},1000)
+		
 		this.setState({ lastActiveSectionRef: this.comfortSection4Wrapper.current });
 	}
 	comfortSection3End(event) {
@@ -1652,20 +1693,17 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.updateMoveMousePositon(event);
 
 		this.move = this.state.endY - this.state.startY;
+		// part 2 返回到part1
 		if (
-			this.move > 80 &&
-			this.comfortSection4Text1.current.style.display == 'none' &&
-			this.comfortSection4Image1.current.style.display == 'none' &&
-			this.comfortSection4Text2.current.style.display == 'block' &&
-			this.comfortSection4Image2.current.style.display == 'block'
+			this.move > 80 && this.comfortSection4Text2.current.style.display == 'block'
 		) {
 			// 向下拉动 返回上一页
 			this.comfortSection4Text1.current.style.display = 'block';
 			this.comfortSection4Image1.current.style.display = 'block';
 
 			this.comfortSection4Text2.current.style.display = 'none';
-			this.comfortSection4Image2.current.style.display = 'none';
-			this.comfortSection4Hand.current.style.left = '163px';
+			this.comfortSection4Image2.current.className = 'comfortSection4Image1Out';
+			this.comfortSection4Hand.current.className = 'comfortSection4HandOut'
 			return;
 		}
 
@@ -1673,8 +1711,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			this.move > 80 &&
 			this.comfortSection4Text1.current.style.display == 'block' &&
 			this.comfortSection4Image1.current.style.display == 'block' &&
-			this.comfortSection4Text2.current.style.display == 'none' &&
-			this.comfortSection4Image2.current.style.display == 'none'
+			this.comfortSection4Text2.current.style.display == 'none'
 		) {
 			// 向下拉动 返回上一页
 			this.comfortSection3Wrapper.current.style.display = 'block';
@@ -1683,12 +1720,13 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			this.comfortSection4Wrapper.current.style.display = 'none';
 			return;
 		}
+
+		// part 1 转场进入part2
 		if (
 			this.move < -80 &&
 			this.comfortSection4Text1.current.style.display == 'block' &&
 			this.comfortSection4Image1.current.style.display == 'block' &&
-			this.comfortSection4Text2.current.style.display == 'none' &&
-			this.comfortSection4Image2.current.style.display == 'none'
+			this.comfortSection4Text2.current.style.display == 'none'
 		) {
 			// 向上拉动 进入下一页
 
@@ -1697,24 +1735,22 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			// this.comfortSection4Image1.current.className = 'animate__animated animate__fadeOutRight animate__delay-1s';
 
 			this.comfortSection4Text2.current.style.display = 'block';
-			this.comfortSection4Image2.current.style.display = 'block';
-			setTimeout(() => {
-				this.comfortSection4Hand.current.style.left = '33px';
-				this.comfortSection4Text1.current.style.display = 'none';
-				this.comfortSection4Image1.current.style.display = 'none';
-			}, 800);
-			this.comfortSection4Text2.current.className =
-				'dFordSubTitle animate__animated animate__fadeInLeft animate__delay-.8s';
-			this.comfortSection4Image2.current.className = 'animate__animated animate__fadeInLeft animate__delay-.7s';
-			this.comfortSection4Hand.current.className = 'animate__animated animate__fadeIn animate__delay-.9s';
+			// // this.comfortSection4Image2.current.style.display = 'block';
+			// setTimeout(() => {
+			// 	this.comfortSection4Hand.current.style.left = '33px';
+			
+			// 	// this.comfortSection4Image1.current.style.display = 'none';
+			// }, 800);
+			this.comfortSection4Text1.current.style.display = 'none';
+			this.comfortSection4Text2.current.className = 'dFordSubTitle animate__animated animate__slideInLeft';
+			this.comfortSection4Image1.current.className = 'comfortSection4Image1In';
+			this.comfortSection4Hand.current.className = 'comfortSection4HandIn';
 			return;
 		}
 		if (
 			this.move < -80 &&
 			this.comfortSection4Text1.current.style.display == 'none' &&
-			this.comfortSection4Image1.current.style.display == 'none' &&
-			this.comfortSection4Text2.current.style.display == 'block' &&
-			this.comfortSection4Image2.current.style.display == 'block'
+			this.comfortSection4Text2.current.style.display == 'block' 
 		) {
 			// 向上拉动 进入下一页
 			this.comfortSection4Wrapper.current.style.display = 'none';
@@ -1749,10 +1785,11 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		}
 	}
 	comfortSection5Tab06Click(event) {
-		this.comfortSection6Wrapper.current.style.display = 'block';
-		// setTimeout(()=>{this.comfortSection5Wrapper.current.style.display = 'none'},1200)
-		// this.comfortSection5Wrapper.current.className = 'animate__animated animate__fadeOut animate__delay-1s';
-		this.comfortSection5Wrapper.current.style.display = 'none';
+		setTimeout(()=>{
+			this.comfortSection6Wrapper.current.style.display = 'block';
+		},1000)
+		setTimeout(()=>{this.comfortSection5Wrapper.current.style.display = 'none';},1300)
+		this.comfortSection5Wrapper.current.className =  'sectionWrapper animate__animated animate__slideOutUp animate__delay-1s';
 		this.setState({ lastActiveSectionRef: this.comfortSection6Wrapper.current });
 	}
 	comfortSection5End(event) {
@@ -2198,7 +2235,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						// this.leisureSection2CanvasRefWrapper.current.style.height = '80%';
 						this.leisureSection2CanvasRefWrapper.current.className = 'leisureSection2CanvasRefWrapperIn';
 					}
-				}, 10);
+				}, 60);
 			}, 10)();
 		}
 
@@ -2433,10 +2470,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			// 向上拉动 进入下一页
 			if (this.state.uniqueSection1SequenceImageIndex == 100) {
 				this.uniqueSection1Wrapper.current.style.display = 'none';
-				this.uniqueSection2Wrapper.current.style.display = 'block';
-				this.uniqueSection2RightBox.current.className =
-					'animate__animated animate__slideInRight animate__delay-1.5s';
-				this.setState({ lastActiveSectionRef: this.uniqueSection2Wrapper.current });
+				
 				this.uniqueSection2WrapperInAnimate();
 			}
 
@@ -2540,15 +2574,30 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	letMeKonwDirection() {
 		const moveX = this.state.endX - this.state.startX;
 		const moveY = this.state.endY - this.state.startY;
-		if (Math.abs(moveX) > 10 || Math.abs(moveY) > 10) {
-			if (Math.abs(moveX) > Math.abs(moveY)) {
-				return moveX > 0 ? 'toRight' : 'toLeft';
-			} else {
-				return moveY > 0 ? 'toBottom' : 'toTop';
-			}
-		}
+
+		if ( Math.abs(moveX) > Math.abs(moveY) && moveX > 0 ) {
+			return 'toRight'
+
+        }
+
+        else if ( Math.abs(moveX) > Math.abs(moveY) && moveX < 0 ) {
+			return 'toLeft'
+        }
+
+        else if ( Math.abs(moveY) > Math.abs(moveX) && moveY > 0) {
+
+            return 'toBottom'
+
+        }
+
+        else if ( Math.abs(moveY) > Math.abs(moveX) && moveY < 0 ) {
+
+          return 'toTop'
+
+        }
 	}
-	onInfoItemChange(index) {
+	onInfoItemChange(index,total) {
+		this.total = total;
 		this.uniqueSection2DynamicBg.current.childNodes.forEach((item, i) => {
 			if (i === index) {
 				item.style.display = 'block';
@@ -3041,8 +3090,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.comfortSection2Wrapper.current.style.display = 'block';
 		this.setState({ lastActiveSectionRef: this.comfortSection2Wrapper.current });
 		this.comfortSection2Splitter.current.style.display = 'flex';
-		this.comfortSection2Desc.current.className = 'animate__animated animate__fadeInDown animate__delay-1.2s';
-		this.comfortSection2Box05.current.className = 'animate__animated animate__fadeInDown animate__delay-1.2s';
+		this.comfortSection2Desc.current.className = 'animate__animated animate__fadeInUp animate__delay-1.2s';
+		this.comfortSection2Box05.current.className = 'animate__animated animate__fadeInUp animate__delay-1.2s';
 		this.comfortSection2Splitter.current.className = 'animate__animated animate__slideInLeft animate__delay-1.2s';
 	}
 	comfortSection2WrapperOutAnimate() {
@@ -3053,16 +3102,23 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	}
 	comfortSection3WrapperInAnimate() {
 		this.comfortSection3Wrapper.current.style.display = 'block';
-		this.comfortSection3Wrapper.current.className = 'animate__animated animate__fadeIn animate__delay-.5s';
+		this.comfortSection3Wrapper.current.className = 'sectionWrapper animate__animated animate__fadeIn animate__delay-.5s';
+		this.comfortSection3Text.current.className = 'animate__animated animate__slideInUp animate__delay-1.2s';
 		this.setState({ lastActiveSectionRef: this.comfortSection3Wrapper.current });
 	}
 	comfortSection3WrapperOutAnimate() {
 		setTimeout(() => {
 			this.comfortSection3Wrapper.current.style.display = 'none';
-		}, 600);
-		this.comfortSection3Wrapper.current.className = 'animate__animated animate__fadeOut animate__delay-.5s';
+			this.comfortSection3Text.current.className = '';
+		}, 2000);
+		this.comfortSection3Text.current.className = 'animate__animated animate__slideOutDown animate__delay-1.2s';
+		
 	}
-
+	comfortSection3Start1(event){
+		console.log('works')
+	}
+	comfortSection3Move1(event){	console.log('works')}
+	comfortSection3End1(event){	console.log('works')}
 	comfortSection5WrapperInAnimate() {
 		console.log('animate');
 	}
@@ -3101,7 +3157,9 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			'smallImges animate__animated animate__slideOutRight animate__delay-1.5s';
 	}
 	uniqueSection2WrapperInAnimate() {
-		console.log('animate');
+		this.uniqueSection2Wrapper.current.style.display = 'block';
+		this.uniqueSection2RightBox.current.className =	'animate__animated animate__slideInRight animate__delay-2.5s';
+		this.setState({ lastActiveSectionRef: this.uniqueSection2Wrapper.current });
 	}
 	uniqueSection2InWrapperAnimateHide() {
 		this.uniqueSection2Wrapper.current.style.display = 'none';
@@ -4130,7 +4188,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					ref={this.privacySection4Wrapper}
 					className="sectionWrapper"
 					style={{
-						zIndex: '-4'
+						zIndex: '-4',
+						display: 'none'
 					}}
 				>
 					<img
@@ -4299,7 +4358,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					ref={this.privacySection6Wrapper}
 					className="sectionWrapper"
 					style={{
-						zIndex: '-6'
+						zIndex: '-6',
+						display:'none'
 					}}
 				>
 					<CanvasImageSequence
@@ -5046,6 +5106,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				<div
 					id="comfortSection1Wrapper"
 					ref={this.comfortSection1Wrapper}
+					style = {{display: 'none'}}
 					className="sectionWrapper"
 					onTouchStart={(event) => {
 						this.comfortSection1Start(event);
@@ -5301,7 +5362,18 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				>
 					<div className="imageWrapper">
 						<img src={this.state.comfortSection2Bg} className="imageCover" />
-
+						<div
+							id="comfortSection2Box05"
+							style={{
+								position: 'absolute',
+								width: '100%',
+								height: '208px',
+								left: '0px',
+								top: '816px',
+								background: '#5F6871',
+								zIndex: '2'
+							}}
+						></div>
 						<div
 							id="comfortSection2Box05"
 							ref={this.comfortSection2Box05}
@@ -5431,8 +5503,15 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							}}
 						>
 							<div
-								style={{ position: 'absolute', top: '50%', left: '90px', flex: '1 auto' }}
-								ref={this.comfortSection2SplitterHook}
+								id = 'comfortSection2SplitterMoveHanlder'
+								className ='comfortSection2SplitterMoveHanlder'
+								style={{ position: 'absolute', top: '50%', left: '90px', flex: '1 auto',
+								width:' 97px',
+								height: '97px',
+								borderRadius: '100%',
+								background:' rgba(255, 255, 255, 0.3)',
+								backdropFilter: 'blur(2px)' }}
+								ref={this.comfortSection2SplitterMoveHanlder}
 								onTouchStart={(event) => {
 									this.comfortSection2SplitterStart(event);
 								}}
@@ -5443,50 +5522,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 									this.comfortSection2SplitterEnd(event);
 								}}
 							>
-								<svg
-									width="97"
-									height="97"
-									viewBox="0 0 97 97"
-									fill="none"
-									xmlns="http://www.w3.org/2000/svg"
-								>
-									<g filter="url(#filter0_b_2733_1192)">
-										<circle cx="48.5" cy="48.5" r="48.5" fill="white" fillOpacity="0.3" />
-									</g>
-									<g opacity="0.9">
-										<path d="M27 48.5L45 29.8805L45 67.1195L27 48.5Z" fill="white" />
-										<path d="M27 48.5L45 29.8805L45 67.1195L27 48.5Z" fill="white" />
-									</g>
-									<g opacity="0.9">
-										<path d="M70 48.5L52 67.1195L52 29.8805L70 48.5Z" fill="white" />
-										<path d="M70 48.5L52 67.1195L52 29.8805L70 48.5Z" fill="white" />
-									</g>
-									<defs>
-										<filter
-											id="filter0_b_2733_1192"
-											x="-2"
-											y="-2"
-											width="101"
-											height="101"
-											filterUnits="userSpaceOnUse"
-											colorInterpolationFilters="sRGB"
-										>
-											<feFlood floodOpacity="0" result="BackgroundImageFix" />
-											<feGaussianBlur in="BackgroundImage" stdDeviation="1" />
-											<feComposite
-												in2="SourceAlpha"
-												operator="in"
-												result="effect1_backgroundBlur_2733_1192"
-											/>
-											<feBlend
-												mode="normal"
-												in="SourceGraphic"
-												in2="effect1_backgroundBlur_2733_1192"
-												result="shape"
-											/>
-										</filter>
-									</defs>
-								</svg>
+							
 							</div>
 						</div>
 
@@ -5510,7 +5546,17 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						noScale="true"
 					/>
 				</div>
-
+				{/* <div 	className="sectionWrapper" 
+				style = {{display:'block'}}
+					onTouchStart={(event) => {
+						this.comfortSection3Start1(event);
+					}}
+					onTouchMove={(event) => {
+						this.comfortSection3Move1(event);
+					}}
+					onTouchEnd={(event) => {
+						this.comfortSection3End1(event);
+					}}></div> */}
 				<div
 					id="comfortSection3Wrapper"
 					ref={this.comfortSection3Wrapper}
@@ -5818,7 +5864,9 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							height: '450px',
 							display: 'block'
 						}}
+						className = 'comfortSection4Image1'
 						ref={this.comfortSection4Image1}
+						id = 'comfortSection4Image1'
 					>
 						<img src={comfortSection4Bg2} className="imageCover" />
 					</div>
@@ -8657,7 +8705,15 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					<div id="uniqueSection2MaxImageBg">
 						<img src={unqiueSection2Bg1} className="imageCover" />
 					</div>
-
+					<div 	style={{
+							position: 'absolute',
+							width: '531px',
+							height: '226px',
+							left: '147px',
+							top: '169px',
+							overflow: 'hidden',
+							fontSize: '40px'
+						}}>{this.total}</div>
 					<div
 						id="uniqueSection2DynamicBg"
 						style={{
@@ -8670,6 +8726,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						}}
 						ref={this.uniqueSection2DynamicBg}
 					>
+
+			
 						<div className="infoItemBg1" style={{ display: 'block' }} />
 
 						<div className="lines" style={{ display: 'block' }}>
@@ -8709,8 +8767,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						<Info
 							// inAnimate={this.state.infoInAnimate}
 							// outAnimate={this.state.infoOutAnimate}
-							onInfoItemChange={(data) => {
-								this.onInfoItemChange(data);
+							onInfoItemChange={(data,total) => {
+								this.onInfoItemChange(data,total);
 							}}
 							isInfoExpanded={true}
 							// onCloseInfoPanel={() => this.onCloseInfoPanel()}
