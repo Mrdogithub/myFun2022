@@ -731,7 +731,7 @@ h1 {
 
 
 .comfortSection8ClickMagamize {
-    animation-duration: 1.5s;
+    animation-duration: 1s;
     animation-name: slidein;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
