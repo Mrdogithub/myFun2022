@@ -898,8 +898,8 @@ leisureSection3Bg2In{
 
     to {
         width: 80%;
-        transform:scale(2.5);
-        left: -300px;
+        transform:scale(2);
+        left: -274px;
     }
 }
 
@@ -1123,3 +1123,88 @@ leisureSection3Bg2In{
         left: 33px
     }
 }
+
+
+
+.uniqueSection2MaxImageBgIn{
+    animation-duration: 1.5s;
+    animation-name: uniqueSection2MaxImageBgIn;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes uniqueSection2MaxImageBgIn {
+    from {
+
+   
+        transform:scale(1);
+        top: 0px;
+        left: 0px;
+    }
+    to {
+        transform:scale(1.5);
+        top: 119px;
+        left: -270px;
+    }
+}
+
+
+.uniqueSection2MaxImageBgOut{
+    animation-duration: 1.5s;
+    animation-name: uniqueSection2MaxImageBgOut;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes uniqueSection2MaxImageBgOut {
+    from {
+
+        transform:scale(1.5);
+        top: 119px;
+        left: -270px;
+    
+    }
+    to {
+        transform:scale(1);
+        top: 0px;
+        left: 0px;
+    }
+}
+
+
+
+.leisureSetion6GrallyMaxImageIn{
+    animation-duration: 1.5s;
+    animation-name: leisureSetion6GrallyMaxImageIn;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes leisureSetion6GrallyMaxImageIn {
+    from {
+        top: 0px;
+        transform: scale(1);
+    
+    }
+    to {
+        top: -80px;
+        transform: scale(1.2);
+    }
+}
+
+.leisureSetion6GrallyMaxImageOut{
+    animation-duration: 1.5s;
+    animation-name: leisureSetion6GrallyMaxImageOut;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes leisureSetion6GrallyMaxImageOut {
+    from {
+    
+        top: -80px;
+        transform: scale(1.2);
+    }
+    to {
+        top: 0px;
+        transform: scale(1);
+    }
+}
+
+

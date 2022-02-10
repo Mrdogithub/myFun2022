@@ -47,7 +47,6 @@ import sectoin_4_phoneVideo from './assets/VideoP_RemoteVhauffeur/VideoP_RemoteV
 import privacySection5ImageSequence from './assets/Video02_DigitalSealInsert/Video02_DigitalSealInsert0.jpg';
 import privacy_section_3_bg from './assets/images/privacy_section_3_bg.png';
 import privacy_section_7_bg from './assets/images/privacy_section_7_bg.png';
-import privacy_section_8_bg from './assets/images/privacy_section_8_bg.png';
 import firstPrivactSection6ImageSequence from './assets/Video02b_DigitalSealRotate_1/Video02b_DigitalSealRotate0.jpg';
 import firstComfortSection1ImageSequence from './assets/Video04_TransitionComfort/Video04_TransitionComfort0.jpg';
 import lastComfortSection1ImageSequence from './assets/Video04_TransitionComfort/Video04_TransitionComfort100.jpg';
@@ -88,53 +87,77 @@ export class MainComponent extends React.Component<any, any> {
 			images: []
 		};
 	}
+	privacy: any = [];
+	comfort: any = [];
+	magazine: any = [];
+	leisureImges: any = [];
+	leisure: any = [];
+	unique: any = [];
+	digitalSealRotate: any = [];
 	componentDidMount() {
+		this.loadFont();
+		this.loadPrivacy();
+		this.loadComfort();
+		this.loadMagazine();
+		this.loadleisureImges();
+		this.loadLeisure();
+		this.loadUnique();
+		this.loadDigitalSealRotate();
 		this.loadImages();
 	}
 
-	async loadImages() {
-
-		const imges: any[] = [];
-		for (let i = 0; i <= 100; i++) {
-			imges.push(require(`./assets/Video02b_DigitalSealRotate_1/Video02b_DigitalSealRotate${i}.jpg`));
-		}
-
-		/* comfort  首页序列帧 */
-		const comfortImges: any[] = [];
-		for (let i = 0; i <= 100; i++) {
-			imges.push(require(`./assets/Video04_TransitionComfort/Video04_TransitionComfort${i}.jpg`));
-		}
-
-		const comfort8Imges: any[] = [];
-		for (let i = 0; i <= 15; i++) {
-			imges.push(require(`./assets/Video13_Magazine/Video13_Magazine${i}.png`));
-		}
-
-		/* leisure section2 序列帧 */
-		const leisureImges: any[] = [];
-		for (let i = 0; i <= 40; i++) {
-			imges.push(require(`./assets/Video16_FrunkBar/Video16_FrunkBar${i}.jpg`));
-		}
-
-		/* leisure 首页序列帧 */
-		const leisure1Imges: any[] = [];
-		for (let i = 0; i <= 100; i++) {
-			imges.push(require(`./assets/Video04_TransitionComfort/Video04_TransitionComfort${i}.jpg`));
-		}
-
-		/* unique 首页序列帧 */
-		const uniqueImges: any[] = [];
-		for (let i = 0; i <= 100; i++) {
-			imges.push(require(`./assets/Video04_TransitionComfort/Video04_TransitionComfort${i}.jpg`));
-		}
-
+	loadPrivacy() {
 		/* privacy 首页序列帧 */
-		const privacyImages: any[] = [];
-		for (let i = 0; i <= 100; i++) {
-			imges.push(require(`./assets/Video00(ImageSequence)/Video00_TransitionPrivacy${i}.jpg`));
-		}
 
-		imges.push.apply(imges, [
+		for (let i = 0; i <= 100; i++) {
+			this.privacy.push(require(`./assets/Video00(ImageSequence)/Video00_TransitionPrivacy${i}.jpg`));
+		}
+	}
+
+	loadComfort() {
+		/* comfort  首页序列帧 */
+
+		for (let i = 0; i <= 100; i++) {
+			this.comfort.push(require(`./assets/Video04_TransitionComfort/Video04_TransitionComfort${i}.jpg`));
+		}
+	}
+
+	loadMagazine() {
+		for (let i = 0; i <= 15; i++) {
+			this.magazine.push(require(`./assets/Video13_Magazine/Video13_Magazine${i}.png`));
+		}
+	}
+
+	loadleisureImges() {
+		/* leisure section2 序列帧 */
+
+		for (let i = 0; i <= 40; i++) {
+			this.leisureImges.push(require(`./assets/Video16_FrunkBar/Video16_FrunkBar${i}.jpg`));
+		}
+	}
+
+	loadUnique() {
+		/* unique 首页序列帧 */
+
+		for (let i = 0; i <= 100; i++) {
+			this.unique.push(require(`./assets/Video04_TransitionComfort/Video04_TransitionComfort${i}.jpg`));
+		}
+	}
+	loadLeisure() {
+		/* leisure 首页序列帧 */
+
+		for (let i = 0; i <= 100; i++) {
+			this.leisure.push(require(`./assets/Video04_TransitionComfort/Video04_TransitionComfort${i}.jpg`));
+		}
+	}
+	loadDigitalSealRotate() {
+		for (let i = 0; i <= 100; i++) {
+			this.digitalSealRotate.push(require(`./assets/Video02b_DigitalSealRotate_1/Video02b_DigitalSealRotate${i}.jpg`));
+		}
+	}
+
+	loadBgImages() {
+		const bgImages: any = [
 			demoIntroSection1Bg,
 			demoIntroSection1Bg3,
 			demoIntroSection3Bg1,
@@ -160,7 +183,6 @@ export class MainComponent extends React.Component<any, any> {
 			privacySection5ImageSequence,
 			privacy_section_3_bg,
 			privacy_section_7_bg,
-			privacy_section_8_bg,
 			firstPrivactSection6ImageSequence,
 			firstComfortSection1ImageSequence,
 			lastComfortSection1ImageSequence,
@@ -192,45 +214,142 @@ export class MainComponent extends React.Component<any, any> {
 			leisureSection6Bg2,
 			leisureSection6Bg3,
 			unqiueSection2Bg1
-		])
-		imges.forEach((v: any, index: any, arr: any) => {
+		];
+
+		const images = [].concat(
+			bgImages,
+			this.privacy,
+			this.comfort,
+			this.leisure,
+			this.unique,
+			this.magazine,
+			this.leisureImges,
+			this.digitalSealRotate
+		);
+		images.forEach((v: any, index: any, arr: any) => {
 			const image = new Image();
 			image.src = v;
 
 			image.onload = () => {
 				arr.successLength = (arr.successLength || 0) + 1;
-				const status = Math.ceil( (arr.successLength / arr.length) * 100);
-				console.log(arr.successLength)
-				console.log(arr.length)
-				console.log(status)
+				const status = Math.ceil(arr.successLength / arr.length * 100);
+
+				console.log('>>>arr.successLength :' + arr.successLength )
+				console.log('>>> / arr.length '+   arr.length )
 				setTimeout(() => {
 					this.setState({ loadInProgress: status });
 				}, 100);
 
 				if (status > 99) {
-					this.setState({ images: arr });
-					this.loadFont();
-					return
+					this.setState({ isResourceLoaded: true });
+					this.setState({ loadInProgress: 1 });
+					return;
 				}
 			};
 		});
-
-		
 	}
-	async loadFont() {
+	loadImage(url) {
+		return new Promise((resolve, reject) => {
+			const img = new Image();
+			img.src = url;
+			img.onload = () => resolve(img);
+			img.onerror = reject;
+		});
+	}
+	async loadImages() {
+		this.loadBgImages();
+		// [
+		// 	demoIntroSection1Bg,
+		// 	demoIntroSection1Bg3,
+		// 	demoIntroSection3Bg1,
+		// 	homePrivacy_1_small,
+		// 	homeConfort_2_small,
+		// 	homeLeisure_3_small,
+		// 	homeUnique_4_small,
+		// 	privacySmallTitle,
+		// 	privacySmallIndex,
+		// 	comfortSmallTitle,
+		// 	comfortSmallIndex,
+		// 	leisureSmallTitle,
+		// 	leisureSmallIndex,
+		// 	uniqueSmallTitle,
+		// 	uniqueSmallIndex,
+		// 	videoPRemoteVhauffeur,
+		// 	homePrivacy_1,
+		// 	homeConfort_2,
+		// 	homeLeisure_3,
+		// 	homeUnique_4,
+		// 	section2IndeImage,
+		// 	sectoin_4_phoneVideo,
+		// 	privacySection5ImageSequence,
+		// 	privacy_section_3_bg,
+		// 	privacy_section_7_bg,
+		// 	firstPrivactSection6ImageSequence,
+		// 	firstComfortSection1ImageSequence,
+		// 	lastComfortSection1ImageSequence,
+		// 	firstLeisureSection2ImageSequence,
+		// 	firstLeisureSection1ImageSequence,
+		// 	firstMagaziImageSequneence,
+		// 	comfortBg_4_new,
+		// 	comfortSection2Bg2,
+		// 	comfortSection2Bg3,
+		// 	comfortSection4Bg2,
+		// 	comfortSection4Bg3,
+		// 	comfortSection4Bg,
+		// 	comfortSection6BG,
+		// 	comfortSection7BG,
+		// 	comfortSection8Bg,
+		// 	comfortSection8Bg2,
+		// 	comfortSection9Bg1,
+		// 	comfortSection9Bg2,
+		// 	comfortSection9Bg1,
+		// 	comfortSection9Bg3,
+		// 	comfortSection9Bg4,
+		// 	comfortSection5BG1,
+		// 	leisureSection3Bg1,
+		// 	leisureSection3Bg2,
+		// 	leisureSection4Bg4,
+		// 	leisureSection4Bg3,
+		// 	leisureSection5Bg1,
+		// 	leisureSection6Bg1,
+		// 	leisureSection6Bg2,
+		// 	leisureSection6Bg3,
+		// 	unqiueSection2Bg1
+		// ].forEach((v: any, index: any, arr: any) => {
+		// 	const image = new Image();
+		// 	image.src = v;
+
+		// 	image.onload = () => {
+		// 		arr.successLength = (arr.successLength || 0) + 1;
+		// 		const status = Math.ceil(arr.successLength / arr.length * 100);
+		// 		// console.log(arr.successLength);
+		// 		// console.log(arr.length);
+		// 		// console.log(status);
+
+		// 		setTimeout(() => {
+		// 			this.setState({ loadInProgress: status });
+		// 		}, 100);
+
+		// 		if (status > 99) {
+		// 			this.setState({ images: arr });
+		// 			this.loadFont();
+		// 			return;
+		// 		}
+		// 	};
+		// });
+	}
+	loadFont() {
 		(document as any).fonts.ready.then((fontFaceSet: any) => {
-			console.log(fontFaceSet)
-			setTimeout(() => {
-
-				this.setState({ isResourceLoaded: true });
-
-				this.setState({ loadInProgress: 1 });
-			}, 1500);
+			console.log(fontFaceSet);
 		});
 	}
 	render() {
 		return (
 			<PreloadComponent
+				privacyImages={this.privacy}
+				comfortImages={this.comfort}
+				leisureImages={this.leisure}
+				uniqueImages={this.unique}
 				isResourceLoaded={this.state.isResourceLoaded}
 				loadInProgress={this.state.loadInProgress}
 				images={this.state.images}

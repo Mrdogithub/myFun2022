@@ -5,7 +5,12 @@ export class PreloadComponent extends React.Component<any, any> {
 		const { isResourceLoaded, loadInProgress } = this.props;
 
 		if (isResourceLoaded) {
-			return <SwiperIndex images={this.props.images} />;
+			return <SwiperIndex
+			privacyImages={this.props.privacyImages}
+            comfortImages={this.props.comfortImages}
+            leisureImages={this.props.leisureImages}
+            uniqueImages={this.props.uniqueImages}
+			images={this.props.images} />;
 		}
 		return (
 			<div style={{ position: 'absolute', width: '100%', height: '100%', background: '#594E5B' }}>

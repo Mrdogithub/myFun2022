@@ -16,23 +16,28 @@ export class Info extends React.Component<any, any> {
 		this.props.onCloseInfoPanel();
 	}
 	
-	infoItem(e,index) {
+	infoItem(event,index) {
+		console.log(event)
+		// event.nativeEvent.stopPropagation()
+		event.stopPropagation();
+		event.nativeEvent.stopImmediatePropagation();
 		if(this.props.isStatic) return
 		this.infoItems.current.childNodes.forEach((item,i)=>{
 			if(index === i) {
 			
 				if(item.className == 'activeInfo'){
 					item.className = 'normalInfo'
-					this.total = this.total-this.infoData[index]
+			
+					this.props.onInfoItemChange(index,item.className);
 				
 				}else {
 					item.className = 'activeInfo'
-					this.total =this.total + this.infoData[index]
+					this.props.onInfoItemChange(index,item.className);
 				}
 				
 			} 
 		})
-		this.props.onInfoItemChange(index,this.total);
+	
 		console.log(this.total)
 	}
 	render() {
@@ -43,11 +48,10 @@ export class Info extends React.Component<any, any> {
 					className={this.props.inAnimate + ' ' + this.props.outAnimate}
 					style={{
 						position: 'absolute',
-						width: '554px',
+						width: '568px',
 						height: '100%',
-						left: '812px',
+						left: '806px',
 						top: '0px',
-
 						background: 'rgba(13, 19, 20, 0.38)',
 						backdropFilter: 'blur(10px)',
 						zIndex: '4'
@@ -86,7 +90,7 @@ export class Info extends React.Component<any, any> {
 
 						{/* 数据*/}
 						<div
-							onClick = {(e)=>{this.infoItem(e,0)}}
+							onTouchEnd = {(e)=>{ this.infoItem(e,0)}}
 							className = {this.props.isStatic?'normalInfo':'normalInfo'}
 							style={{
 								position: 'absolute',
@@ -133,7 +137,7 @@ export class Info extends React.Component<any, any> {
 						</div>
 
 						<div
-							onClick = {(e)=>{this.infoItem(e,1)}}
+							onTouchEnd = {(e)=>{this.infoItem(e,1)}}
 							style={{
 								position: 'absolute',
 								width: '372px',
@@ -181,7 +185,7 @@ export class Info extends React.Component<any, any> {
 
 						<div
 							className = 'normalInfo'
-							onClick = {(e)=>{this.infoItem(e,2)}}
+							onTouchEnd = {(e)=>{this.infoItem(e,2)}}
 							style={{
 								position: 'absolute',
 								width: '372px',
@@ -228,7 +232,7 @@ export class Info extends React.Component<any, any> {
 
 						<div
 						className = 'normalInfo'
-						onClick = {(e)=>{this.infoItem(e,3)}}
+						onTouchEnd = {(e)=>{this.infoItem(e,3)}}
 							style={{
 								position: 'absolute',
 								width: '372px',
@@ -282,7 +286,7 @@ export class Info extends React.Component<any, any> {
 							top: '35px',
 							zIndex: '10'
 						}}
-						onClick={() => this.closeInfoPanel()}
+						onTouchEnd={() => this.closeInfoPanel()}
 					>
 						<svg width="59" height="59" viewBox="0 0 59 59" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="29.5" cy="29.5" r="28.5" stroke="white" strokeWidth="2" />

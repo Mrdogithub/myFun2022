@@ -10,7 +10,11 @@ export default class SwiperIndex extends React.Component<any, any> {
         this.homeComponent = React.createRef();
     }
     homeComponent:any;
-  
+    
+    componentDidMount () {
+        this.setState({showMenu:'none'})
+    } 
+
     /**
      * 控制menu菜单跳转
      * 
@@ -40,7 +44,11 @@ export default class SwiperIndex extends React.Component<any, any> {
 	render() {   
         return(<>
             <Menu displayStatus = {this.state.showMenu} onSwiperTo={(index: number) => this.swiperTo(index)} userName = {this.state.userName}/>
-            <HomeComponentIndex3 
+            <HomeComponentIndex3
+            privacyImages={this.props.privacyImages}
+            comfortImages={this.props.comfortImages}
+            leisureImages={this.props.leisureImages}
+            uniqueImages={this.props.uniqueImages}
             ref = {this.homeComponent}
             onShowMenu = {()=>{this.showMenu()}}
             onUserNameChange = {(userInfo:string)=>{this.updateUserInfo(userInfo)}}></HomeComponentIndex3>
