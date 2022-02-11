@@ -2572,7 +2572,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	leisureSection2TouchEnd(event) {
 		event.stopPropagation();
 		event.nativeEvent.stopImmediatePropagation();
-		if (this.isStopTouchMove) return;
+		// if (this.isStopTouchMove) return;
 
 		this.updateMoveMousePositon(event);
 		this.move = this.state.endY - this.state.startY;
@@ -3547,10 +3547,10 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		}, 2500);
 	}
 	leisureSection2WrapperInAnimate() {
-		this.isStopTouchMove = true;
-		setTimeout(() => {
-			this.isStopTouchMove = false;
-		}, 2500);
+		// this.isStopTouchMove = true;
+		// setTimeout(() => {
+		// 	this.isStopTouchMove = false;
+		// }, 2500);
 	}
 	leisureSection3WrapperInAnimate() {
 		this.isStopTouchMove = true;
