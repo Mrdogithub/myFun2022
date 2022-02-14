@@ -52,6 +52,9 @@ export default class SwiperIndex extends React.Component<any, any> {
             comfortImages={this.props.comfortImages}
             leisureImages={this.props.leisureImages}
             uniqueImages={this.props.uniqueImages}
+            magazineImages={this.props.magazine}
+            frunkBarImges = {this.props.frunkBarImges}
+            digitalSealRotateImages={this.props.digitalSealRotate}
             ref = {this.homeComponent}
             resetMenuStatus = {()=>{this.resetMenuStatus()}}
             onShowMenu = {()=>{this.showMenu()}}

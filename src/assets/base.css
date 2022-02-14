@@ -1265,3 +1265,64 @@ leisureSection3Bg2In {
 .clipImage{
     clip: rect(0px,824px,1024px,0px);
 }
+
+
+.canvasImageScale{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: scale(.45);
+    left: -532px;
+    top: -226px;
+}
+
+
+
+.uniqueDynamicIn{
+    animation-duration: 1.5s;
+    animation-name: uniqueDynamicIn;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+    
+}
+
+
+@keyframes uniqueDynamicIn {
+    from {
+        width: 531px;
+        height: 226px;
+        left: 147px;
+        top: 169px;
+    }
+    to {
+        width: 361px;
+        height: 156px;
+        left: 500px;
+        top: 201px;
+    }
+}
+
+
+.uniqueDynamicOut{
+    animation-duration: 1.5s;
+    animation-name: uniqueDynamicOut;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+    
+}
+
+
+@keyframes uniqueDynamicOut {
+    from {
+        width: 361px;
+        height: 156px;
+        left: 500px;
+        top: 201px;
+    }
+    to {
+        width: 531px;
+        height: 226px;
+        left: 147px;
+        top: 169px;
+    }
+}

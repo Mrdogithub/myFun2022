@@ -39,7 +39,7 @@ export class EffectComponent extends React.Component<any, any> {
 	configs = {
 		backgroundColor: '#eee9e9',
 		particleNum: 1000,
-		step: 5,
+		step:30,
 		base: 1000,
 		zInc: 0.001
 	};
@@ -55,7 +55,9 @@ export class EffectComponent extends React.Component<any, any> {
 	simplexNoise;
 	zoff = 0;
 	gui;
-    _that
+	_that;
+	startTime = 0;
+	endTime = 0;
 	componentDidMount() {
 		window.requestAnimationFrame = (() => {
 			return (
@@ -88,7 +90,7 @@ export class EffectComponent extends React.Component<any, any> {
 		this.gui.add(this.configs, 'base', 500, 3000);
 		this.gui.add(this.configs, 'zInc', 0.0001, 0.01);
 		this.gui.close();
-
+		this.startTime =new Date().getTime();
 		this.update();
 	}
 	onWindowResize(e) {
@@ -104,13 +106,16 @@ export class EffectComponent extends React.Component<any, any> {
 	}
 
 	onCanvasClick(e) {
-		this.context.save();
-		this.context.globalAlpha = 0.8;
-		this.context.fillStyle = this.configs.backgroundColor;
-		this.context.fillRect(0, 0, this.screenWidth, this.screenHeight);
-		this.context.restore();
-
-		this.simplexNoise = new SimplexNoise();
+	
+		this.canvas = document.getElementById('c');
+		this.context = this.canvas.getContext('2d');
+		const image = this.canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"); 
+		const $a = document.createElement('a');
+		$a.setAttribute("href", image);
+		$a.setAttribute("download", "text.jpg");//需要加上后缀名
+		document.body.appendChild($a);
+		$a.click();
+		document.body.removeChild($a);
 	}
 	getNoise(x, y, z) {
 		const octaves = 4;
@@ -166,8 +171,20 @@ export class EffectComponent extends React.Component<any, any> {
 
 		this.hueBase += 0.1;
 		this.zoff += this.configs.zInc;
-    
-	requestAnimationFrame(this.update.bind(this));
+	
+		this.endTime = new Date().getTime() - this.startTime;
+
+		if(this.endTime/1000 <16) {
+			requestAnimationFrame(this.update.bind(this));
+
+			if(this.endTime/1000 >15) {
+				this.canvas.addEventListener('click', this.onCanvasClick, false);
+				const event = document.createEvent('MouseEvents');
+				event.initEvent('click',true,true);
+				this.canvas.dispatchEvent(event);
+			}
+		}
+		
     }
     createCanvas(p) {
             this.context.beginPath();

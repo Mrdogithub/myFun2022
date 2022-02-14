@@ -87,19 +87,21 @@ export class MainComponent extends React.Component<any, any> {
 			images: []
 		};
 	}
+	isPreload = true;
 	privacy: any = [];
 	comfort: any = [];
 	magazine: any = [];
 	leisureImges: any = [];
 	leisure: any = [];
 	unique: any = [];
+	frunkBarImges:any = [];
 	digitalSealRotate: any = [];
 	componentDidMount() {
 		this.loadFont();
 		this.loadPrivacy();
 		this.loadComfort();
 		this.loadMagazine();
-		this.loadleisureImges();
+		this.loadFrunkBarImges();
 		this.loadLeisure();
 		this.loadUnique();
 		this.loadDigitalSealRotate();
@@ -128,11 +130,11 @@ export class MainComponent extends React.Component<any, any> {
 		}
 	}
 
-	loadleisureImges() {
+	loadFrunkBarImges() {
 		/* leisure section2 序列帧 */
 
 		for (let i = 0; i <= 40; i++) {
-			this.leisureImges.push(require(`./assets/Video16_FrunkBar/Video16_FrunkBar${i}.jpg`));
+			this.frunkBarImges.push(require(`./assets/Video16_FrunkBar/Video16_FrunkBar${i}.jpg`));
 		}
 	}
 
@@ -224,7 +226,8 @@ export class MainComponent extends React.Component<any, any> {
 			this.unique,
 			this.magazine,
 			this.leisureImges,
-			this.digitalSealRotate
+			this.digitalSealRotate,
+			this.frunkBarImges
 		);
 		images.forEach((v: any, index: any, arr: any) => {
 			const image = new Image();
@@ -236,15 +239,44 @@ export class MainComponent extends React.Component<any, any> {
 
 				console.log('>>>arr.successLength :' + arr.successLength )
 				console.log('>>> / arr.length '+   arr.length )
+			
+				this.setState({ isResourceLoaded: true });
+
 				setTimeout(() => {
+					if(status >50) {
+						this.isPreload = true
+					}
+					if(status<90){
+
 					this.setState({ loadInProgress: status });
+					}
+
+					if(status>90) {
+						let _step = 90
+						setInterval(()=>{
+							this.setState({ loadInProgress: _step++ });
+							if(_step == 100) {
+								this.setState({ isResourceLoaded: true });
+								this.isPreload = false
+							}
+						},5000)
+					}
 				}, 100);
 
-				if (status > 99) {
-					this.setState({ isResourceLoaded: true });
-					this.setState({ loadInProgress: 1 });
-					return;
-				}
+				// if (status >90) {
+				// 	setTimeout(()=>{
+				// 		let step = 0;
+				// 		this.setState({ isResourceLoaded: true });
+				// 		const _interval = setInterval(()=>{
+				// 			this.setState({ loadInProgress: step++ });
+				// 		if(step == 4) {
+				// 			this.setState({ isResourceLoaded: true });
+				// 			clearInterval(_interval)
+				// 		}
+				// 		},5000)
+				// 	},20000)
+				// 	return;
+				// }
 			};
 		});
 	}
@@ -258,85 +290,6 @@ export class MainComponent extends React.Component<any, any> {
 	}
 	async loadImages() {
 		this.loadBgImages();
-		// [
-		// 	demoIntroSection1Bg,
-		// 	demoIntroSection1Bg3,
-		// 	demoIntroSection3Bg1,
-		// 	homePrivacy_1_small,
-		// 	homeConfort_2_small,
-		// 	homeLeisure_3_small,
-		// 	homeUnique_4_small,
-		// 	privacySmallTitle,
-		// 	privacySmallIndex,
-		// 	comfortSmallTitle,
-		// 	comfortSmallIndex,
-		// 	leisureSmallTitle,
-		// 	leisureSmallIndex,
-		// 	uniqueSmallTitle,
-		// 	uniqueSmallIndex,
-		// 	videoPRemoteVhauffeur,
-		// 	homePrivacy_1,
-		// 	homeConfort_2,
-		// 	homeLeisure_3,
-		// 	homeUnique_4,
-		// 	section2IndeImage,
-		// 	sectoin_4_phoneVideo,
-		// 	privacySection5ImageSequence,
-		// 	privacy_section_3_bg,
-		// 	privacy_section_7_bg,
-		// 	firstPrivactSection6ImageSequence,
-		// 	firstComfortSection1ImageSequence,
-		// 	lastComfortSection1ImageSequence,
-		// 	firstLeisureSection2ImageSequence,
-		// 	firstLeisureSection1ImageSequence,
-		// 	firstMagaziImageSequneence,
-		// 	comfortBg_4_new,
-		// 	comfortSection2Bg2,
-		// 	comfortSection2Bg3,
-		// 	comfortSection4Bg2,
-		// 	comfortSection4Bg3,
-		// 	comfortSection4Bg,
-		// 	comfortSection6BG,
-		// 	comfortSection7BG,
-		// 	comfortSection8Bg,
-		// 	comfortSection8Bg2,
-		// 	comfortSection9Bg1,
-		// 	comfortSection9Bg2,
-		// 	comfortSection9Bg1,
-		// 	comfortSection9Bg3,
-		// 	comfortSection9Bg4,
-		// 	comfortSection5BG1,
-		// 	leisureSection3Bg1,
-		// 	leisureSection3Bg2,
-		// 	leisureSection4Bg4,
-		// 	leisureSection4Bg3,
-		// 	leisureSection5Bg1,
-		// 	leisureSection6Bg1,
-		// 	leisureSection6Bg2,
-		// 	leisureSection6Bg3,
-		// 	unqiueSection2Bg1
-		// ].forEach((v: any, index: any, arr: any) => {
-		// 	const image = new Image();
-		// 	image.src = v;
-
-		// 	image.onload = () => {
-		// 		arr.successLength = (arr.successLength || 0) + 1;
-		// 		const status = Math.ceil(arr.successLength / arr.length * 100);
-		// 		// console.log(arr.successLength);
-		// 		// console.log(arr.length);
-		// 		// console.log(status);
-
-		// 		setTimeout(() => {
-		// 			this.setState({ loadInProgress: status });
-		// 		}, 100);
-
-		// 		if (status > 99) {
-		// 			this.setState({ images: arr });
-		// 			this.loadFont();
-		// 			return;
-		// 		}
-		// 	};
-		// });
 	}
 	loadFont() {
 		(document as any).fonts.ready.then((fontFaceSet: any) => {
@@ -346,10 +299,14 @@ export class MainComponent extends React.Component<any, any> {
 	render() {
 		return (
 			<PreloadComponent
+			isPreload = {this.isPreload}
 				privacyImages={this.privacy}
 				comfortImages={this.comfort}
 				leisureImages={this.leisure}
 				uniqueImages={this.unique}
+				magazineImages={this.magazine}
+				frunkBarImges = {this.frunkBarImges}
+				digitalSealRotateImages={this.digitalSealRotate}
 				isResourceLoaded={this.state.isResourceLoaded}
 				loadInProgress={this.state.loadInProgress}
 				images={this.state.images}
