@@ -422,5 +422,53 @@ export const subMenuList = [
                 }
             }
         ]
+    },
+
+    {
+        left: '1134px',
+        top: '279px',
+        bgColor: '#657388',
+        indexGroup: [
+            {
+                indexText: '01',
+                isActive: true,
+                slideIndex: 'box',
+                indexTextStyle: {
+                    left: '24px',
+                    top: '21px',
+                    width: '47px',
+                    height: '47px'
+                },
+                subText: 'Home',
+                subTextStyle: {
+                    left: '75px',
+                    top: '30px',
+                    width: '199px',
+                    height: '17px'
+                }
+            },
+            {
+                indexText: '02',
+                isActive: false,
+                slideIndex: 7,
+                indexTextStyle: {
+                    left: '292px',
+                    top: '30px',
+                    width: '35px',
+                    height: '30px'
+                }
+            },
+            {
+                indexText: '03',
+                isActive: false,
+                slideIndex: 10,
+                indexTextStyle: {
+                    left: '355px',
+                    top: '30px',
+                    width: '35px',
+                    height: '30px'
+                }
+            }
+        ]
     }
 ];

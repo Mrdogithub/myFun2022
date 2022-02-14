@@ -4,8 +4,10 @@ export class NormalIndex extends React.Component<any, any> {
 	constructor(props: any) {
 		super(props);
 	}
-	swiperTo(slideIndex: number) {
-		this.props.onSwiperTo(slideIndex);
+	swiperTo(event,slideIndex: number) {
+		event.stopPropagation();
+		event.nativeEvent.stopImmediatePropagation();
+		this.props.onSwiperTo(event,slideIndex);
 	}
 	render() {
 		const { indexText, subText, indexTextStyle, subTextStyle,slideIndex } = this.props.indexItem;
@@ -21,7 +23,7 @@ export class NormalIndex extends React.Component<any, any> {
 					boxSizing: 'border-box'
 				}}
 				className = 'dFordSunMenuNormalIndex'
-				onTouchStart={() => this.swiperTo(slideIndex)}
+				onTouchEnd={(event) => this.swiperTo(event,slideIndex)}
 			>
 				{indexText}
 			</div>

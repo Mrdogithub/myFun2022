@@ -34,9 +34,9 @@ export class SubMenu extends React.Component<any, any> {
 			bgColor
 		};
 	}
-	swiperTo(index: number) {
+	swiperTo(event,index: number) {
 		if (!this.props.onSwiperTo) return;
-		this.props.onSwiperTo(index);
+		this.props.onSwiperTo(event,index);
 	}
 	render() {
 		return (
@@ -63,14 +63,14 @@ export class SubMenu extends React.Component<any, any> {
 							<ActiveIndex
 								indexItem={item}
 								key={'ActiveIndex' + index}
-								onSwiperTo={(index: number) => this.swiperTo(index)}
+								onSwiperTo={(event,index: number) => this.swiperTo(event,index)}
 							/>
 						) : (
 							this.props.isActiveOnly?'':
 							<NormalIndex
 								indexItem={item}
 								key={'NormalIndex' + index}
-								onSwiperTo={(index: number) => this.swiperTo(index)}
+								onSwiperTo={(event,index: number) => this.swiperTo(event,index)}
 							/>
 						);
 					})}

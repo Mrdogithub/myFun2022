@@ -32,7 +32,12 @@ body {
 }
 
 .dFordTextThin {
-
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    user-select: none;
+    /* Non-prefixed version, currently*/
     font-family: 'Lincoln-ProximaNova-Thin';
     font-style: normal;
     font-weight: 300;
@@ -41,7 +46,6 @@ body {
     letter-spacing: -0.01em;
     color: #FFFFFF;
 }
-
 
 .slideWrappr {
     position: absolute;
@@ -60,6 +64,12 @@ body {
     text-transform: uppercase;
     color: #FFFFFF;
     opacity: 0.9;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    user-select: none;
+    /* Non-prefixed version, currently*/
 }
 
 .dFordSmallTitle {
@@ -71,6 +81,12 @@ body {
     text-transform: uppercase;
     color: #FFFFFF;
     opacity: 0.9;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    user-select: none;
+    /* Non-prefixed version, currently*/
 }
 
 .dFordSubTitle {
@@ -81,13 +97,15 @@ body {
     line-height: 46px;
     /* identical to box height */
     text-transform: uppercase;
-
     color: #FFFFFF;
-
     opacity: 0.9;
-
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    user-select: none;
+    /* Non-prefixed version, currently*/
 }
-
 
 .dFordNormalTitle {
     font-family: 'LincolnMillerB-Roman';
@@ -98,9 +116,13 @@ body {
     text-transform: uppercase;
     opacity: 0.8;
     color: #FFFFFF;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    user-select: none;
+    /* Non-prefixed version, currently*/
 }
-
-
 
 .dFordMainTitle {
     font-family: 'LincolnMillerB-Bold';
@@ -113,6 +135,12 @@ body {
     text-transform: uppercase;
     color: #FBFBFB;
     opacity: 0.9;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    user-select: none;
+    /* Non-prefixed version, currently*/
 }
 
 .dFordSunMenuText {
@@ -126,6 +154,12 @@ body {
     text-transform: uppercase;
     color: #FFFFFF;
     opacity: 0.6;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    user-select: none;
+    /* Non-prefixed version, currently*/
 }
 
 .dFordSunMenuActiveIndex {
@@ -135,20 +169,28 @@ body {
     font-size: 38px;
     line-height: 47px;
     color: #FFFFFF;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    user-select: none;
+    /* Non-prefixed version, currently*/
 }
 
 .dFordSunMenuNormalIndex {
-
     font-family: 'LincolnMillerB-Roman';
     font-style: normal;
     font-weight: normal;
     font-size: 24px;
     line-height: 30px;
-
     color: #FFFFFF;
-
     opacity: 0.4;
-
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    user-select: none;
+    /* Non-prefixed version, currently*/
 }
 
 .dFordText {
@@ -160,9 +202,13 @@ body {
     text-align: left;
     letter-spacing: -0.01em;
     color: #FFFFFF;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    user-select: none;
+    /* Non-prefixed version, currently*/
 }
-
-
 
 .dFordText::before {
     position: absolute;
@@ -173,7 +219,12 @@ body {
     top: -30px;
     border: 5px solid #DBC17D;
     transform: rotate(180deg);
-
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    user-select: none;
+    /* Non-prefixed version, currently*/
 }
 
 .dFordNormalText {
@@ -185,9 +236,13 @@ body {
     text-align: left;
     letter-spacing: -0.01em;
     color: #FFFFFF;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    user-select: none;
+    /* Non-prefixed version, currently*/
 }
-
-
 
 .homePageWrapper {
     width: 100%;
@@ -238,11 +293,9 @@ body {
     object-fit: cover !important;
 }
 
-.video-react-has-started .video-react-control-bar,
-.video-react .video-react-big-play-button {
+.video-react-has-started .video-react-control-bar, .video-react .video-react-big-play-button {
     display: none !important;
 }
-
 
 .imageCover {
     position: absolute;
@@ -250,7 +303,6 @@ body {
     height: 100%;
     object-fit: cover;
 }
-
 
 /* leisure section6 grally*/
 
@@ -270,11 +322,8 @@ body {
 }
 
 .normalGrally {
-
-
     background: rgba(20, 20, 20, 0.3);
     backdrop-filter: blur(20px);
-
 }
 
 .imageWrapper {
@@ -321,20 +370,15 @@ body {
     0% {
         background-position: 0% 50%;
     }
-
     50% {
         background-position: 100% 50%;
     }
-
     100% {
         background-position: 0% 50%;
     }
 }
 
-
-
 .lines {
-
     position: absolute;
     top: 0;
     left: 0;
@@ -345,7 +389,6 @@ body {
 }
 
 .line {
-
     position: absolute;
     width: 1px;
     height: 100%;
@@ -385,20 +428,14 @@ body {
     animation-delay: 2.5s
 }
 
-
 @keyframes drop {
-
     0% {
         top: -50%
     }
-
     100% {
-
         top: 110%
     }
 }
-
-
 
 .bg {
     animation: slide 3s ease-in-out infinite alternate;
@@ -441,13 +478,10 @@ h1 {
     0% {
         transform: translateX(-25%);
     }
-
     100% {
         transform: translateX(25%);
     }
 }
-
-
 
 .lightWrapper {
     margin: 0;
@@ -585,26 +619,21 @@ h1 {
     left: 85%;
 }
 
-
 @-webkit-keyframes floatUp {
     0% {
         top: 100vh;
         opacity: 0;
     }
-
     25% {
         opacity: 1;
     }
-
     50% {
         top: 0vh;
         opacity: .8;
     }
-
     75% {
         opacity: 1;
     }
-
     100% {
         top: -100vh;
         opacity: 0;
@@ -616,20 +645,16 @@ h1 {
         top: 100vh;
         opacity: 0;
     }
-
     25% {
         opacity: 1;
     }
-
     50% {
         top: 0vh;
         opacity: .8;
     }
-
     75% {
         opacity: 1;
     }
-
     100% {
         top: -100vh;
         opacity: 0;
@@ -641,20 +666,16 @@ h1 {
         top: 100vh;
         opacity: 0;
     }
-
     25% {
         opacity: 1;
     }
-
     50% {
         top: 0vh;
         opacity: .8;
     }
-
     75% {
         opacity: 1;
     }
-
     100% {
         top: -100vh;
         opacity: 0;
@@ -666,34 +687,26 @@ h1 {
         top: 100vh;
         opacity: 0;
     }
-
     25% {
         opacity: 1;
     }
-
     50% {
         top: 0vh;
         opacity: .8;
     }
-
     75% {
         opacity: 1;
     }
-
     100% {
         top: -100vh;
         opacity: 0;
     }
 }
 
-
-
-
 @-webkit-keyframes fadeIn {
     from {
         opacity: 0;
     }
-
     to {
         opacity: 1;
     }
@@ -703,7 +716,6 @@ h1 {
     from {
         opacity: 0;
     }
-
     to {
         opacity: 1;
     }
@@ -713,7 +725,6 @@ h1 {
     from {
         opacity: 0;
     }
-
     to {
         opacity: 1;
     }
@@ -723,12 +734,10 @@ h1 {
     from {
         opacity: 0;
     }
-
     to {
         opacity: 1;
     }
 }
-
 
 .comfortSection8ClickMagamize {
     animation-duration: 1s;
@@ -741,7 +750,6 @@ h1 {
     from {
         top: 145px;
     }
-
     to {
         top: 574px
     }
@@ -749,7 +757,6 @@ h1 {
 
 .comfortSection8ClickMagamizeOut {
     animation-duration: 1.5s;
-    
     animation-name: slideOut;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
@@ -759,7 +766,6 @@ h1 {
     from {
         top: 574px;
     }
-
     to {
         top: 0px
     }
@@ -778,7 +784,6 @@ h1 {
         left: 0%;
         height: 100%
     }
-
     to {
         left: -20%;
         height: 80%
@@ -797,60 +802,61 @@ h1 {
         left: -20%;
         height: 80%
     }
-
     to {
         left: 0%;
         height: 100%
     }
 }
 
-.leisureSection3Bg1{
+.leisureSection3Bg1 {
     animation-duration: 1.5s;
     animation-name: leisureSection3Bg1In;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
 }
-.leisureSection3Bg2Back{
+
+.leisureSection3Bg2Back {
     animation-duration: 1s;
     animation-name: leisureSection3Bg1In;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
 }
+
 @keyframes leisureSection3Bg1In {
     from {
-       opacity: 1;
+        opacity: 1;
     }
-
     to {
         opacity: 0;
     }
 }
 
-.leisureSection3Bg1Back,{
+.leisureSection3Bg1Back, {
     animation-duration: 1.5s;
     animation-name: leisureSection3Bg1Back;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
 }
-leisureSection3Bg2In{
+
+leisureSection3Bg2In {
     animation-duration: 2.8s;
     animation-name: leisureSection3Bg1Back;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
 }
+
 @keyframes leisureSection3Bg1Back {
     from {
-       opacity: 0;
+        opacity: 0;
     }
-
     to {
         opacity: 1;
     }
 }
 
-/*demoIntroSection1Wrapper*/ 
+/*demoIntroSection1Wrapper*/
 
-.demoIntroSection1Wrapper{
+.demoIntroSection1Wrapper {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -862,118 +868,117 @@ leisureSection3Bg2In{
 
 /*privacySection2*/
 
-.privacySection2leftContent{
+.privacySection2leftContent {
     position: absolute;
     width: 545px;
-    height:430px;
+    height: 430px;
     left: 0px;
     top: 594px;
-    background:rgba(139, 146, 156, 0.2);
+    background: rgba(139, 146, 156, 0.2);
     backdrop-filter: blur(46px);
 }
+
 /*privacySection1*/
-.privacySection1WrapperLeftContent{
+
+.privacySection1WrapperLeftContent {
     position: absolute;
     width: 545px;
-    height:100%;
+    height: 100%;
     left: 0px;
     top: 0px;
-    background:rgba(26, 32, 50, 0.16);
+    background: rgba(26, 32, 50, 0.16);
     backdrop-filter: blur(15px);
 }
+
 /*privacySection3*/
 
-.privacySection3imageIn{
+.privacySection3imageIn {
     animation-duration: 1.5s;
     animation-name: privacySection3imageIn;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
 }
+
 @keyframes privacySection3imageIn {
     from {
-       width: 100%;
-       transform:scale(1);
-       left: 0px;
+        width: 100%;
+        transform: scale(1);
+        left: 0px;
     }
-
     to {
         width: 80%;
-        transform:scale(2);
+        transform: scale(2);
         left: -274px;
     }
 }
 
-
-.privacySection3imageOut{
+.privacySection3imageOut {
     animation-duration: 1.5s;
     animation-name: privacySection3imageOut;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
 }
+
 @keyframes privacySection3imageOut {
     from {
-       width: 80%;
-       transform:scale(2.5);
-       left: -300px;
+        width: 80%;
+        transform: scale(2.5);
+        left: -300px;
     }
-
     to {
-       
         width: 100%;
-        transform:scale(1);
+        transform: scale(1);
         left: 0px;
     }
 }
-.privacySection3leftContentIn{
+
+.privacySection3leftContentIn {
     animation-duration: 2.8s;
     animation-name: privacySection3leftContentIn;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
 }
+
 @keyframes privacySection3leftContentIn {
     from {
-       width: 545px;
+        width: 545px;
     }
-
     to {
-       
         width: 100%;
     }
 }
 
-.privacySection3leftContentOut{
+.privacySection3leftContentOut {
     animation-duration: 2.8s;
     animation-name: privacySection3leftContentOut;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
 }
+
 @keyframes privacySection3leftContentOut {
     from {
-       width: 100%;
+        width: 100%;
     }
-
     to {
-       
         width: 545px;
     }
 }
 
-
 /* privacy section 7*/
 
-.privacy_section_7_bgIn{
+.privacy_section_7_bgIn {
     animation-duration: 2.8s;
     animation-name: privacy_section_7_bgIn;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
 }
+
 @keyframes privacy_section_7_bgIn {
     from {
         top: 200px;
         left: -660px;
         transform: scale(2);
     }
-
     to {
         top: -39px;
         left: -386px;
@@ -981,15 +986,15 @@ leisureSection3Bg2In{
     }
 }
 
-.privacy_section_7_bgBack{
+.privacy_section_7_bgBack {
     animation-duration: 2.8s;
     animation-name: privacy_section_7_bgBack;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
 }
+
 @keyframes privacy_section_7_bgBack {
     from {
-
         top: -39px;
         left: -386px;
         transform: scale(1.57);
@@ -1003,13 +1008,13 @@ leisureSection3Bg2In{
 
 /* comfort section 2*/
 
-
-.comfortSection2Box05In{
+.comfortSection2Box05In {
     animation-duration: 2.8s;
     animation-name: comfortSection2Box05In;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
 }
+
 @keyframes comfortSection2Box05In {
     from {
         left: 0px
@@ -1019,15 +1024,15 @@ leisureSection3Bg2In{
     }
 }
 
-.comfortSection2Box05Out{
+.comfortSection2Box05Out {
     animation-duration: 2.8s;
     animation-name: comfortSection2Box05Out;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
 }
+
 @keyframes comfortSection2Box05Out {
     from {
-
         left: 530px
     }
     to {
@@ -1035,8 +1040,7 @@ leisureSection3Bg2In{
     }
 }
 
-
-.comfortSection2SplitterMoveHanlder::before{
+.comfortSection2SplitterMoveHanlder::before {
     width: 0;
     height: 0;
     border: 25px solid transparent;
@@ -1047,7 +1051,7 @@ leisureSection3Bg2In{
     left: 51px;
 }
 
-.comfortSection2SplitterMoveHanlder::after{
+.comfortSection2SplitterMoveHanlder::after {
     width: 0;
     height: 0;
     border: 25px solid transparent;
@@ -1058,15 +1062,15 @@ leisureSection3Bg2In{
     left: -5px;
 }
 
-.comfortSection4Image1In{
-    animation-duration: 1.5s;
+.comfortSection4Image1In {
+    animation-duration: 1s;
     animation-name: comfortSection4Image1In;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
 }
+
 @keyframes comfortSection4Image1In {
     from {
-
         width: 545px
     }
     to {
@@ -1074,16 +1078,15 @@ leisureSection3Bg2In{
     }
 }
 
-.comfortSection4Image1Out{
-    animation-duration: 1.5s;
+.comfortSection4Image1Out {
+    animation-duration: 1s;
     animation-name: comfortSection4Image1Out;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
 }
+
 @keyframes comfortSection4Image1Out {
     from {
-
-  
         width: 821px
     }
     to {
@@ -1091,97 +1094,89 @@ leisureSection3Bg2In{
     }
 }
 
-.comfortSection4HandIn{
-    animation-duration: 1.5s;
+.comfortSection4HandIn {
+    animation-duration: 1s;
     animation-name: comfortSection4HandIn;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
 }
+
 @keyframes comfortSection4HandIn {
     from {
-
-        left: 33px
+        left: 350px
     }
     to {
-        left: 333px
+        left: 490px;
     }
 }
 
-.comfortSection4HandOut{
-    animation-duration: 1.5s;
+.comfortSection4HandOut {
+    animation-duration: 1s;
     animation-name: comfortSection4HandOut;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
 }
+
 @keyframes comfortSection4HandOut {
     from {
-
-   
-        left: 333px
+        left: 490px
     }
     to {
-        left: 33px
+        left: 350px
     }
 }
 
-
-
-.uniqueSection2MaxImageBgIn{
+.uniqueSection2MaxImageBgIn {
     animation-duration: 1.5s;
     animation-name: uniqueSection2MaxImageBgIn;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
 }
+
 @keyframes uniqueSection2MaxImageBgIn {
     from {
-
-   
-        transform:scale(1);
+        transform: scale(1);
         top: 0px;
         left: 0px;
     }
     to {
-        transform:scale(1.5);
+        transform: scale(1.5);
         top: 119px;
         left: -270px;
     }
 }
 
-
-.uniqueSection2MaxImageBgOut{
+.uniqueSection2MaxImageBgOut {
     animation-duration: 1.5s;
     animation-name: uniqueSection2MaxImageBgOut;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
 }
+
 @keyframes uniqueSection2MaxImageBgOut {
     from {
-
-        transform:scale(1.5);
+        transform: scale(1.5);
         top: 119px;
         left: -270px;
-    
     }
     to {
-        transform:scale(1);
+        transform: scale(1);
         top: 0px;
         left: 0px;
     }
 }
 
-
-
-.leisureSetion6GrallyMaxImageIn{
+.leisureSetion6GrallyMaxImageIn {
     animation-duration: 1.5s;
     animation-name: leisureSetion6GrallyMaxImageIn;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
 }
+
 @keyframes leisureSetion6GrallyMaxImageIn {
     from {
         top: 0px;
         transform: scale(1);
-    
     }
     to {
         top: -80px;
@@ -1189,15 +1184,15 @@ leisureSection3Bg2In{
     }
 }
 
-.leisureSetion6GrallyMaxImageOut{
+.leisureSetion6GrallyMaxImageOut {
     animation-duration: 1.5s;
     animation-name: leisureSetion6GrallyMaxImageOut;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
 }
+
 @keyframes leisureSetion6GrallyMaxImageOut {
     from {
-    
         top: -80px;
         transform: scale(1.2);
     }
@@ -1207,4 +1202,66 @@ leisureSection3Bg2In{
     }
 }
 
+/*** comfortSection9Wrapper **/
 
+.maskBg1 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    background: linear-gradient(124.38deg, rgba(242, 210, 192, 0.22) 30.05%, rgba(27, 22, 82, 0.22) 78.59%)
+}
+
+.maskBg2 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    background: linear-gradient(204.7deg, rgba(0, 0, 0, 0) 57.76%, rgba(19, 21, 40, 0.4) 88.78%);
+    mix-blend-mode: multiply;
+}
+
+
+
+.comfortSection9Bg1In {
+    animation-duration: 1.5s;
+    animation-name: comfortSection9Bg1In;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+
+@keyframes comfortSection9Bg1In {
+    from {
+        height: 712px;
+        filter: blur(40px);
+    }
+    to {
+        height: 100%;
+        filter: blur(0px);
+    }
+}
+
+
+.comfortSection9Bg1Out {
+    animation-duration: 1.5s;
+    animation-name: comfortSection9Bg1Out;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+
+@keyframes comfortSection9Bg1Out {
+    from {
+        height: 100%;
+        filter: blur(0px);
+    }
+    to {
+        height: 712px;
+        filter: blur(40px);
+    }
+}
+
+.clipImage{
+    clip: rect(0px,824px,1024px,0px);
+}

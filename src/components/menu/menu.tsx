@@ -52,8 +52,8 @@ export class Menu extends React.Component<any, any> {
 			});
 		}
 	}
-	swiperTo(index: number) {
-		this.props.onSwiperTo(index);
+	swiperTo(event,index: number) {
+		this.props.onSwiperTo(event,index);
 		this.setState({ isMenuExpanded: false });
 	}
 	render() {
@@ -86,7 +86,7 @@ export class Menu extends React.Component<any, any> {
 									isActiveOnly = {true}
 									bgColor={item.bgColor}
 									indexGroup={item.indexGroup}
-									onSwiperTo={(index: number) => this.swiperTo(index)}
+									onSwiperTo={(event,index: number) => this.swiperTo(event,index)}
 								/>
 							);
 						})}

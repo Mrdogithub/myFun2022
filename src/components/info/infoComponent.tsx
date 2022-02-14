@@ -17,8 +17,6 @@ export class Info extends React.Component<any, any> {
 	}
 	
 	infoItem(event,index) {
-		console.log(event)
-		// event.nativeEvent.stopPropagation()
 		event.stopPropagation();
 		event.nativeEvent.stopImmediatePropagation();
 		if(this.props.isStatic) return
@@ -50,7 +48,7 @@ export class Info extends React.Component<any, any> {
 						position: 'absolute',
 						width: '568px',
 						height: '100%',
-						left: '806px',
+						left: '821px',
 						top: '0px',
 						background: 'rgba(13, 19, 20, 0.38)',
 						backdropFilter: 'blur(10px)',
