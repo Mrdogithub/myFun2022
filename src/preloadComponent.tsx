@@ -12,9 +12,11 @@ export class PreloadComponent extends React.Component<any, any> {
 						comfortImages={this.props.comfortImages}
 						leisureImages={this.props.leisureImages}
 						uniqueImages={this.props.uniqueImages}
-						magazineImages={this.props.magazine}
+						magazineImages={this.props.magazineImages}
 						frunkBarImges={this.props.frunkBarImges}
-						digitalSealRotateImages={this.props.digitalSealRotate}
+						advancedDimmableWindowImages = {this.props.advancedDimmableWindowImages}
+						digitalSealInsertImages = {this.props.digitalSealInsertImages}
+						digitalSealRotateImages={this.props.digitalSealRotateImages}
 						images={this.props.images}
 					/>
 				</div>

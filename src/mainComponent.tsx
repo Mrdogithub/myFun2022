@@ -89,6 +89,8 @@ export class MainComponent extends React.Component<any, any> {
 	}
 	isPreload = true;
 	privacy: any = [];
+	advancedDimmableWindow:any = [];
+	digitalSealInsert:any = [];
 	comfort: any = [];
 	magazine: any = [];
 	leisureImges: any = [];
@@ -106,8 +108,27 @@ export class MainComponent extends React.Component<any, any> {
 		this.loadUnique();
 		this.loadDigitalSealRotate();
 		this.loadImages();
+		this.loadadvancedDimmableWindow();
+		this.loadDigitalSealInsert();
+	}
+	
+	
+
+	loadDigitalSealInsert() {
+		/* privacy 首页序列帧 */
+
+		for (let i = 0; i <= 40; i++) {
+			this.digitalSealInsert.push(require(`./assets/Video02_DigitalSealInsert/Video02_DigitalSealInsert${i}.jpg`));
+		}
 	}
 
+	loadadvancedDimmableWindow() {
+		/* privacy 首页序列帧 */
+
+		for (let i = 0; i <= 269; i++) {
+			this.advancedDimmableWindow.push(require(`./assets/Video01_AdvancedDimmableWindow/Video01_AdvancedDimmableWindow${i}.jpg`));
+		}
+	}
 	loadPrivacy() {
 		/* privacy 首页序列帧 */
 
@@ -125,7 +146,7 @@ export class MainComponent extends React.Component<any, any> {
 	}
 
 	loadMagazine() {
-		for (let i = 0; i <= 15; i++) {
+		for (let i = 0; i <= 120; i++) {
 			this.magazine.push(require(`./assets/Video13_Magazine/Video13_Magazine${i}.png`));
 		}
 	}
@@ -227,7 +248,9 @@ export class MainComponent extends React.Component<any, any> {
 			this.magazine,
 			this.leisureImges,
 			this.digitalSealRotate,
-			this.frunkBarImges
+			this.frunkBarImges,
+			this.advancedDimmableWindow,
+			this.digitalSealInsert
 		);
 		images.forEach((v: any, index: any, arr: any) => {
 			const image = new Image();
@@ -236,10 +259,6 @@ export class MainComponent extends React.Component<any, any> {
 			image.onload = () => {
 				arr.successLength = (arr.successLength || 0) + 1;
 				const status = Math.ceil(arr.successLength / arr.length * 100);
-
-				console.log('>>>arr.successLength :' + arr.successLength )
-				console.log('>>> / arr.length '+   arr.length )
-			
 				this.setState({ isResourceLoaded: true });
 
 				setTimeout(() => {
@@ -263,20 +282,6 @@ export class MainComponent extends React.Component<any, any> {
 					}
 				}, 100);
 
-				// if (status >90) {
-				// 	setTimeout(()=>{
-				// 		let step = 0;
-				// 		this.setState({ isResourceLoaded: true });
-				// 		const _interval = setInterval(()=>{
-				// 			this.setState({ loadInProgress: step++ });
-				// 		if(step == 4) {
-				// 			this.setState({ isResourceLoaded: true });
-				// 			clearInterval(_interval)
-				// 		}
-				// 		},5000)
-				// 	},20000)
-				// 	return;
-				// }
 			};
 		});
 	}
@@ -306,7 +311,9 @@ export class MainComponent extends React.Component<any, any> {
 				uniqueImages={this.unique}
 				magazineImages={this.magazine}
 				frunkBarImges = {this.frunkBarImges}
+				advancedDimmableWindowImages = {this.advancedDimmableWindow}
 				digitalSealRotateImages={this.digitalSealRotate}
+				digitalSealInsertImages = {this.digitalSealInsert}
 				isResourceLoaded={this.state.isResourceLoaded}
 				loadInProgress={this.state.loadInProgress}
 				images={this.state.images}
