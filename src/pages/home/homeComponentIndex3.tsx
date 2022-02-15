@@ -3430,9 +3430,9 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			this.leisureSetion6GrallyMaxImage.current.className = 'imageCover';
 		}, 1500);
 
-		this.leisureSection7ReturnHome.current.className = 'animate__animated animate__slideOutDown';
-		this.leisureSection7ReturnHomeTitle.current.className = 'animate__animated animate__slideOutDown';
-		this.leisureSetion6GrallyMaxImage.current.className = 'imageCover leisureSetion6GrallyMaxImageOut';
+		// this.leisureSection7ReturnHome.current.className = 'animate__animated animate__slideOutDown';
+		// this.leisureSection7ReturnHomeTitle.current.className = 'animate__animated animate__slideOutDown';
+		// this.leisureSetion6GrallyMaxImage.current.className = 'imageCover leisureSetion6GrallyMaxImageOut';
 	}
 	uniqueSection1WrapperInAnimate() {
 		this.uniqueSection1Wrapper.current.style.display = 'block';
@@ -9253,7 +9253,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							fontSize: '40px'
 						}}
 					>
-			
+						{this.state.uniqueSection2Total}
 					</div>
 					<div
 						id="uniqueSection2DynamicBg"

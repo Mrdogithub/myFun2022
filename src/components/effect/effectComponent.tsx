@@ -39,7 +39,7 @@ export class EffectComponent extends React.Component<any, any> {
 	configs = {
 		backgroundColor: '#eee9e9',
 		particleNum: 1000,
-		step:30,
+		step: 30,
 		base: 1000,
 		zInc: 0.001
 	};
@@ -68,7 +68,6 @@ export class EffectComponent extends React.Component<any, any> {
 				}
 			);
 		})();
-
 	}
 
 	init() {
@@ -85,12 +84,12 @@ export class EffectComponent extends React.Component<any, any> {
 
 		this.canvas.addEventListener('click', this.onCanvasClick, false);
 
-        this.gui = new GUI();
+		this.gui = new GUI();
 		this.gui.add(this.configs, 'step', 1, 10);
 		this.gui.add(this.configs, 'base', 500, 3000);
 		this.gui.add(this.configs, 'zInc', 0.0001, 0.01);
 		this.gui.close();
-		this.startTime =new Date().getTime();
+		this.startTime = new Date().getTime();
 		this.update();
 	}
 	onWindowResize(e) {
@@ -106,16 +105,36 @@ export class EffectComponent extends React.Component<any, any> {
 	}
 
 	onCanvasClick(e) {
-	
 		this.canvas = document.getElementById('c');
 		this.context = this.canvas.getContext('2d');
-		const image = this.canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"); 
+		const image = this.canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
+		console.log(image)
 		const $a = document.createElement('a');
-		$a.setAttribute("href", image);
-		$a.setAttribute("download", "text.jpg");//需要加上后缀名
+		$a.setAttribute('href', image);
+		$a.setAttribute('download', 'text.jpg'); //需要加上后缀名
 		document.body.appendChild($a);
 		$a.click();
 		document.body.removeChild($a);
+
+		fetch('http://localhost:3000/saveImage', {
+			method: 'post',
+			headers: {
+				Accept: 'application/json,text/plain,*/*' /* 格式限制：json、文本、其他格式 */,
+				'Content-Type': 'application/x-www-form-urlencoded' /* 请求内容类型 */
+			},
+			body:`image=${image}`,
+			mode: 'cors',
+			cache: 'default'
+		})
+			.then((res) => {
+				console.log(res);
+			})
+			.then((data) => {
+				console.log(data);
+			})
+			.catch(function(error) {
+				console.log(error);
+			});
 	}
 	getNoise(x, y, z) {
 		const octaves = 4;
@@ -146,11 +165,11 @@ export class EffectComponent extends React.Component<any, any> {
 	update() {
 		const step = this.configs.step;
 		const base = this.configs.base;
-		let  p, angle
-        this.context = this.canvas.getContext('2d');
+		let p, angle;
+		this.context = this.canvas.getContext('2d');
 		this.context.lineWidth = 0.3;
 		this.context.lineCap = this.context.lineJoin = 'round';
-		for (let i = 0; i< this.particles.length; i++) {
+		for (let i = 0; i < this.particles.length; i++) {
 			p = this.particles[i];
 
 			p.pastX = p.x;
@@ -161,8 +180,8 @@ export class EffectComponent extends React.Component<any, any> {
 			p.y += Math.sin(angle) * step;
 
 			if (p.color.a < 1) p.color.a += 0.003;
-            //  console.log(p.color)
-            this.createCanvas(p)
+			//  console.log(p.color)
+			this.createCanvas(p);
 
 			if (p.x < 0 || p.x > this.screenWidth || p.y < 0 || p.y > this.screenHeight) {
 				this.initParticle(p);
@@ -171,29 +190,27 @@ export class EffectComponent extends React.Component<any, any> {
 
 		this.hueBase += 0.1;
 		this.zoff += this.configs.zInc;
-	
+
 		this.endTime = new Date().getTime() - this.startTime;
 
-		if(this.endTime/1000 <16) {
+		if (this.endTime / 1000 < 16) {
 			requestAnimationFrame(this.update.bind(this));
 
-			if(this.endTime/1000 >15) {
+			if (this.endTime / 1000 > 15) {
 				this.canvas.addEventListener('click', this.onCanvasClick, false);
 				const event = document.createEvent('MouseEvents');
-				event.initEvent('click',true,true);
+				event.initEvent('click', true, true);
 				this.canvas.dispatchEvent(event);
 			}
 		}
-		
-    }
-    createCanvas(p) {
-            this.context.beginPath();
-            this.context.strokeStyle = p.color.toString();
-            this.context.moveTo(p.pastX, p.pastY);
-            this.context.lineTo(p.x, p.y);
-            this.context.stroke();
-        
-    }
+	}
+	createCanvas(p) {
+		this.context.beginPath();
+		this.context.strokeStyle = p.color.toString();
+		this.context.moveTo(p.pastX, p.pastY);
+		this.context.lineTo(p.x, p.y);
+		this.context.stroke();
+	}
 
 	/**
  * Particle
@@ -201,15 +218,14 @@ export class EffectComponent extends React.Component<any, any> {
 
 	render() {
 		return (
-				<canvas
-                
-					id="c"
-					style={{
-						position: 'absolute',
-						top: '0',
-						left: '0'
-					}}
-				/>
+			<canvas
+				id="c"
+				style={{
+					position: 'absolute',
+					top: '0',
+					left: '0'
+				}}
+			/>
 		);
 	}
 }
