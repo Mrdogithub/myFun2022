@@ -29,7 +29,7 @@ class HSLA {
 	}
 }
 
-HSLA.prototype.toString = function() {
+HSLA.prototype.toString = function () {
 	return 'hsla(' + this.h + ',' + this.s * 100 + '%,' + this.l * 100 + '%,' + this.a + ')';
 };
 export class EffectComponent extends React.Component<any, any> {
@@ -58,21 +58,21 @@ export class EffectComponent extends React.Component<any, any> {
 	_that;
 	startTime = 0;
 	endTime = 0;
-	componentDidMount() {
-		window.requestAnimationFrame = (() => {
-			return (
-				window.requestAnimationFrame ||
-				window.webkitRequestAnimationFrame ||
-				function(callback) {
-					window.setTimeout(callback, 1000 / 60);
-				}
-			);
-		})();
-	}
+	// componentDidMount() {
+	// 	window.requestAnimationFrame = (() => {
+	// 		return (
+	// 			window.requestAnimationFrame ||
+	// 			window.webkitRequestAnimationFrame ||
+	// 			function (callback) {
+	// 				window.setTimeout(callback, 1000 / 60);
+	// 			}
+	// 		);
+	// 	})();
+	// }
 
-	init() {
+	init(userName) {
 		this.canvas = document.getElementById('c');
-
+        this.canvas.setAttribute('userName',userName)
 		// window.addEventListener('resize', this.onWindowResize, false);
 		this.onWindowResize(null);
 
@@ -105,10 +105,16 @@ export class EffectComponent extends React.Component<any, any> {
 	}
 
 	onCanvasClick(e) {
+		console.log('onLick:')
 		this.canvas = document.getElementById('c');
+		const userName = this.canvas.getAttribute('userName');
+		console.log(this.canvas.getAttribute('userName'))
 		this.context = this.canvas.getContext('2d');
-		const image = this.canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
-		console.log(image)
+		const image = this.canvas.toDataURL('image/png');
+
+		const base64Image = image.replace(/^data:image\/\w+;base64,/,'')
+
+		console.log(base64Image)
 		const $a = document.createElement('a');
 		$a.setAttribute('href', image);
 		$a.setAttribute('download', 'text.jpg'); //需要加上后缀名
@@ -119,11 +125,11 @@ export class EffectComponent extends React.Component<any, any> {
 		fetch('http://localhost:3000/saveImage', {
 			method: 'post',
 			headers: {
-				Accept: 'application/json,text/plain,*/*' /* 格式限制：json、文本、其他格式 */,
-				'Content-Type': 'application/x-www-form-urlencoded' /* 请求内容类型 */
+				'Accept': 'application/json,text/plain,*/*',
+				'Content-Type': 'application/x-www-form-urlencoded'
 			},
-			body:`image=${image}`,
-			mode: 'cors',
+			body:  `image=${image}&userName=${userName}`,
+			mode: 'no-cors',
 			cache: 'default'
 		})
 			.then((res) => {
@@ -132,7 +138,7 @@ export class EffectComponent extends React.Component<any, any> {
 			.then((data) => {
 				console.log(data);
 			})
-			.catch(function(error) {
+			.catch(function (error) {
 				console.log(error);
 			});
 	}
@@ -196,7 +202,7 @@ export class EffectComponent extends React.Component<any, any> {
 		if (this.endTime / 1000 < 16) {
 			requestAnimationFrame(this.update.bind(this));
 
-			if (this.endTime / 1000 > 15) {
+			if (this.endTime / 1000 == 15) {
 				this.canvas.addEventListener('click', this.onCanvasClick, false);
 				const event = document.createEvent('MouseEvents');
 				event.initEvent('click', true, true);

@@ -2584,7 +2584,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	 * 
 	*/
 	onInfoItemChange(index, className) {
-		this.effectComponent.current.init();
+		console.log(this.props.userName)
+		this.effectComponent.current.init(this.props.userName);
 		// IMPP.init();
 		const _arr = [
 			48,

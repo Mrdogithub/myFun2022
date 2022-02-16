@@ -48,6 +48,7 @@ export default class SwiperIndex extends React.Component<any, any> {
         return(<>
             <Menu displayStatus = {this.state.showMenu} onSwiperTo={(event,index: number) => this.swiperTo(event,index)} userName = {this.state.userName}/>
             <HomeComponentIndex3
+            userName = {this.state.userName}
             privacyImages={this.props.privacyImages}
             comfortImages={this.props.comfortImages}
             leisureImages={this.props.leisureImages}
