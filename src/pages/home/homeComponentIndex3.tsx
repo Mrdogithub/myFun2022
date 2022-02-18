@@ -1084,6 +1084,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		event.stopPropagation();
 		event.nativeEvent.stopImmediatePropagation();
 		if (this.isStopTouchMove) return;
+		this.move = this.state.endY - this.state.startY;
 		// Part1 转场进入part2
 		if (this.move < MAX_PREV_STEP && this.privacySection8bg.current.style.display == 'none') {
 			// 向上拉动，进入下一页
@@ -1102,7 +1103,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			this.comfortSection1WrapperInAnimate();
 		}
 
-		if (this.move > MAX_NEXT_STEP) {
+		if (this.move > MAX_NEXT_STEP  && this.privacySection8bg.current.style.display == 'none') {
 			// 向下拉动，返回上一页
 			this.privacySection7WrapperOutAnimate();
 
@@ -1114,6 +1115,31 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			this.privacySection6text4.current.style.display = 'none';
 
 			this.privacySection6WrapperInAnimate();
+		}
+
+		if (this.move > MAX_NEXT_STEP  && this.privacySection8bg.current.style.display == 'block') {
+			// 向下拉动，返回上一页
+			this.privacySection7WrapperInPart1Animate();
+
+			
+		this.privacySection8bg.current.className = '  animate__animated animate__slideOutDown';
+		this.privacySection8title.current.className =
+			' dFordText animate__animated animate__fadeOut';
+			if(this.privacySection8text.current){
+
+				this.privacySection8text.current.className = ' dFordText animate__animated animate__fadeOut';
+			}
+			
+		setTimeout(() => {
+			this.privacySection8bg.current.className = ' ';
+			this.privacySection8title.current.className = '';
+			this.privacySection8bg.current.style.display = 'none';
+			this.privacySection8title.current.style.display = 'none';
+			if(this.privacySection8text.current){
+				this.privacySection8text.current.style.display = 'none';
+				this.privacySection8text.current.className = 'dFordText';
+			}
+		}, 1500);
 		}
 	}
 
@@ -2298,10 +2324,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				this.uniqueSection3ReturnHome.current.style.display = 'none';
 			}, 1500);
 			this.start = 0;
-			this.homePageCanvasRef1.current && this.homePageCanvasRef1.current.setCurrent(1);
-			this.homePageCanvasRef0.current && this.homePageCanvasRef0.current.setCurrent(1);
-			this.homePageCanvasRef2.current && this.homePageCanvasRef2.current.setCurrent(1);
-			this.homePageCanvasRef3.current && this.homePageCanvasRef3.current.setCurrent(1);
+		
 
 			this.onReturnToHome(event, this.uniqueSection2Wrapper, 0);
 		}
@@ -2632,7 +2655,10 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		const slidesArr = [
 			...this.state.slides
 		];
-
+		this.homePageCanvasRef1.current && this.homePageCanvasRef1.current.setCurrent(1);
+		this.homePageCanvasRef0.current && this.homePageCanvasRef0.current.setCurrent(1);
+		this.homePageCanvasRef2.current && this.homePageCanvasRef2.current.setCurrent(1);
+		this.homePageCanvasRef3.current && this.homePageCanvasRef3.current.setCurrent(1);
 		this.box.current.style.display = 'flex';
 		this.box.current.childNodes.forEach((child) => {
 			child.style.flex = '1 1 ';
@@ -2640,6 +2666,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.setState({
 			slides: slidesArr.map((slide) => (slide.key != '' ? { ...slide, isActive: false, isFilter: false } : slide))
 		});
+
+		
 	}
 
 	// demoIntroSection1Wrapper 结束动画
@@ -3060,6 +3088,13 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.privacySection7SubMenu.current.className = 'animate__animated animate__fadeOut';
 		this.privacySection7SubMenu.current.style.display = 'none';
 	}
+
+	privacySection7WrapperInPart1Animate() {
+		this.privacySection7bg.current.className = 'privacy_section_7_bgBack';
+		this.privacySection7text.current.className = 'dFordText animate__animated animate__slideInRight';
+		this.privacySection7SubMenu.current.className = 'animate__animated animate__fadeIn';
+		this.privacySection7SubMenu.current.style.display = 'block';
+	}
 	privacySection7WrapperInPart2Animate() {
 		setTimeout(() => {
 			this.privacySection8bg.current.style.display = 'block';
@@ -3080,15 +3115,16 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	privacySection7WrapperOutPart2Animate() {
 		setTimeout(() => {
 			this.privacySection7Wrapper.current.style.display = 'none';
-			this.privacySection8bg.current.className = ' ';
-			this.privacySection8title.current.className = '';
+			
 			this.privacySection7bg.current.className = '';
-			this.privacySection8bg.current.style.display = 'none';
-			this.privacySection8title.current.style.display = 'none';
 
 			this.privacySection7text.current.className = 'dFordText ';
 			this.privacySection7bg.current.className = '';
 			this.privacySection7SubMenu.current.className = '';
+			this.privacySection8bg.current.className = ' ';
+			this.privacySection8title.current.className = '';
+			this.privacySection8bg.current.style.display = 'none';
+			this.privacySection8title.current.style.display = 'none';
 			if(this.privacySection8text.current){
 				this.privacySection8text.current.style.display = 'none';
 				this.privacySection8text.current.className = 'dFordText';

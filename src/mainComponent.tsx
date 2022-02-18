@@ -163,14 +163,14 @@ export class MainComponent extends React.Component<any, any> {
 		/* unique 首页序列帧 */
 
 		for (let i = 0; i <= 100; i++) {
-			this.unique.push(require(`./assets/Video04_TransitionComfort/Video04_TransitionComfort${i}.jpg`));
+			this.unique.push(require(`./assets/Video20_TransitionUnique/Video20_TransitionUnique${i}.jpg`));
 		}
 	}
 	loadLeisure() {
 		/* leisure 首页序列帧 */
 
 		for (let i = 0; i <= 100; i++) {
-			this.leisure.push(require(`./assets/Video04_TransitionComfort/Video04_TransitionComfort${i}.jpg`));
+			this.leisure.push(require(`./assets/Video15_TransitionLeisure/Video15_TransitionLeisure${i}.jpg`));
 		}
 	}
 	loadDigitalSealRotate() {
