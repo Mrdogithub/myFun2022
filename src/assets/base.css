@@ -739,14 +739,14 @@ h1 {
     }
 }
 
-.comfortSection8ClickMagamize {
+.comfortSection8ClickMagamizeIn {
     animation-duration: 1s;
-    animation-name: slidein;
+    animation-name: comfortSection8ClickMagamizeIn;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
 }
 
-@keyframes slidein {
+@keyframes comfortSection8ClickMagamizeIn {
     from {
         top: 145px;
     }
@@ -755,8 +755,39 @@ h1 {
     }
 }
 
+.comfortSection8ClickButtonIn {
+    animation-duration: 1s;
+    animation-name: comfortSection8ClickButtonIn;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+
+@keyframes comfortSection8ClickButtonIn {
+    from {
+        top: 475px;
+    }
+    to {
+        top: 1035px
+    }
+}
+.comfortSection8ClickButtonOut {
+    animation-duration: 1s;
+    animation-name: comfortSection8ClickButtonOut;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+
+@keyframes comfortSection8ClickButtonOut {
+    from {
+       
+        top: 1035px
+    }
+    to {
+        top: 475px;
+    }
+}
 .comfortSection8ClickMagamizeOut {
-    animation-duration: 1.5s;
+    animation-duration: 2.5s;
     animation-name: slideOut;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
@@ -772,7 +803,7 @@ h1 {
 }
 
 .leisureSection2CanvasRefWrapperIn {
-    animation-duration: 1.5s;
+    animation-duration: 2.5s;
     animation-delay: 1s;
     animation-name: leisureSection2;
     animation-fill-mode: forwards;
@@ -933,7 +964,7 @@ leisureSection3Bg2In {
 }
 
 .privacySection3leftContentIn {
-    animation-duration: 2.8s;
+    animation-duration: 1.5s;
     animation-name: privacySection3leftContentIn;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
@@ -949,7 +980,7 @@ leisureSection3Bg2In {
 }
 
 .privacySection3leftContentOut {
-    animation-duration: 2.8s;
+    animation-duration: 1.5s;
     animation-name: privacySection3leftContentOut;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
@@ -1009,7 +1040,7 @@ leisureSection3Bg2In {
 /* comfort section 2*/
 
 .comfortSection2Box05In {
-    animation-duration: 2.8s;
+    animation-duration: .1s;
     animation-name: comfortSection2Box05In;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
@@ -1025,7 +1056,7 @@ leisureSection3Bg2In {
 }
 
 .comfortSection2Box05Out {
-    animation-duration: 2.8s;
+    animation-duration: .1s;
     animation-name: comfortSection2Box05Out;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
@@ -1275,7 +1306,14 @@ leisureSection3Bg2In {
     left: -532px;
     top: -226px;
 }
-
+.canvasImageScaleDigitalSealInsert{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: scale(.55);
+    left: -372px;
+    top: -326px;
+}
 
 
 .uniqueDynamicIn{
@@ -1326,3 +1364,97 @@ leisureSection3Bg2In {
         top: 169px;
     }
 }
+
+
+
+.maxImageAnimate {
+    -webkit-animation: fadeIn 1 1s ease-out;
+    -moz-animation: fadeIn 1 1s ease-out;
+    -o-animation: fadeIn 1 1s ease-out;
+    animation: fadeIn 1 1s ease-out;
+}
+
+
+/* .maxImage img{
+    opacity: .5;
+    transition: opacity .5s linear; 
+}
+
+.maxImage img.active{
+    opacity: 1; 
+  } */
+
+  .maxImage .imageCover{
+    --animate-duration: 0.5s;
+  }
+
+  /* home page section default **/
+ .homePageBoxWrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    z-index:5;
+ }
+  .homePageBox1Step1 {
+
+    clip: rect(0px,341.5px,1024px,0px);
+  }
+  .homePageBox1Step1Title{
+    top: 820px;
+    left: 60px;
+  }
+  .homePageBox1Step1Index{
+    top: 910px;
+    left: 120px;
+  }
+
+  .homePageBox2Step1 {
+    clip: rect(131px,683px,1024px,341.5px);
+  }
+  .homePageBox2Step1Title{
+    top: 820px;
+    left: 380px;
+  }
+  .homePageBox2Step1Index{
+    top: 910px;
+    left: 470px;
+  }
+
+  .homePageBox3Step1 {
+    clip: rect(0px,1024.5px,1024px,683px);
+  }
+  .homePageBox3Step1Title{
+    top: 820px;
+    left: 750px;
+  }
+  .homePageBox3Step1Index{
+    top: 910px;
+     left: 770px;
+  }
+
+  .homePageBox4Step1 {
+    clip: rect(0px,1366px,1024px,1024.5px);
+  }
+  .homePageBox4Step1Title{
+    top: 820px;
+    left: 1079px;
+  }
+  .homePageBox4Step1Index{
+    top: 910px;
+    left: 1120px;
+  }
+
+
+  /* .homePageBox1Step2 {
+    clip: rect(0px,1366px,1024px,1024.5px);
+  }
+  .homePageBox2Step2 {
+    clip: rect(0px,1366px,1024px,1024.5px);
+  }
+  .homePageBox2Step2 {
+    clip: rect(0px,1366px,1024px,1024.5px);
+  }
+  .homePageBox13Step2 {
+    clip: rect(0px,1366px,1024px,1024.5px);
+  } */

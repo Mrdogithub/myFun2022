@@ -29,7 +29,7 @@ class HSLA {
 	}
 }
 
-HSLA.prototype.toString = function () {
+HSLA.prototype.toString = function() {
 	return 'hsla(' + this.h + ',' + this.s * 100 + '%,' + this.l * 100 + '%,' + this.a + ')';
 };
 export class EffectComponent extends React.Component<any, any> {
@@ -70,10 +70,49 @@ export class EffectComponent extends React.Component<any, any> {
 	// 	})();
 	// }
 
-	init(userName) {
+	init(userName, config) {
 		this.canvas = document.getElementById('c');
-        this.canvas.setAttribute('userName',userName)
-		// window.addEventListener('resize', this.onWindowResize, false);
+		this.canvas.setAttribute('userName', userName);
+		const [
+			voiceCommands,
+			vehicleTrafficInformation,
+			appActivation,
+			cabinMotionDetection
+		] = config;
+		const voiceCommandsNumber = voiceCommands.number;
+		const vehicleTrafficInformationNumber = vehicleTrafficInformation.number;
+		const appActivationNumber = appActivation.number;
+		const cabinMotionDetectionNumber = cabinMotionDetection.number;
+
+		const _arr = [
+			voiceCommandsNumber,
+			vehicleTrafficInformationNumber,
+			appActivationNumber,
+			cabinMotionDetectionNumber
+		];
+
+		const max = Math.max.apply(null, _arr);
+		const min = Math.min.apply(null, _arr);
+		const total =_arr.reduce(function(prev, curr, idx, _arr) {
+			return prev + curr;
+		});
+
+		console.log(max,min,total)
+		this.configs = {
+			backgroundColor: '#eee9e9',
+			particleNum: 1000,
+			step: min,
+			base: 1000,
+			zInc:total/1000
+		}
+
+		// this.configs = {
+		// 	backgroundColor: '#eee9e9',
+		// 	particleNum: 1000,
+		// 	step: 30,
+		// 	base: 1000,
+		// 	zInc: 0.001
+		// };
 		this.onWindowResize(null);
 
 		for (let i = 0, len = this.configs.particleNum; i < len; i++) {
@@ -105,16 +144,12 @@ export class EffectComponent extends React.Component<any, any> {
 	}
 
 	onCanvasClick(e) {
-		console.log('onLick:')
 		this.canvas = document.getElementById('c');
 		const userName = this.canvas.getAttribute('userName');
-		console.log(this.canvas.getAttribute('userName'))
 		this.context = this.canvas.getContext('2d');
 		const image = this.canvas.toDataURL('image/png');
 
-		const base64Image = image.replace(/^data:image\/\w+;base64,/,'')
-
-		console.log(base64Image)
+		const base64Image = image.replace(/^data:image\/\w+;base64,/, '');
 		const $a = document.createElement('a');
 		$a.setAttribute('href', image);
 		$a.setAttribute('download', 'text.jpg'); //需要加上后缀名
@@ -125,10 +160,10 @@ export class EffectComponent extends React.Component<any, any> {
 		fetch('http://localhost:3000/saveImage', {
 			method: 'post',
 			headers: {
-				'Accept': 'application/json,text/plain,*/*',
+				Accept: 'application/json,text/plain,*/*',
 				'Content-Type': 'application/x-www-form-urlencoded'
 			},
-			body:  `image=${image}&userName=${userName}`,
+			body: `image=${image}&userName=${userName}`,
 			mode: 'no-cors',
 			cache: 'default'
 		})
@@ -138,7 +173,7 @@ export class EffectComponent extends React.Component<any, any> {
 			.then((data) => {
 				console.log(data);
 			})
-			.catch(function (error) {
+			.catch(function(error) {
 				console.log(error);
 			});
 	}
@@ -202,7 +237,7 @@ export class EffectComponent extends React.Component<any, any> {
 		if (this.endTime / 1000 < 16) {
 			requestAnimationFrame(this.update.bind(this));
 
-			if (this.endTime / 1000 == 15) {
+			if (this.endTime / 1000 == 15 && this.props.isGenerateCanvasStatus) {
 				this.canvas.addEventListener('click', this.onCanvasClick, false);
 				const event = document.createEvent('MouseEvents');
 				event.initEvent('click', true, true);

@@ -47,7 +47,6 @@ import sectoin_4_phoneVideo from './assets/VideoP_RemoteVhauffeur/VideoP_RemoteV
 import privacySection5ImageSequence from './assets/Video02_DigitalSealInsert/Video02_DigitalSealInsert0.jpg';
 import privacy_section_3_bg from './assets/images/privacy_section_3_bg.png';
 import privacy_section_7_bg from './assets/images/privacy_section_7_bg.png';
-import firstPrivactSection6ImageSequence from './assets/Video02b_DigitalSealRotate_1/Video02b_DigitalSealRotate0.jpg';
 import firstComfortSection1ImageSequence from './assets/Video04_TransitionComfort/Video04_TransitionComfort0.jpg';
 import lastComfortSection1ImageSequence from './assets/Video04_TransitionComfort/Video04_TransitionComfort100.jpg';
 import firstLeisureSection2ImageSequence from './assets/Video16_FrunkBar/Video16_FrunkBar0.jpg';
@@ -154,7 +153,7 @@ export class MainComponent extends React.Component<any, any> {
 	loadFrunkBarImges() {
 		/* leisure section2 序列帧 */
 
-		for (let i = 0; i <= 40; i++) {
+		for (let i = 0; i <= 50; i++) {
 			this.frunkBarImges.push(require(`./assets/Video16_FrunkBar/Video16_FrunkBar${i}.jpg`));
 		}
 	}
@@ -206,7 +205,6 @@ export class MainComponent extends React.Component<any, any> {
 			privacySection5ImageSequence,
 			privacy_section_3_bg,
 			privacy_section_7_bg,
-			firstPrivactSection6ImageSequence,
 			firstComfortSection1ImageSequence,
 			lastComfortSection1ImageSequence,
 			firstLeisureSection2ImageSequence,
@@ -267,16 +265,17 @@ export class MainComponent extends React.Component<any, any> {
 					}
 					if(status<90){
 
-					this.setState({ loadInProgress: status });
+						this.setState({ loadInProgress: status });
 					}
 
 					if(status>90) {
-						let _step = 90
-						setInterval(()=>{
+						let _step = 91
+						const _t = setInterval(()=>{
 							this.setState({ loadInProgress: _step++ });
 							if(_step == 100) {
 								this.setState({ isResourceLoaded: true });
-								this.isPreload = false
+								this.isPreload = false;
+								clearInterval(_t);
 							}
 						},5000)
 					}
