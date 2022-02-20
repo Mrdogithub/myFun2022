@@ -258,28 +258,19 @@ export class MainComponent extends React.Component<any, any> {
 				arr.successLength = (arr.successLength || 0) + 1;
 				const status = Math.ceil(arr.successLength / arr.length * 100);
 				this.setState({ isResourceLoaded: true });
-
+				if(status >10) {
+					this.isPreload = true
+				}
 				setTimeout(() => {
-					if(status >50) {
-						this.isPreload = true
-					}
-					if(status<90){
-
-						this.setState({ loadInProgress: status });
-					}
-
-					if(status>90) {
-						let _step = 91
-						const _t = setInterval(()=>{
-							this.setState({ loadInProgress: _step++ });
-							if(_step == 100) {
-								this.setState({ isResourceLoaded: true });
-								this.isPreload = false;
-								clearInterval(_t);
-							}
-						},5000)
-					}
+					this.setState({ loadInProgress: status });
 				}, 100);
+
+				if(status>=99) {
+					this.setState({ isResourceLoaded: true });
+					this.setState({ loadInProgress: 1 });
+					this.isPreload = false;
+					return
+				}
 
 			};
 		});
