@@ -132,7 +132,9 @@ export class MainComponent extends React.Component<any, any> {
 		/* privacy 首页序列帧 */
 
 		for (let i = 0; i <= 100; i++) {
-			this.privacy.push(require(`./assets/Video00(ImageSequence)/Video00_TransitionPrivacy${i}.jpg`));
+			const img = new Image();
+			img.src = require(`./assets/Video00(ImageSequence)/Video00_TransitionPrivacy${i}.jpg`)
+			this.privacy.push(img);
 		}
 	}
 
@@ -140,7 +142,9 @@ export class MainComponent extends React.Component<any, any> {
 		/* comfort  首页序列帧 */
 
 		for (let i = 0; i <= 100; i++) {
-			this.comfort.push(require(`./assets/Video04_TransitionComfort/Video04_TransitionComfort${i}.jpg`));
+			const img = new Image();
+			img.src = require(`./assets/Video04_TransitionComfort/Video04_TransitionComfort${i}.jpg`)
+			this.comfort.push(img);
 		}
 	}
 
@@ -162,14 +166,18 @@ export class MainComponent extends React.Component<any, any> {
 		/* unique 首页序列帧 */
 
 		for (let i = 0; i <= 100; i++) {
-			this.unique.push(require(`./assets/Video20_TransitionUnique/Video20_TransitionUnique${i}.jpg`));
+			const img = new Image();
+			img.src =require(`./assets/Video20_TransitionUnique/Video20_TransitionUnique${i}.jpg`)
+			this.unique.push(img);
 		}
 	}
 	loadLeisure() {
 		/* leisure 首页序列帧 */
 
 		for (let i = 0; i <= 100; i++) {
-			this.leisure.push(require(`./assets/Video15_TransitionLeisure/Video15_TransitionLeisure${i}.jpg`));
+			const img = new Image();
+			img.src =require(`./assets/Video20_TransitionUnique/Video20_TransitionUnique${i}.jpg`)
+			this.leisure.push(img);
 		}
 	}
 	loadDigitalSealRotate() {
@@ -238,23 +246,25 @@ export class MainComponent extends React.Component<any, any> {
 		];
 
 		const images = [].concat(
-			bgImages,
+	//		bgImages,
 			this.privacy,
 			this.comfort,
 			this.leisure,
 			this.unique,
-			this.magazine,
-			this.leisureImges,
-			this.digitalSealRotate,
-			this.frunkBarImges,
-			this.advancedDimmableWindow,
-			this.digitalSealInsert
+			// this.magazine,
+			// this.leisureImges,
+			// this.digitalSealRotate,
+			// this.frunkBarImges,
+			// this.advancedDimmableWindow,
+			// this.digitalSealInsert
 		);
 		images.forEach((v: any, index: any, arr: any) => {
-			const image = new Image();
-			image.src = v;
 
-			image.onload = () => {
+			
+			// const image = new Image();
+			// image.src = v;
+
+			v.onload = () => {
 				arr.successLength = (arr.successLength || 0) + 1;
 				const status = Math.ceil(arr.successLength / arr.length * 100);
 				this.setState({ isResourceLoaded: true });
@@ -267,7 +277,7 @@ export class MainComponent extends React.Component<any, any> {
 
 				if(status>=99) {
 					this.setState({ isResourceLoaded: true });
-					this.setState({ loadInProgress: 1 });
+					this.setState({ loadInProgress: 100 });
 					this.isPreload = false;
 					return
 				}

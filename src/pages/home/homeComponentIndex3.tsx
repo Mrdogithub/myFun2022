@@ -4,10 +4,16 @@ import { SubMenu } from '../../components/subMenu/subMenuComponent';
 import { subMenuList } from '../../config/subMenuList';
 import { EffectComponent } from '../../components/effect/effectComponent';
 import CanvasImageSequence from 'react-canvas-image-sequence';
+// import {IMPP} from '../../assets/js/nice.js'
+// demo intro
 import demoIntroSection1Bg from '../../assets/images/demoIntroSection1Bg.png';
 import demoIntroSection1Bg3 from '../../assets/images/demoIntroSection1Bg3.png';
 import demoIntroSection3Bg1 from '../../assets/images/demoIntroSection3Bg1.png';
 
+import homePrivacy_1_small from '../../assets/images/homePrivacy_1_small.png';
+import homeConfort_2_small from '../../assets/images/homeConfort_2_small.png';
+import homeLeisure_3_small from '../../assets/images/homeLeisure_3_small.png';
+import homeUnique_4_small from '../../assets/images/homeUnique_4_small.png';
 
 import privacySmallTitle from '../../assets/images/privacySmallTitle.svg';
 import privacySmallIndex from '../../assets/images/privacySmallIndex.svg';
@@ -22,6 +28,10 @@ import uniqueSmallTitle from '../../assets/images/uniqueSmallTitle.svg';
 import uniqueSmallIndex from '../../assets/images/uniqueSmallIndex.svg';
 
 import videoPRemoteVhauffeur from '../../assets/remoteVhauffeur.webm';
+import homePrivacy_1 from '../../assets/Video00(ImageSequence)/Video00_TransitionPrivacy0.jpg';
+import homeConfort_2 from '../../assets/images/homeConfort_2.png';
+import homeLeisure_3 from '../../assets/images/homeLeisure_3.png';
+import homeUnique_4 from '../../assets/images/homeUnique_4.png';
 
 import section2IndeImage from '../../assets/Video01_AdvancedDimmableWindow/Video01_AdvancedDimmableWindow0.jpg';
 import privacySection3PhoneVideo from '../../assets/VideoP_RemoteVhauffeur/VideoP_RemoteVhauffeur0.jpg';
@@ -36,12 +46,15 @@ import firstLeisureSection1ImageSequence from '../../assets/images/leisureSectio
 import firstMagaziImageSequneence from '../../assets/Video13_Magazine/Video13_Magazine0.png';
 import comfortBg_4_new from '../../assets/images/comfortBg_4_new.png';
 import comfortSection2Bg2 from '../../assets/images/comfortSection2Bg2.png';
+import comfortSection2Bg3 from '../../assets/images/comfortSection2Bg3.png';
 import comfortSection4Bg2 from '../../assets/images/comfortSection4Bg2.png';
+import comfortSection4Bg3 from '../../assets/images/comfortSection4Bg3.png';
 import comfortSection4Bg from '../../assets/images/comfortSection4Bg.png';
 import comfortSection6BG from '../../assets/images/comfortSection6BG.png';
 import comfortSection7BG from '../../assets/images/comfortSection7BG.png';
 import comfortSection8Bg from '../../assets/images/comfortSection8Bg.png';
 import comfortSection8Bg2 from '../../assets/images/comfortSection8Bg2.png';
+import comfortSection9Bg1 from '../../assets/images/comfortSection9Bg1.png';
 import comfortSection9Bg2 from '../../assets/images/comfortSection9Bg2.png';
 import comfortSection9Bg3 from '../../assets/images/comfortSection9Bg3.png';
 import comfortSection9Bg4 from '../../assets/images/comfortSection9Bg4.png';
@@ -49,6 +62,7 @@ import comfortSection5BG1 from '../../assets/images/comfortSection5BG1.png';
 import leisureSection3Bg1 from '../../assets/images/leisureSection3Bg1.png';
 import leisureSection3Bg2 from '../../assets/images/leisureSection3Bg2.png';
 import leisureSection4Bg4 from '../../assets/images/leisureSection4Bg4.png';
+import leisureSection4Bg3 from '../../assets/images/leisureSection4Bg3.png';
 import leisureSection5Bg1 from '../../assets/images/leisureSection5Bg1.png';
 import leisureSection6Bg1 from '../../assets/images/leisureSection6Bg1.png';
 import leisureSection6Bg2 from '../../assets/images/leisureSection6Bg2.png';
@@ -58,9 +72,26 @@ import unqiueSection2Bg1 from '../../assets/images/unqiueSection2Bg1.png';
 import { Info } from '../../components/info/infoComponent';
 import {
 	Player,
+	ControlBar,
+	PlayToggle, // PlayToggle 播放/暂停按钮 若需禁止加 disabled
+	ReplayControl, // 后退按钮
+	ForwardControl, // 前进按钮
+	CurrentTimeDisplay,
+	TimeDivider,
+	PlaybackRateMenuButton, // 倍速播放选项
+	VolumeMenuButton
 } from 'video-react';
 
+import { ifStatement } from '@babel/types';
+import { val, height, data } from 'dom7';
+import { match } from 'assert';
 
+const MAX_IMAGES = [
+	homePrivacy_1,
+	homeConfort_2,
+	homeLeisure_3,
+	homeUnique_4
+];
 
 const MAX_NEXT_STEP = 80;
 const MAX_PREV_STEP = -80;
@@ -314,6 +345,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			slides: [
 				{
 					index: 0,
+					defaultImage: homePrivacy_1_small,
+					activeImage: homePrivacy_1,
 					smallIndex: privacySmallIndex,
 					smallTitle: privacySmallTitle,
 					isActive: false,
@@ -324,12 +357,12 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					bgFilter:
 						'linear-gradient(90deg, rgba(177, 143, 132, 0.3) -8.64%, rgba(14, 15, 31, 0.234) 112.68%)',
 					onChange: (currentSlide: any) => {
-						// currentSlide.defaultImage = homePrivacy_1;
-						// this.state.slides.map((item: any) => {
-						// 	if (item.index === currentSlide.index) {
-						// 		this.setState({ item: currentSlide });
-						// 	}
-						// });
+						currentSlide.defaultImage = homePrivacy_1;
+						this.state.slides.map((item: any) => {
+							if (item.index === currentSlide.index) {
+								this.setState({ item: currentSlide });
+							}
+						});
 					},
 					onSwiperTo: () => {
 						console.log('s');
@@ -337,6 +370,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				},
 				{
 					index: 1,
+					defaultImage: homeConfort_2_small,
+					activeImage: homeConfort_2,
 					smallIndex: comfortSmallIndex,
 					smallTitle: comfortSmallTitle,
 					isActive: false,
@@ -354,6 +389,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				},
 				{
 					index: 2,
+					defaultImage: homeLeisure_3_small,
+					activeImage: homeLeisure_3,
 					smallIndex: leisureSmallIndex,
 					smallTitle: leisureSmallTitle,
 					maxTitle: 'Leisure',
@@ -371,7 +408,10 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				},
 
 				{
-					index: 3, smallIndex: uniqueSmallIndex,
+					index: 3,
+					defaultImage: homeUnique_4_small,
+					activeImage: homeUnique_4,
+					smallIndex: uniqueSmallIndex,
 					smallTitle: uniqueSmallTitle,
 					maxTitle: 'unique',
 					key: 'unique',
@@ -426,7 +466,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	lastPos = 0;
 	start = 1;
 	oldStart = 0;
-	intervalStart = 20;
+	intervalStart = 40;
 	startPos = 0;
 	MAX_LEN = 100;
 	splitterOffSet = [
@@ -665,10 +705,10 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.setState({ canvasHeight: 2160 });
 
 		// 重置首页序列帧
-		this.homePageCanvasRef0.current && this.homePageCanvasRef0.current.setCurrent(1);
-		this.homePageCanvasRef1.current && this.homePageCanvasRef1.current.setCurrent(1);
-		this.homePageCanvasRef2.current && this.homePageCanvasRef2.current.setCurrent(1);
-		this.homePageCanvasRef3.current && this.homePageCanvasRef3.current.setCurrent(1);
+		// this.homePageCanvasRef0.current && this.homePageCanvasRef0.current.setCurrent(1);
+		// this.homePageCanvasRef1.current && this.homePageCanvasRef1.current.setCurrent(1);
+		// this.homePageCanvasRef2.current && this.homePageCanvasRef2.current.setCurrent(1);
+		// this.homePageCanvasRef3.current && this.homePageCanvasRef3.current.setCurrent(1);
 
 		// 撤销所有裁剪，启用默认状态下的class 样式
 		this.box.current.childNodes[0].childNodes[0].style.clip = '';
@@ -761,6 +801,19 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		}
 	}
 	onChange(currentSlide: any, index: any) {
+		const defaultImages = [
+			homePrivacy_1_small,
+			homeConfort_2_small,
+			homeLeisure_3_small,
+			homeUnique_4_small
+		];
+		const maxImges = [
+			homePrivacy_1,
+			homeConfort_2,
+			homeLeisure_3,
+			homeUnique_4
+		];
+		console.log('onChange');
 
 		if (this.lastActiveKey != currentSlide.key) {
 			this.lastActiveKey = currentSlide.key;
@@ -2474,7 +2527,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 
 	debounce(fn, delay) {
 		const _this = this;
-		return function () {
+		return function() {
 			if (_this.timer) {
 				clearTimeout(_this.timer);
 			}
@@ -2494,9 +2547,9 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		const currentTouchMoveDis = this.state.endY;
 
 		// 当前位置减去上一次位置
-		if (currentTouchMoveDis - this.currentMoveY > 20) {
-			this.currentMoveY = currentTouchMoveDis;
-		}
+		// if (currentTouchMoveDis - this.currentMoveY > 20) {
+		// 	this.currentMoveY = currentTouchMoveDis;
+		// }
 
 		// 与上一次的位移差判斷滾動方向
 		let delta = currentTouchMoveDis - this.currentMoveY;
@@ -2506,12 +2559,12 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		const direction = this.letMeKonwDirection();
 		const isDown = direction == 'toTop' ? true : false;
 
-		if (delta < 0 && delta < -20) {
-			delta = -20;
-		}
-		if (delta > 0 && delta > 20) {
-			delta = 20;
-		}
+		// if (delta < 0 && delta < -20) {
+		// 	delta = -20;
+		// }
+		// if (delta > 0 && delta > 20) {
+		// 	delta = 20;
+		// }
 		delta = Math.abs(delta) + (isNaN(this.leftY) ? 0 : this.leftY);
 
 		if (
@@ -2522,13 +2575,14 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			this.isStop = false;
 		}
 		if (this.isStop) return;
-
+		console.log(delta + 'delta');
 		const alpha = Math.floor(delta / this.intervalStart) * 1 || 0;
-
+		console.log(alpha + ':alpha');
 		this.leftY = Math.abs(delta) % this.intervalStart;
 
-		isDown ? (this.start += alpha) : (this.start -= alpha);
-		console.log(isDown)
+		isDown ? (this.start += 1) : (this.start -= 1);
+		// console.log(isDown)
+		console.log(this.start);
 
 		// 记录上一次的移动位置
 		this.currentMoveY = currentTouchMoveDis;
@@ -2554,7 +2608,24 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 
 		this.updateMoveMousePositon(event);
 		this.start = this.getSequenceMoveStep(event) || this.start;
-		console.log(this.start);
+		const step = () => {
+			const canvas = this.homePageCanvasRef0.current;
+			const ctx = canvas.getContext('2d');
+			ctx.clearRect(0, 0, this.state.canvasWidth, this.state.canvasHeight);
+
+			ctx.drawImage(
+				this.sectionImageSequenceList[item.key][this.start],
+				0,
+				0,
+				this.state.canvasWidth,
+				this.state.canvasHeight
+			);
+
+			requestAnimationFrame(step);
+		};
+
+		requestAnimationFrame(step);
+		// console.log(this.start);
 		const direction = this.letMeKonwDirection();
 
 		if (direction === 'toTop') {
@@ -2570,17 +2641,20 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		if (this.start === 100 && this.box.current) {
 			this.box.current.style.zIndex = '-1';
 			this.box.current.style.display = 'none';
+			this.setState({
+				section1SequenceImageIndex: 0
+			});
 			// privacy 播放到最后一帧的处理
-			if (item.key === 'privacy') {
-				this.privacySection1Wrapper.current.style.display = 'block';
-				this.setState({ lastActiveSectionRef: this.privacySection1Wrapper });
-				this.privacySection1Wrapper.current.style.zIndex = '1';
-				// this.privacySection1Wrapper.current.style.backgroundImage = `url(${this.props.privacyImages[100]})`;
-				this.privacySection1WrapperCanvasRef.current.setCurrent(100);
-				this.privacySection1WrapperLeftContent.current.className =
-					'privacySection1WrapperLeftContent animate__animated animate__slideInLeft animate__delay-1s';
-				this.bgLine.current.className = 'animate__animated animate__fadeIn animate__delay-1s';
-			}
+			// if (item.key === 'privacy') {
+			// 	this.privacySection1Wrapper.current.style.display = 'block';
+			// 	this.setState({ lastActiveSectionRef: this.privacySection1Wrapper });
+			// 	this.privacySection1Wrapper.current.style.zIndex = '1';
+			// 	// this.privacySection1Wrapper.current.style.backgroundImage = `url(${this.props.privacyImages[100]})`;
+			// 	this.privacySection1WrapperCanvasRef.current.setCurrent(100);
+			// 	this.privacySection1WrapperLeftContent.current.className =
+			// 		'privacySection1WrapperLeftContent animate__animated animate__slideInLeft animate__delay-1s';
+			// 	this.bgLine.current.className = 'animate__animated animate__fadeIn animate__delay-1s';
+			// }
 
 			// comfort 播放到最后一帧的处理
 			if (item.key === 'comfort') {
@@ -2596,10 +2670,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				this.comfortSection1Text2.current.style.display = 'block';
 				this.comfortSection1Title.current.style.display = 'block';
 
-				this.comfortSection1BgLine.current.className =
-					'animate__animated animate__fadeIn animate__delay-.8s';
-				this.comfortSection1Text2.current.className =
-					'animate__animated animate__fadeInLeft animate__delay-1s';
+				this.comfortSection1BgLine.current.className = 'animate__animated animate__fadeIn animate__delay-.8s';
+				this.comfortSection1Text2.current.className = 'animate__animated animate__fadeInLeft animate__delay-1s';
 				this.comfortSection1Title.current.className =
 					'animate__animated animate__fadeInRight animate__delay-1s';
 			}
@@ -2621,8 +2693,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				this.uniqueSection1Title.current.style.display = 'block';
 				this.bgLine.current.style.display = 'block';
 
-				this.uniqueSection1Text2.current.className =
-					'animate__animated animate__fadeInLeft animate__delay-1s';
+				this.uniqueSection1Text2.current.className = 'animate__animated animate__fadeInLeft animate__delay-1s';
 				this.uniqueSection1Title.current.className = 'animate__animated animate__fadeIn animate__delay-1s';
 				this.bgLine.current.className = 'animate__animated animate__fadeInanimate__delay-1s';
 			}
@@ -2633,9 +2704,9 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				this.homePageCanvasRef1.current && this.homePageCanvasRef1.current.setCurrent(this.start);
 			}
 
-			if (item.key === 'privacy') {
-				this.homePageCanvasRef0.current && this.homePageCanvasRef0.current.setCurrent(this.start);
-			}
+			// if (item.key === 'privacy') {
+			// 	this.homePageCanvasRef0.current && this.homePageCanvasRef0.current.setCurrent(this.start);
+			// }
 
 			if (item.key === 'leisure') {
 				this.homePageCanvasRef2.current && this.homePageCanvasRef2.current.setCurrent(this.start);
@@ -2663,7 +2734,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		oDiv.style.height = '100%';
 		currentAvtive.insertBefore(oDiv);
 		const _oDiv: HTMLElement = document.getElementById('dynamicDiv') as HTMLElement;
-		_oDiv.addEventListener('click', function () {
+		_oDiv.addEventListener('click', function() {
 			console.log('okokok');
 		});
 	}
@@ -2837,13 +2908,13 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	// demoIntroSection2Wrapper  结束动画
 	demoIntroSection2WrapperOutAnimate() {
 		this.demoIntroSection2Wrapper.current.className = 'animate__animated animate__fadeOut';
-		this.demoIntroSection3Wrapper.current.style.zIndex = '1'
-		this.demoIntroSection2Wrapper.current.style.zIndex = '0'
+		this.demoIntroSection3Wrapper.current.style.zIndex = '1';
+		this.demoIntroSection2Wrapper.current.style.zIndex = '0';
 		setTimeout(() => {
 			this.demoIntroSection2Wrapper.current.style.display = 'none';
 			this.demoIntroSection2Wrapper.current.className = '';
-			this.demoIntroSection3Wrapper.current.style.zIndex = ''
-			this.demoIntroSection2Wrapper.current.style.zIndex = ''
+			this.demoIntroSection3Wrapper.current.style.zIndex = '';
+			this.demoIntroSection2Wrapper.current.style.zIndex = '';
 		}, 1000);
 	}
 
@@ -2866,10 +2937,10 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	homeSectionWrapperInAnimate() {
 		this.box.current.style.display = 'block';
 		this.start = 0;
-		this.homePageCanvasRef1.current && this.homePageCanvasRef1.current.setCurrent(1);
-		this.homePageCanvasRef0.current && this.homePageCanvasRef0.current.setCurrent(1);
-		this.homePageCanvasRef2.current && this.homePageCanvasRef2.current.setCurrent(1);
-		this.homePageCanvasRef3.current && this.homePageCanvasRef3.current.setCurrent(1);
+		// this.homePageCanvasRef1.current && this.homePageCanvasRef1.current.setCurrent(1);
+		// this.homePageCanvasRef0.current && this.homePageCanvasRef0.current.setCurrent(1);
+		// this.homePageCanvasRef2.current && this.homePageCanvasRef2.current.setCurrent(1);
+		// this.homePageCanvasRef3.current && this.homePageCanvasRef3.current.setCurrent(1);
 		this.box.current.className = 'homePageWrapper animate__animated animate__fadeIn animate__delay-.5s';
 		this.setState({ lastActiveSectionRef: this.box });
 	}
@@ -3899,22 +3970,11 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						display: 'none',
 						backgroundSize: 'cover',
 						backgroundPosition: 'center',
-						// backgroundImage: `url(${demoIntroSection1Bg3})`
+						backgroundImage: `url(${demoIntroSection1Bg3})`
 					}}
 					id="demoIntroSection2Wrapper"
 					ref={this.demoIntroSection2Wrapper}
 				>
-
-					<CanvasImageSequence
-
-						data={[demoIntroSection1Bg3]}
-						loop={false}
-						forward={true}
-						fps={1}
-						canvasWidth={screen.availWidth}
-						canvasHeight={screen.availHeight}
-						onChange={() => this.change}
-					/>
 					<div
 						style={{
 							position: 'absolute',
@@ -4161,22 +4221,12 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 						display: 'none',
 						backgroundSize: 'cover',
 						backgroundPosition: 'center',
+						backgroundImage: `url(${demoIntroSection3Bg1})`
 					}}
 					onTouchStart={(event) => this.demoIntroSection3WrapperTouchStart(event)}
 					onTouchMove={(event) => this.demoIntroSection3WrapperTouchMove(event)}
 					onTouchEnd={(event) => this.demoIntroSection3WrapperTouchEnd(event)}
 				>
-
-					<CanvasImageSequence
-						data={[demoIntroSection3Bg1]}
-						loop={false}
-						forward={false}
-						autoPlay={false}
-						fps={1}
-						canvasWidth={screen.availWidth}
-						canvasHeight={screen.availHeight}
-						onChange={() => this.change}
-					/>
 					{/* 标题*/}
 					<div
 						style={{
@@ -4237,16 +4287,23 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 									}}
 								>
 									<div className="canvasImageScale">
-										<CanvasImageSequence
+										{/* <CanvasImageSequence
+											style = {{display:'none'}}
 											ref={this[`homePageCanvasRef${index}`]}
 											data={this.sectionImageSequenceList[item.key]}
 											loop={true}
 											forward={true}
 											autoPlay={false}
-											fps={1}
+											fps={30}
 											canvasWidth={this.state.canvasWidth}
 											canvasHeight={this.state.canvasHeight}
 											onChange={() => this.change}
+										/> */}
+										<canvas
+											ref={this[`homePageCanvasRef${index}`]}
+											id="canvas-image-sequence"
+											width={this.state.canvasWidth}
+											height={this.state.canvasHeight}
 										/>
 									</div>
 									<div
@@ -4399,7 +4456,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 							data={this.sectionImageSequenceList['privacy']}
 							ref={this.privacySection1WrapperCanvasRef}
 							loop={false}
-							forward={true}
+							forward={false}
 							autoPlay={false}
 							fps={1}
 							canvasWidth={this.state.canvasWidth}
