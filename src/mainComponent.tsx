@@ -1,18 +1,6 @@
 import React from 'react';
 import { PreloadComponent } from './preloadComponent';
 
-import comfortBg_1 from './assets/images/comfortBg_1.png';
-import comfortBg_2 from './assets/images/comfortBg_2.png';
-import comfortBg_3 from './assets/images/comfortBg_3.png';
-import comfortBg_4 from './assets/images/comfortBg_4_new.png';
-import comfortBg_5 from './assets/images/comfortBg_5.png';
-import comfortBg_6 from './assets/images/comfortBg_6_1.png';
-import comfortBg_7 from './assets/images/comfortBg_7.png';
-import comfortBg_8 from './assets/images/comfortBg_8.png';
-// import comfortBg_9 from './assets/images/comfortBg_9.png';
-import comfortBg_10 from './assets/images/comfortBg_10.png';
-import comfortBg_11 from './assets/images/comfortBg_11_1.png';
-import comfortBg_12 from './assets/images/comfortBg_12.png';
 // demo intro
 import demoIntroSection1Bg from './assets/images/demoIntroSection1Bg.png';
 import demoIntroSection1Bg3 from './assets/images/demoIntroSection1Bg3.png';
@@ -36,10 +24,9 @@ import uniqueSmallTitle from './assets/images/uniqueSmallTitle.svg';
 import uniqueSmallIndex from './assets/images/uniqueSmallIndex.svg';
 
 import videoPRemoteVhauffeur from './assets/remoteVhauffeur.webm';
-import homePrivacy_1 from './assets/Video00(ImageSequence)/Video00_TransitionPrivacy0.jpg';
-import homeConfort_2 from './assets/images/homeConfort_2.png';
-import homeLeisure_3 from './assets/images/homeLeisure_3.png';
-import homeUnique_4 from './assets/images/homeUnique_4.png';
+import Video01_AdvancedDimmableWindow from '../../assets/Video01_AdvancedDimmableWindow.mp4';
+import Video02_DigitalSealInsert from '../../assets/Video02_DigitalSealInsert.mp4';
+import Video16_FrunkBar from '../../assets/Video16_FrunkBar.mp4';
 
 import section2IndeImage from './assets/Video01_AdvancedDimmableWindow/Video01_AdvancedDimmableWindow0.jpg';
 import sectoin_4_phoneVideo from './assets/VideoP_RemoteVhauffeur/VideoP_RemoteVhauffeur0.jpg';
@@ -75,7 +62,7 @@ import leisureSection5Bg1 from './assets/images/leisureSection5Bg1.png';
 import leisureSection6Bg1 from './assets/images/leisureSection6Bg1.png';
 import leisureSection6Bg2 from './assets/images/leisureSection6Bg2.png';
 import leisureSection6Bg3 from './assets/images/leisureSection6Bg3.png';
-import unqiueSection2Bg1 from './assets/images/unqiueSection2Bg1.png';
+import uniqueSection2Bg1 from './assets/images/uniqueSection2Bg1.png';
 
 export class MainComponent extends React.Component<any, any> {
 	constructor(props: any) {
@@ -88,15 +75,18 @@ export class MainComponent extends React.Component<any, any> {
 	}
 	isPreload = true;
 	privacy: any = [];
-	advancedDimmableWindow:any = [];
-	digitalSealInsert:any = [];
+	advancedDimmableWindow: any = [];
+	digitalSealInsert: any = [];
 	comfort: any = [];
 	magazine: any = [];
 	leisureImges: any = [];
 	leisure: any = [];
 	unique: any = [];
-	frunkBarImges:any = [];
+	frunkBarImges: any = [];
 	digitalSealRotate: any = [];
+	videoPRemoteVhauffeurUrl:any = '';
+	canvasImages:any;
+	imageLength = 800;
 	componentDidMount() {
 		this.loadFont();
 		this.loadPrivacy();
@@ -109,15 +99,54 @@ export class MainComponent extends React.Component<any, any> {
 		this.loadImages();
 		this.loadadvancedDimmableWindow();
 		this.loadDigitalSealInsert();
+		this.loadVideoPRemoteVhauffeur();
 	}
-	
-	
 
+	loadVideo01AdvancedDimmableWindow() {
+		// require('../../assets/Video01_AdvancedDimmableWindow.mp4');
+	}
+	loadVideo02_DigitalSealInsert() {
+		// require('../../assets/Video02_DigitalSealInsert.mp4');
+	}
+	loadVideo16FrunkBar() {
+		//require('../../assets/Video16_FrunkBar.mp4');
+	}
+	loadVideoPRemoteVhauffeur() {
+		this.videoPRemoteVhauffeurUrl = require('./assets/remoteVhauffeur.webm')
+		// const _that =this;
+		// const blob_load = (src) => {
+		// 	const req = new XMLHttpRequest();
+		// 	req.open('GET', src, true);
+		// 	req.responseType = 'blob';
+		// 	req.onload = function() {
+		// 		// Onload is triggered even on 404
+		// 		// so we need to check the status code
+		// 		if (this.status === 200) {
+		// 			const videoBlob = this.response;
+					
+		// 			const blobSrc = URL.createObjectURL(videoBlob); // IE10+
+		// 			// Video is now downloaded
+		// 			// and we can set it as source on the video element
+		// 			// video.src = blobSrc ;
+		// 			_that.videoPRemoteVhauffeurUrl = blobSrc;
+		// 			console.log(blobSrc, 'blobSrc加载完毕');
+		// 		}
+		// 	};
+		// 	req.onerror = function() {
+		// 		// Error
+		// 	};
+		// 	req.send();
+		// };
+
+		// blob_load(require('./assets/remoteVhauffeur.webm'));
+	}
 	loadDigitalSealInsert() {
 		/* privacy 首页序列帧 */
 
 		for (let i = 0; i <= 40; i++) {
-			this.digitalSealInsert.push(require(`./assets/Video02_DigitalSealInsert/Video02_DigitalSealInsert${i}.jpg`));
+			this.digitalSealInsert.push(
+				require(`./assets/Video02_DigitalSealInsert/Video02_DigitalSealInsert${i}.jpg`)
+			);
 		}
 	}
 
@@ -125,7 +154,9 @@ export class MainComponent extends React.Component<any, any> {
 		/* privacy 首页序列帧 */
 
 		for (let i = 0; i <= 269; i++) {
-			this.advancedDimmableWindow.push(require(`./assets/Video01_AdvancedDimmableWindow/Video01_AdvancedDimmableWindow${i}.jpg`));
+			const img = new Image();
+			img.src = require(`./assets/Video01_AdvancedDimmableWindow/Video01_AdvancedDimmableWindow${i}.jpg`);
+			this.advancedDimmableWindow.push(img);
 		}
 	}
 	loadPrivacy() {
@@ -133,7 +164,7 @@ export class MainComponent extends React.Component<any, any> {
 
 		for (let i = 0; i <= 100; i++) {
 			const img = new Image();
-			img.src = require(`./assets/Video00(ImageSequence)/Video00_TransitionPrivacy${i}.jpg`)
+			img.src = require(`./assets/Video00(ImageSequence)/Video00_TransitionPrivacy${i}.jpg`);
 			this.privacy.push(img);
 		}
 	}
@@ -143,14 +174,16 @@ export class MainComponent extends React.Component<any, any> {
 
 		for (let i = 0; i <= 100; i++) {
 			const img = new Image();
-			img.src = require(`./assets/Video04_TransitionComfort/Video04_TransitionComfort${i}.jpg`)
+			img.src = require(`./assets/Video04_TransitionComfort/Video04_TransitionComfort${i}.jpg`);
 			this.comfort.push(img);
 		}
 	}
 
 	loadMagazine() {
 		for (let i = 0; i <= 120; i++) {
-			this.magazine.push(require(`./assets/Video13_Magazine/Video13_Magazine${i}.png`));
+			const img = new Image();
+			img.src = require(`./assets/Video13_Magazine/Video13_Magazine${i}.png`);
+			this.magazine.push(img);
 		}
 	}
 
@@ -158,7 +191,9 @@ export class MainComponent extends React.Component<any, any> {
 		/* leisure section2 序列帧 */
 
 		for (let i = 0; i <= 50; i++) {
-			this.frunkBarImges.push(require(`./assets/Video16_FrunkBar/Video16_FrunkBar${i}.jpg`));
+			const img = new Image();
+			img.src = require(`./assets/Video16_FrunkBar/Video16_FrunkBar${i}.jpg`);
+			this.frunkBarImges.push(img);
 		}
 	}
 
@@ -167,7 +202,7 @@ export class MainComponent extends React.Component<any, any> {
 
 		for (let i = 0; i <= 100; i++) {
 			const img = new Image();
-			img.src =require(`./assets/Video20_TransitionUnique/Video20_TransitionUnique${i}.jpg`)
+			img.src = require(`./assets/Video20_TransitionUnique/Video20_TransitionUnique${i}.jpg`);
 			this.unique.push(img);
 		}
 	}
@@ -176,12 +211,14 @@ export class MainComponent extends React.Component<any, any> {
 
 		for (let i = 0; i <= 100; i++) {
 			const img = new Image();
-			img.src =require(`./assets/Video20_TransitionUnique/Video20_TransitionUnique${i}.jpg`)
+			img.src = require(`./assets/Video15_TransitionLeisure/Video15_TransitionLeisure${i}.jpg`);
 			this.leisure.push(img);
 		}
 	}
 	loadDigitalSealRotate() {
 		for (let i = 0; i <= 100; i++) {
+			const img = new Image();
+			img.src = require(`./assets/Video02b_DigitalSealRotate_1/Video02b_DigitalSealRotate${i}.jpg`);
 			this.digitalSealRotate.push(require(`./assets/Video02b_DigitalSealRotate_1/Video02b_DigitalSealRotate${i}.jpg`));
 		}
 	}
@@ -204,10 +241,6 @@ export class MainComponent extends React.Component<any, any> {
 			uniqueSmallTitle,
 			uniqueSmallIndex,
 			videoPRemoteVhauffeur,
-			homePrivacy_1,
-			homeConfort_2,
-			homeLeisure_3,
-			homeUnique_4,
 			section2IndeImage,
 			sectoin_4_phoneVideo,
 			privacySection5ImageSequence,
@@ -242,28 +275,120 @@ export class MainComponent extends React.Component<any, any> {
 			leisureSection6Bg1,
 			leisureSection6Bg2,
 			leisureSection6Bg3,
-			unqiueSection2Bg1
+			uniqueSection2Bg1
 		];
 
+		this.canvasImages = {
+			demoIntroSection1Bg,
+			demoIntroSection1Bg3,
+			demoIntroSection3Bg1,
+			homePrivacy_1_small,
+			homeConfort_2_small,
+			homeLeisure_3_small,
+			homeUnique_4_small,
+			privacySmallTitle,
+			privacySmallIndex,
+			comfortSmallTitle,
+			comfortSmallIndex,
+			leisureSmallTitle,
+			leisureSmallIndex,
+			uniqueSmallTitle,
+			uniqueSmallIndex,
+			videoPRemoteVhauffeur,
+			section2IndeImage,
+			sectoin_4_phoneVideo,
+			privacySection5ImageSequence,
+			privacy_section_3_bg,
+			privacy_section_7_bg,
+			firstComfortSection1ImageSequence,
+			lastComfortSection1ImageSequence,
+			firstLeisureSection2ImageSequence,
+			firstLeisureSection1ImageSequence,
+			firstMagaziImageSequneence,
+			comfortBg_4_new,
+			comfortSection2Bg2,
+			comfortSection2Bg3,
+			comfortSection4Bg2,
+			comfortSection4Bg3,
+			comfortSection4Bg,
+			comfortSection6BG,
+			comfortSection7BG,
+			comfortSection8Bg,
+			comfortSection8Bg2,
+			comfortSection9Bg1,
+			comfortSection9Bg2,
+			comfortSection9Bg3,
+			comfortSection9Bg4,
+			comfortSection5BG1,
+			leisureSection3Bg1,
+			leisureSection3Bg2,
+			leisureSection4Bg4,
+			leisureSection4Bg3,
+			leisureSection5Bg1,
+			leisureSection6Bg1,
+			leisureSection6Bg2,
+			leisureSection6Bg3,
+			uniqueSection2Bg1
+		}
+
+		Object.keys(this.canvasImages).forEach(item=>{
+			const image = new Image();
+			image.src = this.canvasImages[item];
+			image.onload = ()=>{
+				this.canvasImages[item] = image;
+			}
+		})
+
+		const imagesOther = [].concat(
+				bgImages,
+				//this.privacy,
+			
+				// this.magazine,
+				// this.leisureImges,
+				this.digitalSealRotate,
+				// this.frunkBarImges,
+				// this.advancedDimmableWindow,
+				this.digitalSealInsert
+			);
+
+			imagesOther.forEach((v: any, index: any, arr: any) => {
+				const image = new Image();
+				image.src = v
+				image.onload = () => {
+					arr.successLength = (arr.successLength || 0) + 1;
+					const status = Math.ceil(arr.successLength / this.imageLength * 100);
+					// this.setState({ isResourceLoaded: true });
+					// if (status > 10) {
+					// 	this.isPreload = true;
+					// }
+					// setTimeout(() => {
+					// 	this.setState({ loadInProgress: status });
+					// }, 100);
+	
+					// if (status >= 99) {
+					// 	this.setState({ isResourceLoaded: true });
+					// 	this.setState({ loadInProgress: 100 });
+					// 	this.isPreload = false;
+					// 	return;
+					// }
+				};
+			
+		});
 		const images = [].concat(
-	//		bgImages,
+		//	bgImages,
 			this.privacy,
 			this.comfort,
 			this.leisure,
 			this.unique,
 			// this.magazine,
 			// this.leisureImges,
-			// this.digitalSealRotate,
+			//this.digitalSealRotate
 			// this.frunkBarImges,
 			// this.advancedDimmableWindow,
 			// this.digitalSealInsert
 		);
 		images.forEach((v: any, index: any, arr: any) => {
-
 			
-			// const image = new Image();
-			// image.src = v;
-
 			v.onload = () => {
 				arr.successLength = (arr.successLength || 0) + 1;
 				const status = Math.ceil(arr.successLength / arr.length * 100);
@@ -274,7 +399,7 @@ export class MainComponent extends React.Component<any, any> {
 				setTimeout(() => {
 					this.setState({ loadInProgress: status });
 				}, 100);
-
+				console.log(status+ 'arr.length ')
 				if(status>=99) {
 					this.setState({ isResourceLoaded: true });
 					this.setState({ loadInProgress: 100 });
@@ -283,6 +408,7 @@ export class MainComponent extends React.Component<any, any> {
 				}
 
 			};
+			
 		});
 	}
 	loadImage(url) {
@@ -304,16 +430,18 @@ export class MainComponent extends React.Component<any, any> {
 	render() {
 		return (
 			<PreloadComponent
-			isPreload = {this.isPreload}
+				isPreload={this.isPreload}
 				privacyImages={this.privacy}
 				comfortImages={this.comfort}
 				leisureImages={this.leisure}
 				uniqueImages={this.unique}
 				magazineImages={this.magazine}
-				frunkBarImges = {this.frunkBarImges}
-				advancedDimmableWindowImages = {this.advancedDimmableWindow}
+				frunkBarImges={this.frunkBarImges}
+				canvasImages = {this.canvasImages}
+				videoPRemoteVhauffeur = {this.videoPRemoteVhauffeurUrl}
+				advancedDimmableWindowImages={this.advancedDimmableWindow}
 				digitalSealRotateImages={this.digitalSealRotate}
-				digitalSealInsertImages = {this.digitalSealInsert}
+				digitalSealInsertImages={this.digitalSealInsert}
 				isResourceLoaded={this.state.isResourceLoaded}
 				loadInProgress={this.state.loadInProgress}
 				images={this.state.images}

@@ -48,6 +48,7 @@ export default class SwiperIndex extends React.Component<any, any> {
         return(<>
             <Menu displayStatus = {this.state.showMenu} onSwiperTo={(event,index: number) => this.swiperTo(event,index)} userName = {this.state.userName}/>
             <HomeComponentIndex3
+            videoPRemoteVhauffeur = {this.props.videoPRemoteVhauffeur}
             userName = {this.state.userName}
             privacyImages={this.props.privacyImages}
             comfortImages={this.props.comfortImages}
@@ -55,6 +56,7 @@ export default class SwiperIndex extends React.Component<any, any> {
             uniqueImages={this.props.uniqueImages}
             magazineImages={this.props.magazineImages}
             frunkBarImges = {this.props.frunkBarImges}
+            canvasImages = {this.props.canvasImages}
             digitalSealRotateImages={this.props.digitalSealRotateImages}
             advancedDimmableWindowImages = {this.props.advancedDimmableWindowImages}
             digitalSealInsertImages = {this.props.digitalSealInsertImages}

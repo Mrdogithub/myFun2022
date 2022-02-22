@@ -251,34 +251,14 @@ body {
 }
 
 .box {
-    flex: 1;
     overflow: hidden;
     transition: .5s;
     box-shadow: 0 20px 30px rgba(0, 0, 0, .1);
     line-height: 0;
 }
 
-.box>img {
-    object-fit: cover;
-    transition: .5s;
-}
 
-.box>span {
-    font-size: 3.8vh;
-    display: block;
-    text-align: center;
-    height: 10vh;
-    line-height: 2.6;
-}
 
-.box:hover {
-    flex: 1 1 80%;
-}
-
-.box:hover>img {
-    width: 100%;
-    height: 100%;
-}
 
 .video-react {
     background-color: transparent !important;
@@ -770,6 +750,7 @@ h1 {
         top: 1035px
     }
 }
+
 .comfortSection8ClickButtonOut {
     animation-duration: 1s;
     animation-name: comfortSection8ClickButtonOut;
@@ -779,13 +760,13 @@ h1 {
 
 @keyframes comfortSection8ClickButtonOut {
     from {
-       
         top: 1035px
     }
     to {
         top: 475px;
     }
 }
+
 .comfortSection8ClickMagamizeOut {
     animation-duration: 2.5s;
     animation-name: slideOut;
@@ -1254,8 +1235,6 @@ leisureSection3Bg2In {
     mix-blend-mode: multiply;
 }
 
-
-
 .comfortSection9Bg1In {
     animation-duration: 1.5s;
     animation-name: comfortSection9Bg1In;
@@ -1273,7 +1252,6 @@ leisureSection3Bg2In {
         filter: blur(0px);
     }
 }
-
 
 .comfortSection9Bg1Out {
     animation-duration: 1.5s;
@@ -1293,12 +1271,11 @@ leisureSection3Bg2In {
     }
 }
 
-.clipImage{
-    clip: rect(0px,824px,1024px,0px);
+.clipImage {
+    clip: rect(0px, 824px, 1024px, 0px);
 }
 
-
-.canvasImageScale{
+.canvasImageScale {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -1306,24 +1283,22 @@ leisureSection3Bg2In {
     left: -532px;
     top: -226px;
 }
-.canvasImageScaleDigitalSealInsert{
+
+.canvasImageScaleDigitalSealInsert {
     position: absolute;
     width: 100%;
     height: 100%;
     transform: scale(.55);
-    left: -372px;
+    left: -439px;
     top: -326px;
 }
 
-
-.uniqueDynamicIn{
+.uniqueDynamicIn {
     animation-duration: 1.5s;
     animation-name: uniqueDynamicIn;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
-    
 }
-
 
 @keyframes uniqueDynamicIn {
     from {
@@ -1340,15 +1315,12 @@ leisureSection3Bg2In {
     }
 }
 
-
-.uniqueDynamicOut{
+.uniqueDynamicOut {
     animation-duration: 1.5s;
     animation-name: uniqueDynamicOut;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
-    
 }
-
 
 @keyframes uniqueDynamicOut {
     from {
@@ -1365,15 +1337,12 @@ leisureSection3Bg2In {
     }
 }
 
-
-
 .maxImageAnimate {
     -webkit-animation: fadeIn 1 1s ease-out;
     -moz-animation: fadeIn 1 1s ease-out;
     -o-animation: fadeIn 1 1s ease-out;
     animation: fadeIn 1 1s ease-out;
 }
-
 
 /* .maxImage img{
     opacity: .5;
@@ -1384,77 +1353,372 @@ leisureSection3Bg2In {
     opacity: 1; 
   } */
 
-  .maxImage .imageCover{
+.maxImage .imageCover {
     --animate-duration: 0.5s;
-  }
+}
 
-  /* home page section default **/
- .homePageBoxWrapper {
+/* home page section default **/
+
+.homePageBoxWrapper {
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0px;
-    z-index:5;
- }
-  .homePageBox1Step1 {
+    z-index: 5;
+}
+.homePageBox1Step1{
+    clip:rect(0px, 341.5px, 1024px, 0px);
+}
+.homePageBox1Step1ZoomIn {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    animation-duration: .5s;
+    animation-name: homePageBox1Step1ZoomIn;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes homePageBox1Step1ZoomIn {
+    from {
+        clip:rect(0px, 341.5px, 1024px, 0px);
+    }
+    to {
+        clip: rect(0px,1129px,1024px,0px);
+    }
+}
+.homePageBox1Step1ZoomOut {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    animation-duration: 1.5s;
+    animation-name: homePageBox1Step1ZoomOut;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes homePageBox1Step1ZoomOut {
+    from {
+        clip:rect(0px,1286px,1024px,0px);
+    }
+    to {
+        clip:rect(0px,80px,1024px,0px);
+    }
+}
 
-    clip: rect(0px,341.5px,1024px,0px);
-  }
-  .homePageBox1Step1Title{
+
+.homePageBox1DependOnBox3ZoomOut,.homePageBox1DependOnBox4ZoomOut,.homePageBox1DependBox2ZoomOut {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    animation-duration: .5s;
+    animation-name: homePageBox1DependOnBox3ZoomOut;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes homePageBox1DependOnBox3ZoomOut {
+    from {
+        clip:rect(0px, 341.5px, 1024px, 0px);
+    }
+    to {
+        clip:rect(0px,80px,1024px,0px);
+    }
+}
+.homePageBox1Step1Title {
     top: 820px;
     left: 60px;
-  }
-  .homePageBox1Step1Index{
+}
+
+.homePageBox1Step1Index {
     top: 910px;
     left: 120px;
-  }
+}
 
-  .homePageBox2Step1 {
-    clip: rect(131px,683px,1024px,341.5px);
-  }
-  .homePageBox2Step1Title{
+.homePageBox2Step1 {
+    clip: rect(0px, 683px, 1024px, 341.5px);
+}
+
+.homePageBox2DependOnBox1ZoomOut {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    animation-duration: .5s;
+    animation-name: homePageBox2DependOnBox1ZoomOut;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes homePageBox2DependOnBox1ZoomOut {
+    from {
+        clip:rect(0px, 683px, 1024px, 341.5px);
+    }
+    to {
+        clip: rect(0px,1286px,1024px,1126px);
+    }
+}
+
+.homePageBox2DependOnBox3ZoomOut,.homePageBox2DependOnBox4ZoomOut {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    animation-duration: .5s;
+    animation-name: homePageBox2DependOnBox3ZoomOut;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes homePageBox2DependOnBox3ZoomOut {
+    from {
+        clip:rect(0px, 683px, 1024px, 341.5px);
+    }
+    to {
+        clip: rect(0px,160px,1024px,80px);
+    }
+}
+
+.homePageBox2DependOnBox3FilterZoomOut, {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    animation-duration: .5s;
+    animation-name: homePageBox2DependOnBox3FilterZoomOut;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes homePageBox2DependOnBox3FilterZoomOut {
+    from {
+        clip:rect(0px, 1206px, 1024px, 90px);
+    }
+    to {
+        clip: rect(0px,160px,1024px,80px);
+    }
+}
+
+
+.homePageBox2ZoomIn {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    animation-duration: .5s;
+    animation-name: homePageBox2ZoomIn;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes homePageBox2ZoomIn {
+    from {
+        clip: rect(0px, 683px, 1024px, 341.5px);
+    }
+    to {
+        clip:rect(0px,1206px,1024px,80px);
+    }
+}
+
+.homePageBox2FilterZoomIn {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    animation-duration: .5s;
+    animation-name: homePageBox2FilterZoomIn;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes homePageBox2FilterZoomIn {
+    from {
+        clip: rect(0px, 1206px, 1024px, 90px);
+    }
+    to {
+        clip:rect(0px,1206px,1024px,80px);
+    }
+}
+
+
+.homePageBox2Step1Title {
     top: 820px;
     left: 380px;
-  }
-  .homePageBox2Step1Index{
+}
+
+.homePageBox2Step1Index {
     top: 910px;
     left: 470px;
-  }
+}
 
-  .homePageBox3Step1 {
-    clip: rect(0px,1024.5px,1024px,683px);
-  }
-  .homePageBox3Step1Title{
+.homePageBox3Step1 {
+    clip: rect(0px, 1024.5px, 1024px, 683px);
+}
+
+.homePageBox3Step1ZoomOut {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    animation-duration: .5s;
+    animation-name: homePageBox3Step1ZoomOut;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes homePageBox3Step1ZoomOut {
+    from {
+        clip: rect(0px, 1024.5px, 1024px, 683px);
+    }
+    to {
+        clip:rect(0px,240px,1024px,160px);
+    }
+}
+
+.homePageBox3DependOnBox1ZoomOut,.homePageBox3DependOnBox2ZoomOut {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    animation-duration: .5s;
+    animation-name: homePageBox3DependOnBox1ZoomOut;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes homePageBox3DependOnBox1ZoomOut {
+    from {
+        clip: rect(0px, 1024.5px, 1024px, 1100px);
+    }
+    to {
+        clip:rect(0px, 1326px,1204px,1206px);
+    }
+}
+
+.homePageBox3DependOnBox4ZoomOut{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    animation-duration: .5s;
+    animation-name: homePageBox3DependOnBox4ZoomOut;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes homePageBox3DependOnBox4ZoomOut {
+    from {
+        clip: rect(0px, 1024.5px, 1024px, 683px);
+    }
+    to {
+        clip:rect(0px,240px,1024px,160px);
+    }
+}
+
+
+.homePageBox3ZoomIn {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    animation-duration: .5s;
+    animation-name: homePageBox3ZoomIn;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes homePageBox3ZoomIn {
+    from {
+        clip: rect(0px, 1024.5px, 1024px, 683px);
+        
+    }
+    to {
+        clip:rect(0px,1286px,1024px,160px);
+    }
+}
+.homePageBox3FilterZoomIn {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    animation-duration: .5s;
+    animation-name: homePageBox3FilterZoomIn;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes homePageBox3FilterZoomIn {
+    from {
+        clip: rect(0px, 1286px, 1024px,170px);
+        
+    }
+    to {
+        clip:rect(0px,1286px,1024px,160px);
+    }
+}
+
+.homePageBox3Step1Title {
     top: 820px;
     left: 750px;
-  }
-  .homePageBox3Step1Index{
-    top: 910px;
-     left: 770px;
-  }
+}
 
-  .homePageBox4Step1 {
-    clip: rect(0px,1366px,1024px,1024.5px);
-  }
-  .homePageBox4Step1Title{
+.homePageBox3Step1Index {
+    top: 910px;
+    left: 770px;
+}
+
+.homePageBox4Step1 {
+    clip: rect(0px, 1366px, 1024px, 1024.5px);
+}
+
+.homePageBox4Step1ZoomOut {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    animation-duration: 1.5s;
+    animation-name: homePageBox4Step1ZoomOut;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes homePageBox4Step1ZoomOut {
+    from {
+        clip: rect(0px, 1366px, 1024px, 1024.5px);
+    }
+    to {
+        clip:rect(0px,1366px,1024px,1286px);
+    }
+}
+
+.homePageBox4DependOnBox1ZoomOut,.homePageBox4DependOnBox2ZoomOut,.homePageBox4DependOnBox3ZoomOut  {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    animation-duration: 1.5s;
+    animation-name: homePageBox4DependOnBox1ZoomOut;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes homePageBox4DependOnBox1ZoomOut {
+    from {
+        clip: rect(0px, 1366px, 1024px, 1024.5px);
+    }
+    to {
+        clip:rect(0px,1366px,1024px,1286px);
+    }
+}
+.homePageBox4ZoomIn {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    animation-duration: .5s;
+    animation-name: homePageBox4ZoomIn;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes homePageBox4ZoomIn {
+    from {
+        clip: rect(0px, 1366px, 1024px, 1024.5px);
+    }
+    to {
+        clip: rect(0px,1366px,1024px,240px);
+    }
+}
+
+.homePageBox4Step1Title {
     top: 820px;
     left: 1079px;
-  }
-  .homePageBox4Step1Index{
+}
+
+.homePageBox4Step1Index {
     top: 910px;
     left: 1120px;
-  }
-
-
-  /* .homePageBox1Step2 {
-    clip: rect(0px,1366px,1024px,1024.5px);
-  }
-  .homePageBox2Step2 {
-    clip: rect(0px,1366px,1024px,1024.5px);
-  }
-  .homePageBox2Step2 {
-    clip: rect(0px,1366px,1024px,1024.5px);
-  }
-  .homePageBox13Step2 {
-    clip: rect(0px,1366px,1024px,1024.5px);
-  } */
+}
