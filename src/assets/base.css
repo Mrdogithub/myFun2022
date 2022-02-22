@@ -25,6 +25,8 @@
 
 html {
     scroll-behavior: smooth;
+    height: 100%;
+    overflow: hidden;
 }
 
 body {
@@ -1527,7 +1529,7 @@ leisureSection3Bg2In {
 }
 @keyframes homePageBox2FilterZoomIn {
     from {
-        clip: rect(0px, 1206px, 1024px, 90px);
+        clip: rect(0px, 1800px, 1024px, 130px);
     }
     to {
         clip:rect(0px,1206px,1024px,80px);
@@ -1580,12 +1582,32 @@ leisureSection3Bg2In {
 }
 @keyframes homePageBox3DependOnBox1ZoomOut {
     from {
-        clip: rect(0px, 1024.5px, 1024px, 1100px);
+        clip:  rect(0px, 1024.5px, 1024px, 683px);
     }
     to {
         clip:rect(0px, 1326px,1204px,1206px);
     }
 }
+
+.homePageBox3DependOnBox2FilterZoomOut{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    animation-duration: .5s;
+    animation-name: homePageBox3DependOnBox2FilterZoomOut;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes homePageBox3DependOnBox2FilterZoomOut {
+    from {
+        clip:  rect(0px, 1024.5px, 1024px, 683px);
+    }
+    to {
+        clip:rect(0px, 1326px,1204px,1206px);
+    }
+}
+
 
 .homePageBox3DependOnBox4ZoomOut{
     position: absolute;
@@ -1636,7 +1658,7 @@ leisureSection3Bg2In {
 }
 @keyframes homePageBox3FilterZoomIn {
     from {
-        clip: rect(0px, 1286px, 1024px,170px);
+        clip: rect(0px, 1286px, 1024px,100px);
         
     }
     to {
@@ -1682,7 +1704,7 @@ leisureSection3Bg2In {
     height: 100%;
     width: 100%;
     z-index: 1;
-    animation-duration: 1.5s;
+    animation-duration: .5s;
     animation-name: homePageBox4DependOnBox1ZoomOut;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;

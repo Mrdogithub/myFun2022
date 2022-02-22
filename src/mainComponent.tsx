@@ -91,74 +91,19 @@ export class MainComponent extends React.Component<any, any> {
 		this.loadFont();
 		this.loadPrivacy();
 		this.loadComfort();
-		this.loadMagazine();
-		this.loadFrunkBarImges();
+		// this.loadMagazine();
+		// this.loadFrunkBarImges();
 		this.loadLeisure();
 		this.loadUnique();
 		this.loadDigitalSealRotate();
 		this.loadImages();
-		this.loadadvancedDimmableWindow();
-		this.loadDigitalSealInsert();
-		this.loadVideoPRemoteVhauffeur();
+		// this.loadadvancedDimmableWindow();
+		// this.loadDigitalSealInsert();
+		this.loadCanvasImages();
+		this.loadeDemoInfoBg();
 	}
 
-	loadVideo01AdvancedDimmableWindow() {
-		// require('../../assets/Video01_AdvancedDimmableWindow.mp4');
-	}
-	loadVideo02_DigitalSealInsert() {
-		// require('../../assets/Video02_DigitalSealInsert.mp4');
-	}
-	loadVideo16FrunkBar() {
-		//require('../../assets/Video16_FrunkBar.mp4');
-	}
-	loadVideoPRemoteVhauffeur() {
-		this.videoPRemoteVhauffeurUrl = require('./assets/remoteVhauffeur.webm')
-		// const _that =this;
-		// const blob_load = (src) => {
-		// 	const req = new XMLHttpRequest();
-		// 	req.open('GET', src, true);
-		// 	req.responseType = 'blob';
-		// 	req.onload = function() {
-		// 		// Onload is triggered even on 404
-		// 		// so we need to check the status code
-		// 		if (this.status === 200) {
-		// 			const videoBlob = this.response;
-					
-		// 			const blobSrc = URL.createObjectURL(videoBlob); // IE10+
-		// 			// Video is now downloaded
-		// 			// and we can set it as source on the video element
-		// 			// video.src = blobSrc ;
-		// 			_that.videoPRemoteVhauffeurUrl = blobSrc;
-		// 			console.log(blobSrc, 'blobSrc加载完毕');
-		// 		}
-		// 	};
-		// 	req.onerror = function() {
-		// 		// Error
-		// 	};
-		// 	req.send();
-		// };
-
-		// blob_load(require('./assets/remoteVhauffeur.webm'));
-	}
-	loadDigitalSealInsert() {
-		/* privacy 首页序列帧 */
-
-		for (let i = 0; i <= 40; i++) {
-			this.digitalSealInsert.push(
-				require(`./assets/Video02_DigitalSealInsert/Video02_DigitalSealInsert${i}.jpg`)
-			);
-		}
-	}
-
-	loadadvancedDimmableWindow() {
-		/* privacy 首页序列帧 */
-
-		for (let i = 0; i <= 269; i++) {
-			const img = new Image();
-			img.src = require(`./assets/Video01_AdvancedDimmableWindow/Video01_AdvancedDimmableWindow${i}.jpg`);
-			this.advancedDimmableWindow.push(img);
-		}
-	}
+	
 	loadPrivacy() {
 		/* privacy 首页序列帧 */
 
@@ -179,23 +124,23 @@ export class MainComponent extends React.Component<any, any> {
 		}
 	}
 
-	loadMagazine() {
-		for (let i = 0; i <= 120; i++) {
-			const img = new Image();
-			img.src = require(`./assets/Video13_Magazine/Video13_Magazine${i}.png`);
-			this.magazine.push(img);
-		}
-	}
+	// loadMagazine() {
+	// 	for (let i = 0; i <= 120; i++) {
+	// 		const img = new Image();
+	// 		img.src = require(`./assets/Video13_Magazine/Video13_Magazine${i}.png`);
+	// 		this.magazine.push(img);
+	// 	}
+	// }
 
-	loadFrunkBarImges() {
-		/* leisure section2 序列帧 */
+	// loadFrunkBarImges() {
+	// 	/* leisure section2 序列帧 */
 
-		for (let i = 0; i <= 50; i++) {
-			const img = new Image();
-			img.src = require(`./assets/Video16_FrunkBar/Video16_FrunkBar${i}.jpg`);
-			this.frunkBarImges.push(img);
-		}
-	}
+	// 	for (let i = 0; i <= 50; i++) {
+	// 		const img = new Image();
+	// 		img.src = require(`./assets/Video16_FrunkBar/Video16_FrunkBar${i}.jpg`);
+	// 		this.frunkBarImges.push(img);
+	// 	}
+	// }
 
 	loadUnique() {
 		/* unique 首页序列帧 */
@@ -222,62 +167,7 @@ export class MainComponent extends React.Component<any, any> {
 			this.digitalSealRotate.push(require(`./assets/Video02b_DigitalSealRotate_1/Video02b_DigitalSealRotate${i}.jpg`));
 		}
 	}
-
-	loadBgImages() {
-		const bgImages: any = [
-			demoIntroSection1Bg,
-			demoIntroSection1Bg3,
-			demoIntroSection3Bg1,
-			homePrivacy_1_small,
-			homeConfort_2_small,
-			homeLeisure_3_small,
-			homeUnique_4_small,
-			privacySmallTitle,
-			privacySmallIndex,
-			comfortSmallTitle,
-			comfortSmallIndex,
-			leisureSmallTitle,
-			leisureSmallIndex,
-			uniqueSmallTitle,
-			uniqueSmallIndex,
-			videoPRemoteVhauffeur,
-			section2IndeImage,
-			sectoin_4_phoneVideo,
-			privacySection5ImageSequence,
-			privacy_section_3_bg,
-			privacy_section_7_bg,
-			firstComfortSection1ImageSequence,
-			lastComfortSection1ImageSequence,
-			firstLeisureSection2ImageSequence,
-			firstLeisureSection1ImageSequence,
-			firstMagaziImageSequneence,
-			comfortBg_4_new,
-			comfortSection2Bg2,
-			comfortSection2Bg3,
-			comfortSection4Bg2,
-			comfortSection4Bg3,
-			comfortSection4Bg,
-			comfortSection6BG,
-			comfortSection7BG,
-			comfortSection8Bg,
-			comfortSection8Bg2,
-			comfortSection9Bg1,
-			comfortSection9Bg2,
-			comfortSection9Bg1,
-			comfortSection9Bg3,
-			comfortSection9Bg4,
-			comfortSection5BG1,
-			leisureSection3Bg1,
-			leisureSection3Bg2,
-			leisureSection4Bg4,
-			leisureSection4Bg3,
-			leisureSection5Bg1,
-			leisureSection6Bg1,
-			leisureSection6Bg2,
-			leisureSection6Bg3,
-			uniqueSection2Bg1
-		];
-
+	loadCanvasImages(){
 		this.canvasImages = {
 			demoIntroSection1Bg,
 			demoIntroSection1Bg3,
@@ -334,11 +224,84 @@ export class MainComponent extends React.Component<any, any> {
 		Object.keys(this.canvasImages).forEach(item=>{
 			const image = new Image();
 			image.src = this.canvasImages[item];
-			image.onload = ()=>{
-				this.canvasImages[item] = image;
-			}
+			this.canvasImages[item] = image;
+			// image.onload = ()=>{
+			// 	this.canvasImages[item] = image;
+			// 	console.log(this.canvasImages)
+			// }
 		})
+	}
 
+	loadeDemoInfoBg () {
+
+// 		import demoIntroSection1Bg from './assets/images/demoIntroSection1Bg.png';
+// import demoIntroSection1Bg3 from './assets/images/demoIntroSection1Bg3.png';
+// import demoIntroSection3Bg1 from './assets/images/demoIntroSection3Bg1.png';
+		const image = new Image();
+			image.src =  require(`./assets/images/demoIntroSection1Bg.png`);
+			this.canvasImages = image;
+			// image.onload = ()=>{
+			// 	this.canvasImages[item] = image;
+			// 	console.log(this.canvasImages)
+			// }
+	}
+	loadBgImages() {
+		const bgImages: any = [
+			demoIntroSection1Bg,
+			demoIntroSection1Bg3,
+			demoIntroSection3Bg1,
+			homePrivacy_1_small,
+			homeConfort_2_small,
+			homeLeisure_3_small,
+			homeUnique_4_small,
+			privacySmallTitle,
+			privacySmallIndex,
+			comfortSmallTitle,
+			comfortSmallIndex,
+			leisureSmallTitle,
+			leisureSmallIndex,
+			uniqueSmallTitle,
+			uniqueSmallIndex,
+			videoPRemoteVhauffeur,
+			section2IndeImage,
+			sectoin_4_phoneVideo,
+			privacySection5ImageSequence,
+			privacy_section_3_bg,
+			privacy_section_7_bg,
+			firstComfortSection1ImageSequence,
+			lastComfortSection1ImageSequence,
+			firstLeisureSection2ImageSequence,
+			firstLeisureSection1ImageSequence,
+			firstMagaziImageSequneence,
+			comfortBg_4_new,
+			comfortSection2Bg2,
+			comfortSection2Bg3,
+			comfortSection4Bg2,
+			comfortSection4Bg3,
+			comfortSection4Bg,
+			comfortSection6BG,
+			comfortSection7BG,
+			comfortSection8Bg,
+			comfortSection8Bg2,
+			comfortSection9Bg1,
+			comfortSection9Bg2,
+			comfortSection9Bg1,
+			comfortSection9Bg3,
+			comfortSection9Bg4,
+			comfortSection5BG1,
+			leisureSection3Bg1,
+			leisureSection3Bg2,
+			leisureSection4Bg4,
+			leisureSection4Bg3,
+			leisureSection5Bg1,
+			leisureSection6Bg1,
+			leisureSection6Bg2,
+			leisureSection6Bg3,
+			uniqueSection2Bg1
+		];
+
+		
+		console.log(this.canvasImages+ 'sss')
 		const imagesOther = [].concat(
 				bgImages,
 				//this.privacy,
@@ -399,7 +362,7 @@ export class MainComponent extends React.Component<any, any> {
 				setTimeout(() => {
 					this.setState({ loadInProgress: status });
 				}, 100);
-				console.log(status+ 'arr.length ')
+				
 				if(status>=99) {
 					this.setState({ isResourceLoaded: true });
 					this.setState({ loadInProgress: 100 });

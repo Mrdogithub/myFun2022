@@ -21,7 +21,7 @@
     "noEmit": true,
     "noImplicitAny": false,
     "jsx": "react",
-    "sourceMap": true, // Generate corrresponding .map file
+    "sourceMap": false, // Generate corrresponding .map file
   },
   "include": [
     "src"

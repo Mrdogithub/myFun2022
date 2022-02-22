@@ -8,8 +8,8 @@ export class PreloadComponent extends React.Component<any, any> {
 			<div>
 				<div style={{ position: 'absolute', width: '100%', height: '100%', opacity: isPreload ? '0' : '1' }}>
 					<SwiperIndex
-					videoPRemoteVhauffeur = {this.props.videoPRemoteVhauffeur}
-					canvasImages = {this.props.canvasImages}
+						videoPRemoteVhauffeur = {this.props.videoPRemoteVhauffeur}
+						canvasImages = {this.props.canvasImages}
 						privacyImages={this.props.privacyImages}
 						comfortImages={this.props.comfortImages}
 						leisureImages={this.props.leisureImages}
