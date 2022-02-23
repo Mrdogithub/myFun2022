@@ -91,7 +91,7 @@ export class MainComponent extends React.Component<any, any> {
 		this.loadFont();
 		this.loadPrivacy();
 		this.loadComfort();
-		// this.loadMagazine();
+		this.loadMagazine();
 		// this.loadFrunkBarImges();
 		this.loadLeisure();
 		this.loadUnique();
@@ -124,13 +124,13 @@ export class MainComponent extends React.Component<any, any> {
 		}
 	}
 
-	// loadMagazine() {
-	// 	for (let i = 0; i <= 120; i++) {
-	// 		const img = new Image();
-	// 		img.src = require(`./assets/Video13_Magazine/Video13_Magazine${i}.png`);
-	// 		this.magazine.push(img);
-	// 	}
-	// }
+	loadMagazine() {
+		for (let i = 0; i <= 120; i++) {
+			// const img = new Image();
+			// img.src = require(`./assets/Video13_Magazine/Video13_Magazine${i}.png`);
+			this.magazine.push( require(`./assets/Video13_Magazine/Video13_Magazine${i}.png`));
+		}
+	}
 
 	// loadFrunkBarImges() {
 	// 	/* leisure section2 序列帧 */
@@ -306,7 +306,7 @@ export class MainComponent extends React.Component<any, any> {
 				bgImages,
 				//this.privacy,
 			
-				// this.magazine,
+				this.magazine,
 				// this.leisureImges,
 				this.digitalSealRotate,
 				// this.frunkBarImges,

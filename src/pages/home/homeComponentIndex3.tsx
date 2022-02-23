@@ -1800,7 +1800,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 
 		this.start = this.getSequenceMoveStep(event, 120) || this.start;
 		const step: any = () => {
-			this.initCanvasSequence(this.comfortSection8CanvasRef, 'magazineImages', this.start);
+			this.comfortSection8CanvasRef.current.setCurrent(this.start)
+			//this.initCanvasSequence(this.comfortSection8CanvasRef, 'magazineImages', this.start,1600,1083);
 			requestAnimationFrame(step);
 		};
 		requestAnimationFrame(step);
@@ -3746,8 +3747,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.comfortSection8ClickMagamizeMockButton.current.style.display = 'none';
 		this.setState({ lastActiveSectionRef: this.comfortSection8Wrapper });
 		// this.setState({ comfortSection8ImageSequenceIndex: 0 });
-		// this.comfortSection8CanvasRef.current.setCurrent(this.state.comfortSection8ImageSequenceIndex);
-		this.initCanvasSequence(this.comfortSection8CanvasRef, 'magazineImages', '1');
+		this.comfortSection8CanvasRef.current.setCurrent(1);
+		// this.initCanvasSequence(this.comfortSection8CanvasRef, 'magazineImages', 1);
 	}
 	comfortSection8WrapperOutAnimate() {
 		// this.comfortSection8Bg2.current.className =
@@ -3764,7 +3765,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			this.comfortSection8ClickMagamizeMockButton.current.style.top = '475px';
 		}, 1000);
 		this.setState({ comfortSection8ImageSequenceIndex: 0 });
-		this.initCanvasSequence(this.comfortSection8CanvasRef, 'magazineImages', '1');
+		this.comfortSection8CanvasRef.current.setCurrent(1)
+	//	this.initCanvasSequence(this.comfortSection8CanvasRef, 'magazineImages', 1);
 	}
 	comfortSection9WrapperInAnimate() {
 		// this.isStopTouchMove = true;
@@ -4034,7 +4036,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.homePageCanvasRef3.current && this.initCanvasSequence(this.homePageCanvasRef3, 'unique', 1);
 	}
 
-	initCanvasSequence(canvasElement, sequenceName, currentFrame) {
+	initCanvasSequence(canvasElement, sequenceName, currentFrame,width?,height?) {
 		if (!this.sectionImageSequenceList[sequenceName].length || !canvasElement.current) return;
 		const canvas = canvasElement.current;
 		const ctx = canvas.getContext('2d');
@@ -4043,8 +4045,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			this.sectionImageSequenceList[sequenceName][currentFrame],
 			0,
 			0,
-			this.state.canvasWidth,
-			this.state.canvasHeight
+			width||this.state.canvasWidth,
+			height|| this.state.canvasHeight
 		);
 	}
 
@@ -7634,16 +7636,26 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 									position: 'absolute',
 									width: '100%',
 									height: '887px',
-									left: '534px',
-									top: '-520px'
+									left: '-26',
+									top: '0px'
 								}}
 							>
-								<canvas
+
+							<CanvasImageSequence
+									ref={this.comfortSection8CanvasRef}
+									data={this.sectionImageSequenceList['magazineImages']}
+									loop={false}
+									forward={true}
+									fps={1}
+									canvasWidth={1366}
+									canvasHeight={1024}
+								/>
+								{/* <canvas
 									ref={this.comfortSection8CanvasRef}
 									id={this.privacySection6CanvasRef}
-									width={this.state.canvasWidth}
-									height={this.state.canvasHeight}
-								/>
+									width={1366}
+									height={1083}
+								/> */}
 							</div>
 						</div>
 					</div>
