@@ -1426,6 +1426,27 @@ leisureSection3Bg2In {
 @keyframes homePageBox1DependOnBox3ZoomOut {
     from {
         clip:rect(0px, 341.5px, 1024px, 0px);
+       
+    }
+    to {
+        clip:rect(0px,80px,1024px,0px);
+    }
+}
+
+.homePageBox1DependBox2DefaultZoomOut {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 3;
+    animation-duration: .5s;
+    animation-name: homePageBox1DependBox2DefaultZoomOut;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes homePageBox1DependBox2DefaultZoomOut {
+    from {
+        clip:rect(0px, 325px, 1024px, 0px);
+       
     }
     to {
         clip:rect(0px,80px,1024px,0px);
@@ -1457,7 +1478,7 @@ leisureSection3Bg2In {
 }
 @keyframes homePageBox2DependOnBox1ZoomOut {
     from {
-        clip:rect(0px, 683px, 1024px, 341.5px);
+        clip:rect(0px, 1206px, 1024px, 341.5px);
     }
     to {
         clip: rect(0px,1206px,1024px,1126px);
@@ -1514,7 +1535,7 @@ leisureSection3Bg2In {
 }
 @keyframes homePageBox2ZoomIn {
     from {
-        clip: rect(0px, 683px, 1024px, 341.5px);
+        clip:  rect(0px,1206px,1024px,320px);
     }
     to {
         clip:rect(0px,1206px,1024px,80px);
@@ -1568,12 +1589,74 @@ leisureSection3Bg2In {
 }
 @keyframes homePageBox2FilterZoomOut {
     from {
-        clip: rect(0px, 260px, 1024px, 80px);
+        clip: rect(0px, 160px, 1024px, 80px);
     }
     to {
         clip:rect(0px, 160px, 1024px, 80px);
     }
 }
+
+
+.homePageBox2FilterDependOnBox3_2_3ZoomOut {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    animation-duration: .5s;
+    animation-name: homePageBox2FilterDependOnBox3_2_3ZoomOut;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes homePageBox2FilterDependOnBox3_2_3ZoomOut {
+    from {
+        clip:rect(0px,1210px,1024px,80px);
+    }
+    to {
+        clip:rect(0px, 160px, 1024px, 80px);
+    }
+}
+
+
+.homePageBox2FilterDependOnAfterBox3ZoomOut {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    animation-duration: .5s;
+    animation-name: homePageBox2FilterDependOnAfterBox3ZoomOut;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes homePageBox2FilterDependOnAfterBox3ZoomOut {
+    from {
+        clip: rect(0px, 160px, 1024px, 80px);
+    }
+    to {
+        clip:rect(0px, 160px, 1024px, 80px);
+    }
+}
+
+
+
+.homePageBox4_3_4_ZoomOut {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    animation-duration: .5s;
+    animation-name: homePageBox4_3_4_ZoomOut;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes homePageBox4_3_4_ZoomOut {
+    from {
+        clip: rect(0px,1366px,1024px,240px);
+    }
+    to {
+        clip:rect(0px, 1366px, 1234px, 1280px)
+    }
+}
+
 
 .homePageBox2DependOnBeforeBox1ZoomOut {
     position: absolute;
@@ -1847,7 +1930,26 @@ leisureSection3Bg2In {
 }
 @keyframes homePageBox4DependOnBox1ZoomOut {
     from {
-        clip: rect(0px, 1366px, 1024px, 1024.5px);
+        clip: rect(0px, 1366px, 1024px, 1286px);
+    }
+    to {
+        clip:rect(0px,1366px,1024px,1286px);
+    }
+}
+
+.homePageBox4DependOnBox3DefultZoomOut  {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    animation-duration: .5s;
+    animation-name: homePageBox4DependOnBox3DefultZoomOut;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes homePageBox4DependOnBox3DefultZoomOut {
+    from {
+        clip: rect(0px, 1366px, 1024px, 1025px);
     }
     to {
         clip:rect(0px,1366px,1024px,1286px);
@@ -1883,6 +1985,7 @@ leisureSection3Bg2In {
 
 .homePageMaskIn {
     position: absolute;
+    border: 1px solid transparent;
     height: 100%;
     width: 100%;
     z-index: 1;
@@ -1904,9 +2007,11 @@ leisureSection3Bg2In {
 
 .homePageMaskOut {
     position: absolute;
+    border: 1px solid transparent;
     height: 100%;
     width: 100%;
     z-index: 1;
+    opacity:1;
     animation-duration: 1.5s;
     animation-name: homePageMaskOut;
     animation-fill-mode: forwards;
@@ -1915,9 +2020,11 @@ leisureSection3Bg2In {
 
 @keyframes homePageMaskOut {
     from {
+        background: rgba(0,0,0,0);
         backdrop-filter: blur(0px);
     }
     to {
-        backdrop-filter: blur(20px);
+       backdrop-filter: blur(20px);
+        background: rgba(0,0,0,0.25);
     }
 }
