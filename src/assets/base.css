@@ -1760,13 +1760,31 @@ leisureSection3Bg2In {
 }
 @keyframes homePageBox3DependOnBox2ZoomOut {
     from {
-        clip:  rect(0px, 1286px, 1024px, 150px);
+        clip:rect(0px,1286px,1024px,160px);
     }
     to {
         clip:rect(0px, 1286px,1204px,1206px);
     }
 }
-
+.homePageBox3DependOnBox2DefaultZoomOut {
+    position: absolute;
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    animation-duration: .5s;
+    animation-name: homePageBox3DependOnBox2DefaultZoomOut;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes homePageBox3DependOnBox2DefaultZoomOut {
+    from {
+        clip:  rect(0px, 1286px, 1024px, 680px);
+    }
+    to {
+        clip:rect(0px, 1286px,1204px,1206px);
+    }
+}
 
 .homePageBox3DependAfterOnBox1ZoomOut {
     position: absolute;
@@ -1998,8 +2016,10 @@ leisureSection3Bg2In {
 @keyframes homePageMaskIn {
     from {
         backdrop-filter: blur(20px);
+        background: rgba(0,0,0,0.25);
     }
     to {
+        background: rgba(0,0,0,0);
         backdrop-filter: blur(0px);
     }
 }

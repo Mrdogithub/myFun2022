@@ -265,6 +265,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.video14Navigation = React.createRef();
 		this.video09ScreenMusicPlay = React.createRef();
 		this.video08TouchControl = React.createRef();
+		this.video01AdvancedDimmableWindow = React.createRef();
+		this.remoteVhauffeur = React.createRef();
 		this.state = {
 			privacySection6WrapperConfig: {
 				goToNext: false
@@ -622,6 +624,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	demoIntroSection3WrapperCanvasBg: any;
 	video09ScreenMusicPlay: any;
 	video08TouchControl: any;
+	video01AdvancedDimmableWindow:any;
+	remoteVhauffeur:any;
 	sectionImageSequenceList = {
 		privacy: [] as any,
 		comfort: [] as any,
@@ -847,7 +851,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				if (currentSlide.index === 1) {
 					this.box.current.childNodes[0].childNodes[0].className = 'homePageBox1DependBox2DefaultZoomOut';
 					this.box.current.childNodes[1].childNodes[0].className = 'homePageBox2ZoomIn';
-					this.box.current.childNodes[2].childNodes[0].className = 'homePageBox3DependOnBox2ZoomOut';
+					this.box.current.childNodes[2].childNodes[0].className = 'homePageBox3DependOnBox2DefaultZoomOut';
 
 					this.box.current.childNodes[3].childNodes[0].className = 'homePageBox4DependOnBox2ZoomOut';
 
@@ -1048,7 +1052,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 
 				// leisure
 				if (currentSlide.index === 2 && this.lastActiveKey === 'comfort') {
-					// this.box.current.childNodes[0].childNodes[0].style.clip = 'rect(0px,80px,1024px,0px)';
+					this.box.current.childNodes[0].childNodes[0].style.clip = 'rect(0px,80px,1024px,0px)';
 					// this.box.current.childNodes[1].childNodes[0].style.clip = 'rect(131px,160px,1024px,80px)';
 					// this.box.current.childNodes[2].childNodes[0].style.clip = 'rect(0px,1286px,1024px,160px)';
 					// this.box.current.childNodes[3].childNodes[0].style.clip = 'rect(0px,1366px,1024px,1286px)';
@@ -1062,8 +1066,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					this.box.current.childNodes[0].childNodes[0].childNodes[1].className = 'homePageMaskOut';
 					// homePageBox2FilterDependOnBox3_2_3ZoomOut
 					// 前一个状态是2，当前状态是3
-					this.box.current.childNodes[1].childNodes[0].className =
-						'homePageBox2FilterDependOnBox3_2_3ZoomOut';
+					this.box.current.childNodes[1].childNodes[0].className = 'homePageBox2FilterDependOnBox3_2_3ZoomOut';
 					this.box.current.childNodes[3].childNodes[0].className = 'homePageBox4DependOnBox3ZoomOut';
 					this.box.current.childNodes[1].childNodes[0].style.zIndex = '3';
 
@@ -1091,8 +1094,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					this.box.current.childNodes[3].childNodes[0].childNodes[1].className = 'homePageMaskOut';
 					this.box.current.childNodes[0].childNodes[0].childNodes[1].className = 'homePageMaskOut';
 
-					this.box.current.childNodes[1].childNodes[0].className =
-						'homePageBox2FilterDependOnAfterBox3ZoomOut';
+					this.box.current.childNodes[1].childNodes[0].className = 'homePageBox2FilterDependOnAfterBox3ZoomOut';
 					this.box.current.childNodes[3].childNodes[0].className = 'homePageBox4_3_4_ZoomOut';
 					this.box.current.childNodes[1].childNodes[0].style.zIndex = '3';
 
@@ -1251,7 +1253,6 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 
 			// privacySection2Wrapper 入场动画
 			this.setState({ lastActiveSectionRef: this.privacySection2Wrapper });
-			this.setState({ lastActiveSectionRefCallback: this.privacySection2WrapperInAnimate() });
 
 			this.privacySection2WrapperInAnimate();
 		}
@@ -1322,7 +1323,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		if (this.isStopTouchMove) return;
 		// part1 转场到上一页
 		if (this.move > MAX_NEXT_STEP && this.state.privacySectionAnimateContrl.isShowPrivacySection3leftContentPart1) {
-			// 向下拉动，返回上一页
+	
 			this.privacySection3WrapperOutAnimate();
 
 			this.privacySection2WrapperInAnimate();
@@ -1331,8 +1332,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 
 		// part2转场到part1
 		if (this.move > MAX_NEXT_STEP && this.state.privacySectionAnimateContrl.isShowPrivacySection3leftContentPart2) {
-			// 向下拉动，返回上一页
-			// this.privacySection3WrapperPart2OutAnimate();
+	
 			this.privacySection3leftContent.current.className = 'privacySection3leftContentOut';
 			this.privacySection3colorBg.current.style.background = '#48423D';
 			this.privacySection3PhoneVideo.current.className =
@@ -1350,7 +1350,6 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			return;
 		}
 		if (this.move < MAX_PREV_STEP) {
-			// 向s上拉动，进入下一页
 			// part1 转场到part2
 			if (this.state.privacySectionAnimateContrl.isShowPrivacySection3leftContentPart1) {
 				this.privacySection3WrapperPart2InAnimate();
@@ -1610,7 +1609,6 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				requestAnimationFrame(step);
 			}
 			// 向上拉动 进入下一页
-			console.log(this.start)
 			if (this.start > 90) {
 				this.comfortSection1Text.current.style.display = 'none';
 				this.comfortSection1Text.current.className = 'animate__animated animate__fadeOutDown animate__delay-.5s';
@@ -1672,8 +1670,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			this.comfortSection2WrapperOutAnimate();
 			// 向下拉动 返回上一页
 			this.comfortSection1Text.current.style.display = 'none';
-			this.comfortSection1Wrapper.current.className =
-				'sectionWrapper animate__animated animate__slideInUp animate__slow';
+			// this.comfortSection1Wrapper.current.className =
+			// 	'sectionWrapper animate__animated animate__slideInUp animate__slow';
 			this.start = 0;
 			this.initCanvasSequence(this.comfortSection1CanvasRef, 'comfort', 1);
 			this.comfortSection1Wrapper.current.style.zIndex = '1';
@@ -2282,7 +2280,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				this.comfortSection9WrapperPart1OutAnimate();
 			}, 3000);
 
-			this.leisureSection1Wrapper.current.className = 'sectionWrapper animate__animated animate__slideInUp';
+			// this.leisureSection1Wrapper.current.className = 'sectionWrapper animate__animated animate__slideInUp';
 			this.start = 0;
 			// this.leisureSection1CanvasRef.current.setCurrent(1);
 			this.initCanvasSequence(this.leisureSection1CanvasRef, 'leisure', 1);
@@ -2963,7 +2961,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			this.uniqueSection1Wrapper.current.style.zIndex = '1';
 			this.uniqueSection2Wrapper.current.style.zIndex = '0';
 			this.uniqueSection1Wrapper.current.style.display = 'block';
-			this.uniqueSection1Wrapper.current.className = 'sectionWrapper animate__animated animate__slideInUp';
+			// this.uniqueSection1Wrapper.current.className = 'sectionWrapper animate__animated animate__slideInUp';
 			this.start = 0;
 			//	this.uniqueSection1CanvasRef.current.setCurrent(1);
 			this.initCanvasSequence(this.uniqueSection1CanvasRef, 'unique', 100);
@@ -3482,6 +3480,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 	// privacySection2Wrapper 入场动画
 	privacySection2WrapperInAnimate() {
 		this.isStopTouchMove = true;
+		this.video01AdvancedDimmableWindow.current.currentTime = 0;
+		this.video01AdvancedDimmableWindow.current.play();
 		setTimeout(() => {
 			this.isStopTouchMove = false;
 		}, 3500);
@@ -3552,6 +3552,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		}, 1500);
 	}
 	privacySection3WrapperInAnimate() {
+		this.remoteVhauffeur.current.currentTime = 0;
+		this.remoteVhauffeur.current.play();
 		setTimeout(() => {
 			this.privacySection3Wrapper.current.style.display = 'block';
 			this.privacySection3Wrapper.current.className =
@@ -5197,7 +5199,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					}}
 				>
 					<div className="canvasImageScale">
-						<video width={this.state.canvasWidth} height={this.state.canvasHeight} autoPlay loop>
+						<video id = 'video01AdvancedDimmableWindow' ref = {this.video01AdvancedDimmableWindow} width={this.state.canvasWidth} height={this.state.canvasHeight} autoPlay loop>
 							<source src={require('../../assets/Video01_AdvancedDimmableWindow.mp4')} type="video/mp4" />
 							Your browser does not support the video tag.
 						</video>
@@ -5444,7 +5446,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 								zIndex: '-1'
 							}}
 						>
-							<video width="750" autoPlay loop>
+							<video id = 'remoteVhauffeur' ref = {this.remoteVhauffeur} width="750" autoPlay loop>
 								<source src={require('../../assets/remoteVhauffeur.webm')} type="video/webm" />
 								Your browser does not support the video tag.
 							</video>
