@@ -92,15 +92,10 @@ export class MainComponent extends React.Component<any, any> {
 		this.loadPrivacy();
 		this.loadComfort();
 		this.loadMagazine();
-		// this.loadFrunkBarImges();
 		this.loadLeisure();
 		this.loadUnique();
 		this.loadDigitalSealRotate();
 		this.loadImages();
-		// this.loadadvancedDimmableWindow();
-		// this.loadDigitalSealInsert();
-		this.loadCanvasImages();
-		this.loadeDemoInfoBg();
 	}
 
 	
@@ -132,15 +127,6 @@ export class MainComponent extends React.Component<any, any> {
 		}
 	}
 
-	// loadFrunkBarImges() {
-	// 	/* leisure section2 序列帧 */
-
-	// 	for (let i = 0; i <= 50; i++) {
-	// 		const img = new Image();
-	// 		img.src = require(`./assets/Video16_FrunkBar/Video16_FrunkBar${i}.jpg`);
-	// 		this.frunkBarImges.push(img);
-	// 	}
-	// }
 
 	loadUnique() {
 		/* unique 首页序列帧 */
@@ -167,84 +153,9 @@ export class MainComponent extends React.Component<any, any> {
 			this.digitalSealRotate.push(require(`./assets/Video02b_DigitalSealRotate_1/Video02b_DigitalSealRotate${i}.jpg`));
 		}
 	}
-	loadCanvasImages(){
-		this.canvasImages = {
-			demoIntroSection1Bg,
-			demoIntroSection1Bg3,
-			demoIntroSection3Bg1,
-			homePrivacy_1_small,
-			homeConfort_2_small,
-			homeLeisure_3_small,
-			homeUnique_4_small,
-			privacySmallTitle,
-			privacySmallIndex,
-			comfortSmallTitle,
-			comfortSmallIndex,
-			leisureSmallTitle,
-			leisureSmallIndex,
-			uniqueSmallTitle,
-			uniqueSmallIndex,
-			videoPRemoteVhauffeur,
-			section2IndeImage,
-			sectoin_4_phoneVideo,
-			privacySection5ImageSequence,
-			privacy_section_3_bg,
-			privacy_section_7_bg,
-			firstComfortSection1ImageSequence,
-			lastComfortSection1ImageSequence,
-			firstLeisureSection2ImageSequence,
-			firstLeisureSection1ImageSequence,
-			firstMagaziImageSequneence,
-			comfortBg_4_new,
-			comfortSection2Bg2,
-			comfortSection2Bg3,
-			comfortSection4Bg2,
-			comfortSection4Bg3,
-			comfortSection4Bg,
-			comfortSection6BG,
-			comfortSection7BG,
-			comfortSection8Bg,
-			comfortSection8Bg2,
-			comfortSection9Bg1,
-			comfortSection9Bg2,
-			comfortSection9Bg3,
-			comfortSection9Bg4,
-			comfortSection5BG1,
-			leisureSection3Bg1,
-			leisureSection3Bg2,
-			leisureSection4Bg4,
-			leisureSection4Bg3,
-			leisureSection5Bg1,
-			leisureSection6Bg1,
-			leisureSection6Bg2,
-			leisureSection6Bg3,
-			uniqueSection2Bg1
-		}
+	
 
-		Object.keys(this.canvasImages).forEach(item=>{
-			const image = new Image();
-			image.src = this.canvasImages[item];
-			this.canvasImages[item] = image;
-			// image.onload = ()=>{
-			// 	this.canvasImages[item] = image;
-			// 	console.log(this.canvasImages)
-			// }
-		})
-	}
 
-	loadeDemoInfoBg () {
-
-// 		import demoIntroSection1Bg from './assets/images/demoIntroSection1Bg.png';
-// import demoIntroSection1Bg3 from './assets/images/demoIntroSection1Bg3.png';
-// import demoIntroSection3Bg1 from './assets/images/demoIntroSection3Bg1.png';
-		const image = new Image();
-			image.src =  require(`./assets/images/demoIntroSection1Bg.png`);
-			this.canvasImages = image;
-			// image.onload = ()=>{
-			// 	this.canvasImages[item] = image;
-			// 	console.log(this.canvasImages)
-			// }
-	}
 	loadBgImages() {
 		const bgImages: any = [
 			demoIntroSection1Bg,
@@ -301,42 +212,6 @@ export class MainComponent extends React.Component<any, any> {
 		];
 
 		
-		console.log(this.canvasImages+ 'sss')
-		const imagesOther = [].concat(
-				bgImages,
-				//this.privacy,
-			
-				this.magazine,
-				// this.leisureImges,
-				this.digitalSealRotate,
-				// this.frunkBarImges,
-				// this.advancedDimmableWindow,
-				this.digitalSealInsert
-			);
-
-			imagesOther.forEach((v: any, index: any, arr: any) => {
-				const image = new Image();
-				image.src = v
-				image.onload = () => {
-					arr.successLength = (arr.successLength || 0) + 1;
-					const status = Math.ceil(arr.successLength / this.imageLength * 100);
-					// this.setState({ isResourceLoaded: true });
-					// if (status > 10) {
-					// 	this.isPreload = true;
-					// }
-					// setTimeout(() => {
-					// 	this.setState({ loadInProgress: status });
-					// }, 100);
-	
-					// if (status >= 99) {
-					// 	this.setState({ isResourceLoaded: true });
-					// 	this.setState({ loadInProgress: 100 });
-					// 	this.isPreload = false;
-					// 	return;
-					// }
-				};
-			
-		});
 		const images = [].concat(
 		//	bgImages,
 			this.privacy,
@@ -359,14 +234,19 @@ export class MainComponent extends React.Component<any, any> {
 				if(status >10) {
 					this.isPreload = true
 				}
-				setTimeout(() => {
-					this.setState({ loadInProgress: status });
-				}, 100);
+				
+				if(status < 99) {
+					setTimeout(() => {
+						this.setState({ loadInProgress: status });
+					}, 100);
+				}
 				
 				if(status>=99) {
-					this.setState({ isResourceLoaded: true });
-					this.setState({ loadInProgress: 100 });
-					this.isPreload = false;
+					setTimeout(()=>{
+						this.setState({ isResourceLoaded: true });
+						this.setState({ loadInProgress: 100 });
+						this.isPreload = false;
+					},15000)
 					return
 				}
 
@@ -387,7 +267,7 @@ export class MainComponent extends React.Component<any, any> {
 	}
 	loadFont() {
 		(document as any).fonts.ready.then((fontFaceSet: any) => {
-			console.log(fontFaceSet);
+			// console.log(fontFaceSet);
 		});
 	}
 	render() {

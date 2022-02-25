@@ -1393,6 +1393,26 @@ leisureSection3Bg2In {
         clip: rect(0px,1129px,1024px,0px);
     }
 }
+
+.homePageBox1Step1FilterZoomIn {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    animation-duration: .5s;
+    animation-name: homePageBox1Step1FilterZoomIn;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes homePageBox1Step1FilterZoomIn {
+    from {
+        clip:rect(0px, 80px, 1024px, 0px);
+    }
+    to {
+        clip: rect(0px,1129px,1024px,0px);
+    }
+}
+
 .homePageBox1Step1ZoomOut {
     position: absolute;
     height: 100%;
@@ -1589,7 +1609,7 @@ leisureSection3Bg2In {
 }
 @keyframes homePageBox2FilterZoomOut {
     from {
-        clip: rect(0px, 160px, 1024px, 80px);
+        clip: rect(0px, 1210px, 1024px, 80px);
     }
     to {
         clip:rect(0px, 160px, 1024px, 80px);
@@ -1676,6 +1696,25 @@ leisureSection3Bg2In {
     }
 }
 
+
+.homePageBox2DependOnBox1_2_1_ZoomOut {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    animation-duration: .5s;
+    animation-name: homePageBox2DependOnBox1_2_1_ZoomOut;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes homePageBox2DependOnBox1_2_1_ZoomOut {
+    from {
+        clip:rect(0px,1206px,1024px,80px);
+    }
+    to {
+        clip:rect(0px,1206px,1024px,1129px);
+    }
+}
+
 .homePageBox2DependOnAfterBox1ZoomOut {
     position: absolute;
     height: 100%;
@@ -1687,7 +1726,7 @@ leisureSection3Bg2In {
 }
 @keyframes homePageBox2DependOnAfterBox1ZoomOut {
     from {
-        clip:	rect(0px,1206px,1024px,160px);
+        clip:	rect(0px,1206px,1024px,80px);
     }
     to {
         clip:rect(0px,1206px,1024px,1129px);
@@ -1799,7 +1838,28 @@ leisureSection3Bg2In {
 }
 @keyframes homePageBox3DependAfterOnBox1ZoomOut {
     from {
-        clip:  rect(0px, 1289px, 1024px, 900px);
+        clip:rect(0px,1286px,1024px,180px);
+    }
+    to {
+        clip:rect(0px, 1289px,1204px,1206px);
+    }
+}
+
+
+.homePageBox3DependBox1_2_1_ZoomOut {
+    position: absolute;
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    animation-duration: .5s;
+    animation-name: homePageBox3DependBox1_2_1_ZoomOut;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes homePageBox3DependBox1_2_1_ZoomOut {
+    from {
+        clip:rect(0px,1286px,1024px,160px);
     }
     to {
         clip:rect(0px, 1289px,1204px,1206px);
@@ -1902,6 +1962,43 @@ leisureSection3Bg2In {
         clip:rect(0px,1286px,1024px,160px);
     }
 }
+.homePageBox3Filter_4_3_ZoomIn {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    animation-duration: .5s;
+    animation-name: homePageBox3Filter_4_3_ZoomIn;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes homePageBox3Filter_4_3_ZoomIn {
+    from {
+        clip: rect(0px, 1286px, 1024px,100px);
+        
+    }
+    to {
+        clip:rect(0px,1286px,1024px,160px);
+    }
+}
+
+.homePageBox3FilterZoomIn {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    animation-duration: .5s;
+    animation-name: homePageBox3FilterZoomIn;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes homePageBox3FilterZoomIn {
+    from {
+        clip: rect(0px, 1286px, 1024px,1210px);
+        
+    }
+    to {
+        clip:rect(0px,1286px,1024px,160px);
+    }
+}
 
 .homePageBox3Step1Title {
     top: 820px;
@@ -1949,6 +2046,25 @@ leisureSection3Bg2In {
 @keyframes homePageBox4DependOnBox1ZoomOut {
     from {
         clip: rect(0px, 1366px, 1024px, 1286px);
+    }
+    to {
+        clip:rect(0px,1366px,1024px,1286px);
+    }
+}
+
+.homePageBox4DependOnBox1_1_4_ZoomOut{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    animation-duration: .5s;
+    animation-name: homePageBox4DependOnBox1_1_4_ZoomOut;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes homePageBox4DependOnBox1_1_4_ZoomOut {
+    from {
+        clip:rect(0px,1366px,1024px,240px)
     }
     to {
         clip:rect(0px,1366px,1024px,1286px);

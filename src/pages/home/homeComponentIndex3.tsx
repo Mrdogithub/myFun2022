@@ -647,7 +647,6 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.sectionImageSequenceList['digitalSealRotateImages'] = this.props.digitalSealRotateImages;
 		this.sectionImageSequenceList['digitalSealInsertImages'] = this.props.digitalSealInsertImages;
 		this.sectionImageSequenceList['canvasImages'] = this.props.canvasImages;
-		console.log(this.sectionImageSequenceList);
 		// 设置画布尺寸
 		this.setState({ canvasWidth: 3840 });
 		this.setState({ canvasHeight: 2160 });
@@ -919,14 +918,47 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			} else {
 				// 某一条处于激活状态下的切换
 
+					// privacy
+					if (currentSlide.index === 0 &&this.lastActiveKey === 'unique') {
+						// this.box.current.childNodes[0].childNodes[0].style.clip = 'rect(0px,1286px,1024px,0px)';
+						// this.box.current.childNodes[1].childNodes[0].style.clip = 'rect(0px,1286px,1024px,1126px)';
+						// this.box.current.childNodes[2].childNodes[0].style.clip = 'rect(0px, 1286px,1204px,1206px)';
+
+						// this.box.current.childNodes[3].childNodes[0].style.clip = 'rect(0px, 1366px, 1024px, 1286px)';
+						// this.box.current.childNodes[1].childNodes[0].style.clip = 'rect(0px, 1206px, 1024px, 1129px)';
+						// this.box.current.childNodes[1].childNodes[0].style.zIndex = '3';
+						// this.box.current.childNodes[2].childNodes[0].style.zIndex = '3';
+						
+						this.box.current.childNodes[1].childNodes[0].className = 'homePageBox2DependOnBox1_2_1_ZoomOut';
+						this.box.current.childNodes[2].childNodes[0].className = 'homePageBox3DependBox1_2_1_ZoomOut';
+						this.box.current.childNodes[3].childNodes[0].className = 'homePageBox4DependOnBox1_1_4_ZoomOut';
+						this.box.current.childNodes[0].childNodes[0].className = ' homePageBox1Step1ZoomIn';
+						this.box.current.childNodes[0].childNodes[0].childNodes[1].className = 'homePageMaskIn';
+						// this.box.current.childNodes[1].childNodes[0].className = '';
+						this.box.current.childNodes[1].childNodes[0].childNodes[1].className = 'homePageMaskOut';
+						this.box.current.childNodes[2].childNodes[0].childNodes[1].className = 'homePageMaskOut';
+						this.box.current.childNodes[3].childNodes[0].childNodes[1].className = 'homePageMaskOut';
+						// this.box.current.childNodes[2].childNodes[0].className = ' ';
+						// this.box.current.childNodes[3].childNodes[0].style.zIndex = '3';
+
+					
+						// 半展开状态下的标题位置
+						this.box.current.childNodes[1].childNodes[0].childNodes[2].style.left = '1130px';
+						this.box.current.childNodes[2].childNodes[0].childNodes[2].style.left = '1200px';
+						this.box.current.childNodes[3].childNodes[0].childNodes[2].style.left = '1280px';
+						this.lastActiveKey = currentSlide.key;
+						this.updateFilterStatus(currentSlide);
+						return;
+					}
+
 				// privacy
-				if (currentSlide.index === 0 && (this.lastActiveKey == 'comfort' || this.lastActiveKey === 'unique')) {
+				if (currentSlide.index === 0 && this.lastActiveKey == 'comfort') {
 					// this.box.current.childNodes[0].childNodes[0].style.clip = 'rect(0px,1286px,1024px,0px)';
 					// this.box.current.childNodes[1].childNodes[0].style.clip = 'rect(0px,1286px,1024px,1126px)';
-					this.box.current.childNodes[2].childNodes[0].style.clip = 'rect(0px, 1326px,1204px,1206px)';
-					this.box.current.childNodes[3].childNodes[0].style.clip = 'rect(0px,1366px,1024px,1286px)';
+					this.box.current.childNodes[2].childNodes[0].style.clip = 'rect(0px, 1286px,1204px,1206px)';
+					this.box.current.childNodes[3].childNodes[0].style.clip = 'rect(0px, 1366px, 1024px, 1286px)';
 
-					this.box.current.childNodes[0].childNodes[0].className = ' homePageBox1Step1ZoomIn';
+					this.box.current.childNodes[0].childNodes[0].className = ' homePageBox1Step1FilterZoomIn';
 					this.box.current.childNodes[0].childNodes[0].childNodes[1].className = 'homePageMaskIn';
 					this.box.current.childNodes[1].childNodes[0].className = 'homePageBox2DependOnBeforeBox1ZoomOut';
 
@@ -950,18 +982,22 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					// this.box.current.childNodes[0].childNodes[0].style.clip = 'rect(0px,1286px,1024px,0px)';
 					// this.box.current.childNodes[1].childNodes[0].style.clip = 'rect(0px,1286px,1024px,1126px)';
 					// this.box.current.childNodes[2].childNodes[0].style.clip = 'rect(0px, 1326px,1204px,1206px)';
-					// this.box.current.childNodes[3].childNodes[0].style.clip = 'rect(0px,1366px,1024px,1286px)';
+					this.box.current.childNodes[3].childNodes[0].style.clip = 'rect(0px, 1366px, 1024px, 1286px)';
 
-					this.box.current.childNodes[0].childNodes[0].className = ' homePageBox1Step1ZoomIn';
-					this.box.current.childNodes[0].childNodes[0].childNodes[1].className = 'homePageMaskIn';
+			
 
 					this.box.current.childNodes[1].childNodes[0].childNodes[1].className = 'homePageMaskOut';
 					this.box.current.childNodes[2].childNodes[0].childNodes[1].className = 'homePageMaskOut ';
 					this.box.current.childNodes[3].childNodes[0].childNodes[1].className = 'homePageMaskOut ';
 
-					this.box.current.childNodes[1].childNodes[0].className = 'homePageBox2DependOnAfterBox1ZoomOut';
 					this.box.current.childNodes[2].childNodes[0].className = 'homePageBox3DependAfterOnBox1ZoomOut ';
+					this.box.current.childNodes[1].childNodes[0].className = 'homePageBox2DependOnAfterBox1ZoomOut';
+					
 					this.box.current.childNodes[3].childNodes[0].className = ' ';
+					this.box.current.childNodes[1].childNodes[0].style.zIndex = '3';
+
+					this.box.current.childNodes[0].childNodes[0].className = ' homePageBox1Step1FilterZoomIn';
+					this.box.current.childNodes[0].childNodes[0].childNodes[1].className = 'homePageMaskIn';
 
 					// 半展开状态下的标题位置
 					this.box.current.childNodes[1].childNodes[0].childNodes[2].style.left = '1130px';
@@ -973,31 +1009,31 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				}
 
 				// privacy
-				if (currentSlide.index === 0) {
-					// this.box.current.childNodes[0].childNodes[0].style.clip = 'rect(0px,1286px,1024px,0px)';
-					// this.box.current.childNodes[1].childNodes[0].style.clip = 'rect(0px,1286px,1024px,1126px)';
-					// this.box.current.childNodes[2].childNodes[0].style.clip = 'rect(0px, 1326px,1204px,1206px)';
-					// this.box.current.childNodes[3].childNodes[0].style.clip = 'rect(0px,1366px,1024px,1286px)';
+				// if (currentSlide.index === 0) {
+				// 	// this.box.current.childNodes[0].childNodes[0].style.clip = 'rect(0px,1286px,1024px,0px)';
+				// 	// this.box.current.childNodes[1].childNodes[0].style.clip = 'rect(0px,1286px,1024px,1126px)';
+				// 	// this.box.current.childNodes[2].childNodes[0].style.clip = 'rect(0px, 1326px,1204px,1206px)';
+				// 	this.box.current.childNodes[3].childNodes[0].style.clip = 'rect(0px, 1366px, 1024px, 1286px)';
 
-					this.box.current.childNodes[0].childNodes[0].className = ' homePageBox1Step1ZoomIn';
+				// 	this.box.current.childNodes[0].childNodes[0].className = ' homePageBox1Step1ZoomIn';
 
-					this.box.current.childNodes[0].childNodes[0].childNodes[1].className = 'homePageMaskIn';
+				// 	this.box.current.childNodes[0].childNodes[0].childNodes[1].className = 'homePageMaskIn';
 
-					this.box.current.childNodes[1].childNodes[0].childNodes[1].className = 'homePageMaskOut';
-					this.box.current.childNodes[2].childNodes[0].childNodes[1].className = ' homePageMaskOut';
-					this.box.current.childNodes[3].childNodes[0].childNodes[1].className = ' homePageMaskOut';
+				// 	this.box.current.childNodes[1].childNodes[0].childNodes[1].className = 'homePageMaskOut';
+				// 	this.box.current.childNodes[2].childNodes[0].childNodes[1].className = ' homePageMaskOut';
+				// 	this.box.current.childNodes[3].childNodes[0].childNodes[1].className = ' homePageMaskOut';
 
-					this.box.current.childNodes[1].childNodes[0].className = 'homePageBox2DependOnBox1ZoomOut';
-					this.box.current.childNodes[3].childNodes[0].className = ' homePageBox4DependOnBox1ZoomOut';
-					this.box.current.childNodes[2].childNodes[0].className = ' ';
-					// 半展开状态下的标题位置
-					this.box.current.childNodes[1].childNodes[0].childNodes[2].style.left = '1130px';
-					this.box.current.childNodes[2].childNodes[0].childNodes[2].style.left = '1200px';
-					this.box.current.childNodes[3].childNodes[0].childNodes[2].style.left = '1280px';
-					this.lastActiveKey = currentSlide.key;
-					this.updateFilterStatus(currentSlide);
-					return;
-				}
+				// 	this.box.current.childNodes[1].childNodes[0].className = 'homePageBox2DependOnBox1ZoomOut';
+				// 	this.box.current.childNodes[3].childNodes[0].className = ' homePageBox4DependOnBox1ZoomOut';
+				// 	this.box.current.childNodes[2].childNodes[0].className = ' ';
+				// 	// 半展开状态下的标题位置
+				// 	this.box.current.childNodes[1].childNodes[0].childNodes[2].style.left = '1130px';
+				// 	this.box.current.childNodes[2].childNodes[0].childNodes[2].style.left = '1200px';
+				// 	this.box.current.childNodes[3].childNodes[0].childNodes[2].style.left = '1280px';
+				// 	this.lastActiveKey = currentSlide.key;
+				// 	this.updateFilterStatus(currentSlide);
+				// 	return;
+				// }
 
 				// comfort
 				if (currentSlide.index === 1 && this.lastActiveKey === 'privacy') {
@@ -1081,14 +1117,14 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 
 				// leisure
 				if (currentSlide.index === 2 && this.lastActiveKey === 'unique') {
-					// this.box.current.childNodes[0].childNodes[0].style.clip = 'rect(0px,80px,1024px,0px)';
+					this.box.current.childNodes[0].childNodes[0].style.clip = 'rect(0px,80px,1024px,0px)';
 					// this.box.current.childNodes[1].childNodes[0].style.clip = 'rect(131px,160px,1024px,80px)';
 					// this.box.current.childNodes[2].childNodes[0].style.clip = 'rect(0px,1286px,1024px,160px)';
 					// this.box.current.childNodes[3].childNodes[0].style.clip = 'rect(0px,1366px,1024px,1286px)';
 
 					this.box.current.childNodes[0].childNodes[0].className = '';
 					this.box.current.childNodes[2].childNodes[0].childNodes[1].className = 'homePageMaskIn';
-					this.box.current.childNodes[2].childNodes[0].className = 'homePageBox3FilterZoomIn';
+					this.box.current.childNodes[2].childNodes[0].className = 'homePageBox3Filter_4_3_ZoomIn';
 
 					this.box.current.childNodes[1].childNodes[0].childNodes[1].className = 'homePageMaskOut';
 					this.box.current.childNodes[3].childNodes[0].childNodes[1].className = 'homePageMaskOut';
@@ -1107,33 +1143,62 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					return;
 				}
 
+
 				// leisure
-				if (currentSlide.index === 2) {
-					// this.box.current.childNodes[0].childNodes[0].style.clip = 'rect(0px,80px,1024px,0px)';
-					// this.box.current.childNodes[1].childNodes[0].style.clip = 'rect(131px,160px,1024px,80px)';
-					// this.box.current.childNodes[2].childNodes[0].style.clip = 'rect(0px,1286px,1024px,160px)';
-					// this.box.current.childNodes[3].childNodes[0].style.clip = 'rect(0px,1366px,1024px,1286px)';
-
-					this.box.current.childNodes[0].childNodes[0].className = '';
-					this.box.current.childNodes[2].childNodes[0].childNodes[1].className = 'homePageMaskIn';
-					this.box.current.childNodes[2].childNodes[0].className = 'homePageBox3FilterZoomIn';
-
-					this.box.current.childNodes[1].childNodes[0].childNodes[1].className = 'homePageMaskOut';
-					this.box.current.childNodes[3].childNodes[0].childNodes[1].className = 'homePageMaskOut';
-					this.box.current.childNodes[0].childNodes[0].childNodes[1].className = 'homePageMaskOut';
-
-					this.box.current.childNodes[1].childNodes[0].className = 'homePageBox2FilterDependOnBox3ZoomOut';
-					this.box.current.childNodes[3].childNodes[0].className = 'homePageBox4DependOnBox3ZoomOut';
-					this.box.current.childNodes[1].childNodes[0].style.zIndex = '3';
-
-					// 半展开状态下的标题位置
-					this.box.current.childNodes[0].childNodes[0].childNodes[2].style.left = '0px';
-					this.box.current.childNodes[1].childNodes[0].childNodes[2].style.left = '80px';
-					this.box.current.childNodes[3].childNodes[0].childNodes[2].style.left = '1280px';
-					this.lastActiveKey = currentSlide.key;
-					this.updateFilterStatus(currentSlide);
-					return;
+				if (currentSlide.index === 2&&this.lastActiveKey === 'privacy') {
+					//	this.box.current.childNodes[0].childNodes[0].style.clip = 'rect(0px,80px,1024px,0px)';
+						// this.box.current.childNodes[1].childNodes[0].style.clip = 'rect(131px,160px,1024px,80px)';
+						// this.box.current.childNodes[2].childNodes[0].style.clip = 'rect(0px,1286px,1024px,160px)';
+						this.box.current.childNodes[3].childNodes[0].style.clip = 'rect(0px,1366px,1024px,1286px)';
+	
+						this.box.current.childNodes[0].childNodes[0].className = 'homePageBox1DependBox2ZoomOut';
+						this.box.current.childNodes[2].childNodes[0].childNodes[1].className = 'homePageMaskIn';
+						this.box.current.childNodes[2].childNodes[0].className = 'homePageBox3FilterZoomIn';
+	
+						this.box.current.childNodes[1].childNodes[0].childNodes[1].className = 'homePageMaskOut';
+						this.box.current.childNodes[3].childNodes[0].childNodes[1].className = 'homePageMaskOut';
+						this.box.current.childNodes[0].childNodes[0].childNodes[1].className = 'homePageMaskOut';
+	
+						this.box.current.childNodes[1].childNodes[0].className = 'homePageBox2FilterDependOnBox3ZoomOut';
+						this.box.current.childNodes[3].childNodes[0].className = 'homePageBox4DependOnBox3ZoomOut';
+						this.box.current.childNodes[2].childNodes[0].style.zIndex = '3';
+	
+						// 半展开状态下的标题位置
+						this.box.current.childNodes[0].childNodes[0].childNodes[2].style.left = '0px';
+						this.box.current.childNodes[1].childNodes[0].childNodes[2].style.left = '80px';
+						this.box.current.childNodes[3].childNodes[0].childNodes[2].style.left = '1280px';
+						this.lastActiveKey = currentSlide.key;
+						this.updateFilterStatus(currentSlide);
 				}
+						
+
+				// leisure
+				// if (currentSlide.index === 2) {
+				// //	this.box.current.childNodes[0].childNodes[0].style.clip = 'rect(0px,80px,1024px,0px)';
+				// 	// this.box.current.childNodes[1].childNodes[0].style.clip = 'rect(131px,160px,1024px,80px)';
+				// 	// this.box.current.childNodes[2].childNodes[0].style.clip = 'rect(0px,1286px,1024px,160px)';
+				// 	// this.box.current.childNodes[3].childNodes[0].style.clip = 'rect(0px,1366px,1024px,1286px)';
+
+				// 	this.box.current.childNodes[0].childNodes[0].className = 'homePageBox1DependBox2ZoomOut';
+				// 	this.box.current.childNodes[2].childNodes[0].childNodes[1].className = 'homePageMaskIn';
+				// 	this.box.current.childNodes[2].childNodes[0].className = 'homePageBox3FilterZoomIn';
+
+				// 	this.box.current.childNodes[1].childNodes[0].childNodes[1].className = 'homePageMaskOut';
+				// 	this.box.current.childNodes[3].childNodes[0].childNodes[1].className = 'homePageMaskOut';
+				// 	this.box.current.childNodes[0].childNodes[0].childNodes[1].className = 'homePageMaskOut';
+
+				// 	this.box.current.childNodes[1].childNodes[0].className = 'homePageBox2FilterDependOnBox3ZoomOut';
+				// 	this.box.current.childNodes[3].childNodes[0].className = 'homePageBox4DependOnBox3ZoomOut';
+				// 	this.box.current.childNodes[2].childNodes[0].style.zIndex = '3';
+
+				// 	// 半展开状态下的标题位置
+				// 	this.box.current.childNodes[0].childNodes[0].childNodes[2].style.left = '0px';
+				// 	this.box.current.childNodes[1].childNodes[0].childNodes[2].style.left = '80px';
+				// 	this.box.current.childNodes[3].childNodes[0].childNodes[2].style.left = '1280px';
+				// 	this.lastActiveKey = currentSlide.key;
+				// 	this.updateFilterStatus(currentSlide);
+				// 	return;
+				// }
 
 				// unique
 				if (
@@ -1715,9 +1780,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			this.mask1.current.style.width = absoluteWidth + this.splitterOffSet[3] + 'px';
 			this.mask1Inner.current.style.width = absoluteWidth + this.splitterOffSet[3] + 'px';
 			// mask1 显示的可见区域显示第二张图
-			this.comfortSection2Bg.current.style.clip = `rect(0px,${this.comfortSection2SplitterMoveHanlder.current
-				.style.left + 47}px,1024px,0px)`;
-
+			this.comfortSection2Bg.current.style.clip = `rect(0px,${this.comfortSection2SplitterMoveHanlder.current.offsetLeft + 47}px,1024px,0px)`;
+		
 			if (
 				this.comfortSection2SplitterMoveHanlder.current.offsetLeft < 770 &&
 				this.comfortSection2SplitterMoveHanlder.current.offsetLeft >= 90 &&
@@ -2280,7 +2344,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 				this.comfortSection9WrapperPart1OutAnimate();
 			}, 3000);
 
-			// this.leisureSection1Wrapper.current.className = 'sectionWrapper animate__animated animate__slideInUp';
+			this.leisureSection1Wrapper.current.className = 'sectionWrapper animate__animated animate__slideInUp';
 			this.start = 0;
 			// this.leisureSection1CanvasRef.current.setCurrent(1);
 			this.initCanvasSequence(this.leisureSection1CanvasRef, 'leisure', 1);
@@ -2422,11 +2486,13 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		// }
 
 		this.start = this.getSequenceMoveStep(event) || this.start;
-		const step: any = () => {
-			this.initCanvasSequence(this.leisureSection1CanvasRef, 'leisure', this.start);
-			requestAnimationFrame(step);
-		};
+
+	
 		if (this.start >= 0 && this.start < 100) {
+			const step: any = () => {
+				this.initCanvasSequence(this.leisureSection1CanvasRef, 'leisure', this.start);
+				requestAnimationFrame(step);
+			};
 			requestAnimationFrame(step);
 		}
 		if (this.start >= 0 && this.start < 100 && this.leisureSection1Title.current.style.display == 'block') {
@@ -3086,8 +3152,6 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 		this.leftY = Math.abs(delta) % this.intervalStart;
 
 		isDown ? (this.start += 1) : (this.start -= 1);
-		// console.log(isDown)
-		// console.log(this.start);
 
 		// 记录上一次的移动位置
 		this.currentMoveY = currentTouchMoveDis;
@@ -4051,17 +4115,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 			this.comfortSection2Wrapper.current.style.zIndex = '';
 			this.comfortSection3Wrapper.current.style.zIndex = '';
 		}, 3000);
-		// this.comfortSection3Text.current.className = 'animate__animated animate__slideOutDown animate__delay-1.2s';
 	}
-	// comfortSection3Start1(event) {
-	// 	console.log('works');
-	// }
-	// comfortSection3Move1(event) {
-	// 	console.log('works');
-	// }
-	// comfortSection3End1(event) {
-	// 	console.log('works');
-	// }
+
 	comfortSection5WrapperInAnimate() {
 		this.isStopTouchMove = true;
 		setTimeout(() => {
