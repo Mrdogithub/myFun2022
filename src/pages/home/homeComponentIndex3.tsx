@@ -967,7 +967,8 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 					this.box.current.childNodes[3].childNodes[0].childNodes[1].className = 'homePageMaskOut';
 					this.box.current.childNodes[2].childNodes[0].className = ' ';
 					this.box.current.childNodes[3].childNodes[0].className = ' ';
-
+					
+					this.box.current.childNodes[1].childNodes[0].style.zIndex = '3';
 					// 半展开状态下的标题位置
 					this.box.current.childNodes[1].childNodes[0].childNodes[2].style.left = '1130px';
 					this.box.current.childNodes[2].childNodes[0].childNodes[2].style.left = '1200px';
@@ -1132,7 +1133,7 @@ export class HomeComponentIndex3 extends React.Component<any, any> {
 
 					this.box.current.childNodes[1].childNodes[0].className = 'homePageBox2FilterDependOnAfterBox3ZoomOut';
 					this.box.current.childNodes[3].childNodes[0].className = 'homePageBox4_3_4_ZoomOut';
-					this.box.current.childNodes[1].childNodes[0].style.zIndex = '3';
+					this.box.current.childNodes[3].childNodes[0].style.zIndex = '3';
 
 					// 半展开状态下的标题位置
 					this.box.current.childNodes[0].childNodes[0].childNodes[2].style.left = '0px';

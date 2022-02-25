@@ -1687,9 +1687,11 @@ leisureSection3Bg2In {
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
 }
+
+ /* rect(0px, 160px, 1024px, 80px) */
 @keyframes homePageBox2DependOnBeforeBox1ZoomOut {
     from {
-        clip:	rect(0px,1206px,1024px,160px);
+        clip:	rect(0px, 1206px, 1024px, 80px)
     }
     to {
         clip:rect(0px,1206px,1024px,1129px);
